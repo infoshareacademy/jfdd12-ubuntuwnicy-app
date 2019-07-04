@@ -1,22 +1,14 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import styles from './Navbar.module.css';
 
 export const Navbar = props => {
     return (
-      <nav>
+      <nav  className={styles.navbar}>
         <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/todo-app">Todo app</Link>
-          </li>
-          <li>
-            <Link to="/cats/1">Cats list</Link>
-          </li>
-          <li>
-            <Link to="/users">Users list</Link>
-          </li>
+          <li><img src='#' /></li>
+          <li>Strona Główna</li>
+          <li>Stwórz Quiz</li>
+          <li>Dołącz do Quizu</li>
         </ul>
       </nav>
     );
