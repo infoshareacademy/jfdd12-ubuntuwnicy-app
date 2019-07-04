@@ -1,6 +1,6 @@
 import React from 'react';
 
-import QuizGenWrapper from './components/quizGenerator/quizGenWrapper'
+import QuizGenWrapper from './components/quizGenerator/QuizGenWrapper'
 
 function App() {
   return (<div>

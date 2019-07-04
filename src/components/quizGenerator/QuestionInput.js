@@ -3,8 +3,9 @@ import React from 'react'
 function QuestionInput(props) {
     return (
         <div>
+            <p className='questionID'>{props.questionID}</p>
             <input className="questionInput"></input>
-            <input type='checkbox' className='isAnswerCorrect'></input>
+            <button className="deleteQuestion">x</button>
         </div>
     )
 }
