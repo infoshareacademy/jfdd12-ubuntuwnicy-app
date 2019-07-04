@@ -1,14 +1,15 @@
 import React from 'react'
+import './quizGenWrapperStyles.css'
 
 import QuizTitleInput from './quizTitleInput';
-import QuestionInput from './questionInput'
+import QuestionsList from './questionsList'
 
 function QuizGenWrapper(props) {
     return (
         <div className='quizGenWrapper'>
-            <h1>STWÓRZ QUIZ</h1>
+            <h1 className='quizGenHeader'>STWÓRZ QUIZ</h1>
             <QuizTitleInput />
-            <QuestionInput />
+            <QuestionsList />
 
 
 
