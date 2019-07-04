@@ -6,7 +6,7 @@ export class Timer extends React.Component {
   render() {
     return (
       <div>
-        <div>00:00</div>
+        <div style={{ float: "right" }}>00:00</div>
       </div>
     );
   }

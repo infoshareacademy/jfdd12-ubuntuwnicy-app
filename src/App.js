@@ -22,7 +22,6 @@ function App() {
         </a>
       </header> */}
       <QuizTitle />
-      <Timer />
     </div>
   );
 }
