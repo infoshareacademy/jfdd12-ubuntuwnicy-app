@@ -21,12 +21,13 @@
 }
 
 .possibleAnswer {
-  display: flex;
+  display: block;
+  margin: 30px 30px;
   padding: 20px 20px;
   color: black;
   border: 2px solid black;
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  flex-basis: 200px;
+  flex-basis: 400px;
 }
 
 .button {
@@ -36,6 +37,21 @@
 
 .quizTimer {
   float: right;
-  margin-right: 200px;
+  margin-right: 100px;
   font-size: 2em;
+}
+
+.quizTitles {
+  padding-top: 150px;
+  position: relative;
+}
+
+.arrowImage {
+  height: 100px;
+  width: 100px;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: space-around;
 }
