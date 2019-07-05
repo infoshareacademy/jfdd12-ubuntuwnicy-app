@@ -1,13 +1,22 @@
 import React from 'react';
-
-import QuizGenWrapper from './components/quizGenerator/QuizGenWrapper'
+import './App.css';
+import { Navbar } from './components/Navbar/Navbar';
+import QuizGenWrapper from './components/quizGenerator/QuizGenWrapper';
 
 function App() {
-  return (<div>
+  return (
+    <div>
+      <header>
+      <Navbar />
+      </header>
+      <div className="mainTitle">
+        <h1>sQuizYou</h1>
+        <h2>Witamy!</h2>
+      </div>
+      <QuizGenWrapper />
+    </div>
+  )};
 
-    <QuizGenWrapper />
-  </div>
-  );
-}
+
 
 export default App;
