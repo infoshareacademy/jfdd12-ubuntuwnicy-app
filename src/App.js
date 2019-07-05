@@ -14,8 +14,6 @@ function App() {
         <h1>sQuizYou</h1>
         <h2>Witamy!</h2>
       </div>
-      <QuizGenWrapper />
-      <QuizTitle />
     </div>
   );
 }
