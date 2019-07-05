@@ -8,6 +8,10 @@ function App() {
       <header>
       <Navbar />
       </header>
+      <div className="mainTitle">
+        <h1>sQuizYou</h1>
+        <h2>Witamy!</h2>
+      </div>
     </div>
   );
 }
