@@ -1,0 +1,8 @@
+.quizGenWrapper {
+  display: flex;
+  flex-flow: column;
+}
+
+.quizTitleInput {
+  margin-bottom: 10px;
+}
