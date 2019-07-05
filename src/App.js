@@ -1,26 +1,20 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import { Timer } from "./components/Timer";
+import { Navbar } from "./components/Navbar/Navbar";
+import QuizGenWrapper from "./components/quizGenerator/QuizGenWrapper";
 import { QuizTitle } from "./components/QuizTitle";
 
 function App() {
   return (
-    <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
+    <div>
+      <header>
+        <Navbar />
+      </header>
+      <div className="mainTitle">
+        <h1>sQuizYou</h1>
+        <h2>Witamy!</h2>
+      </div>
+      <QuizGenWrapper />
       <QuizTitle />
     </div>
   );
