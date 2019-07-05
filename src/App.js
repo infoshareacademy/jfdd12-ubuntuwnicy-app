@@ -7,9 +7,6 @@ function App() {
     <div>
       <header>
       <Navbar />
-        <p>
-          sQuizYou
-        </p>
       </header>
     </div>
   );
