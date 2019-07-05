@@ -1,24 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AnswerInput from './AnswerInput'
 
-const answersArr = [
-    {
-        id: 1,
-        value: '',
-        isCorrect: false
-    }
-]
+
 
 export default function AnswersList(props) {
 
-
+    const [questions, setQuestions] = useState([
+        { question: 'aaa', isCorrect: false },
+        { question: 'aba', isCorrect: true },
+        { question: 'aca', isCorrect: false },
+        { question: 'aca', isCorrect: false },
+        { question: 'aca', isCorrect: false }
+    ]);
 
     return (
         <div>
-            <AnswerInput answerID={1} />
-            <AnswerInput answerID={2} />
-            <AnswerInput answerID={3} />
-            <AnswerInput answerID={4} />
+
+            {questions.map((question, index) => <AnswerInput
+                answerID={index}
+                checked={question.isCorrect}
+                question={question.question}
+                
+            />)}
+
         </div>
     )
 }
