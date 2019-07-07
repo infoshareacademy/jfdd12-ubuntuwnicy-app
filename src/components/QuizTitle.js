@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./QuizTitle.module.css";
 import { stringLiteral } from "@babel/types";
-import { ArrowButton } from "./ArrowButton"
 
 const Question = <p className={styles.currentQuestion}>OBECNE PYTANIE</p>;
 
@@ -10,10 +9,6 @@ const Answer = ({ answer }) => (
     <button className={styles.button}>{answer.id}</button> | {answer.answerBody}
   </li>
 );
-
-const ArrowRight = <button className />;
-
-const ArrowLeft = <button className>as</button>;
 
 const Timer = (
   <div>
@@ -31,7 +26,6 @@ const Timer = (
 // );
 
 // Arrow.right, Arrow.left this.state +1 -1
-
 
 export class QuizTitle extends React.Component {
   state = {
@@ -105,13 +99,20 @@ export class QuizTitle extends React.Component {
           </ul>
         </div>
         <div className={styles.buttonWrapper}>
-          <div>
+          <div className={styles.arrowImageBox}> 
           <img
             className={styles.arrowImage}
-            src="https://cdn3.iconfinder.com/data/icons/arrows-set2/32/arr32px081-512.png"
+            onClick={() => this.state.page === 0 ? this.state.page : this.setState({ page: this.state.page - 1})}
+            src="https://cdn3.iconfinder.com/data/icons/line/36/arrow_left-512.png"
           />
           </div>
-          <ArrowButton onClick={this.state.page + 1}/>
+          <div className={styles.arrowImageBox}>
+          <img
+          className={styles.arrowImage}
+          onClick={() => this.state.page === 1 ? this.state.page : this.setState({ page: this.state.page + 1})} 
+          src="https://cdn3.iconfinder.com/data/icons/line/36/arrow_right-512.png"
+          />
+          </div>
         </div>
       </div>
     );
