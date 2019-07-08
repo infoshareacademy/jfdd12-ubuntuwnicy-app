@@ -29,10 +29,9 @@ const Timer = (
 
 export class QuizTitle extends React.Component {
   state = {
-    page: 0,
+    currentQuestion: 0,
     questions: [
       {
-        questionId: 1,
         question: "Ile kol ma samochod",
         answers: [
           {
@@ -51,7 +50,6 @@ export class QuizTitle extends React.Component {
         correctAnswer: "A"
       },
       {
-        questionId: 2,
         question: "Ile kol ma kot",
         answers: [
           {
@@ -78,40 +76,54 @@ export class QuizTitle extends React.Component {
 
   increment = () => {
     this.setState({
-      page: this.state.page + 1,
+      page: this.state.page + 1
     });
-  }
+  };
 
   render() {
     const { page } = this.state;
     return (
       <div click={this.clicked} className={styles.quizTitles}>
         <h1 className={styles.quizName}>
-          {this.state.questions[this.state.page].question}
+          {this.state.questions[this.state.currentQuestion].question}
         </h1>
         {Timer}
         {Question}
         <div className={styles.answerWrapper}>
           <ul>
-            {this.state.questions[this.state.page].answers.map(answer => (
-              <Answer key={answer.id} answer={answer} />
-            ))}
+            {this.state.questions[this.state.currentQuestion].answers.map(
+              answer => (
+                <Answer key={answer.id} answer={answer} />
+              )
+            )}
           </ul>
         </div>
         <div className={styles.buttonWrapper}>
-          <div className={styles.arrowImageBox}> 
-          <img
-            className={styles.arrowImage}
-            onClick={() => this.state.page === 0 ? this.state.page : this.setState({ page: this.state.page - 1})}
-            src="https://cdn3.iconfinder.com/data/icons/line/36/arrow_left-512.png"
-          />
+          <div className={styles.arrowImageBox}>
+            <img
+              className={styles.arrowImage}
+              onClick={() =>
+                this.state.currentQuestion === 0
+                  ? this.state.currentQuestion
+                  : this.setState({
+                      currentQuestion: this.state.currentQuestion - 1
+                    })
+              }
+              src="https://cdn3.iconfinder.com/data/icons/line/36/arrow_left-512.png"
+            />
           </div>
           <div className={styles.arrowImageBox}>
-          <img
-          className={styles.arrowImage}
-          onClick={() => this.state.page === 1 ? this.state.page : this.setState({ page: this.state.page + 1})} 
-          src="https://cdn3.iconfinder.com/data/icons/line/36/arrow_right-512.png"
-          />
+            <img
+              className={styles.arrowImage}
+              onClick={() =>
+                this.state.currentQuestion === this.state.questions.length - 1
+                  ? this.state.currentQuestion
+                  : this.setState({
+                      currentQuestion: this.state.currentQuestion + 1
+                    })
+              }
+              src="https://cdn3.iconfinder.com/data/icons/line/36/arrow_right-512.png"
+            />
           </div>
         </div>
       </div>
