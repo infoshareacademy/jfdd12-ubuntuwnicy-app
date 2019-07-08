@@ -93,11 +93,8 @@ export class QuizTitle extends React.Component {
   handleClick = answerID => {
     console.log(answerID);
     console.log("hello");
-    console.log(
-      this.state.currentAnswer.some(currentAnswer => currentAnswer.id === "A")
-    );
 
-    this.setState({ currentAnswer: [...this.state.currentAnswer, answerID] });
+    this.setState({ currentAnswer: answerID });
   };
 
   render() {
@@ -119,9 +116,7 @@ export class QuizTitle extends React.Component {
                     key={answer.id}
                     answer={answer}
                     className={styles.answer}
-                    isClicked={this.state.currentAnswer.some(
-                      currentAnswer => currentAnswer === answer.id
-                    )}
+                    isClicked={answer.id === this.state.currentAnswer}
                     onClick={this.handleClick}
                   />
                 )
