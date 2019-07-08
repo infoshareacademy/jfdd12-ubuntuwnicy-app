@@ -84,19 +84,23 @@ export class QuizTitle extends React.Component {
     const { page } = this.state;
     return (
       <div click={this.clicked} className={styles.quizTitles}>
-        <h1 className={styles.quizName}>
-          {this.state.questions[this.state.currentQuestion].question}
-        </h1>
-        {Timer}
-        {Question}
-        <div className={styles.answerWrapper}>
-          <ul>
-            {this.state.questions[this.state.currentQuestion].answers.map(
-              answer => (
-                <Answer key={answer.id} answer={answer} />
-              )
-            )}
-          </ul>
+        <div className={styles.questionCard}>
+          <div>
+            <h1 className={styles.quizName}>
+              {this.state.questions[this.state.currentQuestion].question}
+            </h1>
+            {Timer}
+            {Question}
+          </div>
+          <div className={styles.answerWrapper}>
+            <ul className={styles.answer}>
+              {this.state.questions[this.state.currentQuestion].answers.map(
+                answer => (
+                  <Answer key={answer.id} answer={answer} />
+                )
+              )}
+            </ul>
+          </div>
         </div>
         <div className={styles.buttonWrapper}>
           <div className={styles.arrowImageBox}>

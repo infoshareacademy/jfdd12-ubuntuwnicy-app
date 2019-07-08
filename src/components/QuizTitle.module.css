@@ -9,15 +9,23 @@
 }
 
 .answerWrapper {
+  height: 70vh;
   display: flex;
   flex-wrap: wrap;
-  padding: 20px 20px;
-  color: red;
+  flex-direction: column;
 }
 
-.answerWrapper {
-  display: flex;
+.answer {
+  padding: 2% 2%;
   color: red;
+  height: 10em;
+  font-size: 2em;
+  width: 60rem;
+}
+
+.questionCard {
+  background-color: rgba(4, 8, 29, 0.185);
+  box-shadow: ;
 }
 
 .possibleAnswer {
@@ -44,7 +52,7 @@
 .quizTitles {
   padding-top: 150px;
   position: relative;
-  background: #90e2c7
+  background: #ffffff;
 }
 
 .arrowImage {
