@@ -97,6 +97,10 @@ export class QuizTitle extends React.Component {
     this.setState({ currentAnswer: answerID });
   };
 
+  handleNextQuestion = answerID => {
+    this.setState({ currentAnswer: [] });
+  };
+
   render() {
     return (
       <div click={this.clicked} className={styles.quizTitles}>
@@ -145,7 +149,8 @@ export class QuizTitle extends React.Component {
                 this.state.currentQuestion === this.state.questions.length - 1
                   ? this.state.currentQuestion
                   : this.setState({
-                      currentQuestion: this.state.currentQuestion + 1
+                      currentQuestion: this.state.currentQuestion + 1,
+                      currentAnswer: []
                     })
               }
               src="https://cdn3.iconfinder.com/data/icons/line/36/arrow_right-512.png"
