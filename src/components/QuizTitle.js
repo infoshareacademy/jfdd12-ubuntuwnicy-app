@@ -4,9 +4,18 @@ import { stringLiteral } from "@babel/types";
 
 const Question = <p className={styles.currentQuestion}>OBECNE PYTANIE</p>;
 
-const Answer = ({ answer }) => (
+const Answer = ({ answer, isClicked, onClick }) => (
   <li className={styles.possibleAnswer}>
-    <button className={styles.button}>{answer.id}</button> | {answer.answerBody}
+    <button
+      className={`${styles.button} ${isClicked ? styles.button : ""}`}
+      style={{ backgroundColor: `${isClicked ? "green" : "red"}` }}
+      onClick={() => {
+        onClick(answer.id);
+      }}
+    >
+      {answer.id}
+    </button>{" "}
+    {answer.answerBody}
   </li>
 );
 
@@ -30,6 +39,7 @@ const Timer = (
 export class QuizTitle extends React.Component {
   state = {
     currentQuestion: 0,
+    currentAnswer: [],
     questions: [
       {
         question: "Ile kol ma samochod",
@@ -80,8 +90,17 @@ export class QuizTitle extends React.Component {
     });
   };
 
+  handleClick = answerID => {
+    console.log(answerID);
+    console.log("hello");
+    console.log(
+      this.state.currentAnswer.some(currentAnswer => currentAnswer.id === "A")
+    );
+
+    this.setState({ currentAnswer: [...this.state.currentAnswer, answerID] });
+  };
+
   render() {
-    const { page } = this.state;
     return (
       <div click={this.clicked} className={styles.quizTitles}>
         <div className={styles.questionCard}>
@@ -93,10 +112,18 @@ export class QuizTitle extends React.Component {
             {Question}
           </div>
           <div className={styles.answerWrapper}>
-            <ul className={styles.answer}>
+            <ul className={styles.answerList}>
               {this.state.questions[this.state.currentQuestion].answers.map(
                 answer => (
-                  <Answer key={answer.id} answer={answer} />
+                  <Answer
+                    key={answer.id}
+                    answer={answer}
+                    className={styles.answer}
+                    isClicked={this.state.currentAnswer.some(
+                      currentAnswer => currentAnswer === answer.id
+                    )}
+                    onClick={this.handleClick}
+                  />
                 )
               )}
             </ul>

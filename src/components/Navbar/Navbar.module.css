@@ -26,7 +26,7 @@ body {
   padding: 0;
 }
 
-.navbar li {
+.navbar a {
   color: grey;
   list-style-type: none;
   font-size: 2em;
@@ -37,9 +37,10 @@ body {
   justify-content: center;
   height: 100%;
   align-items: center;
+  text-decoration: none;
 }
 
-.navbar li:hover {
+.navbar a:hover {
   background-color: rgb(255, 255, 153);
   cursor: pointer;
 }
