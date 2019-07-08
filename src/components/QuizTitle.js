@@ -2,13 +2,13 @@ import React from "react";
 import styles from "./QuizTitle.module.css";
 import { stringLiteral } from "@babel/types";
 
-const Question = <p className={styles.currentQuestion}>OBECNE PYTANIE</p>;
+// const Question = <p className={styles.currentQuestion}>OBECNE PYTANIE</p>;
 
 const Answer = ({ answer, isClicked, onClick }) => (
-  <li className={styles.possibleAnswer}>
+  <li className={styles.possibleAnswer} style={{ backgroundColor: "#feffd9" }}>
     <button
       className={`${styles.button} ${isClicked ? styles.button : ""}`}
-      style={{ backgroundColor: `${isClicked ? "green" : "red"}` }}
+      style={{ backgroundColor: `${isClicked ? "green" : "white"}` }}
       onClick={() => {
         onClick(answer.id);
       }}
@@ -110,7 +110,6 @@ export class QuizTitle extends React.Component {
               {this.state.questions[this.state.currentQuestion].question}
             </h1>
             {Timer}
-            {Question}
           </div>
           <div className={styles.answerWrapper}>
             <ul className={styles.answerList}>
