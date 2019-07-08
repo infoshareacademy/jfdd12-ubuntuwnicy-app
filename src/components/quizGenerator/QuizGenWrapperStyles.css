@@ -1,8 +1,16 @@
 .quizGenWrapper {
+  position: absolute;
+  padding-top: 10%;
   display: flex;
   flex-flow: column;
+  
 }
 
 .quizTitleInput {
   margin-bottom: 10px;
+}
+
+.quizGenHeader {
+  color: gray;
+  text-align: center;
 }
