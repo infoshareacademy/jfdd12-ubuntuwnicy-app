@@ -15,8 +15,10 @@ function QuizGenWrapper(props) {
             <QuizTitleInput />
             <QuestionInput questionID='1' />
             <AnswersList />
+            <div className="quizButtons">
             <AddAnswerButton />
             <AddQuestionButton />
+            </div>
             </div>
 
 
