@@ -1,0 +1,41 @@
+.quizName {
+  text-align: center;
+  color: green;
+}
+
+.currentQuestion {
+  text-align: center;
+  color: blue;
+}
+
+.answerWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 20px;
+  color: red;
+}
+
+.answerWrapper {
+  display: flex;
+  color: red;
+}
+
+.possibleAnswer {
+  display: flex;
+  padding: 20px 20px;
+  color: black;
+  border: 2px solid black;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  flex-basis: 200px;
+}
+
+.button {
+  padding: 20px 20px;
+  margin: 20px 20px;
+}
+
+.quizTimer {
+  float: right;
+  margin-right: 200px;
+  font-size: 2em;
+}
