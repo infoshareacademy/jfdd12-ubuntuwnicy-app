@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./QuizTitle.module.css";
 import { stringLiteral } from "@babel/types";
+import quizquestions from "./quizquestions.json";
 
 // const Question = <p className={styles.currentQuestion}>OBECNE PYTANIE</p>;
 
@@ -40,48 +41,7 @@ export class QuizTitle extends React.Component {
   state = {
     currentQuestion: 0,
     currentAnswer: [],
-    questions: [
-      {
-        question: "Ile kol ma samochod",
-        answers: [
-          {
-            id: "A",
-            answerBody: "jeden"
-          },
-          {
-            id: "B",
-            answerBody: "jeden"
-          },
-          {
-            id: "C",
-            answerBody: "jeden"
-          }
-        ],
-        correctAnswer: "A"
-      },
-      {
-        question: "Ile kol ma kot",
-        answers: [
-          {
-            id: "A",
-            answerBody: "Pytanie pierwsze"
-          },
-          {
-            id: "B",
-            answerBody: "Pytanie drugie"
-          },
-          {
-            id: "C",
-            answerBody: "Pytanie trzecie"
-          },
-          {
-            id: "D",
-            answerBody: "Pytanie czwarte"
-          }
-        ],
-        correctAnswer: "A"
-      }
-    ]
+    questions: { quizquestions }
   };
 
   increment = () => {
