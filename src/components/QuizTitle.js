@@ -144,6 +144,11 @@ export class QuizTitle extends React.Component {
     this.setState({ currentAnswer: [] });
   };
 
+  nextQuestion = answerID => {
+    console.log(answerID);
+    
+    this.setState({ currentQuestion: 1 })}
+
   render() {
     return (
       <div click={this.clicked} className={styles.quizTitles}>
@@ -169,7 +174,7 @@ export class QuizTitle extends React.Component {
               )}
             </ul>
           </div>
-          <QuestionsButtons />
+          <QuestionsButtons page={this.nextQuestion}/>
         </div>
         <div className={styles.buttonWrapper}>
           <div className={styles.arrowImageBox}>

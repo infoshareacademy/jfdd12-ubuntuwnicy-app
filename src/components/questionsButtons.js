@@ -3,8 +3,8 @@ import quizquestions from "./quizquestions.json";
 import { QButton } from "./QButton";
 
 export class QuestionsButtons extends React.Component {
-  onClickQButton = () => console.log("hello");
-
+  onClickQButton = () => console.log(this.props)
+  
   render() {
     return (
       <div>
