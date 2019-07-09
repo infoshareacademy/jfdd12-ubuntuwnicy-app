@@ -1,21 +1,21 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 export default function AnswerInput(props) {
 
+    const { answer, isCorrect, answerId } = props
 
-
-    const { question, isCorrect } = props
+    function onChange(e) {
+        props.onAnswerChange(e.target.value, answerId)
+    }
 
     return (
-        <div>
-            <p className='answerID'>{props.answerID}</p>
+        <div>|{answer}|
+            <p className='answerID'>{props.answerId}</p>
             <input
                 className="answerInput"
-                value={question}
-                placeholder='Wprowadź pytanie'
-            // onChange={event =>
-            //     setInputValue(event.target.value)
-            // }
+                value={answer}
+                placeholder='Wprowadź odpowiedź'
+                onChange={onChange}
             ></input>
             <input type='checkbox' className='isAnswerCorrect'
                 checked={isCorrect}
