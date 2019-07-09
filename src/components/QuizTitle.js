@@ -1,8 +1,84 @@
 import React from "react";
 import styles from "./QuizTitle.module.css";
 import { stringLiteral } from "@babel/types";
+import { QuestionsButtons } from "./questionsButtons";
 
 // const Question = <p className={styles.currentQuestion}>OBECNE PYTANIE</p>;
+
+const questions = [
+  {
+    question: "Ile kol ma samochod",
+    answers: [
+      {
+        id: "A",
+        answerBody: "jeden"
+      },
+      {
+        id: "B",
+        answerBody: "jeden"
+      },
+      {
+        id: "C",
+        answerBody: "jeden"
+      }
+    ],
+    correctAnswer: "A"
+  },
+  {
+    question: "Ile kol ma kot",
+    answers: [
+      {
+        id: "A",
+        answerBody: "Pytanie pierwsze"
+      },
+      {
+        id: "B",
+        answerBody: "Pytanie drugie"
+      },
+      {
+        id: "C",
+        answerBody: "Pytanie trzecie"
+      },
+      {
+        id: "D",
+        answerBody: "Pytanie czwarte"
+      }
+    ],
+    correctAnswer: "A"
+  },
+  {
+    question: "Pytanie numer trzy",
+    answers: [
+      {
+        id: "A",
+        answerBody: "Tak"
+      },
+      {
+        id: "B",
+        answerBody: "Nie"
+      }
+    ],
+    correctAnswer: "C"
+  },
+  {
+    question: "Ostatnie pytanie",
+    answers: [
+      {
+        id: "A",
+        answerBody: "Pytanie pierwsze"
+      },
+      {
+        id: "B",
+        answerBody: "Pytanie drugie"
+      },
+      {
+        id: "C",
+        answerBody: "Pytanie trzecie"
+      }
+    ],
+    correctAnswer: "D"
+  }
+];
 
 const Answer = ({ answer, isClicked, onClick }) => (
   <li className={styles.possibleAnswer} style={{ backgroundColor: "#feffd9" }}>
@@ -40,49 +116,13 @@ export class QuizTitle extends React.Component {
   state = {
     currentQuestion: 0,
     currentAnswer: [],
-    questions: [
-      {
-        question: "Ile kol ma samochod",
-        answers: [
-          {
-            id: "A",
-            answerBody: "jeden"
-          },
-          {
-            id: "B",
-            answerBody: "jeden"
-          },
-          {
-            id: "C",
-            answerBody: "jeden"
-          }
-        ],
-        correctAnswer: "A"
-      },
-      {
-        question: "Ile kol ma kot",
-        answers: [
-          {
-            id: "A",
-            answerBody: "Pytanie pierwsze"
-          },
-          {
-            id: "B",
-            answerBody: "Pytanie drugie"
-          },
-          {
-            id: "C",
-            answerBody: "Pytanie trzecie"
-          },
-          {
-            id: "D",
-            answerBody: "Pytanie czwarte"
-          }
-        ],
-        correctAnswer: "A"
-      }
-    ]
+    allAnswers: [],
+    questions: questions
   };
+
+  // numberOfQuestions = () => {
+  //   this.state.questions[length];
+  // };
 
   increment = () => {
     this.setState({
@@ -94,7 +134,10 @@ export class QuizTitle extends React.Component {
     console.log(answerID);
     console.log("hello");
 
-    this.setState({ currentAnswer: answerID });
+    this.setState({
+      currentAnswer: answerID,
+      allAnswers: []
+    });
   };
 
   handleNextQuestion = answerID => {
@@ -126,6 +169,7 @@ export class QuizTitle extends React.Component {
               )}
             </ul>
           </div>
+          <QuestionsButtons />
         </div>
         <div className={styles.buttonWrapper}>
           <div className={styles.arrowImageBox}>
