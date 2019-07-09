@@ -15,9 +15,8 @@ function AnswerInput(props) {
       />
             <Checkbox
                 className="isAnswerCorrect"
-                defaultChecked
                 color="default"
-                value="checkedG"
+                value="checkedA"
                 inputProps={{
                  'aria-label': 'checkbox with default color',
         }}
