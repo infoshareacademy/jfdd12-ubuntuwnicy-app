@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import AnswerInput from './AnswerInput'
 
+export let answersArr = [
+    { answer: 'aaa', isCorrect: false },
+    { answer: 'bbb', isCorrect: false },
+    { answer: 'ccc', isCorrect: false },
 
+]
 
-export default function AnswersList(props) {
+export default function AnswersList() {
 
-    const [answers, setAnswers] = useState([
-        { answer: 'aaa', isCorrect: false },
-        { answer: 'bbb', isCorrect: false },
-        { answer: 'ccc', isCorrect: false },
-
-    ]);
+    const [answers, setAnswers] = useState(answersArr);
 
     console.log(answers)
 
@@ -18,7 +18,7 @@ export default function AnswersList(props) {
         // answers[answerId].answer = newInput;
         setAnswers(answers.map((answer, index) => {
             if (index === answerId) {
-                return {...answer, answer: newInput}
+                return { ...answer, answer: newInput }
             } else {
                 return answer;
             }
@@ -34,6 +34,7 @@ export default function AnswersList(props) {
                     checked={answer.isCorrect}
                     answer={answer.answer}
                     onAnswerChange={onAnswerChange}
+                    isCorrect={answer.isCorrect}
 
                 ></AnswerInput>
             })}
@@ -42,6 +43,3 @@ export default function AnswersList(props) {
     )
 }
 
-function addAnswer () {
-    
-}

@@ -6,13 +6,12 @@ import QuestionInput from './QuestionInput'
 
 export default function AddQuestionButton(props) {
 
+    const { questionID, answersCount } = props
+
     function addQuestion() {
 
-        return <div>
-            <QuizTitleInput />
-            <QuestionInput />
-            <AnswersList />
-        </div>
+        return <QuestionInput />
+
     }
 
     return (
