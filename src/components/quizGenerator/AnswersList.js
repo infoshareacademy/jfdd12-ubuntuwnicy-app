@@ -26,7 +26,7 @@ export default function AnswersList() {
     }
 
     return (
-        <div>
+        <div className="quizAnswerInputs">
 
             {answers.map((answer, index) => {
                 return <AnswerInput
