@@ -19,12 +19,13 @@ function QuizGenWrapper(props) {
     return (
         <div className='quizGenWrapper'>
             <h1 className='quizGenHeader'>STWÓRZ QUIZ</h1>
+            <div className={"quizGenInputs"}>
             <QuizTitleInput />
             <QuestionInput questionID='1' />
             <AnswersList />
             <AddAnswerButton />
             <AddQuestionButton />
-
+            </div>
 
 
 
