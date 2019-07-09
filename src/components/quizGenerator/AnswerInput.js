@@ -1,11 +1,27 @@
-import React from 'react'
+import React from 'react';
+import TextField from '@material-ui/core/TextField';
+import Checkbox from '@material-ui/core/Checkbox';
 
 function AnswerInput(props) {
     return (
-        <div>
+        <div className="answerInputsStyles">
             <p className='answerID'>{props.answerID}</p>
-            <input className="answerInput"></input>
-            <input type='checkbox' className='isAnswerCorrect'></input>
+            <TextField
+                label="Odpowiedź"
+                placeholder="Treść Odpowiedzi"
+                multiline
+                className='answerInput'
+                variant="outlined"
+      />
+            <Checkbox
+                className="isAnswerCorrect"
+                defaultChecked
+                color="default"
+                value="checkedG"
+                inputProps={{
+                 'aria-label': 'checkbox with default color',
+        }}
+      />
         </div>
     )
 }

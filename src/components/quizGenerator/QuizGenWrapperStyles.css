@@ -1,5 +1,5 @@
 .quizGenWrapper {
-  padding: 5%;
+  padding-top: 1%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,9 +15,15 @@
 
 }
 
+.questionInput {
+    margin: 2%;
+    width: 40vw;
+}
+
 .quizTitleTimer {
+  margin: 2%;
   text-align: center;
-  width: 20%;
+  width: 5em;
 }
 
 .quizGenHeader {
@@ -28,13 +34,13 @@
 }
 
 .quizGenInputs {
-  padding: 5%;
+  padding: 2%;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: 0px 0px 38px -21px rgba(0, 0, 0, 0.60);
   width: 50%;
-  height: auto;
+  height: 70vh;
 }
 
 .addAnswerButton {
@@ -86,9 +92,20 @@
 }
 
 .quizAnswerInputs {
-  padding: 5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 1fr 1fr; 
+  grid-column-gap: 10%;
+  grid-row-gap: 5%; 
+
+  margin: 2%;
 }
 
 .isAnswerCorrect {
   padding: 2%;
+}
+
+.answerInputsStyles {
+  display: flex;
+  flex-direction: row-reverse;
 }

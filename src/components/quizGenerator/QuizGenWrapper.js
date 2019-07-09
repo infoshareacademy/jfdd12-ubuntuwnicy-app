@@ -7,6 +7,7 @@ import QuestionInput from './QuestionInput'
 import AddAnswerButton from './AddAnswerButton'
 import AddQuestionButton from './AddQuestionButton'
 
+
 function QuizGenWrapper(props) {
     return (
         <div className='quizGenWrapper'>
