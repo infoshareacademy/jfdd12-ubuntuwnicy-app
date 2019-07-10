@@ -13,17 +13,25 @@ export default function AnswerInput(props) {
     return (
         <div className="answerInputsStyles">|{answer}|
             <p className='answerID'>{props.answerId}</p>
-            <input
+            <TextField
                 className="answerInput"
                 value={answer}
                 placeholder='Wprowadź odpowiedź'
                 onChange={onChange}
-            ></input>
-            <input type='checkbox' className='isAnswerCorrect'
-                checked={isCorrect} inputProps={{
+                label="Odpowiedź"
+                multiline
+                variant="outlined"
+            />
+            <Checkbox 
+                className='isAnswerCorrect'
+                type='checkbox' 
+                checked={isCorrect} 
+                color="default"
+                //value="checkedA"
+                inputProps={{
                     'aria-label': 'checkbox with default color',
            }}
-            ></input>
+            />
         </div>
     )
 }
