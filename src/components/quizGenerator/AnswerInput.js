@@ -29,6 +29,9 @@ export default function AnswerInput(props) {
                 value={answer}
                 placeholder='Wprowadź odpowiedź'
                 onChange={onChange}
+                label="Odpowiedź"
+                multiline
+                variant="outlined"
             ></TextField>
 
             <Checkbox
