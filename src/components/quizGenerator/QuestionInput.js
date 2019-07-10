@@ -17,7 +17,7 @@ function QuestionInput(props) {
                 margin="normal"
                 variant="outlined"
             />
-              <button className='deleteQuestion'> X </button>
+              
         </div>
     )
 }
