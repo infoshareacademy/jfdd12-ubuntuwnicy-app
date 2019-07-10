@@ -7,6 +7,13 @@ import QuestionInput from './QuestionInput'
 import AddAnswerButton from './AddAnswerButton'
 import AddQuestionButton from './AddQuestionButton'
 
+const answersArr = [
+    {
+        id: 1,
+        value: '',
+        isCorrect: false
+    }
+]
 
 function QuizGenWrapper(props) {
     return (
