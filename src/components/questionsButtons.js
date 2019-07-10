@@ -3,7 +3,7 @@ import quizquestions from "./quizquestions.json";
 import { QButton } from "./QButton";
 
 export class QuestionsButtons extends React.Component {
-  onClickQButton = () => console.log(this.props);
+  onClickQButton = () => this.props.page();
 
   render() {
     return (
