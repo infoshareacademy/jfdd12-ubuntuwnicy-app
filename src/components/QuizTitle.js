@@ -3,6 +3,8 @@ import styles from "./QuizTitle.module.css";
 import { stringLiteral } from "@babel/types";
 import { QuestionsButtons } from "./questionsButtons";
 import { Timer } from "./Timer";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import quizquestions from "./quizquestions.json";
 
 const questions = [
   {
@@ -94,6 +96,15 @@ const Answer = ({ answer, isClicked, onClick }) => (
   </li>
 );
 
+const Question = ( {path} ) => {
+  return (
+    <div>
+      <h3>ID: {path}</h3>
+    </div>
+  );
+}
+
+
 export class QuizTitle extends React.Component {
   state = {
     currentQuestion: 0,
@@ -118,10 +129,8 @@ export class QuizTitle extends React.Component {
     });
   };
 
-  nextQuestion = answerID => {
-    console.log(answerID);
-
-    this.setState({ currentQuestion: this.state.currentQuestion + 1 });
+  nextQuestion = () => {
+    console.log('ham');
   };
 
   render() {
@@ -150,6 +159,8 @@ export class QuizTitle extends React.Component {
             </ul>
           </div>
           <QuestionsButtons page={this.nextQuestion} />
+          <Route path="/:id" component={Question} />
+          <Question path={questions.answers}/>
         </div>
         <div className={styles.buttonWrapper}>
           <div className={styles.arrowImageBox}>
