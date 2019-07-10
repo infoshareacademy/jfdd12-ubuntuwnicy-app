@@ -14,7 +14,7 @@ export class QuestionsButtons extends React.Component {
           <li><QButton
             key={quizquestionsFromJson.id}
             question={quizquestionsFromJson}
-            onClick={this.onClickQButton}
+            onClickQButton={this.onClickQButton}
             alink={quizquestionsFromJson.id}
           />
           </li>

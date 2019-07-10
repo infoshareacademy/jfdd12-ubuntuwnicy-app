@@ -130,8 +130,23 @@ export class QuizTitle extends React.Component {
   };
 
   nextQuestion = () => {
-    console.log('ham');
+    ;
   };
+
+//   <Router>
+//   <div>
+//     <Navbar />
+//     <div>
+//       <Switch>
+//         <Route exact path="/" component={App} />
+//         <Route path="/quiz-gen-wrapper" component={QuizGenWrapper} />
+//         <Route path="/quiz-title" component={QuizTitle} />
+//         <Redirect from="/home" to="/" />
+//         <Route component={NoMatch} />
+//       </Switch>
+//     </div>
+//   </div>
+// </Router>
 
   render() {
     return (
