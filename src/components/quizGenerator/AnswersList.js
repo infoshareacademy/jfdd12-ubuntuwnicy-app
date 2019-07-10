@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import AnswerInput from './AnswerInput'
 
-export let answersArr = [
+let answersArr = [
     { id: 1, answer: 'aaa', isCorrect: false },
     { id: 2, answer: 'bbb', isCorrect: true },
     { id: 3, answer: 'ccc', isCorrect: false },
 
 ]
 
-export default function AnswersList() {
+export default function AnswersList(props) {
 
-    const [answers, setAnswers] = useState(answersArr);
 
+    const {answers, setAnswers} = props // musi byc state!!!
 
     console.log(answers)
 
