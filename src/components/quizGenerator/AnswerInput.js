@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
+import { Button } from '@material-ui/core'
 
 export default function AnswerInput(props) {
 
@@ -16,31 +17,37 @@ export default function AnswerInput(props) {
 
     }
 
+    function onAnswerDelete() {
+        props.onAnswerDelete(answerId)
+    }
+
     return (
-        <div className="answerInputsStyles">|{answer}|
-            <p className='answerID'>{props.answerId}</p>
+        <div className="answerInputsStyles">
+            <p className='answerID'>{props.answerIdToShow}</p>
             <TextField
                 className="answerInput"
                 value={answer}
                 placeholder='Wprowadź odpowiedź'
                 onChange={onChange}
-                label="Odpowiedź"
-                multiline
-                variant="outlined"
+            ></TextField>
+
+            <Checkbox
+                className="isAnswerCorrect"
+                color="default"
+                checked={isCorrect}
+                onChange={onCheckboxChange}
+
+                inputProps={{
+                    'aria-label': 'checkbox with default color',
+                }}
+
             />
-          <label>
-                <Checkbox
-                    className="isAnswerCorrect"
-                    color="default"
-                    checked={isCorrect}
-                    onChange={onCheckboxChange}
 
-                    inputProps={{
-                        'aria-label': 'checkbox with default color',
-                    }}
+            <Button
+                className="deleteAnswerButton"
+                onClick={onAnswerDelete}
+            >x</Button>
 
-                />
-            </label>
         </div>
     )
 }

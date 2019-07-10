@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import AnswerInput from './AnswerInput'
 
 export let answersArr = [
-    { answer: 'aaa', isCorrect: false },
-    { answer: 'bbb', isCorrect: true },
-    { answer: 'ccc', isCorrect: false },
+    { id: 1, answer: 'aaa', isCorrect: false },
+    { id: 2, answer: 'bbb', isCorrect: true },
+    { id: 3, answer: 'ccc', isCorrect: false },
 
 ]
 
@@ -17,8 +17,8 @@ export default function AnswersList() {
 
     function onAnswerChange(newInput, answerId) {
         // answers[answerId].answer = newInput;
-        setAnswers(answers.map((answer, index) => {
-            if (index === answerId) {
+        setAnswers(answers.map((answer) => {
+            if (answer.id === answerId) {
                 return { ...answer, answer: newInput }
             } else {
                 return answer;
@@ -28,7 +28,7 @@ export default function AnswersList() {
 
     function onCheckboxChange(state, answerId) {
         setAnswers(answers.map((answer, index) => {
-            if (index === answerId) {
+            if (answer.id === answerId) {
 
                 return { ...answer, isCorrect: state }
             } else {
@@ -39,19 +39,25 @@ export default function AnswersList() {
         }))
     }
 
+    function onAnswerDelete(answerId) {
+
+
+        setAnswers(answers.filter((answer) => answer.id !== answerId))
+    }
 
     return (
         <div className="quizAnswerInputs">
 
             {answers.map((answer, index) => {
                 return <AnswerInput
-                    answerId={index}
-
+                    key={answer.id}
+                    answerIdToShow={index + 1}
+                    answerId={answer.id}
                     answer={answer.answer}
                     onAnswerChange={onAnswerChange}
                     isCorrect={answer.isCorrect}
-
                     onCheckboxChange={onCheckboxChange}
+                    onAnswerDelete={onAnswerDelete}
                 ></AnswerInput>
             })}
 
