@@ -11,7 +11,7 @@ export default function AnswerInput(props) {
     }
 
     return (
-        <div>|{answer}|
+        <div className="answerInputsStyles">|{answer}|
             <p className='answerID'>{props.answerId}</p>
             <input
                 className="answerInput"
@@ -20,7 +20,9 @@ export default function AnswerInput(props) {
                 onChange={onChange}
             ></input>
             <input type='checkbox' className='isAnswerCorrect'
-                checked={isCorrect}
+                checked={isCorrect} inputProps={{
+                    'aria-label': 'checkbox with default color',
+           }}
             ></input>
         </div>
     )
