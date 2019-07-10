@@ -121,7 +121,7 @@ export class QuizTitle extends React.Component {
   nextQuestion = answerID => {
     console.log(answerID);
 
-    this.setState({ currentQuestion: 1 });
+    this.setState({ currentQuestion: this.state.currentQuestion + 1 });
   };
 
   render() {
