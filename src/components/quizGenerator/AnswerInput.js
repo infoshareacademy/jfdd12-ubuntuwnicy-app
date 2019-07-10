@@ -10,20 +10,34 @@ export default function AnswerInput(props) {
         props.onAnswerChange(e.target.value, answerId)
     }
 
+    function onCheckboxChange(e) {
+
+        props.onCheckboxChange(e.currentTarget.checked, answerId)
+
+    }
+
     return (
         <div className="answerInputsStyles">|{answer}|
             <p className='answerID'>{props.answerId}</p>
-            <input
+            <TextField
                 className="answerInput"
                 value={answer}
                 placeholder='Wprowadź odpowiedź'
                 onChange={onChange}
-            ></input>
-            <input type='checkbox' className='isAnswerCorrect'
-                checked={isCorrect} inputProps={{
-                    'aria-label': 'checkbox with default color',
-           }}
-            ></input>
+            ></TextField>
+            <label>
+                <Checkbox
+                    className="isAnswerCorrect"
+                    color="default"
+                    checked={isCorrect}
+                    onChange={onCheckboxChange}
+
+                    inputProps={{
+                        'aria-label': 'checkbox with default color',
+                    }}
+
+                />
+            </label>
         </div>
     )
 }
