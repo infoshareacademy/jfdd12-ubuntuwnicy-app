@@ -3,7 +3,7 @@ import AnswerInput from './AnswerInput'
 
 export let answersArr = [
     { answer: 'aaa', isCorrect: false },
-    { answer: 'bbb', isCorrect: false },
+    { answer: 'bbb', isCorrect: true },
     { answer: 'ccc', isCorrect: false },
 
 ]
@@ -11,6 +11,7 @@ export let answersArr = [
 export default function AnswersList() {
 
     const [answers, setAnswers] = useState(answersArr);
+
 
     console.log(answers)
 
@@ -25,17 +26,32 @@ export default function AnswersList() {
         }))
     }
 
+    function onCheckboxChange(state, answerId) {
+        setAnswers(answers.map((answer, index) => {
+            if (index === answerId) {
+
+                return { ...answer, isCorrect: state }
+            } else {
+                console.log(answers)
+                return answer
+
+            }
+        }))
+    }
+
+
     return (
         <div className="quizAnswerInputs">
 
             {answers.map((answer, index) => {
                 return <AnswerInput
                     answerId={index}
-                    checked={answer.isCorrect}
+
                     answer={answer.answer}
                     onAnswerChange={onAnswerChange}
                     isCorrect={answer.isCorrect}
 
+                    onCheckboxChange={onCheckboxChange}
                 ></AnswerInput>
             })}
 

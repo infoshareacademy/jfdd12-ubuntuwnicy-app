@@ -10,6 +10,12 @@ export default function AnswerInput(props) {
         props.onAnswerChange(e.target.value, answerId)
     }
 
+    function onCheckboxChange(e) {
+
+        props.onCheckboxChange(e.currentTarget.checked, answerId)
+
+    }
+
     return (
         <div className="answerInputsStyles">|{answer}|
             <p className='answerID'>{props.answerId}</p>
@@ -22,16 +28,19 @@ export default function AnswerInput(props) {
                 multiline
                 variant="outlined"
             />
-            <Checkbox 
-                className='isAnswerCorrect'
-                type='checkbox' 
-                checked={isCorrect} 
-                color="default"
-                //value="checkedA"
-                inputProps={{
-                    'aria-label': 'checkbox with default color',
-           }}
-            />
+          <label>
+                <Checkbox
+                    className="isAnswerCorrect"
+                    color="default"
+                    checked={isCorrect}
+                    onChange={onCheckboxChange}
+
+                    inputProps={{
+                        'aria-label': 'checkbox with default color',
+                    }}
+
+                />
+            </label>
         </div>
     )
 }
