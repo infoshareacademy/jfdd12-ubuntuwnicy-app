@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./QuizTitle.module.css";
 import { stringLiteral } from "@babel/types";
 import { QuestionsButtons } from "./questionsButtons";
+import { Timer } from "./Timer";
 
 // const Question = <p className={styles.currentQuestion}>OBECNE PYTANIE</p>;
 
@@ -95,12 +96,6 @@ const Answer = ({ answer, isClicked, onClick }) => (
   </li>
 );
 
-const Timer = (
-  <div>
-    <div className={styles.quizTimer}>00:00</div>
-  </div>
-);
-
 // const arrowButton = () => (
 //   console.log(this.props),
 //   <div onClick={this.props.clicked}><img
@@ -136,7 +131,7 @@ export class QuizTitle extends React.Component {
 
     this.setState({
       currentAnswer: answerID,
-      allAnswers: []
+      allAnswers: [...this.state.currentAnswer] + answerID
     });
   };
 
@@ -146,8 +141,9 @@ export class QuizTitle extends React.Component {
 
   nextQuestion = answerID => {
     console.log(answerID);
-    
-    this.setState({ currentQuestion: 1 })}
+
+    this.setState({ currentQuestion: 1 });
+  };
 
   render() {
     return (
@@ -157,7 +153,7 @@ export class QuizTitle extends React.Component {
             <h1 className={styles.quizName}>
               {this.state.questions[this.state.currentQuestion].question}
             </h1>
-            {Timer}
+            <Timer className={styles.quizTimer} />
           </div>
           <div className={styles.answerWrapper}>
             <ul className={styles.answerList}>
@@ -174,7 +170,7 @@ export class QuizTitle extends React.Component {
               )}
             </ul>
           </div>
-          <QuestionsButtons page={this.nextQuestion}/>
+          <QuestionsButtons page={this.nextQuestion} />
         </div>
         <div className={styles.buttonWrapper}>
           <div className={styles.arrowImageBox}>
@@ -198,6 +194,7 @@ export class QuizTitle extends React.Component {
                   ? this.state.currentQuestion
                   : this.setState({
                       currentQuestion: this.state.currentQuestion + 1,
+                      allAnswers: this.state.currentAnswer,
                       currentAnswer: []
                     })
               }
