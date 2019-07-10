@@ -174,7 +174,7 @@ export class QuizTitle extends React.Component {
               )}
             </ul>
           </div>
-          <QuestionsButtons page={this.nextQuestion}/>
+          <QuestionsButtons onClickQuestion={this.nextQuestion}/>
         </div>
         <div className={styles.buttonWrapper}>
           <div className={styles.arrowImageBox}>
