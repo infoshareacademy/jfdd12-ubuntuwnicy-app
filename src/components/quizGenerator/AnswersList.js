@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
 import AnswerInput from './AnswerInput'
+import AddAnswerButton from './AddAnswerButton';
+import { DeleteQuestionButton } from './DeleteQuestionButton';
+import { FetchQuiz, SaveQuiz } from '../services/quizService'
+
+
 
 export let answersArr = [
     { id: 1, answer: 'aaa', isCorrect: false },
@@ -8,10 +13,10 @@ export let answersArr = [
 
 ]
 
-export default function AnswersList() {
+export default function AnswersList(props) {
 
-    const [answers, setAnswers] = useState(answersArr);
 
+    const [answers, setAnswers] = useState(answersArr) // musi byc state!!!
 
     console.log(answers)
 
@@ -43,10 +48,68 @@ export default function AnswersList() {
 
 
         setAnswers(answers.filter((answer) => answer.id !== answerId))
+        SaveQuiz(answersArr)
+        FetchQuiz()
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function onAnswerAdd() {
+
+        setAnswers(
+
+            answers.push({ id: 3, answer: 'ccc', isCorrect: false })
+
+        )
+
+
+    }
+
+
 
     return (
         <div className="quizAnswerInputs">
+            <AddAnswerButton onAnswerAdd={onAnswerAdd}></AddAnswerButton>
+
+
+
+
+
+
+
+
+
 
             {answers.map((answer, index) => {
                 return <AnswerInput
@@ -61,6 +124,9 @@ export default function AnswersList() {
                 ></AnswerInput>
             })}
 
+            <DeleteQuestionButton
+
+            ></DeleteQuestionButton>
         </div>
     )
 }
