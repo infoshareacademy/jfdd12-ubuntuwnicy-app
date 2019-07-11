@@ -1,39 +1,30 @@
-// import React from 'react'
-// import AnswersList from './AnswersList'
-// import AnswerInput from './AnswerInput'
-// import QuestionInput from './QuestionInput';
-// import { answersArr } from './AnswersList'
-
-// // export default function AddAnswerButton(props) {
-
-// //     function addAnswerButtonHandler() {
-// //         console.log(answersArr)
-// //         answersArr = { ...answersArr, id: 3, answer: 'ccc', isCorrect: false }
-// //         debugger
-// //     }
-
-// //     return (
-// //         <button className='addAnswerButton' onClick={addAnswerButtonHandler}>Dodaj Odpowiedź</button>
-// //     )
-// // }
-
-// // import React from 'react'
-// // import QuizTitleInput from './QuizTitleInput';
-// // import AnswersList from './AnswersList'
-// // import QuestionInput from './QuestionInput'
+import React from 'react'
 
 
-// // export default function AddQuestionButton(props) {
+export default function AddAnswerButton(props) {
 
-// //     const { questionID, answersCount } = props
+    function addAnswerButtonHandler() {
+        props.onAnswerAdd()
+    }
 
-// //     function addQuestion() {
+    return (
+        <button className='addAnswerButton' onClick={addAnswerButtonHandler}>Dodaj Odpowiedź</button>
+    )
+}
 
-// //         return <QuestionInput />
 
-// //     }
 
-// //     return (
-// //         <button className='addQuestionButton' onClick={addQuestion}>Dodaj Pytanie</button>
-// //     )
-// // }
+// export default function AddQuestionButton(props) {
+
+//     const { questionID, answersCount } = props
+
+//     function addQuestion() {
+
+//         return <QuestionInput />
+
+//     }
+
+//     return (
+//         <button className='addQuestionButton' onClick={addQuestion}>Dodaj Pytanie</button>
+//     )
+// }

@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import AnswerInput from './AnswerInput'
+import AddAnswerButton from './AddAnswerButton';
+import { DeleteQuestionButton } from './DeleteQuestionButton';
 
-let answersArr = [
+export let answersArr = [
     { id: 1, answer: 'aaa', isCorrect: false },
     { id: 2, answer: 'bbb', isCorrect: true },
     { id: 3, answer: 'ccc', isCorrect: false },
@@ -11,7 +13,7 @@ let answersArr = [
 export default function AnswersList(props) {
 
 
-    const {answers, setAnswers} = props // musi byc state!!!
+    const [answers, setAnswers] = useState(answersArr) // musi byc state!!!
 
     console.log(answers)
 
@@ -45,8 +47,31 @@ export default function AnswersList(props) {
         setAnswers(answers.filter((answer) => answer.id !== answerId))
     }
 
+    function onAnswerAdd() {
+
+        setAnswers(
+
+            answers.push({ id: 3, answer: 'ccc', isCorrect: false })
+
+        )
+
+
+    }
+
+
+
     return (
         <div className="quizAnswerInputs">
+            <AddAnswerButton onAnswerAdd={onAnswerAdd}></AddAnswerButton>
+
+
+
+
+
+
+
+
+
 
             {answers.map((answer, index) => {
                 return <AnswerInput
@@ -61,6 +86,9 @@ export default function AnswersList(props) {
                 ></AnswerInput>
             })}
 
+            <DeleteQuestionButton
+
+            ></DeleteQuestionButton>
         </div>
     )
 }

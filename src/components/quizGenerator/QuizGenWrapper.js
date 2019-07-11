@@ -33,14 +33,14 @@ function QuizGenWrapper(props) {
             <QuizTitleInput />
             <div className={"quizGenInputs"}>
                 <QuestionInput questionID='1' />
-                <AnswersList 
+                <AnswersList
                     answers={answers}
                     setAnswers={setAnswers}
                 />
                 <div className="quizButtons">
-                    <AddAnswerButton />
+                    {/* <AddAnswerButton /> */}
                     <AddQuestionButton />
-                    <DeleteQuestionButton />
+
                 </div>
             </div>
         </div>
