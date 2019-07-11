@@ -102,19 +102,13 @@ const Question = ({ match }) => {
 
 export class QuizTitle extends React.Component {
   state = {
-    currentQuestion: 0,
+    currentQuestion: 1,
     currentAnswer: [],
     allAnswers: [],
     questions: questions
   };
 
   componentWillMount = () => {};
-
-  increment = () => {
-    this.setState({
-      page: this.state.page + 1
-    });
-  };
 
   handleClick = answerID => {
     console.log(answerID);
@@ -125,23 +119,6 @@ export class QuizTitle extends React.Component {
       allAnswers: `${[...this.state.allAnswers]}`
     });
   };
-
-  nextQuestion = () => {};
-
-  //   <Router>
-  //   <div>
-  //     <Navbar />
-  //     <div>
-  //       <Switch>
-  //         <Route exact path="/" component={App} />
-  //         <Route path="/quiz-gen-wrapper" component={QuizGenWrapper} />
-  //         <Route path="/quiz-title" component={QuizTitle} />
-  //         <Redirect from="/home" to="/" />
-  //         <Route component={NoMatch} />
-  //       </Switch>
-  //     </div>
-  //   </div>
-  // </Router>
 
   render() {
     if (this.props.match !== undefined) {
@@ -155,13 +132,13 @@ export class QuizTitle extends React.Component {
         <div className={styles.questionCard}>
           <div>
             <h1 className={styles.quizName}>
-              {this.state.questions[this.state.currentQuestion].question}
+              {this.state.questions[this.state.currentQuestion - 1].question}
             </h1>
             <Timer className={styles.quizTimer} />
           </div>
           <div className={styles.answerWrapper}>
             <ul className={styles.answerList}>
-              {this.state.questions[this.state.currentQuestion].answers.map(
+              {this.state.questions[this.state.currentQuestion - 1].answers.map(
                 answer => (
                   <Answer
                     key={answer.id}
@@ -174,7 +151,7 @@ export class QuizTitle extends React.Component {
               )}
             </ul>
           </div>
-          <QuestionsButtons page={this.nextQuestion} />
+          <QuestionsButtons />
         </div>
         <div className={styles.buttonWrapper}>
           <div className={styles.arrowImageBox}>
@@ -194,7 +171,7 @@ export class QuizTitle extends React.Component {
             <img
               className={styles.arrowImage}
               onClick={() =>
-                this.state.currentQuestion === this.state.questions.length - 1
+                this.state.currentQuestion === this.state.questions.length
                   ? this.state.currentQuestion
                   : this.setState({
                       currentQuestion: this.state.currentQuestion + 1,

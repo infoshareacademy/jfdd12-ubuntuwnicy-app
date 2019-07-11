@@ -1,5 +1,6 @@
 import React from "react";
 import quizquestions from "./quizquestions.json";
+import styles from "./QuizTitle.module.css";
 import { QButton } from "./QButton";
 import {
   BrowserRouter as Router,
@@ -9,26 +10,21 @@ import {
 } from "react-router-dom";
 
 export class QuestionsButtons extends React.Component {
-  onClickQButton = () => this.props.page();
-
   render() {
     return (
-      <NavLink>
-        <div>
-          <ul>
-            {quizquestions.map(quizquestionsFromJson => (
-              <li>
-                <QButton
-                  key={quizquestionsFromJson.id}
-                  question={quizquestionsFromJson}
-                  onClickQButton={this.onClickQButton}
-                  alink={quizquestionsFromJson.id}
-                />
-              </li>
-            ))}
-          </ul>
-        </div>
-      </NavLink>
+      <div>
+        <ul>
+          {quizquestions.map(quizquestionsFromJson => (
+            <li key={quizquestionsFromJson.id}>
+              <QButton
+                question={quizquestionsFromJson}
+                onClickQButton={this.onClickQButton}
+                alink={quizquestionsFromJson.id}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
     );
   }
 }
