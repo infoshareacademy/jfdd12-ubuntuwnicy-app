@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import AnswerInput from './AnswerInput'
 import AddAnswerButton from './AddAnswerButton';
 import { DeleteQuestionButton } from './DeleteQuestionButton';
+import { FetchQuiz, SaveQuiz } from '../services/quizService'
+
+
 
 export let answersArr = [
     { id: 1, answer: 'aaa', isCorrect: false },
@@ -45,7 +48,42 @@ export default function AnswersList(props) {
 
 
         setAnswers(answers.filter((answer) => answer.id !== answerId))
+        SaveQuiz(answersArr)
+        FetchQuiz()
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     function onAnswerAdd() {
 
