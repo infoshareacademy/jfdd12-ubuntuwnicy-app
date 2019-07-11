@@ -1,13 +1,53 @@
-import React from 'react'
+import React from 'react';
+import TextField from '@material-ui/core/TextField';
+import Checkbox from '@material-ui/core/Checkbox';
+import { Button } from '@material-ui/core'
 
-function AnswerInput(props) {
+export default function AnswerInput(props) {
+
+    const { answer, isCorrect, answerId } = props
+
+    function onChange(e) {
+        props.onAnswerChange(e.target.value, answerId)
+    }
+
+    function onCheckboxChange(e) {
+
+        props.onCheckboxChange(e.currentTarget.checked, answerId)
+
+    }
+
+    function onAnswerDelete() {
+        props.onAnswerDelete(answerId)
+    }
+
     return (
-        <div>
-            <p className='answerID'>{props.answerID}</p>
-            <input className="answerInput"></input>
-            <input type='checkbox' className='isAnswerCorrect'></input>
+        <div className="answerInputsStyles">
+            <p className='answerID'>{props.answerIdToShow}</p>
+            <TextField
+                className="answerInput"
+                value={answer}
+                placeholder='Wprowadź odpowiedź'
+                onChange={onChange}
+            ></TextField>
+
+            <Checkbox
+                className="isAnswerCorrect"
+                color="default"
+                checked={isCorrect}
+                onChange={onCheckboxChange}
+
+                inputProps={{
+                    'aria-label': 'checkbox with default color',
+                }}
+
+            />
+
+            <Button
+                className="deleteAnswerButton"
+                onClick={onAnswerDelete}
+            >x</Button>
+
         </div>
     )
 }
-
-export default AnswerInput
