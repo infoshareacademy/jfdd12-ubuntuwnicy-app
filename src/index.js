@@ -6,15 +6,13 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
-import './index.css';
-import App from './App';
-import { Navbar } from './components/Navbar/Navbar';
+import "./index.css";
+import App from "./App";
+import { Navbar } from "./components/Navbar/Navbar";
 import QuizGenWrapper from "./components/quizGenerator/QuizGenWrapper";
 import { QuizTitle } from "./components/QuizTitle";
 
-
-
-const NoMatch = () => <h1>404</h1>
+const NoMatch = () => <h1>404</h1>;
 const Root = props => {
   return (
     <Router>
@@ -24,7 +22,7 @@ const Root = props => {
           <Switch>
             <Route exact path="/" component={App} />
             <Route path="/quiz-gen-wrapper" component={QuizGenWrapper} />
-            <Route path="/quiz-title" component={QuizTitle} />
+            <Route path="/quiz-title/:id" component={QuizTitle} />
             <Redirect from="/home" to="/" />
             <Route component={NoMatch} />
           </Switch>
@@ -34,8 +32,4 @@ const Root = props => {
   );
 };
 
-ReactDOM.render(
-  <Root />,
-  document.getElementById("root")
-)
-
+ReactDOM.render(<Root />, document.getElementById("root"));

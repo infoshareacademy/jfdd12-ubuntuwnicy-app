@@ -7,7 +7,7 @@ export function QButton(props) {
   const { id } = question;
 
   return (
-    <Link to={alink}>
+    <Link to={`/quiz-title/${alink}`}>
       <button className={styles.buttonQuestion} onClick={onClickQButton}>
         {id}
       </button>

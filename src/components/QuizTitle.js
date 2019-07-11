@@ -91,19 +91,14 @@ const Answer = ({ answer, isClicked, onClick }) => (
       }}
     >
       {answer.id}
-    </button>{" "}
+    </button>
     {answer.answerBody}
   </li>
 );
 
-const Question = ( {path} ) => {
-  return (
-    <div>
-      <h3>ID: {path}</h3>
-    </div>
-  );
-}
-
+const Question = ({ match }) => {
+  return <div>{/* <h3>ID: {match.params.id}</h3> */}</div>;
+};
 
 export class QuizTitle extends React.Component {
   state = {
@@ -112,6 +107,8 @@ export class QuizTitle extends React.Component {
     allAnswers: [],
     questions: questions
   };
+
+  componentWillMount = () => {};
 
   increment = () => {
     this.setState({
@@ -129,26 +126,30 @@ export class QuizTitle extends React.Component {
     });
   };
 
-  nextQuestion = () => {
-    ;
-  };
+  nextQuestion = () => {};
 
-//   <Router>
-//   <div>
-//     <Navbar />
-//     <div>
-//       <Switch>
-//         <Route exact path="/" component={App} />
-//         <Route path="/quiz-gen-wrapper" component={QuizGenWrapper} />
-//         <Route path="/quiz-title" component={QuizTitle} />
-//         <Redirect from="/home" to="/" />
-//         <Route component={NoMatch} />
-//       </Switch>
-//     </div>
-//   </div>
-// </Router>
+  //   <Router>
+  //   <div>
+  //     <Navbar />
+  //     <div>
+  //       <Switch>
+  //         <Route exact path="/" component={App} />
+  //         <Route path="/quiz-gen-wrapper" component={QuizGenWrapper} />
+  //         <Route path="/quiz-title" component={QuizTitle} />
+  //         <Redirect from="/home" to="/" />
+  //         <Route component={NoMatch} />
+  //       </Switch>
+  //     </div>
+  //   </div>
+  // </Router>
 
   render() {
+    if (this.props.match !== undefined) {
+      const questionId = Number(this.props.match.params.id);
+      if (this.state.currentQuestion !== questionId) {
+        this.setState({ currentQuestion: questionId });
+      }
+    }
     return (
       <div click={this.clicked} className={styles.quizTitles}>
         <div className={styles.questionCard}>
@@ -174,8 +175,6 @@ export class QuizTitle extends React.Component {
             </ul>
           </div>
           <QuestionsButtons page={this.nextQuestion} />
-          <Route path="/:id" component={Question} />
-          <Question path={questions.answers}/>
         </div>
         <div className={styles.buttonWrapper}>
           <div className={styles.arrowImageBox}>
