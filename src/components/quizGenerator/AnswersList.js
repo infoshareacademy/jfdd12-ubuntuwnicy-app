@@ -14,17 +14,20 @@ export let questionsArr = [
             {
                 id: "A",
                 answerBody: "jeden",
-                isCorrect: true
+                isCorrect: true,
+                isHighlighted: false
             },
             {
                 id: "B",
                 answerBody: "jeden",
-                isCorrect: false
+                isCorrect: false,
+                isHighlighted: false
             },
             {
                 id: "C",
                 answerBody: "jeden",
-                isCorrect: false
+                isCorrect: false,
+                isHighlighted: false
             }
         ],
     }
