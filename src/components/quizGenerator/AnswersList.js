@@ -8,12 +8,9 @@ export let answersArr = [
 
 ]
 
-export default function AnswersList() {
-
+export default function AnswersList(props) {
+    // console.log(props);
     const [answers, setAnswers] = useState(answersArr);
-
-
-    console.log(answers)
 
     function onAnswerChange(newInput, answerId) {
         // answers[answerId].answer = newInput;
@@ -44,11 +41,12 @@ export default function AnswersList() {
 
         setAnswers(answers.filter((answer) => answer.id !== answerId))
     }
-
+   
+    // console.log(props.question.answers)
     return (
         <div className="quizAnswerInputs">
 
-            {answers.map((answer, index) => {
+            {props.question.answers.map((answer, index) => {
                 return <AnswerInput
                     key={answer.id}
                     answerIdToShow={index + 1}

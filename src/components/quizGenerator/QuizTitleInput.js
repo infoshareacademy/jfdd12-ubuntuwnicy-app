@@ -15,10 +15,6 @@ function QuizTitleInput(props) {
                 shrink: true,
         }}
       />
-            <Input
-            className="quizTitleTimer"
-            defaultValue="00:00"
-      />
         </>
     )
 }
