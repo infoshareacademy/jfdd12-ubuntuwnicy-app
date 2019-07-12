@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import AnswerInput from './AnswerInput'
 import AddAnswerButton from './AddAnswerButton';
 import { DeleteQuestionButton } from './DeleteQuestionButton';
-import { FetchQuiz, SaveQuiz } from '../services/quizService'
+import * as QuizService from '../services/quizService'
 import { Button } from '@material-ui/core'
 
 
-export let questionsArr = [
+
+export let questionsArrBackup = [
     {
         id: "1",
         question: "Ile kol ma samochod",
@@ -19,8 +20,8 @@ export let questionsArr = [
             },
             {
                 id: "B",
-                answerBody: "jeden",
-                isCorrect: false,
+                answerBody: "dwa",
+                isCorrect: true,
                 isHighlighted: false
             },
             {
@@ -32,6 +33,10 @@ export let questionsArr = [
         ],
     }
 ]
+
+const questionsArr = questionsArrBackup
+console.log(questionsArr)
+
 
 export default function AnswersList(props) {
 
@@ -52,7 +57,7 @@ export default function AnswersList(props) {
     }
 
     function onCheckboxChange(state, answerId) {
-        setAnswers(answers.map((answer, index) => {
+        setAnswers(answers[0].answers.map((answer, index) => {
             if (answer.id === answerId) {
 
                 return { ...answer, isCorrect: state }
@@ -66,10 +71,7 @@ export default function AnswersList(props) {
 
     function onAnswerDelete(answerId) {
 
-
         setAnswers(answers.filter((answer) => answer.id !== answerId))
-        SaveQuiz(questionsArr)
-        FetchQuiz()
 
     }
 
@@ -80,23 +82,22 @@ export default function AnswersList(props) {
             answers.push({ id: 3, answer: 'ccc', isCorrect: false })
 
         )
-
-
     }
 
-
+    function onQuizSave() {
+        QuizService.SaveQuiz(questionsArrBackup)
+    }
 
     return (
         <div className="quizAnswerInputs">
             <AddAnswerButton onAnswerAdd={onAnswerAdd}></AddAnswerButton>
-
 
             {answers[0].answers.map((answer, index) => {
                 return <AnswerInput
                     key={answer.id}
                     answerIdToShow={index + 1}
                     answerId={answer.id}
-                    answer={answer.answer}
+                    answer={answer.answerBody}
                     onAnswerChange={onAnswerChange}
                     isCorrect={answer.isCorrect}
                     onCheckboxChange={onCheckboxChange}
@@ -108,9 +109,8 @@ export default function AnswersList(props) {
             <br></br>
             <br></br>
             <Button
-                onClick={SaveQuiz(questionsArr)}
+                onClick={onQuizSave}
             >Zapisz quiz</Button>
-
 
         </div>
     )
