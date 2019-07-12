@@ -1,5 +1,3 @@
-const uid = localStorage.getItem('uid');
-
 export function FetchQuiz() {
     return fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app.json`)
 

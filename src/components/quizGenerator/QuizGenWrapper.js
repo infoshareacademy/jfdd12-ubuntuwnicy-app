@@ -17,9 +17,9 @@ const answersArr = [
 ]
 
 let answersArr1 = [
-    { id: 1, answer: 'aaa', isCorrect: false },
-    { id: 2, answer: 'bbb', isCorrect: true },
-    { id: 3, answer: 'ccc', isCorrect: false },
+    { id: 1, answer: 'aaa', isCorrect: false, isHighlighted: false },
+    { id: 2, answer: 'bbb', isCorrect: true, isHighlighted: false },
+    { id: 3, answer: 'ccc', isCorrect: false, isHighlighted: false },
 
 ]
 
