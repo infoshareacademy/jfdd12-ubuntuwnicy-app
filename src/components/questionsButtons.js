@@ -10,20 +10,23 @@ import {
 } from "react-router-dom";
 
 export class QuestionsButtons extends React.Component {
+  changePage() {
+    console.log("ugabuga");
+    this.setState({ currentQuestion: +this.props.match.params.id });
+  }
+
   render() {
     return (
-      <div>
-        <ul>
-          {quizquestions.map(quizquestionsFromJson => (
-            <li key={quizquestionsFromJson.id}>
-              <QButton
-                question={quizquestionsFromJson}
-                onClickQButton={this.onClickQButton}
-                alink={quizquestionsFromJson.id}
-              />
-            </li>
-          ))}
-        </ul>
+      <div className={styles.boxButton}>
+        {quizquestions.map(quizquestionsFromJson => (
+          <QButton
+            key={quizquestionsFromJson.id}
+            question={quizquestionsFromJson}
+            onClickQButton={this.onClickQButton}
+            alink={quizquestionsFromJson.id}
+            onClick={this.onClick}
+          />
+        ))}
       </div>
     );
   }

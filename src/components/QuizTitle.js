@@ -102,13 +102,32 @@ const Question = ({ match }) => {
 
 export class QuizTitle extends React.Component {
   state = {
-    currentQuestion: 1,
+    currentQuestion: +this.props.match.params.id,
     currentAnswer: [],
     allAnswers: [],
-    questions: questions
+    questions: questions,
+    random: Math.random()
   };
 
-  componentWillMount = () => {};
+  changePage() {
+    console.log("ugabuga");
+    this.setState({ currentQuestion: +this.props.match.params.id });
+  }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   this.setState({
+  //     currentQuestion: prevProps.props.match.params.id,
+  //     random: Math.random()
+  //   })
+  // }
+
+  // static getDerivedStateFromProps(props, state) {
+  //   console.log(state);
+  // this.setState({
+  //   currentQuestion: props.match.params.id,
+  //   random: Math.random()
+  // });
+  // }
 
   handleClick = answerID => {
     console.log(answerID);
@@ -121,24 +140,25 @@ export class QuizTitle extends React.Component {
   };
 
   render() {
-    if (this.props.match !== undefined) {
-      const questionId = Number(this.props.match.params.id);
-      if (this.state.currentQuestion !== questionId) {
-        this.setState({ currentQuestion: questionId });
-      }
-    }
+    // if (this.props.match !== undefined) {
+    //   const questionId = Number(this.props.match.params.id);
+    //   if (this.state.currentQuestion !== questionId) {
+    //     this.setState({ currentQuestion: questionId });
+    //   }
+    // }
+    // console.log(this.state);
     return (
-      <div click={this.clicked} className={styles.quizTitles}>
+      <div className={styles.quizTitles}>
         <div className={styles.questionCard}>
           <div>
             <h1 className={styles.quizName}>
-              {this.state.questions[this.state.currentQuestion - 1].question}
+              {this.state.questions[this.props.match.params.id - 1].question}
             </h1>
             <Timer className={styles.quizTimer} />
           </div>
           <div className={styles.answerWrapper}>
             <ul className={styles.answerList}>
-              {this.state.questions[this.state.currentQuestion - 1].answers.map(
+              {this.state.questions[this.props.match.params.id - 1].answers.map(
                 answer => (
                   <Answer
                     key={answer.id}
@@ -151,37 +171,7 @@ export class QuizTitle extends React.Component {
               )}
             </ul>
           </div>
-          <QuestionsButtons />
-        </div>
-        <div className={styles.buttonWrapper}>
-          <div className={styles.arrowImageBox}>
-            <img
-              className={styles.arrowImage}
-              onClick={() =>
-                this.state.currentQuestion === 0
-                  ? this.state.currentQuestion
-                  : this.setState({
-                      currentQuestion: this.state.currentQuestion - 1
-                    })
-              }
-              src="https://cdn3.iconfinder.com/data/icons/line/36/arrow_left-512.png"
-            />
-          </div>
-          <div className={styles.arrowImageBox}>
-            <img
-              className={styles.arrowImage}
-              onClick={() =>
-                this.state.currentQuestion === this.state.questions.length
-                  ? this.state.currentQuestion
-                  : this.setState({
-                      currentQuestion: this.state.currentQuestion + 1,
-                      allAnswers:
-                        this.state.allAnswers + this.state.currentAnswer
-                    })
-              }
-              src="https://cdn3.iconfinder.com/data/icons/line/36/arrow_right-512.png"
-            />
-          </div>
+          <QuestionsButtons onClick={this.changePage} />
         </div>
       </div>
     );
