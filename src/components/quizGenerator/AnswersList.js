@@ -1,17 +1,42 @@
 import React, { useState } from 'react'
 import AnswerInput from './AnswerInput'
+import AddAnswerButton from './AddAnswerButton';
+import { DeleteQuestionButton } from './DeleteQuestionButton';
+import { FetchQuiz, SaveQuiz } from '../services/quizService'
+import { Button } from '@material-ui/core'
 
-export let answersArr = [
-    { id: 1, answer: 'aaa', isCorrect: false },
-    { id: 2, answer: 'bbb', isCorrect: true },
-    { id: 3, answer: 'ccc', isCorrect: false },
 
+export let questionsArr = [
+    {
+        id: "1",
+        question: "Ile kol ma samochod",
+        answers: [
+            {
+                id: "A",
+                answerBody: "jeden",
+                isCorrect: true,
+                isHighlighted: false
+            },
+            {
+                id: "B",
+                answerBody: "jeden",
+                isCorrect: false,
+                isHighlighted: false
+            },
+            {
+                id: "C",
+                answerBody: "jeden",
+                isCorrect: false,
+                isHighlighted: false
+            }
+        ],
+    }
 ]
 
-export default function AnswersList() {
+export default function AnswersList(props) {
 
-    const [answers, setAnswers] = useState(answersArr);
 
+    const [answers, setAnswers] = useState(questionsArr) // musi byc state!!!
 
     console.log(answers)
 
@@ -43,12 +68,30 @@ export default function AnswersList() {
 
 
         setAnswers(answers.filter((answer) => answer.id !== answerId))
+        SaveQuiz(questionsArr)
+        FetchQuiz()
+
     }
+
+    function onAnswerAdd() {
+
+        setAnswers(
+
+            answers.push({ id: 3, answer: 'ccc', isCorrect: false })
+
+        )
+
+
+    }
+
+
 
     return (
         <div className="quizAnswerInputs">
+            <AddAnswerButton onAnswerAdd={onAnswerAdd}></AddAnswerButton>
 
-            {answers.map((answer, index) => {
+
+            {answers[0].answers.map((answer, index) => {
                 return <AnswerInput
                     key={answer.id}
                     answerIdToShow={index + 1}
@@ -60,6 +103,14 @@ export default function AnswersList() {
                     onAnswerDelete={onAnswerDelete}
                 ></AnswerInput>
             })}
+
+            <DeleteQuestionButton></DeleteQuestionButton>
+            <br></br>
+            <br></br>
+            <Button
+                onClick={SaveQuiz(questionsArr)}
+            >Zapisz quiz</Button>
+
 
         </div>
     )
