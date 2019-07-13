@@ -79,10 +79,20 @@ export default class Quiz extends React.Component {
       currentQuestionId
     } = this.state;
 
-    const answers = {
-      ...previousAnswers,
-      [currentQuestionId]: answerId
-    };
+    let answers;
+
+    if (previousAnswers[currentQuestionId] === answerId) {
+      answers = Object
+        .entries(previousAnswers)
+        .filter(([key]) => key !== `${currentQuestionId}`)
+        .reduce((answers, [key, value]) => ({...answers, [key]: value }), {});
+    } 
+    else {
+      answers = {
+        ...previousAnswers,
+        [currentQuestionId]: answerId
+      }
+    }
 
     this.setState({ answers });
   };

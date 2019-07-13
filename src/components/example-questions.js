@@ -71,7 +71,7 @@ export default [
       ],
       correctAnswer: "A"
     },
-    ...[...Array(30)].map((_, index) => ({
+    ...[...Array(2)].map((_, index) => ({
       question: `Losowe pytanie id: ${index}`,
       answers: [
         {
