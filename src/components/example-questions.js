@@ -51,7 +51,7 @@ export default [
           answerBody: "Nie"
         }
       ],
-      correctAnswer: "C"
+      correctAnswer: "A"
     },
     {
       question: "Ostatnie pytanie",
@@ -69,7 +69,26 @@ export default [
           answerBody: "Pytanie trzecie"
         }
       ],
-      correctAnswer: "D"
-    }
+      correctAnswer: "A"
+    },
+    ...[...Array(30)].map((_, index) => ({
+      question: `Losowe pytanie id: ${index}`,
+      answers: [
+        {
+          id: "A",
+          answerBody: "Pytanie pierwsze"
+        },
+        {
+          id: "B",
+          answerBody: "Pytanie drugie"
+        },
+        {
+          id: "C",
+          answerBody: "Pytanie trzecie"
+        }
+      ],
+      correctAnswer: "A"
+    }))
   ];
+
   

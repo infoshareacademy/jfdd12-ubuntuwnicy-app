@@ -32,7 +32,6 @@ export default class Quiz extends React.Component {
   state = {
     currentQuestionId: 0,
     answers: {},
-    random: Math.random(),
     areQuestionsLoading: true,
     isQuizComplete: false,
   };
@@ -45,6 +44,16 @@ export default class Quiz extends React.Component {
         resolve(exampleQuestions);
       }, 500);
     });
+  }
+
+  getQuizResult() {
+    const { questions, answers } = this.state;
+    const score = questions.reduce((currentScore, currentQuestion, currentQuestionId) => {
+      const isAnswerCorrect = currentQuestion.correctAnswer === answers[currentQuestionId];
+      return isAnswerCorrect ? currentScore + 1 : currentScore;
+    }, 0);
+
+    return score / questions.length;
   }
 
   componentDidMount() {
@@ -84,6 +93,14 @@ export default class Quiz extends React.Component {
 
   handleQuizCompleteClick = () => {
     this.setState({ isQuizComplete: true });
+  };
+
+  handleQuizStartClick = () => {
+    this.setState({
+      currentQuestionId: 0,
+      answers: {},
+      isQuizComplete: false
+    });
   };
 
   isSelectedAnswer(questionId, currentAnswerId) {
@@ -151,10 +168,12 @@ export default class Quiz extends React.Component {
   }
 
   renderQuizComplete() {
+    const result = Math.floor(this.getQuizResult() * 100);
+
     return (
       <div className={styles.quizTitles}>
-        <p>Wynik: 100%</p>
-        <p></p>
+        <p>Wynik: {result}%</p>
+        { this.renderStartQuizButton() }
       </div>
     );
   }
@@ -168,7 +187,7 @@ export default class Quiz extends React.Component {
     } = this.state;
 
     if (isQuizComplete) {
-      return <div>wynik</div>
+      return this.renderQuizComplete();
     }
 
     if (areQuestionsLoading) {
