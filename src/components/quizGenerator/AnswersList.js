@@ -5,9 +5,6 @@ import { DeleteQuestionButton } from './DeleteQuestionButton';
 import * as QuizService from '../services/quizService'
 import { Button } from '@material-ui/core'
 
-
-
-
 export let questionsArrBackup = []
 console.log(questionsArrBackup)
 
@@ -63,17 +60,16 @@ console.log(questionsArr)
 
 
 export default function AnswersList(props) {
-    QuizService.SaveQuiz(post)
+    // QuizService.SaveQuiz(post)
 
     const [answers, setAnswers] = useState(questionsArr) // musi byc state!!!
 
-    // QuizService.GetQuiz().then(res => setAnswers(res))
+    QuizService.GetQuiz().then(res => setAnswers(res))
 
     useEffect(() => {
 
         QuizService.GetQuiz().then(res => setAnswers(res))
     }, [])
-
 
 
     function onAnswerChange(newInput, answerId) {
@@ -119,7 +115,7 @@ export default function AnswersList(props) {
     }
 
     function onQuizSave() {
-        QuizService.SaveQuiz(post)
+        QuizService.SaveQuiz(answers)
     }
 
     const AnAnswer = function () {
