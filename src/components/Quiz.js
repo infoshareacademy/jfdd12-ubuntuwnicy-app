@@ -24,8 +24,8 @@ const Answer = ({ answer, isClicked, onClick }) => (
 );
 
 const Spinner = () => (
-  <div style={{ textAlign: 'center', textSize: '3em' }}>
-    Pytania sie wczytuja
+  <div style={{ textAlign: 'center', textSize: '3em', marginTop: '12em', fontSize: '2em'}}>
+    Proszę poczekać na wczytanie quizu...
   </div>
 );
 
@@ -159,7 +159,7 @@ export default class Quiz extends React.Component {
     return (
       <div>
         <button
-          className='addAnswerButton'
+          className={styles.buttonQuizEnd}
           style={{marginTop: '1em', fontSize: '3em'}}
           onClick={this.handleQuizCompleteClick}
         >
