@@ -48,8 +48,8 @@ function QuizGenWrapper(props) {
                 question: e.target.value,
             }
         });
-
-        //addQuestion();
+           // addQuestion()
+        
     }
 
     function addQuestion() {
@@ -88,7 +88,7 @@ function QuizGenWrapper(props) {
                     <AnswersList question={question}/>
                     <div className="quizButtons">
                         <AddAnswerButton />
-                        <AddQuestionButton onClick={addQuestion} />
+                        <AddQuestionButton />
                         <DeleteQuestionButton />
                     </div>
                 </div>    
