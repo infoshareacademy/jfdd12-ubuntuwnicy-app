@@ -11,14 +11,51 @@ import { Button } from '@material-ui/core'
 export let questionsArrBackup = []
 console.log(questionsArrBackup)
 
-// [
-//     { id: 1, answer: 'aaa', isCorrect: false },
-//     { id: 2, answer: 'bbb', isCorrect: true },
-//     { id: 3, answer: 'ccc', isCorrect: false },
+const post = [
+    {
+     question: "Ile kol ma samochod",
+     answers: [
+       {
+         id: "A",
+         answerBody: "jeden"
+       },
+       {
+         id: "B",
+         answerBody: "jeden"
+       },
+       {
+         id: "C",
+         answerBody: "jeden"
+       }
+     ],
+     correctAnswer: "A"
+   },
+   {
+     question: "Ile kol ma kot",
+     answers: [
+       {
+         id: "A",
+         answerBody: "Pytanie pierwsze"
+       },
+       {
+         id: "B",
+         answerBody: "Pytanie drugie"
+       },
+       {
+         id: "C",
+         answerBody: "Pytanie trzecie"
+       },
+       {
+         id: "D",
+         answerBody: "Pytanie czwarte"
+       }
+     ],
+     correctAnswer: "A"
+   }
 
-// ]
+]
 
-const answers = QuizService.GetQuiz()
+
 
 const questionsArr = questionsArrBackup
 console.log(questionsArr)
@@ -29,12 +66,14 @@ export default function AnswersList(props) {
 
     const [answers, setAnswers] = useState(questionsArr) // musi byc state!!!
 
+    // QuizService.GetQuiz().then(res => setAnswers(res))
+
     useEffect(() => {
 
         QuizService.GetQuiz().then(res => setAnswers(res))
-    }, [answers])
+    }, [])
 
-    console.log(answers)
+
 
     function onAnswerChange(newInput, answerId) {
         // answers[answerId].answer = newInput;
@@ -79,11 +118,12 @@ export default function AnswersList(props) {
     }
 
     function onQuizSave() {
-        QuizService.SaveQuiz(questionsArrBackup)
+        QuizService.SaveQuiz(post)
     }
 
     const AnAnswer = function () {
-       return answers[0].answers.map((answer, index) => {
+        console.log(answers)
+        return answers[0].answers.map((answer, index) => {
             // debugger
             return <AnswerInput
                 key={answer.id}
@@ -98,36 +138,36 @@ export default function AnswersList(props) {
         })
     }
 
+    debugger
+    const AnswersRender = function () {
 
-const AnswersRender = function () {
+        if (answers[0] !== [] && answers[0] !== undefined && answers[0] !== {} && answers[0] !== null) {
 
-    if (answers[0] !== [] && answers[0] !== undefined && answers[0] !== {} && answers[0] !== null) {
+            return <AnAnswer></AnAnswer>
+        }
 
-        return <AnAnswer></AnAnswer>
+        else {
+            return null
+        }
     }
 
-    else {
-        return null
-    }
-}
 
 
+    return (
+        <div className="quizAnswerInputs">
+            <AddAnswerButton onAnswerAdd={onAnswerAdd}></AddAnswerButton>
 
-return (
-    <div className="quizAnswerInputs">
-        <AddAnswerButton onAnswerAdd={onAnswerAdd}></AddAnswerButton>
+            <AnswersRender />
 
-        <AnswersRender />
+            <DeleteQuestionButton></DeleteQuestionButton>
+            <br></br>
+            <br></br>
+            <Button
+                onClick={onQuizSave}
+            >Zapisz quiz</Button>
 
-        <DeleteQuestionButton></DeleteQuestionButton>
-        <br></br>
-        <br></br>
-        <Button
-            onClick={onQuizSave}
-        >Zapisz quiz</Button>
-
-    </div>
-)
+        </div>
+    )
 
 }
 
