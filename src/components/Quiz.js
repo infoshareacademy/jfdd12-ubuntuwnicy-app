@@ -12,7 +12,8 @@ const Answer = ({ answer, isClicked, onClick }) => (
   <li className={styles.possibleAnswer}>
     <button
       className={`${styles.button} ${isClicked ? styles.button : ""}`}
-      style={{ backgroundColor: `${isClicked ? "green" : "white"}` }}
+ 
+  style={{ backgroundColor: `${isClicked ? "rgb(255, 255, 153)" : "white"}` }}
       onClick={() => {
         onClick(answer.id);
       }}

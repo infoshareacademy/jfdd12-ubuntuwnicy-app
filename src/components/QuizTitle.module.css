@@ -60,10 +60,10 @@ body {
 }
 
 .button {
-  padding: 20px 20px;
+  padding: 4%;
   margin: 0 2% 0 0;
-  border-radius: 3em 3em;
-  border: 1px solid white;
+  border-radius: 50%;
+  border: 2px solid grey;
 }
 
 .button:hover {
