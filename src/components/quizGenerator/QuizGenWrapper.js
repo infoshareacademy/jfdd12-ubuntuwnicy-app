@@ -10,32 +10,23 @@ import { DeleteQuestionButton } from './DeleteQuestionButton';
 
 
 
-
-let answersArr1 = [
-    { id: 1, answer: 'aaa', isCorrect: false, isHighlighted: false },
-    { id: 2, answer: 'bbb', isCorrect: true, isHighlighted: false },
-    { id: 3, answer: 'ccc', isCorrect: false, isHighlighted: false },
-
-]
-
-function QuizGenWrapper(props) {
-    const questionsMap = {
-        "1": {
-            id: 1,
-            question: 'tresc pytania',
-            answers: [
-                {
-                    id: 'A', answer: 'AAA', isCorrect: false,
-                },
-                {
-                    id: 'B', answer: 'BBB', isCorrect: false
-                },
-                {
-                    id: 'C', answer: 'adsasdsCCC', isCorrect: false
-                },
-            ],
-        }
-    };
+export function QuizGenWrapper(props) {
+    const questionsMap =
+    {"1": {
+        id: 1,
+        question: 'tresc pytania',
+        answers: [
+            {
+                id: 'A', answer: 'AAA', isCorrect: false,
+            },
+            {
+                id: 'B', answer: 'BBB', isCorrect: false
+            },
+            {
+                id: 'C', answer: 'adsasdsCCC', isCorrect: false
+            },
+        ],
+    }};
 
     const [questions, setQuestions] = useState(questionsMap);
 
@@ -48,12 +39,10 @@ function QuizGenWrapper(props) {
                 question: e.target.value,
             }
         });
-
-        //addQuestion();
     }
 
     function addQuestion() {
-        const newQuestion = {
+        const newQuestion ={
             id: questions.length + 1,
             question: '',
             answers: [
@@ -69,7 +58,6 @@ function QuizGenWrapper(props) {
             ],
             correctAnswerId: 'A',
         }
-
         setQuestions({
             ...questions,
             newQuestion,
