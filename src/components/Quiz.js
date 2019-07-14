@@ -9,7 +9,7 @@ import AddAnswerButton from './quizGenerator/AddAnswerButton'
 import * as QuizService from './services/quizService'
 
 const Answer = ({ answer, isClicked, onClick }) => (
-  <li className={styles.possibleAnswer} style={{ backgroundColor: "#feffd9" }}>
+  <li className={styles.possibleAnswer}>
     <button
       className={`${styles.button} ${isClicked ? styles.button : ""}`}
       style={{ backgroundColor: `${isClicked ? "green" : "white"}` }}

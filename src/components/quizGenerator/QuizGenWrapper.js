@@ -88,7 +88,7 @@ export function QuizGenWrapper(props) {
             <h1 className='quizGenHeader'>STWÓRZ QUIZ</h1>
             <QuizTitleInput />
             {
-                Object.values(fetchedQuestionsState).map(question => 
+                fetchedQuestions.map(question => 
                 <div key={question.id} className={"quizGenInputs"}>
                     <QuestionInput question={question} onQuestionChange={onQuestionChange}/>
                     <AnswersList question={question}/>
