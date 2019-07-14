@@ -14,8 +14,8 @@ export function SaveQuiz(quiz) {
 
     // return Object.assign({}, quiz, { [quiz]: quiz })
 
-    fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app/.json`, {
-        method: "PUT",
+    fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app.json`, {
+        method: "PATCH",
         body: JSON.stringify(quiz),
     })
 }
