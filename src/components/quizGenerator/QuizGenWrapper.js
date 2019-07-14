@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect} from 'react'
 import './QuizGenWrapperStyles.css'
 
 import QuizTitleInput from './QuizTitleInput';
@@ -7,9 +7,9 @@ import QuestionInput from './QuestionInput'
 import AddAnswerButton from './AddAnswerButton'
 import AddQuestionButton from './AddQuestionButton'
 import { DeleteQuestionButton } from './DeleteQuestionButton';
+import {GetQuiz} from '../services/quizService'
 
-
-
+let fetchedQuestions = []
 
 let answersArr1 = [
     { id: 1, answer: 'aaa', isCorrect: false, isHighlighted: false },
@@ -37,7 +37,16 @@ function QuizGenWrapper(props) {
         }
     };
 
+    const [fetchedQuestionsState, setFetchedQuestion] = useState(fetchedQuestions)
     const [questions, setQuestions] = useState(questionsMap);
+
+    useEffect(() => {
+
+        GetQuiz().then(res => setFetchedQuestion(res))
+
+    }, [])
+
+    
 
     function onQuestionChange(e) {
         const questionId = +e.target.name;
@@ -58,7 +67,7 @@ function QuizGenWrapper(props) {
             question: '',
             answers: [
                 {
-                    id: 'A', answer: '', isCorrect: false,
+                    id: 'A', answer: 'dwadziescia', isCorrect: false,
                 },
                 {
                     id: 'B', answer: '', isCorrect: false
@@ -82,7 +91,7 @@ function QuizGenWrapper(props) {
             <h1 className='quizGenHeader'>STWÓRZ QUIZ</h1>
             <QuizTitleInput />
             {
-                Object.values(questions).map(question => 
+                Object.values(fetchedQuestionsState).map(question => 
                 <div key={question.id} className={"quizGenInputs"}>
                     <QuestionInput question={question} onQuestionChange={onQuestionChange}/>
                     <AnswersList question={question}/>

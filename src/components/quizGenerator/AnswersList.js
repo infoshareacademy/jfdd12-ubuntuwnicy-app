@@ -4,6 +4,7 @@ import AddAnswerButton from './AddAnswerButton';
 import { DeleteQuestionButton } from './DeleteQuestionButton';
 import * as QuizService from '../services/quizService'
 import { Button } from '@material-ui/core'
+import { firebaseApp } from '../../firebase'
 
 export let questionsArrBackup = []
 console.log(questionsArrBackup)
@@ -56,41 +57,47 @@ const post = [
 
 const questionsArr = []
 console.log(questionsArr)
+let newAnswers = []
 
 
-
-export default function AnswersList(props) {
+export default function AnswersList() {
     // QuizService.SaveQuiz(post)
 
     const [answers, setAnswers] = useState(questionsArr) // musi byc state!!!
 
-
+ 
 
     useEffect(() => {
 
         QuizService.GetQuiz().then(res => setAnswers(res))
+
     }, [])
 
 
     function onAnswerChange(newInput, answerId) {
         // answers[answerId].answer = newInput;
-        setAnswers(answers.map((answer) => {
+        answers[0].answers.map((answer, index) => {
             if (answer.id === answerId) {
-                return { ...answer, answer: newInput }
+
+                const newAnswers = answers
+                // newAnswers[0][index].answerBody = {...answerBody, newInput}
+                // newAnswers.
+                return setAnswers(newAnswers)
             } else {
                 return answer;
             }
-        }))
+        })
     }
 
     function onCheckboxChange(state, answerId) {
 
-        answers.map((answer, index) => {
+        answers[0].answers.map((answer) => {
 
             if (answer.id === answerId) {
 
-
-                return setAnswers({ ...answer, isCorrect: state })
+                const newAnswers = answers
+                newAnswers[0].correctAnswer = answerId
+                return setAnswers(newAnswers)
             } else {
                 console.log(answers)
                 return answer
@@ -100,8 +107,9 @@ export default function AnswersList(props) {
     }
 
     function onAnswerDelete(answerId) {
-
-        setAnswers(answers.filter((answer) => answer.id !== answerId))
+        console.log(answerId)
+        debugger
+        setAnswers(answers[0].answers.filter((answer) => answer.id))
 
     }
 
@@ -115,7 +123,7 @@ export default function AnswersList(props) {
     }
 
     function onQuizSave() {
-        QuizService.SaveQuiz(answers)
+        QuizService.SaveQuiz(post)
     }
 
     const AnAnswer = function () {
@@ -130,7 +138,7 @@ export default function AnswersList(props) {
                 onAnswerChange={onAnswerChange}
                 isCorrect={answer.isCorrect}
                 onCheckboxChange={onCheckboxChange}
-                onAnswerDelete={onAnswerDelete}
+                onAnswerClickDelete={onAnswerDelete}
             ></AnswerInput>
         })
     }
@@ -155,8 +163,8 @@ export default function AnswersList(props) {
             <AddAnswerButton onAnswerAdd={onAnswerAdd}></AddAnswerButton>
 
             <AnswersRender />
-
-            <DeleteQuestionButton></DeleteQuestionButton>
+{/* 
+            <DeleteQuestionButton></DeleteQuestionButton> */}
             <br></br>
             <br></br>
             <Button

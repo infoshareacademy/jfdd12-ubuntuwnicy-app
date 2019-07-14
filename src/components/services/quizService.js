@@ -32,7 +32,8 @@ export function GetQuiz() {
         .then(res => {
             return res.json()
         })
-        .then(quiz => quiz)
+        // .then(quiz => quiz)
+        
 // return Promise.values
 
 }
