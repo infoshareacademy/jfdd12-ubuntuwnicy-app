@@ -54,7 +54,7 @@ const post = [
 
 
 
-const questionsArr = questionsArrBackup
+const questionsArr = []
 console.log(questionsArr)
 
 
@@ -64,7 +64,7 @@ export default function AnswersList(props) {
 
     const [answers, setAnswers] = useState(questionsArr) // musi byc state!!!
 
-    QuizService.GetQuiz().then(res => setAnswers(res))
+
 
     useEffect(() => {
 
@@ -135,7 +135,7 @@ export default function AnswersList(props) {
         })
     }
 
-    debugger
+
     const AnswersRender = function () {
 
         if (answers[0] !== [] && answers[0] !== undefined && answers[0] !== {} && answers[0] !== null) {
