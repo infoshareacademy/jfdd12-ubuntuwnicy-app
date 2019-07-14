@@ -11,7 +11,6 @@
 
 .answerWrapper {
   height: 70vh;
-  display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   width: 60%;
@@ -51,12 +50,32 @@
   transform: scale(1.1);
 }
 
+.boxButton {
+  display: flex;
+  width: 50%;
+  height: 50%;
+}
+
 .buttonQuestion {
-  padding: 2% 2%;
-  margin: 2% 2%;
-  background-color: blue;
-  color: white;
-  border: 3px solid white;
+  background-color: rgb(255, 255, 153);
+  padding: 0.5%;
+  margin: 0.5%;
+  border: 0.1em solid #FFFFFF;
+  font-size: 1em;
+  border-radius: 1em;
+  text-decoration: none;
+  color: grey;
+  font-weight: 300;
+  font-size: 1.1em;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  width: 10em;
+  height: 5em;
+}
+
+.buttonQuestionNumber:disabled {
+  background-color: green;
 }
 
 .buttonClicked {
@@ -71,12 +90,11 @@
   font-size: 2em;
 }
 
-.quizTitles {
-  padding: 10em;
-  position: relative;
+.score {
   background: white;
-  width: 100%;
-  height: 100vh;
+  font-size: 5rem;
+  text-align: center;
+  padding: 3% 3%
 }
 
 .arrowImage {
@@ -91,4 +109,52 @@
 .buttonWrapper {
   display: flex;
   justify-content: space-around;
+}
+
+.startQuizButton{
+  font-size: 2em !important;
+  background-color: yellow;
+  color: black;
+  border: 3px solid white;
+  padding: 2% 2%;
+  height: 30%;
+  width: 50vw;
+}
+
+.navigationButton {
+  background-color: rgb(255, 255, 153);
+  padding: 1%;
+  margin: 1%;
+  border: 0.1em solid #FFFFFF;
+  border-radius: 2em;
+  text-decoration: none;
+  color: grey;
+  font-weight: 300;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  width: 10em;
+  height: 3em;
+}
+
+.navigationButton:hover {
+  background-color: grey;
+  color: #FFFFFF;
+}
+
+@media (max-width: 480px) {
+  .score {
+    margin: 2em 2em;
+    background: white;
+    font-size: 3rem;
+    text-align: center;
+    padding: 3% 3%;
+    width: 300px;
+  }
+  .buttonQuestion {
+    width: 8em;
+    font-size: 1.5em;
+    height: 5em;
+  }
+
 }
