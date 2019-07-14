@@ -18,7 +18,7 @@ let answersArr1 = [
 
 ]
 
-function QuizGenWrapper(props) {
+export function QuizGenWrapper(props) {
     const questionsMap = {
         "1": {
             id: 1,
@@ -88,7 +88,7 @@ function QuizGenWrapper(props) {
                     <AnswersList question={question}/>
                     <div className="quizButtons">
                         <AddAnswerButton />
-                        <AddQuestionButton />
+                        <AddQuestionButton onClick={addQuestion} />
                         <DeleteQuestionButton />
                     </div>
                 </div>    
