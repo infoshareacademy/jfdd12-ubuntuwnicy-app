@@ -13,18 +13,3 @@ export default function AddAnswerButton(props) {
 }
 
 
-
-// export default function AddQuestionButton(props) {
-
-//     const { questionID, answersCount } = props
-
-//     function addQuestion() {
-
-//         return <QuestionInput />
-
-//     }
-
-//     return (
-//         <button className='addQuestionButton' onClick={addQuestion}>Dodaj Pytanie</button>
-//     )
-// }
