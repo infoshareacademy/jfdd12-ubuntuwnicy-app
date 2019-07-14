@@ -152,13 +152,11 @@ export default function AnswersList(props) {
 
     return (
         <div className="quizAnswerInputs">
-            <AddAnswerButton onAnswerAdd={onAnswerAdd}></AddAnswerButton>
+            
 
             <AnswersRender />
 
-            <DeleteQuestionButton></DeleteQuestionButton>
-            <br></br>
-            <br></br>
+            
             <Button
                 onClick={onQuizSave}
             >Zapisz quiz</Button>
