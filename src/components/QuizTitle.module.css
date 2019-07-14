@@ -80,7 +80,7 @@
   font-size: 2em;
 }
 
-.quizTitles {
+.score {
   padding: 10em;
   position: relative;
   background: white;
@@ -100,4 +100,14 @@
 .buttonWrapper {
   display: flex;
   justify-content: space-around;
+}
+
+.startQuizButton{
+  font-size: 2em !important;
+  background-color: yellow;
+  color: black;
+  border: 3px solid white;
+  padding: 2% 2%;
+  height: 30%;
+  width: 50vw;
 }

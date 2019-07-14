@@ -20,7 +20,7 @@ const Root = props => {
         <div>
           <Switch>
             <Route path="/quiz-gen-wrapper" component={QuizGenWrapper} />
-            <Route path="/quiz-title/:id" component={Quiz} />
+            <Route path="/quiz" component={Quiz} />
             <Redirect from="/home" to="/" />
             <Route component={NoMatch} />
           </Switch>

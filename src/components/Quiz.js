@@ -102,7 +102,9 @@ export default class Quiz extends React.Component {
   };
 
   handleQuizCompleteClick = () => {
-    this.setState({ isQuizComplete: true });
+    if(window.confirm('Czy na pewno chcesz zakończyć quiz?')) {
+      this.setState({ isQuizComplete: true });
+    };
   };
 
   handleQuizStartClick = () => {
@@ -168,6 +170,7 @@ export default class Quiz extends React.Component {
     return (
       <div>
         <button
+          className={styles.startQuizButton}
           style={{marginTop: '1em', fontSize: '3em'}}
           onClick={this.handleQuizStartClick}
         >
@@ -181,7 +184,7 @@ export default class Quiz extends React.Component {
     const result = Math.floor(this.getQuizResult() * 100);
 
     return (
-      <div className={styles.quizTitles}>
+      <div className={styles.score}>
         <p>Wynik: {result}%</p>
         { this.renderStartQuizButton() }
       </div>
