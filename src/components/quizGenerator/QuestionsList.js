@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import QuestionInput from './QuestionInput'
+// import QuestionInput from './QuestionInput'
 
 
 

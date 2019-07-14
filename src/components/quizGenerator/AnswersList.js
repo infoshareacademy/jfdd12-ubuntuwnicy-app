@@ -34,11 +34,8 @@ export let questionsArr = [
 ]
 
 export default function AnswersList(props) {
-
-
-    const [answers, setAnswers] = useState(questionsArr) // musi byc state!!!
-
-    console.log(answers)
+    // console.log(props);
+    const [answers, setAnswers] = useState(questionsArr);
 
     function onAnswerChange(newInput, answerId) {
         // answers[answerId].answer = newInput;
@@ -91,7 +88,7 @@ export default function AnswersList(props) {
             <AddAnswerButton onAnswerAdd={onAnswerAdd}></AddAnswerButton>
 
 
-            {answers[0].answers.map((answer, index) => {
+            {props.question.answers.map((answer, index) => {
                 return <AnswerInput
                     key={answer.id}
                     answerIdToShow={index + 1}
