@@ -1,10 +1,11 @@
-import React, {useState} from 'react'
+import React from 'react';
+
 
 
 export default function AddQuestionButton(props) {
-
+    const { onClick } = props;
+ 
     return (
-        <button className={'addQuestionButton'}  onClick={props.addQuestion}> Dodaj Pytanie </button>
-
+        <button className={'addQuestionButton'} onClick={onClick}> Dodaj Pytanie </button>
     )
-}
+ }
