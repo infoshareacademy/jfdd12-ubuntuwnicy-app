@@ -21,7 +21,7 @@ let answersArr1 = [
 export function QuizGenWrapper(props) {
     const questionsMap = {
         "1": {
-            id: 1,
+            id: questions.length + 1,
             question: 'tresc pytania',
             answers: [
                 {
