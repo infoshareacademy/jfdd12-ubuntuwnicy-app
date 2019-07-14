@@ -3,12 +3,12 @@ import React from 'react'
 
 export default function AddAnswerButton(props) {
 
-    function addAnswerButtonHandler() {
-        props.onAnswerAdd()
-    }
+    // function addAnswerButtonHandler() {
+    //     props.onAnswerAdd()
+    // }
 
     return (
-        <button className='addAnswerButton' onClick={addAnswerButtonHandler}>Dodaj Odpowiedź</button>
+        <button className='addAnswerButton'>Dodaj Odpowiedź</button>
     )
 }
 

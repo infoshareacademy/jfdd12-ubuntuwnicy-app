@@ -27,7 +27,7 @@ export const Navbar = props => {
           exact
           className={"default-link"}
           activeClassName={"active-link"}
-          to="/quiz-title/1"
+          to="/quiz"
         >
           Dołącz do Quizu
         </NavLink>
