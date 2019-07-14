@@ -8,7 +8,7 @@ function QuestionInput(props) {
 
     return (
         <div className='questionAndDeleteButtonInput'>
-            <p className='questionID'>{props.question.id}</p>
+            {/* <p className='questionID'>{questions.lenght}</p> */}
             <TextField
                 id="outlined-multiline-static"
                 label="PYTANIE"

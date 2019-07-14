@@ -18,7 +18,7 @@ let answersArr1 = [
 
 ]
 
-function QuizGenWrapper(props) {
+export function QuizGenWrapper(props) {
     const questionsMap = {
         "1": {
             id: 1,
@@ -57,12 +57,10 @@ function QuizGenWrapper(props) {
                 question: e.target.value,
             }
         });
-
-        //addQuestion();
     }
 
     function addQuestion() {
-        const newQuestion = {
+        const newQuestion ={
             id: questions.length + 1,
             question: '',
             answers: [
@@ -78,7 +76,6 @@ function QuizGenWrapper(props) {
             ],
             correctAnswerId: 'A',
         }
-
         setQuestions({
             ...questions,
             newQuestion,
