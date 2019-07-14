@@ -28,12 +28,12 @@ export function setTodoCompleted(todoId, isCompleted) {
 }
 
 export function GetQuiz() {
-    return fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app.json`)
+  return fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app.json`)
         .then(res => {
             return res.json()
         })
         .then(quiz => quiz)
-
+// return Promise.values
 
 }
 

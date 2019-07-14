@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import AnswerInput from './AnswerInput'
 import AddAnswerButton from './AddAnswerButton';
 import { DeleteQuestionButton } from './DeleteQuestionButton';
@@ -9,24 +9,29 @@ import * as FirebaseApp from '../../firebase'
 
 
 
-export let questionsArrBackup = [
-    { id: 1, answer: 'aaa', isCorrect: false },
-    { id: 2, answer: 'bbb', isCorrect: true },
-    { id: 3, answer: 'ccc', isCorrect: false },
+export let questionsArrBackup = []
+console.log(questionsArrBackup)
 
-]
+// [
+//     { id: 1, answer: 'aaa', isCorrect: false },
+//     { id: 2, answer: 'bbb', isCorrect: true },
+//     { id: 3, answer: 'ccc', isCorrect: false },
 
-firebase.initializeApp()
-const database = firebase.database()
+// ]
 
 const questionsArr = questionsArrBackup
 console.log(questionsArr)
 
 
+
 export default function AnswersList(props) {
 
-
     const [answers, setAnswers] = useState(questionsArr) // musi byc state!!!
+
+    useEffect(() => {
+
+        QuizService.GetQuiz().then(res => setAnswers(res))
+    }, [questionsArr])
 
     console.log(answers)
 
@@ -42,7 +47,7 @@ export default function AnswersList(props) {
     }
 
     function onCheckboxChange(state, answerId) {
-        debugger
+
         answers.map((answer, index) => {
 
             if (answer.id === answerId) {
@@ -50,7 +55,6 @@ export default function AnswersList(props) {
 
                 return setAnswers({ ...answer, isCorrect: state })
             } else {
-                debugger
                 console.log(answers)
                 return answer
 
@@ -77,22 +81,32 @@ export default function AnswersList(props) {
         QuizService.SaveQuiz(questionsArrBackup)
     }
 
+    const answersRender = function() { 
+        debugger
+        if(answers.answers !== [] && answers.answers !== undefined && answers.answers !== {} && answers.answers !== null){
+        answers.answers.map((answer, index) => {
+        return <AnswerInput
+            key={answer.id}
+            answerIdToShow={index + 1}
+            answerId={answer.id}
+            answer={answer.answerBody}
+            onAnswerChange={onAnswerChange}
+            isCorrect={answer.isCorrect}
+            onCheckboxChange={onCheckboxChange}
+            onAnswerDelete={onAnswerDelete}
+        ></AnswerInput>})}
+        else{
+            return null
+        }
+    }
+
+    console.log(answers)
+
     return (
         <div className="quizAnswerInputs">
             <AddAnswerButton onAnswerAdd={onAnswerAdd}></AddAnswerButton>
 
-            {answers.map((answer, index) => {
-                return <AnswerInput
-                    key={answer.id}
-                    answerIdToShow={index + 1}
-                    answerId={answer.id}
-                    answer={answer.answerBody}
-                    onAnswerChange={onAnswerChange}
-                    isCorrect={answer.isCorrect}
-                    onCheckboxChange={onCheckboxChange}
-                    onAnswerDelete={onAnswerDelete}
-                ></AnswerInput>
-            })}
+            {answersRender()}
 
             <DeleteQuestionButton></DeleteQuestionButton>
             <br></br>
