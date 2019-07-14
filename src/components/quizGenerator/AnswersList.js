@@ -63,6 +63,7 @@ console.log(questionsArr)
 
 
 export default function AnswersList(props) {
+    QuizService.SaveQuiz(post)
 
     const [answers, setAnswers] = useState(questionsArr) // musi byc state!!!
 
