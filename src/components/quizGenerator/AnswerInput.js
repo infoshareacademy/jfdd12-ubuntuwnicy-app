@@ -5,7 +5,7 @@ import { Button } from '@material-ui/core'
 
 export default function AnswerInput(props) {
 
-    const { answer, isCorrect, answerId } = props
+    const { answer, isCorrect, answerId, onAnswerClickDelete } = props
 
     function onChange(e) {
         props.onAnswerChange(e.target.value, answerId)
@@ -17,9 +17,9 @@ export default function AnswerInput(props) {
 
     }
 
-    function onAnswerDelete() {
-        props.onAnswerDelete(answerId)
-    }
+    // function onAnswerDelete() {
+    //     props.onAnswerDelete(answerId)
+    // }
 
     return (
         <div className="answerInputsStyles">
@@ -48,7 +48,7 @@ export default function AnswerInput(props) {
 
             <Button
                 className="deleteAnswerButton"
-                onClick={onAnswerDelete}
+                onClick={onAnswerClickDelete}
             >x</Button>
 
         </div>

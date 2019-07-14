@@ -14,7 +14,7 @@ export function SaveQuiz(quiz) {
 
     // return Object.assign({}, quiz, { [quiz]: quiz })
 
-    fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app/.json`, {
+    fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app.json`, {
         method: "PUT",
         body: JSON.stringify(quiz),
     })
@@ -32,7 +32,8 @@ export function GetQuiz() {
         .then(res => {
             return res.json()
         })
-        .then(quiz => quiz)
+        // .then(quiz => quiz)
+        
 // return Promise.values
 
 }
