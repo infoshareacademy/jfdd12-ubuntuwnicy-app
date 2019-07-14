@@ -18,6 +18,50 @@ let answersArr1 = [
 
 ]
 
+const post = [
+    {
+        question: "Ile kol ma samochod",
+        answers: [
+            {
+                id: "A",
+                answerBody: "jeden"
+            },
+            {
+                id: "B",
+                answerBody: "jeden"
+            },
+            {
+                id: "C",
+                answerBody: "jeden"
+            }
+        ],
+        correctAnswer: "A"
+    },
+    {
+        question: "Ile kol ma kot",
+        answers: [
+            {
+                id: "A",
+                answerBody: "Pytanie pierwsze"
+            },
+            {
+                id: "B",
+                answerBody: "Pytanie drugie"
+            },
+            {
+                id: "C",
+                answerBody: "Pytanie trzecie"
+            },
+            {
+                id: "D",
+                answerBody: "Pytanie czwarte"
+            }
+        ],
+        correctAnswer: "A"
+    }
+
+]
+
 export function QuizGenWrapper(props) {
     const questionsMap = {
         "1": {
@@ -42,7 +86,7 @@ export function QuizGenWrapper(props) {
 
     useEffect(() => {
 
-        GetQuiz().then(res => setFetchedQuestion(res))
+        GetQuiz().then(res => setFetchedQuestion(fetchedQuestions))
 
     }, [])
 

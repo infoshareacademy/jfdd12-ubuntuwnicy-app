@@ -9,6 +9,8 @@ import { firebaseApp } from '../../firebase'
 export let questionsArrBackup = []
 console.log(questionsArrBackup)
 
+
+
 const post = [
     {
         question: "Ile kol ma samochod",
@@ -61,11 +63,12 @@ let newAnswers = []
 
 
 export default function AnswersList() {
+
+
+
+    const [answers, setAnswers] = useState(newAnswers)
+
     // QuizService.SaveQuiz(post)
-
-    const [answers, setAnswers] = useState(questionsArr) // musi byc state!!!
-
-
 
     useEffect(() => {
 
