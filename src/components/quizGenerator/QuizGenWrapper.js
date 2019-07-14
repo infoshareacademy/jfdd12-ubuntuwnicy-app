@@ -27,22 +27,6 @@ function QuizGenWrapper(props) {
                     id: 'C', answer: 'adsasdsCCC', isCorrect: false
                 },
             ],
-        },
-        "2": {
-            id: 2,
-            question: 'tresc pytania',
-            answers: [
-                {
-                    id: 'A', answer: 'AAA', isCorrect: false,
-                },
-                {
-                    id: 'B', answer: 'BBB', isCorrect: false
-                },
-                {
-                    id: 'C', answer: 'adsasdsCCC', isCorrect: false
-                },
-            ],
-            correctAnswerId: 'A',
         }
     };
 
@@ -58,10 +42,10 @@ function QuizGenWrapper(props) {
             }
         });
 
-        addQuestionButtons();
+        //addQuestion();
     }
 
-    function addQuestionButtons() {
+    function addQuestion() {
         const newQuestion = {
             id: questions.length + 1,
             question: '',
@@ -97,7 +81,7 @@ function QuizGenWrapper(props) {
                     <AnswersList question={question}/>
                     <div className="quizButtons">
                         <AddAnswerButton />
-                        <AddQuestionButton />
+                        <AddQuestionButton onClick={addQuestion} />
                         <DeleteQuestionButton />
                     </div>
                 </div>    
