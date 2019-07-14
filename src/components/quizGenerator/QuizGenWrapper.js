@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import './QuizGenWrapperStyles.css'
 
 import QuizTitleInput from './QuizTitleInput';
@@ -10,6 +10,13 @@ import { DeleteQuestionButton } from './DeleteQuestionButton';
 
 
 
+
+let answersArr1 = [
+    { id: 1, answer: 'aaa', isCorrect: false, isHighlighted: false },
+    { id: 2, answer: 'bbb', isCorrect: true, isHighlighted: false },
+    { id: 3, answer: 'ccc', isCorrect: false, isHighlighted: false },
+
+]
 
 function QuizGenWrapper(props) {
     const questionsMap = {

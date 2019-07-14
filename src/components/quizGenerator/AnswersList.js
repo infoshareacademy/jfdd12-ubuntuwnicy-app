@@ -1,16 +1,41 @@
 import React, { useState } from 'react'
 import AnswerInput from './AnswerInput'
+import AddAnswerButton from './AddAnswerButton';
+import { DeleteQuestionButton } from './DeleteQuestionButton';
+import { FetchQuiz, SaveQuiz } from '../services/quizService'
+import { Button } from '@material-ui/core'
 
-export let answersArr = [
-    { id: 1, answer: 'aaa', isCorrect: false },
-    { id: 2, answer: 'bbb', isCorrect: true },
-    { id: 3, answer: 'ccc', isCorrect: false },
 
+export let questionsArr = [
+    {
+        id: "1",
+        question: "Ile kol ma samochod",
+        answers: [
+            {
+                id: "A",
+                answerBody: "jeden",
+                isCorrect: true,
+                isHighlighted: false
+            },
+            {
+                id: "B",
+                answerBody: "jeden",
+                isCorrect: false,
+                isHighlighted: false
+            },
+            {
+                id: "C",
+                answerBody: "jeden",
+                isCorrect: false,
+                isHighlighted: false
+            }
+        ],
+    }
 ]
 
 export default function AnswersList(props) {
     // console.log(props);
-    const [answers, setAnswers] = useState(answersArr);
+    const [answers, setAnswers] = useState(questionsArr);
 
     function onAnswerChange(newInput, answerId) {
         // answers[answerId].answer = newInput;
@@ -40,11 +65,28 @@ export default function AnswersList(props) {
 
 
         setAnswers(answers.filter((answer) => answer.id !== answerId))
+        SaveQuiz(questionsArr)
+        FetchQuiz()
+
     }
-   
-    // console.log(props.question.answers)
+
+    function onAnswerAdd() {
+
+        setAnswers(
+
+            answers.push({ id: 3, answer: 'ccc', isCorrect: false })
+
+        )
+
+
+    }
+
+
+
     return (
         <div className="quizAnswerInputs">
+            <AddAnswerButton onAnswerAdd={onAnswerAdd}></AddAnswerButton>
+
 
             {props.question.answers.map((answer, index) => {
                 return <AnswerInput
@@ -58,6 +100,14 @@ export default function AnswersList(props) {
                     onAnswerDelete={onAnswerDelete}
                 ></AnswerInput>
             })}
+
+            <DeleteQuestionButton></DeleteQuestionButton>
+            <br></br>
+            <br></br>
+            <Button
+                onClick={SaveQuiz(questionsArr)}
+            >Zapisz quiz</Button>
+
 
         </div>
     )

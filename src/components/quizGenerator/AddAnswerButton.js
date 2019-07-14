@@ -1,15 +1,10 @@
 import React from 'react'
-import AnswersList from './AnswersList'
-import AnswerInput from './AnswerInput'
-import QuestionInput from './QuestionInput';
-import { answersArr } from './AnswersList'
+
 
 export default function AddAnswerButton(props) {
 
     function addAnswerButtonHandler() {
-        console.log(answersArr)
-        answersArr = answersArr.concat({ answer: 'nowy', isCorrect: false })
-
+        props.onAnswerAdd()
     }
 
     return (
@@ -17,10 +12,6 @@ export default function AddAnswerButton(props) {
     )
 }
 
-// import React from 'react'
-// import QuizTitleInput from './QuizTitleInput';
-// import AnswersList from './AnswersList'
-// import QuestionInput from './QuestionInput'
 
 
 // export default function AddQuestionButton(props) {

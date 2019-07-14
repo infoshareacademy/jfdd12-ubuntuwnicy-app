@@ -1,7 +1,7 @@
 import React from 'react'
 
 import TextField from '@material-ui/core/TextField';
-import Input from '@material-ui/core/Input';
+
 
 function QuizTitleInput(props) {
     return (
@@ -12,9 +12,16 @@ function QuizTitleInput(props) {
                 placeholder="Tytuł Quizu"
                 variant="outlined"
                 InputLabelProps={{
+<<<<<<< HEAD
                 shrink: true,
         }}
       />
+=======
+                    shrink: true,
+                }}
+            />
+
+>>>>>>> develop
         </>
     )
 }
