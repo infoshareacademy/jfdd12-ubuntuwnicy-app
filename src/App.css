@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+  body {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    width: 100vw;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+.titlePage {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 8% 0 8% 0;
+    color: grey;
+}
+
+.titlePage h1 {
+    font-size: 15em;
+    text-align: center;
+    padding: 0;
+}
+
+.titlePage h2 {
+    font-size: 9em;
+    text-align: center;
+    padding: 5%;
+}
+
+.infoOnMainPage {
+    padding: 3%;
+    font-size: 2em;
+    text-align: center;
+}
+
+@media (max-width: 960px) {
+    .titlePage {
+      display: flex;
+      padding: 10% 10% 25% 10%;
+    }
+
+    .titlePage h1 {
+        font-size: 6em;
+        text-align: center;
+        padding: 0;
+    }
+
+    .titlePage h2 {
+        font-size: 4em;
+        text-align: center;
+        padding: 5%;
+    }
+
+    .infoOnMainPage {
+        padding: 15%;
+        font-size: 1.25em;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .titlePage {
+      display: flex;
+      padding: 15% 4% 15% 4%;
+    }
+
+    .titlePage h1 {
+        font-size: 5em;
+        text-align: center;
+        padding: 0;
+    }
+
+    .titlePage h2 {
+        font-size: 3em;
+        text-align: center;
+        padding: 5%;
+    }
+
+    .infoOnMainPage {
+        padding: 15%;
+        font-size: 1.25em;
+        text-align: center;
+    }
+}
