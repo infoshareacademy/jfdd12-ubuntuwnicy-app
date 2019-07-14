@@ -5,8 +5,8 @@ import { QuestionsButtons } from "./QuestionsButtons";
 import { Timer } from "./Timer";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import quizquestions from "./quizquestions.json";
-import exampleQuestions from './example-questions';
 import AddAnswerButton from './quizGenerator/AddAnswerButton'
+import * as QuizService from './services/quizService'
 
 const Answer = ({ answer, isClicked, onClick }) => (
   <li className={styles.possibleAnswer} style={{ backgroundColor: "#feffd9" }}>
@@ -29,6 +29,7 @@ const Spinner = () => (
   </div>
 );
 
+
 export default class Quiz extends React.Component {
   state = {
     currentQuestionId: 0,
@@ -39,13 +40,13 @@ export default class Quiz extends React.Component {
 
   getQuestions() {
     // return firebase.get()
+    return this.state.answers = QuizService.GetQuiz()
 
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(exampleQuestions);
-      }, 500);
-    });
-  }
+    // return new Promise(resolve => {
+    //   setTimeout(() => {
+    //     resolve(exampleQuestions);
+    //   }, 500);
+    };
 
   getQuizResult() {
     const { questions, answers } = this.state;

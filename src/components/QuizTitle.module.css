@@ -75,7 +75,7 @@
 }
 
 .buttonQuestionNumber:disabled {
-  background-color: gray;
+  background-color: green;
 }
 
 .buttonClicked {

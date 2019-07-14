@@ -1,6 +1,6 @@
-export default [
+[
     {
-      question: "Ile kol ma samochod",
+      question: "Ile kol ma chod",
       answers: [
         {
           id: "A",
