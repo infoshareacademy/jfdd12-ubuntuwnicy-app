@@ -6,6 +6,7 @@ import { Timer } from "./Timer";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import quizquestions from "./quizquestions.json";
 import exampleQuestions from './example-questions';
+import AddAnswerButton from './quizGenerator/AddAnswerButton'
 
 const Answer = ({ answer, isClicked, onClick }) => (
   <li className={styles.possibleAnswer} style={{ backgroundColor: "#feffd9" }}>
@@ -157,6 +158,7 @@ export default class Quiz extends React.Component {
     return (
       <div>
         <button
+          className='addAnswerButton'
           style={{marginTop: '1em', fontSize: '3em'}}
           onClick={this.handleQuizCompleteClick}
         >
@@ -170,7 +172,7 @@ export default class Quiz extends React.Component {
     return (
       <div>
         <button
-          className={styles.startQuizButton}
+          className='addAnswerButton'
           style={{marginTop: '1em', fontSize: '3em'}}
           onClick={this.handleQuizStartClick}
         >
@@ -184,8 +186,8 @@ export default class Quiz extends React.Component {
     const result = Math.floor(this.getQuizResult() * 100);
 
     return (
-      <div className={styles.score}>
-        <p>Wynik: {result}%</p>
+      <div>
+        <p className={styles.score}>Wynik: {result}%</p>
         { this.renderStartQuizButton() }
       </div>
     );
