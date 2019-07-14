@@ -4,8 +4,7 @@ import AddAnswerButton from './AddAnswerButton';
 import { DeleteQuestionButton } from './DeleteQuestionButton';
 import * as QuizService from '../services/quizService'
 import { Button } from '@material-ui/core'
-import firebase from 'firebase'
-import * as FirebaseApp from '../../firebase'
+
 
 
 
@@ -19,6 +18,8 @@ console.log(questionsArrBackup)
 
 // ]
 
+const answers = QuizService.GetQuiz()
+
 const questionsArr = questionsArrBackup
 console.log(questionsArr)
 
@@ -31,7 +32,7 @@ export default function AnswersList(props) {
     useEffect(() => {
 
         QuizService.GetQuiz().then(res => setAnswers(res))
-    }, [questionsArr])
+    }, [answers])
 
     console.log(answers)
 
@@ -81,44 +82,54 @@ export default function AnswersList(props) {
         QuizService.SaveQuiz(questionsArrBackup)
     }
 
-    const answersRender = function() { 
-        debugger
-        if(answers.answers !== [] && answers.answers !== undefined && answers.answers !== {} && answers.answers !== null){
-        answers.answers.map((answer, index) => {
-        return <AnswerInput
-            key={answer.id}
-            answerIdToShow={index + 1}
-            answerId={answer.id}
-            answer={answer.answerBody}
-            onAnswerChange={onAnswerChange}
-            isCorrect={answer.isCorrect}
-            onCheckboxChange={onCheckboxChange}
-            onAnswerDelete={onAnswerDelete}
-        ></AnswerInput>})}
-        else{
-            return null
-        }
+    const AnAnswer = function () {
+       return answers[0].answers.map((answer, index) => {
+            // debugger
+            return <AnswerInput
+                key={answer.id}
+                answerIdToShow={index + 1}
+                answerId={answer.id}
+                answer={answer.answerBody}
+                onAnswerChange={onAnswerChange}
+                isCorrect={answer.isCorrect}
+                onCheckboxChange={onCheckboxChange}
+                onAnswerDelete={onAnswerDelete}
+            ></AnswerInput>
+        })
     }
 
-    console.log(answers)
 
-    return (
-        <div className="quizAnswerInputs">
-            <AddAnswerButton onAnswerAdd={onAnswerAdd}></AddAnswerButton>
+const AnswersRender = function () {
 
-            {answersRender()}
+    if (answers[0] !== [] && answers[0] !== undefined && answers[0] !== {} && answers[0] !== null) {
 
-            <DeleteQuestionButton></DeleteQuestionButton>
-            <br></br>
-            <br></br>
-            <Button
-                onClick={onQuizSave}
-            >Zapisz quiz</Button>
+        return <AnAnswer></AnAnswer>
+    }
 
-        </div>
-    )
+    else {
+        return null
+    }
 }
 
+
+
+return (
+    <div className="quizAnswerInputs">
+        <AddAnswerButton onAnswerAdd={onAnswerAdd}></AddAnswerButton>
+
+        <AnswersRender />
+
+        <DeleteQuestionButton></DeleteQuestionButton>
+        <br></br>
+        <br></br>
+        <Button
+            onClick={onQuizSave}
+        >Zapisz quiz</Button>
+
+    </div>
+)
+
+}
 
 
 
