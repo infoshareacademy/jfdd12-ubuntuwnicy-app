@@ -11,45 +11,45 @@ console.log(questionsArrBackup)
 
 const post = [
     {
-     question: "Ile kol ma samochod",
-     answers: [
-       {
-         id: "A",
-         answerBody: "jeden"
-       },
-       {
-         id: "B",
-         answerBody: "jeden"
-       },
-       {
-         id: "C",
-         answerBody: "jeden"
-       }
-     ],
-     correctAnswer: "A"
-   },
-   {
-     question: "Ile kol ma kot",
-     answers: [
-       {
-         id: "A",
-         answerBody: "Pytanie pierwsze"
-       },
-       {
-         id: "B",
-         answerBody: "Pytanie drugie"
-       },
-       {
-         id: "C",
-         answerBody: "Pytanie trzecie"
-       },
-       {
-         id: "D",
-         answerBody: "Pytanie czwarte"
-       }
-     ],
-     correctAnswer: "A"
-   }
+        question: "Ile kol ma samochod",
+        answers: [
+            {
+                id: "A",
+                answerBody: "jeden"
+            },
+            {
+                id: "B",
+                answerBody: "jeden"
+            },
+            {
+                id: "C",
+                answerBody: "jeden"
+            }
+        ],
+        correctAnswer: "A"
+    },
+    {
+        question: "Ile kol ma kot",
+        answers: [
+            {
+                id: "A",
+                answerBody: "Pytanie pierwsze"
+            },
+            {
+                id: "B",
+                answerBody: "Pytanie drugie"
+            },
+            {
+                id: "C",
+                answerBody: "Pytanie trzecie"
+            },
+            {
+                id: "D",
+                answerBody: "Pytanie czwarte"
+            }
+        ],
+        correctAnswer: "A"
+    }
 
 ]
 
@@ -65,7 +65,7 @@ export default function AnswersList() {
 
     const [answers, setAnswers] = useState(questionsArr) // musi byc state!!!
 
- 
+
 
     useEffect(() => {
 
@@ -107,9 +107,14 @@ export default function AnswersList() {
     }
 
     function onAnswerDelete(answerId) {
-        console.log(answerId)
-        debugger
-        setAnswers(answers[0].answers.filter((answer) => answer.id))
+
+        if (answers.length <= 2) {
+            return
+        }
+        else {
+            setAnswers(answers[0].answers.filter((answer) => answerId))
+        }
+
 
     }
 
@@ -163,7 +168,7 @@ export default function AnswersList() {
             <AddAnswerButton onAnswerAdd={onAnswerAdd}></AddAnswerButton>
 
             <AnswersRender />
-{/* 
+            {/* 
             <DeleteQuestionButton></DeleteQuestionButton> */}
             <br></br>
             <br></br>
