@@ -12,10 +12,16 @@ function QuizTitleInput(props) {
                 placeholder="Tytuł Quizu"
                 variant="outlined"
                 InputLabelProps={{
+<<<<<<< HEAD
+                shrink: true,
+        }}
+      />
+=======
                     shrink: true,
                 }}
             />
 
+>>>>>>> develop
         </>
     )
 }
