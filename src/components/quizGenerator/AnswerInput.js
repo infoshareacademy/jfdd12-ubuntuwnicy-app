@@ -27,7 +27,7 @@ export default function AnswerInput(props) {
                 className="answerInput"
                 value={answer}
                 placeholder='Wprowadź odpowiedź'
-                onChange={props.onAnswerChange}
+                onChange={onChange}
                 label="Odpowiedź"
                 multiline
                 variant="outlined"
@@ -46,12 +46,12 @@ export default function AnswerInput(props) {
 
             />
 
-            <Button
+            {/* <Button
                 answerId={answerId}
                 index={index}
                 className="deleteAnswerButton"
                 onClick={onAnswerClickDelete}
-            >x</Button>
+            >x</Button> */}
 
         </div>
     )

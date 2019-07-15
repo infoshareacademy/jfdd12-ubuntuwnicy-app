@@ -54,37 +54,38 @@ const post = [
 ]
 
 
-
-const questionsArr = []
-console.log(questionsArr)
-let newAnswers = []
-
-
 export default function AnswersList(props) {
 
     const { questionId } = props
-    console.log(questionId)
-    const [answers, setAnswers] = useState(newAnswers)
+    console.log(props)
+    const [answers, setAnswers] = useState([])
 
     useEffect(() => {
 
-        QuizService.GetQuiz().then(res => setAnswers(res))
+        QuizService.GetQuiz().then(res => {
+            console.log(res)
+            setAnswers(res[questionId].answers)
+        })
 
-    }, [])
+    }, [questionId])
 
 
-    function onAnswerChange(e) {
-
-        const newAnswers = answers
-
-        newAnswers[questionId].answers[0].answerBody = e.target.value
-        return setAnswers(newAnswers)
+    function onAnswerChange(value, answerId) {
+        console.log(value, answerId)
+        console.log(answers)
+        const newAnswers = answers.map(answer => {
+            return answer.id === answerId ? {
+                ...answer,
+                answerBody: value
+            } : answer
+        })
+        setAnswers(newAnswers)
     }
 
 
     function onCheckboxChange(state, answerId) {
 
-        answers[questionId].answers.map((answer) => {
+        answers.map((answer) => {
 
             if (answer.id === answerId) {
 
@@ -102,12 +103,12 @@ export default function AnswersList(props) {
     function onAnswerDelete(props) {
         const { index } = props
         debugger
-        if (answers[questionId].length <= 2) {
+        if (answers.length <= 2) {
             return
         }
         else {
             const newAnswers = answers
-            newAnswers[questionId].answers.pop()
+            answers.pop()
             return setAnswers(newAnswers)
 
         }
@@ -121,9 +122,9 @@ export default function AnswersList(props) {
         QuizService.SaveQuiz(post)
     }
 
-    const AnAnswer = function () {
+    const renderAnswersList = function () {
         console.log(answers)
-        return answers[questionId].answers.map((answer, index) => {
+        return answers.map((answer, index) => {
             // debugger
             return <AnswerInput
                 name={'name'}
@@ -142,11 +143,11 @@ export default function AnswersList(props) {
     }
 
 
-    const AnswersRender = function () {
+    const renderAnswersListIfNotEmpty = function () {
 
-        if (answers[questionId] !== [] && answers[questionId] !== undefined && answers[questionId] !== {} && answers[questionId] !== null) {
+        if (answers !== [] && answers !== undefined && answers !== {} && answers !== null) {
 
-            return <AnAnswer></AnAnswer>
+            return renderAnswersList()
         }
 
         else {
@@ -160,7 +161,7 @@ export default function AnswersList(props) {
         <div className="quizAnswerInputs">
 
 
-            <AnswersRender />
+            {renderAnswersListIfNotEmpty()}
 
             <br></br>
             <br></br>

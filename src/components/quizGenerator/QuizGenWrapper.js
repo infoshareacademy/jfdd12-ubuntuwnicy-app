@@ -149,9 +149,9 @@ export function QuizGenWrapper(props) {
                         <QuestionInput question={question} onQuestionChange={onQuestionChange} />
                         <AnswersList question={question} questionId={index} />
                         <div className="quizButtons">
-                            <AddAnswerButton onClick={onAnswerAdd} questionId={index}></AddAnswerButton>
+                            {/* <AddAnswerButton onClick={onAnswerAdd} questionId={index}></AddAnswerButton> */}
                             <AddQuestionButton onClick={addQuestion} questionId={index} />
-                            <DeleteQuestionButton />
+                            {/* <DeleteQuestionButton /> */}
                         </div>
                     </div>
                 )
