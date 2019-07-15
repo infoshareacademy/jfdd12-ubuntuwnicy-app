@@ -44,7 +44,7 @@ export class QuestionsButtons extends React.Component {
         { upperButtons }
         {(
           <Button disabled={currentQuestionId === (totalNumberOfQuestion - 1)} onClick={() => onQuestionChangeHandler(currentQuestionId + 1)}>
-            Nastepne pytanie
+            Następne pytanie
           </Button>
         )}
       </div>
