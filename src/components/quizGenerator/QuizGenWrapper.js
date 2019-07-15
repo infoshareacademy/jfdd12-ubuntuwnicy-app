@@ -150,7 +150,7 @@ export function QuizGenWrapper(props) {
     return (
         <div className='quizGenWrapper'>
             <h1 className='quizGenHeader'>STWÓRZ QUIZ</h1>
-            <QuizTitleInput />
+            {/* <QuizTitleInput /> */}
             {
                 Object.values(fetchedQuestionsState).map((question, index) =>
                     <div key={index} className={"quizGenInputs"}>

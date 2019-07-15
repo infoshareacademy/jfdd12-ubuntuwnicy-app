@@ -99,7 +99,7 @@ const post = [
         correctAnswer: "B"
     },
     {
-        question: "Co ma ",
+        question: "Jak ma na nazwisko Jan?",
         answers: [
             {
                 id: "A",
@@ -111,17 +111,17 @@ const post = [
             },
             {
                 id: "C",
-                answerBody: "Pytanie trzecie"
+                answerBody: "Kowalski"
             },
             {
                 id: "D",
                 answerBody: "Pytanie czwarte"
             }
         ],
-        correctAnswer: "A"
+        correctAnswer: "C"
     },
     {
-        question: "Ile kol ma kot",
+        question: "Ile zyc ma kot?",
         answers: [
             {
                 id: "A",
@@ -137,10 +137,10 @@ const post = [
             },
             {
                 id: "D",
-                answerBody: "Pytanie czwarte"
+                answerBody: "9"
             }
         ],
-        correctAnswer: "A"
+        correctAnswer: "9"
     },
 
 ]
