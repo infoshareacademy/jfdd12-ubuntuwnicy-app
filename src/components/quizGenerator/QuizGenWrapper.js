@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import './QuizGenWrapperStyles.css'
 
 import QuizTitleInput from './QuizTitleInput';
@@ -7,7 +7,7 @@ import QuestionInput from './QuestionInput'
 import AddAnswerButton from './AddAnswerButton'
 import AddQuestionButton from './AddQuestionButton'
 import { DeleteQuestionButton } from './DeleteQuestionButton';
-import {GetQuiz} from '../services/quizService'
+import { GetQuiz } from '../services/quizService'
 
 let fetchedQuestions = []
 
@@ -90,12 +90,12 @@ export function QuizGenWrapper(props) {
 
     }, [])
 
-    
+
 
     function onQuestionChange(e) {
         const questionId = +e.target.name;
         setQuestions({
-            ...questions, 
+            ...questions,
             [questionId]: {
                 ...questions[questionId],
                 question: e.target.value,
@@ -103,8 +103,20 @@ export function QuizGenWrapper(props) {
         });
     }
 
+    function onAnswerAdd(props) {
+
+        debugger
+
+        const { questionId } = props
+
+        const newFetchedQuestions = fetchedQuestionsState[questionId].answers
+
+        setFetchedQuestion(
+            newFetchedQuestions.push({ id: 'D', answerBody: '' }))
+    }
+
     function addQuestion() {
-        const newQuestion ={
+        const newQuestion = {
             id: questions.length + 1,
             question: '',
             answers: [
@@ -126,22 +138,22 @@ export function QuizGenWrapper(props) {
         });
     }
 
-    
+
     return (
         <div className='quizGenWrapper'>
             <h1 className='quizGenHeader'>STWÓRZ QUIZ</h1>
             <QuizTitleInput />
             {
-                Object.values(fetchedQuestionsState).map(question => 
-                <div key={question.id} className={"quizGenInputs"}>
-                    <QuestionInput question={question} onQuestionChange={onQuestionChange}/>
-                    <AnswersList question={question}/>
-                    <div className="quizButtons">
-                        <AddAnswerButton />
-                        <AddQuestionButton onClick={addQuestion} />
-                        <DeleteQuestionButton />
+                Object.values(fetchedQuestionsState).map((question, index) =>
+                    <div key={question.id} className={"quizGenInputs"}>
+                        <QuestionInput question={question} onQuestionChange={onQuestionChange} />
+                        <AnswersList question={question} questionId={index} />
+                        <div className="quizButtons">
+                            <AddAnswerButton onClick={onAnswerAdd} questionId={index}></AddAnswerButton>
+                            <AddQuestionButton onClick={addQuestion} questionId={index} />
+                            <DeleteQuestionButton />
+                        </div>
                     </div>
-                </div>    
                 )
             }
         </div>

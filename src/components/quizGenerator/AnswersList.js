@@ -5,9 +5,7 @@ import { DeleteQuestionButton } from './DeleteQuestionButton';
 import * as QuizService from '../services/quizService'
 import { Button } from '@material-ui/core'
 import { firebaseApp } from '../../firebase'
-
-export let questionsArrBackup = []
-console.log(questionsArrBackup)
+import { getThemeProps } from '@material-ui/styles';
 
 
 
@@ -62,13 +60,11 @@ console.log(questionsArr)
 let newAnswers = []
 
 
-export default function AnswersList() {
+export default function AnswersList(props) {
 
-
-
+    const { questionId } = props
+    console.log(questionId)
     const [answers, setAnswers] = useState(newAnswers)
-
-    // QuizService.SaveQuiz(post)
 
     useEffect(() => {
 
@@ -77,32 +73,23 @@ export default function AnswersList() {
     }, [])
 
 
-    function onAnswerChange(newInput, answerId) {
+    function onAnswerChange(e) {
 
-        // answers[answerId].answer = newInput;
-        answers[0].answers.map((answer, index) => {
+        const newAnswers = answers
 
-            if (answer.id === answerId) {
-
-                const newAnswers = answers
-
-                // newAnswers[0].answers[index].answerBody = {...answerBody, newInput}
-
-                return setAnswers(newAnswers)
-            } else {
-                return answer;
-            }
-        })
+        newAnswers[questionId].answers[0].answerBody = e.target.value
+        return setAnswers(newAnswers)
     }
+
 
     function onCheckboxChange(state, answerId) {
 
-        answers[0].answers.map((answer) => {
+        answers[questionId].answers.map((answer) => {
 
             if (answer.id === answerId) {
 
                 const newAnswers = answers
-                newAnswers[0].correctAnswer = answerId
+                newAnswers[questionId].correctAnswer = answerId
                 return setAnswers(newAnswers)
             } else {
                 console.log(answers)
@@ -112,27 +99,22 @@ export default function AnswersList() {
         })
     }
 
-    function onAnswerDelete(answerId) {
-
-        if (answers.length + 1 <= 2) {
+    function onAnswerDelete(props) {
+        const { index } = props
+        debugger
+        if (answers[questionId].length <= 2) {
             return
         }
         else {
-            setAnswers(answers[0].answers.filter((answer) => answer.id === answerId))
-            console.log(answers)
+            const newAnswers = answers
+            newAnswers[questionId].answers.pop()
+            return setAnswers(newAnswers)
+
         }
 
-
     }
 
-    function onAnswerAdd() {
 
-        setAnswers(
-
-            answers.push({ id: 3, answer: 'ccc', isCorrect: false })
-
-        )
-    }
 
     function onQuizSave() {
         console.log(answers)
@@ -141,9 +123,12 @@ export default function AnswersList() {
 
     const AnAnswer = function () {
         console.log(answers)
-        return answers[0].answers.map((answer, index) => {
+        return answers[questionId].answers.map((answer, index) => {
             // debugger
             return <AnswerInput
+                name={'name'}
+                autofocus
+                index={index}
                 key={answer.id}
                 answerIdToShow={index + 1}
                 answerId={answer.id}
@@ -159,7 +144,7 @@ export default function AnswersList() {
 
     const AnswersRender = function () {
 
-        if (answers[0] !== [] && answers[0] !== undefined && answers[0] !== {} && answers[0] !== null) {
+        if (answers[questionId] !== [] && answers[questionId] !== undefined && answers[questionId] !== {} && answers[questionId] !== null) {
 
             return <AnAnswer></AnAnswer>
         }
@@ -173,11 +158,10 @@ export default function AnswersList() {
 
     return (
         <div className="quizAnswerInputs">
-            {/* <AddAnswerButton onAnswerAdd={onAnswerAdd}></AddAnswerButton> */}
+
 
             <AnswersRender />
-            {/* 
-            <DeleteQuestionButton></DeleteQuestionButton> */}
+
             <br></br>
             <br></br>
             <Button
@@ -188,6 +172,3 @@ export default function AnswersList() {
     )
 
 }
-
-
-
