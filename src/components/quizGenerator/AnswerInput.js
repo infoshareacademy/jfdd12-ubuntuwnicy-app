@@ -13,7 +13,7 @@ export default function AnswerInput(props) {
 
     function onCheckboxChange(e) {
 
-        props.onCheckboxChange(e.currentTarget.checked, answerId)
+        props.onCheckboxChange(e, answerId)
 
     }
 
