@@ -53,7 +53,95 @@ const post = [
             }
         ],
         correctAnswer: "A"
-    }
+    },
+    {
+        question: "Ile kol ma kot",
+        answers: [
+            {
+                id: "A",
+                answerBody: "Pytanie pierwsze"
+            },
+            {
+                id: "B",
+                answerBody: "Pytanie drugie"
+            },
+            {
+                id: "C",
+                answerBody: "Pytanie trzecie"
+            },
+            {
+                id: "D",
+                answerBody: "Pytanie czwarte"
+            }
+        ],
+        correctAnswer: "A"
+    },
+    {
+        question: "Ile kol ma kot",
+        answers: [
+            {
+                id: "A",
+                answerBody: "Pytanie pierwsze"
+            },
+            {
+                id: "B",
+                answerBody: "Pytanie drugie"
+            },
+            {
+                id: "C",
+                answerBody: "Pytanie trzecie"
+            },
+            {
+                id: "D",
+                answerBody: "Pytanie czwarte"
+            }
+        ],
+        correctAnswer: "A"
+    },
+    {
+        question: "Ile kol ma kot",
+        answers: [
+            {
+                id: "A",
+                answerBody: "Pytanie pierwsze"
+            },
+            {
+                id: "B",
+                answerBody: "Pytanie drugie"
+            },
+            {
+                id: "C",
+                answerBody: "Pytanie trzecie"
+            },
+            {
+                id: "D",
+                answerBody: "Pytanie czwarte"
+            }
+        ],
+        correctAnswer: "A"
+    },
+    {
+        question: "Ile kol ma kot",
+        answers: [
+            {
+                id: "A",
+                answerBody: "Pytanie pierwsze"
+            },
+            {
+                id: "B",
+                answerBody: "Pytanie drugie"
+            },
+            {
+                id: "C",
+                answerBody: "Pytanie trzecie"
+            },
+            {
+                id: "D",
+                answerBody: "Pytanie czwarte"
+            }
+        ],
+        correctAnswer: "A"
+    },
 
 ]
 

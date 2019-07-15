@@ -102,12 +102,11 @@ export function QuizGenWrapper(props) {
                 question: e.target.value,
             }
         });
-        SaveAQuestion(questions[questionId].question, questionId)
+        console.log(questionId, questions)
+        // SaveAQuestion(questions[questionId].question, questionId)
     }
 
     function onAnswerAdd(props) {
-
-        debugger
 
         const { questionId } = props
 
@@ -147,8 +146,9 @@ export function QuizGenWrapper(props) {
             <QuizTitleInput />
             {
                 Object.values(fetchedQuestionsState).map((question, index) =>
-                    <div key={question.id} className={"quizGenInputs"}>
-                        <QuestionInput question={question} onQuestionChange={onQuestionChange} />
+                    <div key={index} className={"quizGenInputs"}>
+                        <QuestionInput question={question} onQuestionChange={onQuestionChange}
+                            questionId={index} />
                         <AnswersList question={question} questionId={index} />
                         <div className="quizButtons">
                             {/* <AddAnswerButton onClick={onAnswerAdd} questionId={index}></AddAnswerButton> */}
