@@ -87,7 +87,7 @@ export default function AnswersList() {
                 const newAnswers = answers
 
                 // newAnswers[0].answers[index].answerBody = {...answerBody, newInput}
-  
+
                 return setAnswers(newAnswers)
             } else {
                 return answer;
@@ -114,11 +114,11 @@ export default function AnswersList() {
 
     function onAnswerDelete(answerId) {
 
-        if (answers.length+1 <= 2) {
+        if (answers.length + 1 <= 2) {
             return
         }
         else {
-            setAnswers(answers[0].answers.filter((answer) => answer.id===answerId))
+            setAnswers(answers[0].answers.filter((answer) => answer.id === answerId))
             console.log(answers)
         }
 
@@ -173,7 +173,7 @@ export default function AnswersList() {
 
     return (
         <div className="quizAnswerInputs">
-            <AddAnswerButton onAnswerAdd={onAnswerAdd}></AddAnswerButton>
+            {/* <AddAnswerButton onAnswerAdd={onAnswerAdd}></AddAnswerButton> */}
 
             <AnswersRender />
             {/* 
