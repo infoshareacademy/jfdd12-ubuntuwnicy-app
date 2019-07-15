@@ -7,7 +7,7 @@ import QuestionInput from './QuestionInput'
 import AddAnswerButton from './AddAnswerButton'
 import AddQuestionButton from './AddQuestionButton'
 import { DeleteQuestionButton } from './DeleteQuestionButton';
-import { GetQuiz } from '../services/quizService'
+import { GetQuiz, SaveQuiz, SaveAQuestion } from '../services/quizService'
 
 let fetchedQuestions = []
 
@@ -93,7 +93,8 @@ export function QuizGenWrapper(props) {
 
 
     function onQuestionChange(e) {
-        const questionId = +e.target.name;
+        var questionId = +e.target.name;
+
         setQuestions({
             ...questions,
             [questionId]: {
@@ -101,6 +102,7 @@ export function QuizGenWrapper(props) {
                 question: e.target.value,
             }
         });
+        SaveAQuestion(questions[questionId].question, questionId)
     }
 
 

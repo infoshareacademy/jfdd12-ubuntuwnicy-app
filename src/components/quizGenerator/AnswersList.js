@@ -24,6 +24,10 @@ const post = [
             {
                 id: "C",
                 answerBody: "jeden"
+            },
+            {
+                id: "D",
+                answerBody: "jeden"
             }
         ],
         correctAnswer: "A"
@@ -59,16 +63,20 @@ export default function AnswersList(props) {
     const { questionId } = props
     console.log(props)
     const [answers, setAnswers] = useState([])
+    const [globalQuiz, setGlobalQuiz] = useState([])
+
 
     useEffect(() => {
 
         QuizService.GetQuiz().then(res => {
             console.log(res)
             setAnswers(res[questionId].answers)
+            setGlobalQuiz(res)
         })
 
     }, [questionId])
 
+    console.log(globalQuiz)
 
     function onAnswerChange(value, answerId) {
         console.log(value, answerId)
@@ -83,26 +91,31 @@ export default function AnswersList(props) {
     }
 
 
-    function onCheckboxChange(state, answerId) {
+    function onCheckboxChange(e, answerId) {
 
         answers.map((answer) => {
 
             if (answer.id === answerId) {
 
                 const newAnswers = answers
-                newAnswers[questionId].correctAnswer = answerId
+                globalQuiz[questionId].correctAnswer = answer.id
+                QuizService.saveCheckbox(answerId, questionId)
+
                 return setAnswers(newAnswers)
             } else {
                 console.log(answers)
                 return answer
 
             }
+
         })
     }
 
+
+
     function onAnswerDelete(props) {
         const { index } = props
-        debugger
+        // debugger
         if (answers.length <= 2) {
             return
         }
@@ -119,7 +132,11 @@ export default function AnswersList(props) {
 
     function onQuizSave() {
         console.log(answers)
+        // QuizService.saveQuestions(answers, questionId)
+        // QuizService.SaveQuiz(globalQuiz)
         QuizService.SaveQuiz(post)
+
+
     }
 
     const renderAnswersList = function () {
@@ -135,9 +152,10 @@ export default function AnswersList(props) {
                 answerId={answer.id}
                 answer={answer.answerBody}
                 onAnswerChange={onAnswerChange}
-                isCorrect={answer.isCorrect}
+                isCorrect={answer.id === globalQuiz[questionId].correctAnswer}
                 onCheckboxChange={onCheckboxChange}
                 onAnswerClickDelete={onAnswerDelete}
+
             ></AnswerInput>
         })
     }
@@ -145,7 +163,7 @@ export default function AnswersList(props) {
 
     const renderAnswersListIfNotEmpty = function () {
 
-        if (answers !== [] && answers !== undefined && answers !== {} && answers !== null) {
+        if (globalQuiz[questionId] !== undefined && answers !== [] && answers !== undefined && answers !== {} && answers !== null) {
 
             return renderAnswersList()
         }
