@@ -175,7 +175,7 @@ export default class Quiz extends React.Component {
       <div>
         <button
           className="addAnswerButton"
-          style={{ marginTop: "1em", fontSize: "1em" }}
+          style={{ fontSize: "2em", textAlign: "center" }}
           onClick={this.handleQuizStartClick}
         >
           Rozpocznij nowy Quiz
