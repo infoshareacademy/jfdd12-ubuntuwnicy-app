@@ -156,10 +156,10 @@ export default class Quiz extends React.Component {
       <div>
         <button
           className='addAnswerButton'
-          style={{marginTop: '1em', fontSize: '3em'}}
+          style={{marginTop: '1em', fontSize: '1em'}}
           onClick={this.handleQuizCompleteClick}
         >
-          Zakoncz quiz
+          Zakończ Quiz
         </button>
       </div>
     );
@@ -170,10 +170,10 @@ export default class Quiz extends React.Component {
       <div>
         <button
           className='addAnswerButton'
-          style={{marginTop: '1em', fontSize: '3em'}}
+          style={{marginTop: '1em', fontSize: '1em'}}
           onClick={this.handleQuizStartClick}
         >
-          Rozpocznij nowy quiz
+          Rozpocznij nowy Quiz
         </button>
       </div>
     );

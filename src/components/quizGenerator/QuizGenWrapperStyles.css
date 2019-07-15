@@ -72,7 +72,8 @@ body {
   transition: all 0.2s;
   cursor: pointer;
   width: 10em;
-  height: 2.5em;
+  height: 4em;
+  font-size: 0.5em;
 }
 
 .addAnswerButton:hover {
