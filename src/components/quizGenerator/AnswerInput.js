@@ -17,10 +17,6 @@ export default function AnswerInput(props) {
 
     }
 
-    // function onAnswerDelete() {
-    //     props.onAnswerDelete(answerId)
-    // }
-
     return (
         <div className="answerInputsStyles">
             <TextField

@@ -165,10 +165,9 @@ export default function AnswersList(props) {
 
             <br></br>
             <br></br>
-            <Button
-                onClick={onQuizSave}
-            >Zapisz quiz</Button>
-
+                <button className='addQuestionButton'
+                    onClick={onQuizSave}
+                >Zapisz Quiz</button>
         </div>
     )
 

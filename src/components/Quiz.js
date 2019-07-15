@@ -9,10 +9,11 @@ import AddAnswerButton from './quizGenerator/AddAnswerButton'
 import * as QuizService from './services/quizService'
 
 const Answer = ({ answer, isClicked, onClick }) => (
-  <li className={styles.possibleAnswer} style={{ backgroundColor: "#feffd9" }}>
+  <li className={styles.possibleAnswer}>
     <button
       className={`${styles.button} ${isClicked ? styles.button : ""}`}
-      style={{ backgroundColor: `${isClicked ? "green" : "white"}` }}
+ 
+  style={{ backgroundColor: `${isClicked ? "rgb(255, 255, 153)" : "white"}` }}
       onClick={() => {
         onClick(answer.id);
       }}
@@ -39,13 +40,8 @@ export default class Quiz extends React.Component {
   };
 
   getQuestions() {
-    // return firebase.get()
-    return this.state.answers = QuizService.GetQuiz()
 
-    // return new Promise(resolve => {
-    //   setTimeout(() => {
-    //     resolve(exampleQuestions);
-    //   }, 500);
+    return this.state.answers = QuizService.GetQuiz()
     };
 
   getQuizResult() {
@@ -160,10 +156,10 @@ export default class Quiz extends React.Component {
       <div>
         <button
           className='addAnswerButton'
-          style={{marginTop: '1em', fontSize: '3em'}}
+          style={{marginTop: '1em', fontSize: '1em'}}
           onClick={this.handleQuizCompleteClick}
         >
-          Zakoncz quiz
+          Zakończ Quiz
         </button>
       </div>
     );
@@ -174,10 +170,10 @@ export default class Quiz extends React.Component {
       <div>
         <button
           className='addAnswerButton'
-          style={{marginTop: '1em', fontSize: '3em'}}
+          style={{marginTop: '1em', fontSize: '1em'}}
           onClick={this.handleQuizStartClick}
         >
-          Rozpocznij nowy quiz
+          Rozpocznij nowy Quiz
         </button>
       </div>
     );
