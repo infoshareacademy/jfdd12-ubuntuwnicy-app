@@ -132,9 +132,9 @@ export default function AnswersList(props) {
 
     function onQuizSave() {
         console.log(answers)
-        // QuizService.saveQuestions(answers, questionId)
+        QuizService.saveQuestions(answers, questionId)
         // QuizService.SaveQuiz(globalQuiz)
-        QuizService.SaveQuiz(post)
+        // QuizService.SaveQuiz(post)
 
 
     }
@@ -175,13 +175,13 @@ export default function AnswersList(props) {
 
 
 
-    return ( 
+    return (
         <div>
             <div className="quizAnswerInputs">
                 {renderAnswersListIfNotEmpty()}
             </div>
             <button className='saveQuizButton' onClick={onQuizSave}>
-                    Zapisz Quiz
+                Zapisz Quiz
             </button>
         </div>
     )

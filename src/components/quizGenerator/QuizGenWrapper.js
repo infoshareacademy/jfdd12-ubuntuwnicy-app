@@ -79,7 +79,7 @@ export function QuizGenWrapper(props) {
                 },
             ],
         }
-     };
+    };
 
     const [fetchedQuestionsState, setFetchedQuestion] = useState(fetchedQuestions)
     const [questions, setQuestions] = useState(post);
@@ -89,7 +89,7 @@ export function QuizGenWrapper(props) {
         GetQuiz().then(res => setFetchedQuestion(res))
 
     }, [])
-    
+
 
 
     function onQuestionChange(e) {
@@ -151,7 +151,7 @@ export function QuizGenWrapper(props) {
     return (
         <div className='quizGenWrapper'>
             <h1 className='quizGenHeader'>STWÓRZ QUIZ</h1>
-            <QuizTitleInput />
+            {/* <QuizTitleInput /> */}
             {
                 Object.values(fetchedQuestionsState).map((question, index) =>
                     <div key={question.id} className={"quizGenInputs"}>
@@ -165,6 +165,6 @@ export function QuizGenWrapper(props) {
             }
         </div>
     )
-        }
+}
 
 export default QuizGenWrapper
