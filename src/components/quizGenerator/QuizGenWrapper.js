@@ -86,7 +86,7 @@ export function QuizGenWrapper(props) {
 
     useEffect(() => {
 
-        GetQuiz().then(res => setFetchedQuestion(fetchedQuestions))
+        GetQuiz().then(res => setFetchedQuestion(res))
 
     }, [])
 
