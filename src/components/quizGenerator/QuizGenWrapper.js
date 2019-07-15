@@ -79,7 +79,7 @@ export function QuizGenWrapper(props) {
                 },
             ],
         }
-     };
+    };
 
     const [fetchedQuestionsState, setFetchedQuestion] = useState(fetchedQuestions)
     const [questions, setQuestions] = useState(post);
@@ -89,7 +89,7 @@ export function QuizGenWrapper(props) {
         GetQuiz().then(res => setFetchedQuestion(res))
 
     }, [])
-    
+
 
 
     function onQuestionChange(e) {
@@ -102,13 +102,12 @@ export function QuizGenWrapper(props) {
                 question: e.target.value,
             }
         });
-        SaveAQuestion(questions[questionId].question, questionId)
+        console.log(questionId, questions)
+        // SaveAQuestion(questions[questionId].question, questionId)
     }
 
 
     function onAnswerAdd(props) {
-
-        debugger
 
         const { questionId } = props
 
@@ -154,17 +153,16 @@ export function QuizGenWrapper(props) {
             <QuizTitleInput />
             {
                 Object.values(fetchedQuestionsState).map((question, index) =>
-                    <div key={question.id} className={"quizGenInputs"}>
-                        <QuestionInput question={question} onQuestionChange={onQuestionChange} />
-                        <div className="quizButtons">
-                            <AnswersList question={question} questionId={index} />
-                            <AddQuestionButton onClick={addQuestion} questionId={index} />
-                        </div>
+                    <div key={index} className={"quizGenInputs"}>
+                        <QuestionInput question={question} onQuestionChange={onQuestionChange}
+                            questionId={index} />
+                        <AnswersList question={question} questionId={index} />
+
                     </div>
                 )
             }
         </div>
     )
-        }
+}
 
 export default QuizGenWrapper

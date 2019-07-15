@@ -37,6 +37,72 @@ const post = [
         answers: [
             {
                 id: "A",
+                answerBody: "Zero"
+            },
+            {
+                id: "B",
+                answerBody: "Pytanie drugie"
+            },
+            {
+                id: "C",
+                answerBody: "Pytanie trzecie"
+            },
+            {
+                id: "D",
+                answerBody: "Pytanie czwarte"
+            }
+        ],
+        correctAnswer: "A"
+    },
+    {
+        question: "Ile kotow ma ala",
+        answers: [
+            {
+                id: "A",
+                answerBody: "Pytanie pierwsze"
+            },
+            {
+                id: "B",
+                answerBody: "Pytanie drugie"
+            },
+            {
+                id: "C",
+                answerBody: "Jednego"
+            },
+            {
+                id: "D",
+                answerBody: "Pytanie czwarte"
+            }
+        ],
+        correctAnswer: "C"
+    },
+    {
+        question: "Ile kol ma rower?",
+        answers: [
+            {
+                id: "A",
+                answerBody: "Pytanie pierwsze"
+            },
+            {
+                id: "B",
+                answerBody: "Dwa"
+            },
+            {
+                id: "C",
+                answerBody: "Pytanie trzecie"
+            },
+            {
+                id: "D",
+                answerBody: "Pytanie czwarte"
+            }
+        ],
+        correctAnswer: "B"
+    },
+    {
+        question: "Co ma ",
+        answers: [
+            {
+                id: "A",
                 answerBody: "Pytanie pierwsze"
             },
             {
@@ -53,7 +119,29 @@ const post = [
             }
         ],
         correctAnswer: "A"
-    }
+    },
+    {
+        question: "Ile kol ma kot",
+        answers: [
+            {
+                id: "A",
+                answerBody: "Pytanie pierwsze"
+            },
+            {
+                id: "B",
+                answerBody: "Pytanie drugie"
+            },
+            {
+                id: "C",
+                answerBody: "Pytanie trzecie"
+            },
+            {
+                id: "D",
+                answerBody: "Pytanie czwarte"
+            }
+        ],
+        correctAnswer: "A"
+    },
 
 ]
 
@@ -132,9 +220,9 @@ export default function AnswersList(props) {
 
     function onQuizSave() {
         console.log(answers)
-        // QuizService.saveQuestions(answers, questionId)
+        QuizService.saveQuestions(answers, questionId)
         // QuizService.SaveQuiz(globalQuiz)
-        QuizService.SaveQuiz(post)
+        // QuizService.SaveQuiz(post)
 
 
     }
@@ -175,13 +263,13 @@ export default function AnswersList(props) {
 
 
 
-    return ( 
+    return (
         <div>
             <div className="quizAnswerInputs">
                 {renderAnswersListIfNotEmpty()}
             </div>
             <button className='saveQuizButton' onClick={onQuizSave}>
-                    Zapisz Quiz
+                Zapisz Quiz
             </button>
         </div>
     )
