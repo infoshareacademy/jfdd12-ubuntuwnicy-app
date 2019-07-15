@@ -3,6 +3,7 @@ import AnswerInput from './AnswerInput'
 import AddAnswerButton from './AddAnswerButton';
 import { DeleteQuestionButton } from './DeleteQuestionButton';
 import * as QuizService from '../services/quizService'
+import { Button } from '@material-ui/core'
 import { firebaseApp } from '../../firebase'
 
 export let questionsArrBackup = []
@@ -60,6 +61,7 @@ let newAnswers = []
 
 
 export default function AnswersList() {
+    // QuizService.SaveQuiz(post)
 
     const [answers, setAnswers] = useState(questionsArr) // musi byc state!!!
 
@@ -74,12 +76,14 @@ export default function AnswersList() {
 
     function onAnswerChange(newInput, answerId) {
 
+        // answers[answerId].answer = newInput;
         answers[0].answers.map((answer, index) => {
 
             if (answer.id === answerId) {
 
                 const newAnswers = answers
 
+                // newAnswers[0].answers[index].answerBody = {...answerBody, newInput}
   
                 return setAnswers(newAnswers)
             } else {
@@ -166,16 +170,12 @@ export default function AnswersList() {
 
     return (
         <div className="quizAnswerInputs">
-            
-
             <AnswersRender />
-
             <br></br>
             <br></br>
-            <button className='addQuestionButton'
-                onClick={onQuizSave}
-            >Zapisz Quiz</button>
-
+                <button className='addQuestionButton'
+                    onClick={onQuizSave}
+                >Zapisz Quiz</button>
         </div>
     )
 

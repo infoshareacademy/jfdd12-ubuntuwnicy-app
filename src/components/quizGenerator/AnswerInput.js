@@ -19,7 +19,6 @@ export default function AnswerInput(props) {
 
     return (
         <div className="answerInputsStyles">
-            <p className='answerID'>{props.answerIdToShow}</p>
             <TextField
                 className="answerInput"
                 value={answer}
