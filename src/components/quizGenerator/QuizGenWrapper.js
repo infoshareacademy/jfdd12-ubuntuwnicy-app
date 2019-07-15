@@ -63,7 +63,7 @@ const post = [
 ]
 
 export function QuizGenWrapper(props) {
-    const questionsMap = {
+    const post = {
         "1": {
             id: 1,
             question: 'tresc pytania',
@@ -79,10 +79,10 @@ export function QuizGenWrapper(props) {
                 },
             ],
         }
-    };
+     };
 
     const [fetchedQuestionsState, setFetchedQuestion] = useState(fetchedQuestions)
-    const [questions, setQuestions] = useState(questionsMap);
+    const [questions, setQuestions] = useState(post);
 
     useEffect(() => {
 
@@ -117,20 +117,26 @@ export function QuizGenWrapper(props) {
 
     function addQuestion() {
         const newQuestion = {
-            id: questions.length + 1,
-            question: '',
+            question: "",
             answers: [
                 {
-                    id: 'A', answer: 'dwadziescia', isCorrect: false,
+                    id: "A",
+                    answerBody: ""
                 },
                 {
-                    id: 'B', answer: '', isCorrect: false
+                    id: "B",
+                    answerBody: ""
                 },
                 {
-                    id: 'C', answer: '', isCorrect: false
+                    id: "C",
+                    answerBody: ""
                 },
+                {
+                    id: "D",
+                    answerBody: ""
+                }
             ],
-            correctAnswerId: 'A',
+            correctAnswer: "A"
         }
         setQuestions({
             ...questions,
@@ -147,10 +153,11 @@ export function QuizGenWrapper(props) {
                 Object.values(fetchedQuestionsState).map((question, index) =>
                     <div key={question.id} className={"quizGenInputs"}>
                         <QuestionInput question={question} onQuestionChange={onQuestionChange} />
-                        <AnswersList question={question} questionId={index} />
                         <div className="quizButtons">
+                        <AnswersList question={question} questionId={index} />
+                        <AddQuestionButton onClick={addQuestion} questionId={index} />
                             {/* <AddAnswerButton onClick={onAnswerAdd} questionId={index}></AddAnswerButton> */}
-                            <AddQuestionButton onClick={addQuestion} questionId={index} />
+                            
                             {/* <DeleteQuestionButton /> */}
                         </div>
                     </div>
@@ -158,6 +165,6 @@ export function QuizGenWrapper(props) {
             }
         </div>
     )
-}
+        }
 
 export default QuizGenWrapper
