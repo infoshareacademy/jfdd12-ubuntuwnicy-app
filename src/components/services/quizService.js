@@ -12,24 +12,21 @@ export function FetchQuiz() {
 
 export function SaveQuiz(quiz) {
 
-
     fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app.json`, {
         method: "PUT",
         body: JSON.stringify(quiz),
     })
 }
 
-export function setTodoCompleted(todoId, isCompleted) {
-    fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app.json`, {
-        method: "PATCH",
-        body: JSON.stringify({ isCompleted }),
-    })
-}
 
 export function GetQuiz() {
-  return fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app.json`)
+    return fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app.json`)
         .then(res => {
             return res.json()
         })
+    // .then(quiz => quiz)
+
+    // return Promise.values
 
 }
+

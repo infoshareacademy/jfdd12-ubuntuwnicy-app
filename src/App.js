@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import AnswersList from './components/quizGenerator/AnswersList'
 
 
 function App() {
