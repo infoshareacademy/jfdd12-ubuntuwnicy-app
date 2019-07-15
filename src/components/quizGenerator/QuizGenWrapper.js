@@ -89,7 +89,7 @@ export function QuizGenWrapper(props) {
         GetQuiz().then(res => setFetchedQuestion(res))
 
     }, [])
-
+    
 
 
     function onQuestionChange(e) {
@@ -157,11 +157,8 @@ export function QuizGenWrapper(props) {
                     <div key={question.id} className={"quizGenInputs"}>
                         <QuestionInput question={question} onQuestionChange={onQuestionChange} />
                         <div className="quizButtons">
-                        <AnswersList question={question} questionId={index} />
-                        <AddQuestionButton onClick={addQuestion} questionId={index} />
-                            {/* <AddAnswerButton onClick={onAnswerAdd} questionId={index}></AddAnswerButton> */}
-                            
-                            {/* <DeleteQuestionButton /> */}
+                            <AnswersList question={question} questionId={index} />
+                            <AddQuestionButton onClick={addQuestion} questionId={index} />
                         </div>
                     </div>
                 )
