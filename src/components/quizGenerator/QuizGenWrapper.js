@@ -63,7 +63,7 @@ const post = [
 ]
 
 export function QuizGenWrapper(props) {
-    const questionsMap = {
+    const post = {
         "1": {
             id: 1,
             question: 'tresc pytania',
@@ -82,7 +82,7 @@ export function QuizGenWrapper(props) {
     };
 
     const [fetchedQuestionsState, setFetchedQuestion] = useState(fetchedQuestions)
-    const [questions, setQuestions] = useState(questionsMap);
+    const [questions, setQuestions] = useState(post);
 
     useEffect(() => {
 
@@ -106,6 +106,7 @@ export function QuizGenWrapper(props) {
         // SaveAQuestion(questions[questionId].question, questionId)
     }
 
+
     function onAnswerAdd(props) {
 
         const { questionId } = props
@@ -118,20 +119,26 @@ export function QuizGenWrapper(props) {
 
     function addQuestion() {
         const newQuestion = {
-            id: questions.length + 1,
-            question: '',
+            question: "",
             answers: [
                 {
-                    id: 'A', answer: 'dwadziescia', isCorrect: false,
+                    id: "A",
+                    answerBody: ""
                 },
                 {
-                    id: 'B', answer: '', isCorrect: false
+                    id: "B",
+                    answerBody: ""
                 },
                 {
-                    id: 'C', answer: '', isCorrect: false
+                    id: "C",
+                    answerBody: ""
                 },
+                {
+                    id: "D",
+                    answerBody: ""
+                }
             ],
-            correctAnswerId: 'A',
+            correctAnswer: "A"
         }
         setQuestions({
             ...questions,
@@ -150,11 +157,7 @@ export function QuizGenWrapper(props) {
                         <QuestionInput question={question} onQuestionChange={onQuestionChange}
                             questionId={index} />
                         <AnswersList question={question} questionId={index} />
-                        <div className="quizButtons">
-                            {/* <AddAnswerButton onClick={onAnswerAdd} questionId={index}></AddAnswerButton> */}
-                            <AddQuestionButton onClick={addQuestion} questionId={index} />
-                            {/* <DeleteQuestionButton /> */}
-                        </div>
+
                     </div>
                 )
             }

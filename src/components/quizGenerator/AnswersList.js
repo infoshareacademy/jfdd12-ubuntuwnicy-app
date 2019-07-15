@@ -263,18 +263,14 @@ export default function AnswersList(props) {
 
 
 
-    return (
-        <div className="quizAnswerInputs">
-
-
-            {renderAnswersListIfNotEmpty()}
-
-            <br></br>
-            <br></br>
-            <Button
-                onClick={onQuizSave}
-            >Zapisz quiz</Button>
-
+    return ( 
+        <div>
+            <div className="quizAnswerInputs">
+                {renderAnswersListIfNotEmpty()}
+            </div>
+            <button className='saveQuizButton' onClick={onQuizSave}>
+                    Zapisz Quiz
+            </button>
         </div>
     )
 
