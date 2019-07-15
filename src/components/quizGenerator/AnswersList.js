@@ -37,7 +37,7 @@ const post = [
         answers: [
             {
                 id: "A",
-                answerBody: "Pytanie pierwsze"
+                answerBody: "Zero"
             },
             {
                 id: "B",
@@ -55,7 +55,7 @@ const post = [
         correctAnswer: "A"
     },
     {
-        question: "Ile kol ma kot",
+        question: "Ile kotow ma ala",
         answers: [
             {
                 id: "A",
@@ -67,17 +67,17 @@ const post = [
             },
             {
                 id: "C",
-                answerBody: "Pytanie trzecie"
+                answerBody: "Jednego"
             },
             {
                 id: "D",
                 answerBody: "Pytanie czwarte"
             }
         ],
-        correctAnswer: "A"
+        correctAnswer: "C"
     },
     {
-        question: "Ile kol ma kot",
+        question: "Ile kol ma rower?",
         answers: [
             {
                 id: "A",
@@ -85,7 +85,7 @@ const post = [
             },
             {
                 id: "B",
-                answerBody: "Pytanie drugie"
+                answerBody: "Dwa"
             },
             {
                 id: "C",
@@ -96,10 +96,10 @@ const post = [
                 answerBody: "Pytanie czwarte"
             }
         ],
-        correctAnswer: "A"
+        correctAnswer: "B"
     },
     {
-        question: "Ile kol ma kot",
+        question: "Co ma ",
         answers: [
             {
                 id: "A",
@@ -263,13 +263,13 @@ export default function AnswersList(props) {
 
 
 
-    return ( 
+    return (
         <div>
             <div className="quizAnswerInputs">
                 {renderAnswersListIfNotEmpty()}
             </div>
             <button className='saveQuizButton' onClick={onQuizSave}>
-                    Zapisz Quiz
+                Zapisz Quiz
             </button>
         </div>
     )
