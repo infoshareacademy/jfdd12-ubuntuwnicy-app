@@ -103,6 +103,7 @@ export function QuizGenWrapper(props) {
         });
     }
 
+
     function onAnswerAdd(props) {
 
         debugger
