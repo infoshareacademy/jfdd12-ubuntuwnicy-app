@@ -208,6 +208,7 @@ body {
   .quizAnswerInputs {
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     margin: 2%;
   }
 

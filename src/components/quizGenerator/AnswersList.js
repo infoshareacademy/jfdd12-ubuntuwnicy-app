@@ -3,7 +3,6 @@ import AnswerInput from './AnswerInput'
 import AddAnswerButton from './AddAnswerButton';
 import { DeleteQuestionButton } from './DeleteQuestionButton';
 import * as QuizService from '../services/quizService'
-import { Button } from '@material-ui/core'
 import { firebaseApp } from '../../firebase'
 
 export let questionsArrBackup = []
@@ -173,9 +172,9 @@ export default function AnswersList() {
 
             <br></br>
             <br></br>
-            <Button
+            <button className='addQuestionButton'
                 onClick={onQuizSave}
-            >Zapisz quiz</Button>
+            >Zapisz Quiz</button>
 
         </div>
     )
