@@ -220,9 +220,9 @@ export default function AnswersList(props) {
 
     function onQuizSave() {
         console.log(answers)
-        // QuizService.saveQuestions(answers, questionId)
+        QuizService.saveQuestions(answers, questionId)
         // QuizService.SaveQuiz(globalQuiz)
-        QuizService.SaveQuiz(post)
+        // QuizService.SaveQuiz(post)
 
 
     }
