@@ -102,6 +102,28 @@ body {
   color: #FFFFFF;
 }
 
+.saveQuizButton {
+  background-color: rgb(255, 255, 153);
+  padding: 1%;
+  margin: 1%;
+  border: 0.1em solid #FFFFFF;
+  border-radius: 2em;
+  text-decoration: none;
+  color: grey;
+  font-weight: 300;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  width: 10em;
+  height: 3em;
+  float: left;
+}
+
+.saveQuizButton:hover {
+  background-color: grey;
+  color: #FFFFFF;
+}
+
 .deleteQuestion {
   background-color: rgb(255, 255, 153);
   padding: 1%;
@@ -126,7 +148,7 @@ body {
 
 .quizButtons {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   padding: 3%;
 }
 
@@ -200,7 +222,7 @@ body {
 
   .quizButtons {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     padding: 0;
     margin: 0;
   }
@@ -274,7 +296,7 @@ body {
 
   .quizButtons {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     padding: 0;
     margin: 0;
   }
