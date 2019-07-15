@@ -12,6 +12,7 @@ function QuestionInput(props) {
             <TextField
                 id="outlined-multiline-static"
                 label="PYTANIE"
+                name={props.questionId}
                 multiline
                 rows="4"
                 defaultValue={props.question.question}
@@ -20,7 +21,7 @@ function QuestionInput(props) {
                 margin="normal"
                 variant="outlined"
             />
-              
+
         </div>
     )
 }
