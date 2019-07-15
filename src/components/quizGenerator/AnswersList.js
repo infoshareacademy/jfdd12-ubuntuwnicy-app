@@ -61,7 +61,6 @@ let newAnswers = []
 
 
 export default function AnswersList() {
-    // QuizService.SaveQuiz(post)
 
     const [answers, setAnswers] = useState(questionsArr) // musi byc state!!!
 
@@ -76,14 +75,12 @@ export default function AnswersList() {
 
     function onAnswerChange(newInput, answerId) {
 
-        // answers[answerId].answer = newInput;
         answers[0].answers.map((answer, index) => {
 
             if (answer.id === answerId) {
 
                 const newAnswers = answers
 
-                // newAnswers[0].answers[index].answerBody = {...answerBody, newInput}
   
                 return setAnswers(newAnswers)
             } else {
@@ -173,8 +170,7 @@ export default function AnswersList() {
             
 
             <AnswersRender />
-            {/* 
-            <DeleteQuestionButton></DeleteQuestionButton> */}
+
             <br></br>
             <br></br>
             <Button

@@ -40,13 +40,8 @@ export default class Quiz extends React.Component {
   };
 
   getQuestions() {
-    // return firebase.get()
-    return this.state.answers = QuizService.GetQuiz()
 
-    // return new Promise(resolve => {
-    //   setTimeout(() => {
-    //     resolve(exampleQuestions);
-    //   }, 500);
+    return this.state.answers = QuizService.GetQuiz()
     };
 
   getQuizResult() {

@@ -11,13 +11,6 @@ import {GetQuiz} from '../services/quizService'
 
 let fetchedQuestions = []
 
-let answersArr1 = [
-    { id: 1, answer: 'aaa', isCorrect: false, isHighlighted: false },
-    { id: 2, answer: 'bbb', isCorrect: true, isHighlighted: false },
-    { id: 3, answer: 'ccc', isCorrect: false, isHighlighted: false },
-
-]
-
 export function QuizGenWrapper(props) {
     const questionsMap = {
         "1": {

@@ -12,7 +12,6 @@ export function FetchQuiz() {
 
 export function SaveQuiz(quiz) {
 
-    // return Object.assign({}, quiz, { [quiz]: quiz })
 
     fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app.json`, {
         method: "PUT",
@@ -32,19 +31,5 @@ export function GetQuiz() {
         .then(res => {
             return res.json()
         })
-        // .then(quiz => quiz)
-        
-// return Promise.values
 
 }
-
-
-// var db = firebase.database();
-// var ref = db.ref("server/saving-data/fireblog/posts");
-
-// // Attach an asynchronous callback to read the data at our posts reference
-// ref.on("value", function (snapshot) {
-//     console.log(snapshot.val());
-// }, function (errorObject) {
-//     console.log("The read failed: " + errorObject.code);
-// });
