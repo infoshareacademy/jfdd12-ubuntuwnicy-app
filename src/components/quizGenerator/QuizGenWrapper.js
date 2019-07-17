@@ -136,27 +136,27 @@ export function QuizGenWrapper(props) {
           id: "D",
           answerBody: ""
         }
-      ],
-      correctAnswer: "A"
-    };
-    setQuestions({
-      ...questions,
-      newQuestion
-    });
-  }
+        setQuestions({
+            ...questions,
+            newQuestion,
+        });
+    }
 
-  return (
-    <div className="quizGenWrapper">
-      <h1 className="quizGenHeader">STWÓRZ QUIZ</h1>
-      <QuizTitleInput />
-      {Object.values(fetchedQuestionsState).map((question, index) => (
-        <div key={index} className={"quizGenInputs"}>
-          <QuestionInput
-            question={question}
-            onQuestionChange={onQuestionChange}
-            questionId={index}
-          />
-          <AnswersList question={question} questionId={index} />
+
+    return (
+        <div className='quizGenWrapper'>
+            <h1 className='quizGenHeader'>STWÓRZ QUIZ</h1>
+            {/* <QuizTitleInput /> */}
+            {
+                Object.values(fetchedQuestionsState).map((question, index) =>
+                    <div key={index} className={"quizGenInputs"}>
+                        <QuestionInput question={question} onQuestionChange={onQuestionChange}
+                            questionId={index} />
+                        <AnswersList question={question} questionId={index} />
+
+                    </div>
+                )
+            }
         </div>
       ))}
     </div>
