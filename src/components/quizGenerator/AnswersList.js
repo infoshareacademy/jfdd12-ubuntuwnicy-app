@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AnswerInput from "./AnswerInput";
 import AddAnswerButton from "./AddAnswerButton";
 import { DeleteQuestionButton } from "./DeleteQuestionButton";
-import * as QuizService from "../services/quizService";
+import * as QuizService from "../services/QuizService";
 import { Button } from "@material-ui/core";
 import { firebaseApp } from "../../firebase";
 import { getThemeProps } from "@material-ui/styles";

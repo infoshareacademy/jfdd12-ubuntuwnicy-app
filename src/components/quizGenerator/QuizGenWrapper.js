@@ -7,7 +7,7 @@ import QuestionInput from "./QuestionInput";
 import AddAnswerButton from "./AddAnswerButton";
 import AddQuestionButton from "./AddQuestionButton";
 import { DeleteQuestionButton } from "./DeleteQuestionButton";
-import { GetQuiz, SaveQuiz, SaveAQuestion } from "../services/quizService";
+import { GetQuiz, SaveQuiz, SaveAQuestion } from "../services/QuizService";
 
 let fetchedQuestions = [];
 

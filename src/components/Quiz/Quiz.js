@@ -1,12 +1,10 @@
 import React from "react";
 import styles from "./QuizTitle.module.css";
-import { stringLiteral } from "@babel/types";
 import { QuestionsButtons } from "./QuestionsButtons";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import AddAnswerButton from "../quizGenerator/AddAnswerButton";
-import * as QuizService from "../services/quizService";
+import * as QuizService from "../services/QuizService";
+import { RenderQuestion } from "./RenderQuestions";
 
-const Answer = ({ answer, isClicked, onClick }) => (
+export const Answer = ({ answer, isClicked, onClick }) => (
   <li className={styles.possibleAnswer}>
     <button
       className={`${styles.button} ${isClicked ? styles.button : ""}`}
@@ -116,32 +114,6 @@ export default class Quiz extends React.Component {
     });
   };
 
-  isSelectedAnswer(questionId, currentAnswerId) {
-    const { answers } = this.state;
-    return answers[questionId] === currentAnswerId;
-  }
-
-  renderQuestion(question, questionId) {
-    return (
-      <div>
-        <h1 className={styles.quizName}>{question.question}</h1>
-        <div className={styles.answerWrapper}>
-          <ul className={styles.answerList}>
-            {question.answers.map(answer => (
-              <Answer
-                key={answer.id}
-                answer={answer}
-                className={styles.answer}
-                isClicked={this.isSelectedAnswer(questionId, answer.id)}
-                onClick={() => this.handleAnswerClick(answer.id)}
-              />
-            ))}
-          </ul>
-        </div>
-      </div>
-    );
-  }
-
   renderQuestionsButtons() {
     const { currentQuestionId, questions } = this.state;
 
@@ -214,7 +186,7 @@ export default class Quiz extends React.Component {
     return (
       <div className={styles.quizTitles}>
         <div className={styles.questionCard}>
-          {this.renderQuestion(currentQuestion, currentQuestionId)}
+          <RenderQuestion />
           {this.renderQuestionsButtons()}
           {this.renderFinishQuizButton()}
         </div>
