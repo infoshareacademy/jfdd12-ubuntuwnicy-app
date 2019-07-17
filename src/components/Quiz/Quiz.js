@@ -186,7 +186,7 @@ export default class Quiz extends React.Component {
     return (
       <div className={styles.quizTitles}>
         <div className={styles.questionCard}>
-          <RenderQuestion />
+          {this.renderQuestion(currentQuestion, currentQuestionId)}
           {this.renderQuestionsButtons()}
           {this.renderFinishQuizButton()}
         </div>
