@@ -4,7 +4,7 @@ import { stringLiteral } from "@babel/types";
 import { QuestionsButtons } from "./QuestionsButtons";
 import { Timer } from "./Timer";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import quizquestions from "./quizquestions.json";
+import quizquestions from "../data/quizes.json";
 import AddAnswerButton from "./quizGenerator/AddAnswerButton";
 import * as QuizService from "./services/quizService";
 

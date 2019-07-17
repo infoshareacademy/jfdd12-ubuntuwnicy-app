@@ -1,18 +1,49 @@
-import React from 'react';
-import './App.css';
-import AnswersList from './components/quizGenerator/AnswersList'
+import React, { Component } from 'react'
+import { Navbar } from "./components/Navbar/Navbar";
+import QuizGenWrapper from "./components/quizGenerator/QuizGenWrapper";
+import Quiz from "./components/Quiz";
+import Home from './Home';
+import { QuizProvider } from "./contexts/QuizContext"
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+    Redirect
+} from "react-router-dom";
+import quizes from './data/quizes.json'
 
+const NoMatch = () => <h1>404</h1>;
 
-function App() {
-  return <div className={'titlePage'}>
-        <h1>sQuizYou</h1>
-        <h2>Witamy!</h2>
-        <div className="infoOnMainPage">
-            <p>Przejdź do zakładki <b>STWÓRZ QUIZ</b>, aby dodać nowy quiz</p>
-            <p>lub</p>
-            <p>Przejdź do zakładki <b>DOŁĄCZ DO QUIZU</b>, aby rozwiązać już istniejący quiz</p>
-      </div>
-    </div>
-};
+class App extends Component {
+    state = {
+        quizes
+    }
 
-export default App;
+    addQuiz(newQuiz) {
+        this.setState({ ...this.state.quizes, newQuiz })
+    }
+
+    render() {
+        return (
+            <QuizProvider value={{
+                quizes: this.state.quizes,
+                addQuiz: this.addQuiz
+            }}>
+                <Router>
+                    <div>
+                        <Navbar />
+                        <Switch>
+                            <Route exact path="/" component={Home} />
+                            <Route path="/quiz-gen-wrapper" component={QuizGenWrapper} />
+                            <Route path="/quiz" component={Quiz} />
+                            <Redirect from="/home" to="/" />
+                            <Route component={NoMatch} />
+                        </Switch>
+                    </div>
+                </Router>
+            </QuizProvider >
+        )
+    }
+}
+
+export default App
