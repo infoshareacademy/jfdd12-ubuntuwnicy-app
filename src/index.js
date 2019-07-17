@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import { Navbar } from "./components/Navbar/Navbar";
 import QuizGenWrapper from "./components/quizGenerator/QuizGenWrapper";
-import Quiz from "./components/Quiz";
+import Quiz from "./components/Quiz/Quiz";
 import App from "./App";
 
 const NoMatch = () => <h1>404</h1>;
