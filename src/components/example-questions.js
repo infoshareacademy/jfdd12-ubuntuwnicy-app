@@ -1,6 +1,6 @@
 [
     {
-      question: "Ile kol ma chod",
+      question: "Ile kol ma chodnikninini",
       answers: [
         {
           id: "A",

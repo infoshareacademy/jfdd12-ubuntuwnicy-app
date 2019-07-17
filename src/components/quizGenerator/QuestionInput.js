@@ -8,11 +8,11 @@ function QuestionInput(props) {
 
     return (
         <div className='questionAndDeleteButtonInput'>
-            <p className='questionID'>{props.question.id}</p>
+            {/* <p className='questionID'>{questions.lenght}</p> */}
             <TextField
                 id="outlined-multiline-static"
                 label="PYTANIE"
-                name={props.question.id.toString()}
+                name={props.questionId}
                 multiline
                 rows="4"
                 defaultValue={props.question.question}
@@ -21,7 +21,7 @@ function QuestionInput(props) {
                 margin="normal"
                 variant="outlined"
             />
-              
+
         </div>
     )
 }

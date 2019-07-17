@@ -1,3 +1,19 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  width: 100vw;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
 .quizGenWrapper {
   padding-top: 8%;
   display: flex;
@@ -56,7 +72,8 @@
   transition: all 0.2s;
   cursor: pointer;
   width: 10em;
-  height: 3em;
+  height: 4em;
+  font-size: 0.5em;
 }
 
 .addAnswerButton:hover {
@@ -85,6 +102,28 @@
   color: #FFFFFF;
 }
 
+.saveQuizButton {
+  background-color: rgb(255, 255, 153);
+  padding: 1%;
+  margin: 1%;
+  border: 0.1em solid #FFFFFF;
+  border-radius: 2em;
+  text-decoration: none;
+  color: grey;
+  font-weight: 300;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  width: 10em;
+  height: 3em;
+  float: left;
+}
+
+.saveQuizButton:hover {
+  background-color: grey;
+  color: #FFFFFF;
+}
+
 .deleteQuestion {
   background-color: rgb(255, 255, 153);
   padding: 1%;
@@ -109,7 +148,7 @@
 
 .quizButtons {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   padding: 3%;
 }
 
@@ -139,3 +178,151 @@
   flex-direction: row;
   align-items: center;
 }
+
+@media (max-width: 960px) {
+  .quizGenWrapper {
+    padding-top: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+  }
+
+  .quizTitleInput {
+  width: 90vw;
+  height: 2em;
+  text-align: center;
+  font-size: 1.5em;
+  overflow-wrap: break-word;
+
+  }
+
+  .questionInput {
+      margin: 2%;
+      width: 90vw;
+  }
+
+  .quizGenHeader {
+    color: grey;
+    text-align: center;
+    padding-bottom: 2%;
+    font-size: 2em;
+  }
+
+  .quizGenInputs {
+    margin: 6% 0 0 0;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    width: 100vw;
+    height: 70vh;
+  }
+
+  .quizButtons {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+  }
+
+  .quizAnswerInputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 2%;
+  }
+
+  .isAnswerCorrect {
+    padding: 2%;
+  }
+
+  .answerInputsStyles {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    align-content: center;
+    margin: 2%;
+  }
+
+  .questionAndDeleteButtonInput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .quizGenWrapper {
+    padding-top: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+  }
+
+  .quizTitleInput {
+  width: 90vw;
+  height: 2em;
+  text-align: center;
+  font-size: 1.5em;
+  overflow-wrap: break-word;
+
+  }
+
+  .questionInput {
+      margin: 2%;
+      width: 90vw;
+  }
+
+  .quizGenHeader {
+    color: grey;
+    text-align: center;
+    padding-bottom: 2%;
+    font-size: 2em;
+  }
+
+  .quizGenInputs {
+    margin: 6% 0 0 0;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    width: 100vw;
+    height: 70vh;
+  }
+
+  .quizButtons {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+  }
+
+  .quizAnswerInputs {
+    display: flex;
+    flex-direction: column;
+    margin: 2%;
+  }
+
+  .isAnswerCorrect {
+    padding: 2%;
+  }
+
+  .answerInputsStyles {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    align-content: center;
+    margin: 2%;
+  }
+
+  .questionAndDeleteButtonInput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+

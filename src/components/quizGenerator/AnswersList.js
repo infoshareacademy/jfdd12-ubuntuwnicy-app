@@ -4,143 +4,256 @@ import AddAnswerButton from './AddAnswerButton';
 import { DeleteQuestionButton } from './DeleteQuestionButton';
 import * as QuizService from '../services/quizService'
 import { Button } from '@material-ui/core'
+import { firebaseApp } from '../../firebase'
+import { getThemeProps } from '@material-ui/styles';
 
-export let questionsArrBackup = []
-console.log(questionsArrBackup)
+
 
 const post = [
     {
-     question: "Ile kol ma samochod",
-     answers: [
-       {
-         id: "A",
-         answerBody: "jeden"
-       },
-       {
-         id: "B",
-         answerBody: "jeden"
-       },
-       {
-         id: "C",
-         answerBody: "jeden"
-       }
-     ],
-     correctAnswer: "A"
-   },
-   {
-     question: "Ile kol ma kot",
-     answers: [
-       {
-         id: "A",
-         answerBody: "Pytanie pierwsze"
-       },
-       {
-         id: "B",
-         answerBody: "Pytanie drugie"
-       },
-       {
-         id: "C",
-         answerBody: "Pytanie trzecie"
-       },
-       {
-         id: "D",
-         answerBody: "Pytanie czwarte"
-       }
-     ],
-     correctAnswer: "A"
-   }
+        question: "Ile kol ma samochod",
+        answers: [
+            {
+                id: "A",
+                answerBody: "jeden"
+            },
+            {
+                id: "B",
+                answerBody: "jeden"
+            },
+            {
+                id: "C",
+                answerBody: "jeden"
+            },
+            {
+                id: "D",
+                answerBody: "jeden"
+            }
+        ],
+        correctAnswer: "A"
+    },
+    {
+        question: "Ile kol ma kot",
+        answers: [
+            {
+                id: "A",
+                answerBody: "Zero"
+            },
+            {
+                id: "B",
+                answerBody: "Pytanie drugie"
+            },
+            {
+                id: "C",
+                answerBody: "Pytanie trzecie"
+            },
+            {
+                id: "D",
+                answerBody: "Pytanie czwarte"
+            }
+        ],
+        correctAnswer: "A"
+    },
+    {
+        question: "Ile kotow ma ala",
+        answers: [
+            {
+                id: "A",
+                answerBody: "Pytanie pierwsze"
+            },
+            {
+                id: "B",
+                answerBody: "Pytanie drugie"
+            },
+            {
+                id: "C",
+                answerBody: "Jednego"
+            },
+            {
+                id: "D",
+                answerBody: "Pytanie czwarte"
+            }
+        ],
+        correctAnswer: "C"
+    },
+    {
+        question: "Ile kol ma rower?",
+        answers: [
+            {
+                id: "A",
+                answerBody: "Pytanie pierwsze"
+            },
+            {
+                id: "B",
+                answerBody: "Dwa"
+            },
+            {
+                id: "C",
+                answerBody: "Pytanie trzecie"
+            },
+            {
+                id: "D",
+                answerBody: "Pytanie czwarte"
+            }
+        ],
+        correctAnswer: "B"
+    },
+    {
+        question: "Co ma ",
+        answers: [
+            {
+                id: "A",
+                answerBody: "Pytanie pierwsze"
+            },
+            {
+                id: "B",
+                answerBody: "Pytanie drugie"
+            },
+            {
+                id: "C",
+                answerBody: "Pytanie trzecie"
+            },
+            {
+                id: "D",
+                answerBody: "Pytanie czwarte"
+            }
+        ],
+        correctAnswer: "A"
+    },
+    {
+        question: "Ile kol ma kot",
+        answers: [
+            {
+                id: "A",
+                answerBody: "Pytanie pierwsze"
+            },
+            {
+                id: "B",
+                answerBody: "Pytanie drugie"
+            },
+            {
+                id: "C",
+                answerBody: "Pytanie trzecie"
+            },
+            {
+                id: "D",
+                answerBody: "Pytanie czwarte"
+            }
+        ],
+        correctAnswer: "A"
+    },
 
 ]
 
 
-
-const questionsArr = []
-console.log(questionsArr)
-
-
-
 export default function AnswersList(props) {
-    // QuizService.SaveQuiz(post)
 
-    const [answers, setAnswers] = useState(questionsArr) // musi byc state!!!
-
+    const { questionId } = props
+    console.log(props)
+    const [answers, setAnswers] = useState([])
+    const [globalQuiz, setGlobalQuiz] = useState([])
 
 
     useEffect(() => {
 
-        QuizService.GetQuiz().then(res => setAnswers(res))
-    }, [])
+        QuizService.GetQuiz().then(res => {
+            console.log(res)
+            setAnswers(res[questionId].answers)
+            setGlobalQuiz(res)
+        })
 
+    }, [questionId])
 
-    function onAnswerChange(newInput, answerId) {
-        // answers[answerId].answer = newInput;
-        setAnswers(answers.map((answer) => {
-            if (answer.id === answerId) {
-                return { ...answer, answer: newInput }
-            } else {
-                return answer;
-            }
-        }))
+    console.log(globalQuiz)
+
+    function onAnswerChange(value, answerId) {
+        console.log(value, answerId)
+        console.log(answers)
+        const newAnswers = answers.map(answer => {
+            return answer.id === answerId ? {
+                ...answer,
+                answerBody: value
+            } : answer
+        })
+        setAnswers(newAnswers)
     }
 
-    function onCheckboxChange(state, answerId) {
 
-        answers.map((answer, index) => {
+    function onCheckboxChange(e, answerId) {
+
+        answers.map((answer) => {
 
             if (answer.id === answerId) {
 
+                const newAnswers = answers
+                globalQuiz[questionId].correctAnswer = answer.id
+                QuizService.saveCheckbox(answerId, questionId)
 
-                return setAnswers({ ...answer, isCorrect: state })
+                return setAnswers(newAnswers)
             } else {
                 console.log(answers)
                 return answer
 
             }
+
         })
     }
 
-    function onAnswerDelete(answerId) {
 
-        setAnswers(answers.filter((answer) => answer.id !== answerId))
+
+    function onAnswerDelete(props) {
+        const { index } = props
+        // debugger
+        if (answers.length <= 2) {
+            return
+        }
+        else {
+            const newAnswers = answers
+            answers.pop()
+            return setAnswers(newAnswers)
+
+        }
 
     }
 
-    function onAnswerAdd() {
 
-        setAnswers(
-
-            answers.push({ id: 3, answer: 'ccc', isCorrect: false })
-
-        )
-    }
 
     function onQuizSave() {
-        QuizService.SaveQuiz(answers)
+        console.log(answers)
+        QuizService.saveQuestions(answers, questionId)
+        // QuizService.SaveQuiz(globalQuiz)
+        // QuizService.SaveQuiz(post)
+
+
     }
 
-    const AnAnswer = function () {
+    const renderAnswersList = function () {
         console.log(answers)
-        return answers[0].answers.map((answer, index) => {
+        return answers.map((answer, index) => {
             // debugger
             return <AnswerInput
+                name={'name'}
+                autofocus
+                index={index}
                 key={answer.id}
                 answerIdToShow={index + 1}
                 answerId={answer.id}
                 answer={answer.answerBody}
                 onAnswerChange={onAnswerChange}
-                isCorrect={answer.isCorrect}
+                isCorrect={answer.id === globalQuiz[questionId].correctAnswer}
                 onCheckboxChange={onCheckboxChange}
-                onAnswerDelete={onAnswerDelete}
+                onAnswerClickDelete={onAnswerDelete}
+
             ></AnswerInput>
         })
     }
 
 
-    const AnswersRender = function () {
+    const renderAnswersListIfNotEmpty = function () {
 
-        if (answers[0] !== [] && answers[0] !== undefined && answers[0] !== {} && answers[0] !== null) {
+        if (globalQuiz[questionId] !== undefined && answers !== [] && answers !== undefined && answers !== {} && answers !== null) {
 
-            return <AnAnswer></AnAnswer>
+            return renderAnswersList()
         }
 
         else {
@@ -151,22 +264,14 @@ export default function AnswersList(props) {
 
 
     return (
-        <div className="quizAnswerInputs">
-            <AddAnswerButton onAnswerAdd={onAnswerAdd}></AddAnswerButton>
-
-            <AnswersRender />
-
-            <DeleteQuestionButton></DeleteQuestionButton>
-            <br></br>
-            <br></br>
-            <Button
-                onClick={onQuizSave}
-            >Zapisz quiz</Button>
-
+        <div>
+            <div className="quizAnswerInputs">
+                {renderAnswersListIfNotEmpty()}
+            </div>
+            <button className='saveQuizButton' onClick={onQuizSave}>
+                Zapisz Quiz
+            </button>
         </div>
     )
 
 }
-
-
-

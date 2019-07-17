@@ -5,7 +5,7 @@ import { Button } from '@material-ui/core'
 
 export default function AnswerInput(props) {
 
-    const { answer, isCorrect, answerId } = props
+    const { answer, isCorrect, answerId, onAnswerClickDelete, index } = props
 
     function onChange(e) {
         props.onAnswerChange(e.target.value, answerId)
@@ -13,17 +13,12 @@ export default function AnswerInput(props) {
 
     function onCheckboxChange(e) {
 
-        props.onCheckboxChange(e.currentTarget.checked, answerId)
+        props.onCheckboxChange(e, answerId)
 
-    }
-
-    function onAnswerDelete() {
-        props.onAnswerDelete(answerId)
     }
 
     return (
         <div className="answerInputsStyles">
-            <p className='answerID'>{props.answerIdToShow}</p>
             <TextField
                 className="answerInput"
                 value={answer}
@@ -32,6 +27,7 @@ export default function AnswerInput(props) {
                 label="Odpowiedź"
                 multiline
                 variant="outlined"
+                answerId={answerId}
             ></TextField>
 
             <Checkbox
@@ -39,17 +35,19 @@ export default function AnswerInput(props) {
                 color="default"
                 checked={isCorrect}
                 onChange={onCheckboxChange}
-
+                answerId={answerId}
                 inputProps={{
                     'aria-label': 'checkbox with default color',
                 }}
 
             />
 
-            <Button
+            {/* <Button
+                answerId={answerId}
+                index={index}
                 className="deleteAnswerButton"
-                onClick={onAnswerDelete}
-            >x</Button>
+                onClick={onAnswerClickDelete}
+            >x</Button> */}
 
         </div>
     )

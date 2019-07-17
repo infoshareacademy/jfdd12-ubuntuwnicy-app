@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './QuizGenWrapperStyles.css'
 
 import QuizTitleInput from './QuizTitleInput';
@@ -7,9 +7,9 @@ import QuestionInput from './QuestionInput'
 import AddAnswerButton from './AddAnswerButton'
 import AddQuestionButton from './AddQuestionButton'
 import { DeleteQuestionButton } from './DeleteQuestionButton';
+import { GetQuiz, SaveQuiz, SaveAQuestion } from '../services/quizService'
 
-
-
+let fetchedQuestions = []
 
 let answersArr1 = [
     { id: 1, answer: 'aaa', isCorrect: false, isHighlighted: false },
@@ -18,8 +18,52 @@ let answersArr1 = [
 
 ]
 
-function QuizGenWrapper(props) {
-    const questionsMap = {
+const post = [
+    {
+        question: "Ile kol ma samochod",
+        answers: [
+            {
+                id: "A",
+                answerBody: "jeden"
+            },
+            {
+                id: "B",
+                answerBody: "jeden"
+            },
+            {
+                id: "C",
+                answerBody: "jeden"
+            }
+        ],
+        correctAnswer: "A"
+    },
+    {
+        question: "Ile kol ma kot",
+        answers: [
+            {
+                id: "A",
+                answerBody: "Pytanie pierwsze"
+            },
+            {
+                id: "B",
+                answerBody: "Pytanie drugie"
+            },
+            {
+                id: "C",
+                answerBody: "Pytanie trzecie"
+            },
+            {
+                id: "D",
+                answerBody: "Pytanie czwarte"
+            }
+        ],
+        correctAnswer: "A"
+    }
+
+]
+
+export function QuizGenWrapper(props) {
+    const post = {
         "1": {
             id: 1,
             question: 'tresc pytania',
@@ -37,61 +81,84 @@ function QuizGenWrapper(props) {
         }
     };
 
-    const [questions, setQuestions] = useState(questionsMap);
+    const [fetchedQuestionsState, setFetchedQuestion] = useState(fetchedQuestions)
+    const [questions, setQuestions] = useState(post);
+
+    useEffect(() => {
+
+        GetQuiz().then(res => setFetchedQuestion(res))
+
+    }, [])
+
+
 
     function onQuestionChange(e) {
-        const questionId = +e.target.name;
+        var questionId = +e.target.name;
+
         setQuestions({
-            ...questions, 
+            ...questions,
             [questionId]: {
                 ...questions[questionId],
                 question: e.target.value,
             }
         });
+        console.log(questionId, questions)
+        // SaveAQuestion(questions[questionId].question, questionId)
+    }
 
-        //addQuestion();
+
+    function onAnswerAdd(props) {
+
+        const { questionId } = props
+
+        const newFetchedQuestions = fetchedQuestionsState[questionId].answers
+
+        setFetchedQuestion(
+            newFetchedQuestions.push({ id: 'D', answerBody: '' }))
     }
 
     function addQuestion() {
         const newQuestion = {
-            id: questions.length + 1,
-            question: '',
+            question: "",
             answers: [
                 {
-                    id: 'A', answer: '', isCorrect: false,
+                    id: "A",
+                    answerBody: ""
                 },
                 {
-                    id: 'B', answer: '', isCorrect: false
+                    id: "B",
+                    answerBody: ""
                 },
                 {
-                    id: 'C', answer: '', isCorrect: false
+                    id: "C",
+                    answerBody: ""
                 },
+                {
+                    id: "D",
+                    answerBody: ""
+                }
             ],
-            correctAnswerId: 'A',
+            correctAnswer: "A"
         }
-
         setQuestions({
             ...questions,
             newQuestion,
         });
     }
 
-    
+
     return (
         <div className='quizGenWrapper'>
             <h1 className='quizGenHeader'>STWÓRZ QUIZ</h1>
             <QuizTitleInput />
             {
-                Object.values(questions).map(question => 
-                <div key={question.id} className={"quizGenInputs"}>
-                    <QuestionInput question={question} onQuestionChange={onQuestionChange}/>
-                    <AnswersList question={question}/>
-                    <div className="quizButtons">
-                        <AddAnswerButton />
-                        <AddQuestionButton onClick={addQuestion} />
-                        <DeleteQuestionButton />
+                Object.values(fetchedQuestionsState).map((question, index) =>
+                    <div key={index} className={"quizGenInputs"}>
+                        <QuestionInput question={question} onQuestionChange={onQuestionChange}
+                            questionId={index} />
+                        <AnswersList question={question} questionId={index} />
+
                     </div>
-                </div>    
                 )
             }
         </div>

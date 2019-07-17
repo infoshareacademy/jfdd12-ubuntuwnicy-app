@@ -13,19 +13,20 @@ import Quiz from "./components/Quiz";
 import App from './App';
 
 
+
 const NoMatch = () => <h1>404</h1>;
 const Root = props => {
   return (
     <Router>
       <div>
         <Navbar />
-          <Switch>
-            <Route exact path="/" component={App} />
-            <Route path="/quiz-gen-wrapper" component={QuizGenWrapper} />
-            <Route path="/quiz" component={Quiz} />
-            <Redirect from="/home" to="/" />
-            <Route component={NoMatch} />
-          </Switch>
+        <Switch>
+          <Route exact path="/" component={App} />
+          <Route path="/quiz-gen-wrapper" component={QuizGenWrapper} />
+          <Route path="/quiz" component={Quiz} />
+          <Redirect from="/home" to="/" />
+          <Route component={NoMatch} />
+        </Switch>
       </div>
     </Router>
   );

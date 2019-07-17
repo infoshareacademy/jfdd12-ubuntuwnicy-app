@@ -12,38 +12,41 @@ export function FetchQuiz() {
 
 export function SaveQuiz(quiz) {
 
-    // return Object.assign({}, quiz, { [quiz]: quiz })
-
-    fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app/.json`, {
+    fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app.json`, {
         method: "PUT",
         body: JSON.stringify(quiz),
     })
 }
 
-export function setTodoCompleted(todoId, isCompleted) {
-    fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app.json`, {
-        method: "PATCH",
-        body: JSON.stringify({ isCompleted }),
+export function SaveAQuestion(quiz, questionId) {
+
+    fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app/${questionId}/question.json`, {
+        method: "PUT",
+        body: JSON.stringify(quiz),
     })
 }
 
-export function GetQuiz() {
-  return fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app.json`)
-        .then(res => {
-            return res.json()
-        })
-        .then(quiz => quiz)
-// return Promise.values
+export function saveQuestions(questions, questionId) {
 
+    fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app/${questionId}/answers.json`, {
+        method: "PUT",
+        body: JSON.stringify(questions),
+    })
+}
+
+export function saveCheckbox(answerId, questionId) {
+    fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app/${questionId}/correctAnswer.json`, {
+        method: "PUT",
+        body: JSON.stringify(answerId),
+    })
 }
 
 
-// var db = firebase.database();
-// var ref = db.ref("server/saving-data/fireblog/posts");
+export function GetQuiz() {
+    return fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app.json`)
+        .then(res => {
+            return res.json()
+        })
 
-// // Attach an asynchronous callback to read the data at our posts reference
-// ref.on("value", function (snapshot) {
-//     console.log(snapshot.val());
-// }, function (errorObject) {
-//     console.log("The read failed: " + errorObject.code);
-// });
+}
+
