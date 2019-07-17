@@ -2,10 +2,9 @@ import React from "react";
 import styles from "./QuizTitle.module.css";
 import { stringLiteral } from "@babel/types";
 import { QuestionsButtons } from "./QuestionsButtons";
-import { Timer } from "./Timer";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import AddAnswerButton from "./quizGenerator/AddAnswerButton";
-import * as QuizService from "./services/quizService";
+import AddAnswerButton from "../quizGenerator/AddAnswerButton";
+import * as QuizService from "../services/QuizService";
 
 const Answer = ({ answer, isClicked, onClick }) => (
   <li className={styles.possibleAnswer}>
