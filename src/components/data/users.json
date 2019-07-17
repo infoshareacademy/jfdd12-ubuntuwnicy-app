@@ -1,0 +1,32 @@
+{
+    "users": [
+        {
+            "login": "sadksajdksa",
+            "password": "12313123",
+            "results": [
+                "filter of resutls.json over userId"
+            ]
+        },
+        {
+            "login": "sadksajssssdksa",
+            "password": "13424234",
+            "results": [
+                "filter of resutls.json over userId"
+            ]
+        },
+        {
+            "login": "sadkssssajdksa",
+            "password": "15435345",
+            "results": [
+                "filter of resutls.json over userId"
+            ]
+        },
+        {
+            "login": "sadksajdkssssssa",
+            "password": "1435435",
+            "results": [
+                "filter of resutls.json over userId"
+            ]
+        }
+    ]
+}
