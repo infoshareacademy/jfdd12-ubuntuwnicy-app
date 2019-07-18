@@ -4,6 +4,7 @@ import AnswersList from './AnswersList'
 import QuestionInput from './QuestionInput'
 import { QuizContext } from '../../contexts/QuizContext'
 import QuizTitleInput from './QuizTitleInput'
+import {Button} from '@material-ui/core'
 
 export default class QuizGenWrapper extends React.Component {
   state = {
@@ -37,7 +38,15 @@ export default class QuizGenWrapper extends React.Component {
     })
   }
 
+  handleSaveQuiz = () => {
+    this.context.updateQuiz(this.state)
+  }
+
   render() {
+
+    console.log(this.state)
+    console.log(this.context)
+    
     const { title, questions } = this.state
 
     return <div className='quizGenWrapper'>
@@ -51,6 +60,7 @@ export default class QuizGenWrapper extends React.Component {
           </div>
         )
       }
+      <Button onClick={this.handleSaveQuiz}>Zapisz Quiz</Button>
     </div>
   }
 }

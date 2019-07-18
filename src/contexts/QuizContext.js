@@ -16,7 +16,7 @@ export const QuizProvider = function (props) {
 
     const updateQuiz = (updatedQuiz) => {
         const newQuizes = quizes.map(quiz => {
-            if (quiz.id === updateQuiz.id) {
+            if (quiz.id === updatedQuiz.id) {
                 return updatedQuiz
             } else {
                 return quiz

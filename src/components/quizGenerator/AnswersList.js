@@ -1,8 +1,6 @@
 import React from 'react'
 import AnswerInput from './AnswerInput'
 
-import { QuizContext } from '../../contexts/QuizContext'
-
 export default class AnswersList extends React.Component {
   render() {
     return (
@@ -16,7 +14,7 @@ export default class AnswersList extends React.Component {
             answer={answer.answer}
             isCorrect={answer.correct}
             onCheckboxChange={() => { }}
-
+            
           ></AnswerInput>
         })}
       </div>
