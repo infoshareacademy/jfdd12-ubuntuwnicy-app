@@ -14,6 +14,7 @@ function QuizTitleInput(props) {
                 InputLabelProps={{
                     shrink: true,
                 }}
+                value={props.quizTitle}
             />
 
         </>

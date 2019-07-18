@@ -5,17 +5,7 @@ import { Button } from '@material-ui/core'
 
 export default function AnswerInput(props) {
 
-    const { answer, isCorrect, answerId, onAnswerClickDelete, index } = props
-
-    function onChange(e) {
-        props.onAnswerChange(e.target.value, answerId)
-    }
-
-    function onCheckboxChange(e) {
-
-        props.onCheckboxChange(e, answerId)
-
-    }
+    const { answer, isCorrect, answerId}= props
 
     return (
         <div className="answerInputsStyles">
@@ -34,7 +24,7 @@ export default function AnswerInput(props) {
                 className="isAnswerCorrect"
                 color="default"
                 checked={isCorrect}
-                onChange={onCheckboxChange}
+                
                 answerId={answerId}
                 inputProps={{
                     'aria-label': 'checkbox with default color',

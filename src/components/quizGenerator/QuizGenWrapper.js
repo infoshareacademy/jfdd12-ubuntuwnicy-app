@@ -3,26 +3,28 @@ import './QuizGenWrapperStyles.css'
 import AnswersList from './AnswersList'
 import QuestionInput from './QuestionInput'
 import { QuizContext } from '../../contexts/QuizContext'
+import QuizTitleInput from './QuizTitleInput'
 
 export default class QuizGenWrapper extends React.Component {
 
-    static contextType = QuizContext
+  static contextType = QuizContext
 
-    render() {
-        let context = this.context
-        let questionsIndexZero = context.quizes.quizes[0].questions
+  render() {
+    let context = this.context
+    let questionsIndexZero = context.quizes.quizes[0].questions
 
-        return <div className='quizGenWrapper'>
-            <h1 className='quizGenHeader'>STWÓRZ QUIZ</h1>
-            {
-                questionsIndexZero.map((question, index) =>
-                    <div key={index} className={"quizGenInputs"}>
-                        <QuestionInput question={question}
-                            questionId={index} />
-                        <AnswersList question={question} questionId={index} />
-                    </div>
-                )
-            }
-        </div>
-    }
+    return <div className='quizGenWrapper'>
+      <h1 className='quizGenHeader'>STWÓRZ QUIZ</h1>
+      <QuizTitleInput quizTitle={context.quizes.quizes[0].title}></QuizTitleInput>
+      {
+        questionsIndexZero.map((question, index) =>
+          <div key={index} className={"quizGenInputs"}>
+            <QuestionInput question={question}
+              questionId={index} />
+            <AnswersList question={question} questionId={index} />
+          </div>
+        )
+      }
+    </div>
+  }
 }

@@ -2,7 +2,7 @@
     "quizes": [
         {
             "id": "1",
-            "title": "title",
+            "title": "Tytul pierwszego Quizu",
             "questions": [
                 {
                     "id": "1",
