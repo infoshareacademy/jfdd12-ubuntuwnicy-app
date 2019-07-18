@@ -5,6 +5,7 @@ import { QuestionsButtons } from "./QuestionsButtons";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AddAnswerButton from "../quizGenerator/AddAnswerButton";
 import * as QuizService from "../services/QuizService";
+import { QuizContext } from "../../contexts/QuizContext";
 
 const Answer = ({ answer, isClicked, onClick }) => (
   <li className={styles.possibleAnswer}>
@@ -19,7 +20,7 @@ const Answer = ({ answer, isClicked, onClick }) => (
     >
       {answer.id}
     </button>
-    {answer.answerBody}
+    {answer.answer}
   </li>
 );
 
@@ -37,15 +38,26 @@ const Spinner = () => (
 );
 
 export default class Quiz extends React.Component {
+  static contextType = QuizContext;
+
   state = {
     currentQuestionId: 0,
     answers: {},
+    questions: {},
     areQuestionsLoading: true,
     isQuizComplete: false
   };
 
   getQuestions() {
-    return (this.state.answers = QuizService.GetQuiz());
+    const questions = this.context.quizes.quizes[0].questions[0];
+
+    this.setState({
+      ...this.state,
+      questions,
+      areQuestionsLoading: false
+    });
+
+    return questions;
   }
 
   getQuizResult() {
@@ -63,20 +75,7 @@ export default class Quiz extends React.Component {
   }
 
   componentDidMount() {
-    this.getQuestions()
-      .then(questions => {
-        this.setState({
-          questions,
-          areQuestionsLoading: false
-        });
-      })
-      .catch(error => {
-        console.error(error);
-
-        this.setState({
-          areQuestionsLoading: false
-        });
-      });
+    this.getQuestions();
   }
 
   handleAnswerClick = answerId => {
@@ -122,12 +121,15 @@ export default class Quiz extends React.Component {
   }
 
   renderQuestion(question, questionId) {
+    let context = this.context;
+    let questionsIndexZero = context.quizes.quizes[0].questions[0];
+    console.log(questionsIndexZero);
     return (
       <div>
-        <h1 className={styles.quizName}>{question.question}</h1>
+        <h1 className={styles.quizName}>{questionsIndexZero.question}</h1>
         <div className={styles.answerWrapper}>
           <ul className={styles.answerList}>
-            {question.answers.map(answer => (
+            {questionsIndexZero.answers.map(answer => (
               <Answer
                 key={answer.id}
                 answer={answer}
@@ -141,6 +143,17 @@ export default class Quiz extends React.Component {
       </div>
     );
   }
+
+  // <h1 className={styles.quizName}>{question.question}</h1>
+  // <div className={styles.answerWrapper}>
+  //   <ul className={styles.answerList}>
+  //     {question.answers.map(answer => (
+  //       <Answer
+  //         key={answer.id}
+  //         answer={answer}
+  //         className={styles.answer}
+  //         isClicked={this.isSelectedAnswer(questionId, answer.id)}
+  //         onClick={() => this.handleAnswerClick(answer.id)}
 
   renderQuestionsButtons() {
     const { currentQuestionId, questions } = this.state;
