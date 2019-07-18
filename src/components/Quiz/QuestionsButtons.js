@@ -27,27 +27,27 @@ export class QuestionsButtons extends React.Component {
       totalNumberOfQuestion - 1
     );
 
-    // const lowerButtons = [...Array(currentQuestionId - lowerLimit)].map(
-    //   (_, index) => {
-    //     const id = currentQuestionId - (currentQuestionId - lowerLimit) + index;
-    //     return (
-    //       <Button onClick={() => onQuestionChangeHandler(id)}>{id + 1}</Button>
-    //     );
-    //   }
-    // );
+    const lowerButtons = [...Array(currentQuestionId - lowerLimit)].map(
+      (_, index) => {
+        const id = currentQuestionId - (currentQuestionId - lowerLimit) + index;
+        return (
+          <Button onClick={() => onQuestionChangeHandler(id)}>{id + 1}</Button>
+        );
+      }
+    );
 
-    // const upperButtons = [...Array(upperLimit - currentQuestionId)].map(
-    //   (_, index) => {
-    //     const id = currentQuestionId + index + 1;
-    //     return (
-    //       <Button onClick={() => onQuestionChangeHandler(id)}>{id + 1}</Button>
-    //     );
-    //   }
-    // );
+    const upperButtons = [...Array(upperLimit - currentQuestionId)].map(
+      (_, index) => {
+        const id = currentQuestionId + index + 1;
+        return (
+          <Button onClick={() => onQuestionChangeHandler(id)}>{id + 1}</Button>
+        );
+      }
+    );
 
     return (
       <div>
-        {/* {
+        {
           <Button
             disabled={!currentQuestionId}
             onClick={() => onQuestionChangeHandler(currentQuestionId - 1)}
@@ -65,7 +65,7 @@ export class QuestionsButtons extends React.Component {
           >
             Następne pytanie
           </Button>
-        } */}
+        }
       </div>
     );
   }

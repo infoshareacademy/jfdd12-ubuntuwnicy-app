@@ -22,11 +22,11 @@
         },
         {
           "id": "2",
-          "question": "question",
+          "question": "Swiat",
           "answers": [
             {
               "id": "1",
-              "answer": "answer",
+              "answer": "bang",
               "correct": true
             },
             {
@@ -38,11 +38,11 @@
         },
         {
           "id": "3",
-          "question": "question",
+          "question": "Nowy",
           "answers": [
             {
               "id": "1",
-              "answer": "answer",
+              "answer": "dziala",
               "correct": true
             },
             {

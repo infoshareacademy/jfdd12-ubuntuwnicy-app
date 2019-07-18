@@ -49,7 +49,7 @@ export default class Quiz extends React.Component {
   };
 
   getQuestions() {
-    const questions = this.context.quizes.quizes[0].questions[0];
+    const questions = this.context.quizes.quizes[0].questions;
 
     this.setState({
       ...this.state,
@@ -122,7 +122,7 @@ export default class Quiz extends React.Component {
 
   renderQuestion(question, questionId) {
     let context = this.context;
-    let questionsIndexZero = context.quizes.quizes[0].questions[0];
+    let questionsIndexZero = context.quizes.quizes[0].questions[questionId];
     console.log(questionsIndexZero);
     return (
       <div>
@@ -143,17 +143,6 @@ export default class Quiz extends React.Component {
       </div>
     );
   }
-
-  // <h1 className={styles.quizName}>{question.question}</h1>
-  // <div className={styles.answerWrapper}>
-  //   <ul className={styles.answerList}>
-  //     {question.answers.map(answer => (
-  //       <Answer
-  //         key={answer.id}
-  //         answer={answer}
-  //         className={styles.answer}
-  //         isClicked={this.isSelectedAnswer(questionId, answer.id)}
-  //         onClick={() => this.handleAnswerClick(answer.id)}
 
   renderQuestionsButtons() {
     const { currentQuestionId, questions } = this.state;
