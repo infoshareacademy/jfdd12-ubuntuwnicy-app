@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Navbar } from "./components/Navbar/Navbar";
 import QuizGenWrapper from "./components/quizGenerator/QuizGenWrapper";
-import Quiz from "./components/Quiz";
+import Quiz from "./components/Quiz/Quiz";
 import Home from './Home';
 import { QuizProvider } from "./contexts/QuizContext"
 import {
