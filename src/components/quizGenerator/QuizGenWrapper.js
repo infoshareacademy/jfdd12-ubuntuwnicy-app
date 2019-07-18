@@ -135,12 +135,12 @@ export function QuizGenWrapper(props) {
         {
           id: "D",
           answerBody: ""
-        }
+        },
         setQuestions({
             ...questions,
             newQuestion,
-        });
-    }
+        })
+    },
 
 
     return (
