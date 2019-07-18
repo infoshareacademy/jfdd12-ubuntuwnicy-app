@@ -23,7 +23,7 @@ export default function AnswerInput(props) {
                 className="answerInput"
                 value={answer}
                 placeholder='Wprowadź odpowiedź'
-                onChange={onChange}
+
                 label="Odpowiedź"
                 multiline
                 variant="outlined"
