@@ -10,25 +10,13 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
-import quizes from './data/quizes.json'
 
 const NoMatch = () => <h1>404</h1>;
 
 class App extends Component {
-  state = {
-    quizes
-  }
-
-  addQuiz(newQuiz) {
-    this.setState({ ...this.state.quizes, newQuiz })
-  }
-
   render() {
     return (
-      <QuizProvider value={{
-        quizes: this.state.quizes,
-        addQuiz: this.addQuiz
-      }}>
+      <QuizProvider>
         <Router>
           <div>
             <Navbar />

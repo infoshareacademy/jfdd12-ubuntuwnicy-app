@@ -12,11 +12,11 @@ function QuestionInput(props) {
             <TextField
                 id="outlined-multiline-static"
                 label="PYTANIE"
-                name={props.questionId}
+                name={props.question.id}
                 multiline
                 rows="4"
-                defaultValue={props.question.question}
-                onChange={props.onQuestionChange}
+                value={props.question.question}
+                onChange={event => props.onChange(props.question.id, event.target.value)}
                 className="questionInput"
                 margin="normal"
                 variant="outlined"

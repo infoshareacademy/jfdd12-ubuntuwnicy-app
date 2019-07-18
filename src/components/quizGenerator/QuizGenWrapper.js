@@ -6,21 +6,47 @@ import { QuizContext } from '../../contexts/QuizContext'
 import QuizTitleInput from './QuizTitleInput'
 
 export default class QuizGenWrapper extends React.Component {
+  state = {
+    ...this.context.selectQuiz("1")
+  }
 
   static contextType = QuizContext
 
+  handleTitleChange = (newTitle) => {
+    this.setState({
+      ...this.state,
+      title: newTitle
+    })
+  }
+
+  handleQuestionChange = (questionId, newQuestion) => {
+    const newQuestions = this.state.questions.map(questionObject => {
+      if (questionObject.id === questionId) {
+        return {
+          ...questionObject,
+          question: newQuestion
+        }
+      } else {
+        return questionObject
+      }
+    })
+
+    this.setState({
+      ...this.state,
+      questions: newQuestions
+    })
+  }
+
   render() {
-    let context = this.context
-    let questionsIndexZero = context.quizes.quizes[0].questions
+    const { title, questions } = this.state
 
     return <div className='quizGenWrapper'>
       <h1 className='quizGenHeader'>STWÓRZ QUIZ</h1>
-      <QuizTitleInput quizTitle={context.quizes.quizes[0].title}></QuizTitleInput>
+      <QuizTitleInput quizTitle={title} onChange={this.handleTitleChange} />
       {
-        questionsIndexZero.map((question, index) =>
+        questions.map((question, index) =>
           <div key={index} className={"quizGenInputs"}>
-            <QuestionInput question={question}
-              questionId={index} />
+            <QuestionInput question={question} onChange={this.handleQuestionChange} />
             <AnswersList question={question} questionId={index} />
           </div>
         )
