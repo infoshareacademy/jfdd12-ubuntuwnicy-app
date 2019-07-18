@@ -64,8 +64,8 @@ export default class Quiz extends React.Component {
     const { questions, answers } = this.state;
     const score = questions.reduce(
       (currentScore, currentQuestion, currentQuestionId) => {
-        const isAnswerCorrect =
-          currentQuestion.correctAnswer === answers[currentQuestionId];
+        const isAnswerCorrect = currentQuestion.answers.answer[0] === true;
+        // currentQuestion.correctAnswer === answers[currentQuestionId];
         return isAnswerCorrect ? currentScore + 1 : currentScore;
       },
       0

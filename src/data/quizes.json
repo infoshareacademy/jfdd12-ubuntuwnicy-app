@@ -33,6 +33,11 @@
               "id": "2",
               "answer": "answer",
               "correct": true
+            },
+            {
+              "id": "3",
+              "answer": "answer",
+              "correct": true
             }
           ]
         },
