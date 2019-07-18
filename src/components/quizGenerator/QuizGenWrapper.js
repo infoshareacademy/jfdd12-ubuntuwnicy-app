@@ -116,37 +116,12 @@ export function QuizGenWrapper(props) {
     setFetchedQuestion(newFetchedQuestions.push({ id: "D", answerBody: "" }));
   }
 
-  function addQuestion() {
-    const newQuestion = {
-      question: "",
-      answers: [
-        {
-          id: "A",
-          answerBody: ""
-        },
-        {
-          id: "B",
-          answerBody: ""
-        },
-        {
-          id: "C",
-          answerBody: ""
-        },
-        {
-          id: "D",
-          answerBody: ""
-        },
-        setQuestions({
-            ...questions,
-            newQuestion,
-        })
-    },
+    
 
 
     return (
         <div className='quizGenWrapper'>
             <h1 className='quizGenHeader'>STWÓRZ QUIZ</h1>
-            {/* <QuizTitleInput /> */}
             {
                 Object.values(fetchedQuestionsState).map((question, index) =>
                     <div key={index} className={"quizGenInputs"}>
@@ -158,9 +133,10 @@ export function QuizGenWrapper(props) {
                 )
             }
         </div>
-      ))}
-    </div>
-  );
-}
+      )
+
+
+      }
+
 
 export default QuizGenWrapper;
