@@ -5,45 +5,45 @@ import Quiz from "./components/Quiz/Quiz";
 import Home from './Home';
 import { QuizProvider } from "./contexts/QuizContext"
 import {
-    BrowserRouter as Router,
-    Route,
-    Switch,
-    Redirect
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
 } from "react-router-dom";
 import quizes from './data/quizes.json'
 
 const NoMatch = () => <h1>404</h1>;
 
 class App extends Component {
-    state = {
-        quizes
-    }
+  state = {
+    quizes
+  }
 
-    addQuiz(newQuiz) {
-        this.setState({ ...this.state.quizes, newQuiz })
-    }
+  addQuiz(newQuiz) {
+    this.setState({ ...this.state.quizes, newQuiz })
+  }
 
-    render() {
-        return (
-            <QuizProvider value={{
-                quizes: this.state.quizes,
-                addQuiz: this.addQuiz
-            }}>
-                <Router>
-                    <div>
-                        <Navbar />
-                        <Switch>
-                            <Route exact path="/" component={Home} />
-                            <Route path="/quiz-gen-wrapper" component={QuizGenWrapper} />
-                            <Route path="/quiz" component={Quiz} />
-                            <Redirect from="/home" to="/" />
-                            <Route component={NoMatch} />
-                        </Switch>
-                    </div>
-                </Router>
-            </QuizProvider >
-        )
-    }
+  render() {
+    return (
+      <QuizProvider value={{
+        quizes: this.state.quizes,
+        addQuiz: this.addQuiz
+      }}>
+        <Router>
+          <div>
+            <Navbar />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/quiz-gen-wrapper" component={QuizGenWrapper} />
+              <Route path="/quiz" component={Quiz} />
+              <Redirect from="/home" to="/" />
+              <Route component={NoMatch} />
+            </Switch>
+          </div>
+        </Router>
+      </QuizProvider >
+    )
+  }
 }
 
 export default App

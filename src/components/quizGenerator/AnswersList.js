@@ -7,12 +7,15 @@ export default class AnswersList extends React.Component {
 
   static contextType = QuizContext
 
+
   render() {
     let context = this.context
-    let questionsIndexZero = context.quizes.quizes[0].questions[0]
+
+    let localQuiz = {...context.quizes.quizes[0].questions[0]}
+    
     return (
       <div className="quizAnswerInputs">
-        {questionsIndexZero.answers.map(answer => {
+        {localQuiz.answers.map(answer => {
           return <AnswerInput
             name={'name'}
             autofocus
