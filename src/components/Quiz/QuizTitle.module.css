@@ -29,6 +29,8 @@ body {
   height: 50vh;
   flex-wrap: wrap;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 60%;
   padding: 0;
   margin: 0;
@@ -53,7 +55,7 @@ body {
   margin: 3% 3%;
   padding: 4% 2%;
   color: black;
-  box-shadow: 0px 0px 38px -21px rgba(0, 0, 0, 0.60);
+  box-shadow: 0px 0px 38px -21px rgba(0, 0, 0, 0.6);
   width: 85vw;
   height: 6em;
   font-size: 1.2em;
@@ -80,7 +82,7 @@ body {
   background-color: rgb(255, 255, 153);
   padding: 0.5%;
   margin: 0;
-  border: 0.1em solid #FFFFFF;
+  border: 0.1em solid #ffffff;
   font-size: 1em;
   border-radius: 1em;
   text-decoration: none;
@@ -92,6 +94,25 @@ body {
   cursor: pointer;
   width: 10em;
   height: 3em;
+}
+
+.buttonQuizEnd {
+  background-color: rgb(255, 255, 153);
+  padding: 1%;
+  margin: 1% 30%;
+  border: 0.1em solid #ffffff;
+  font-size: 1em;
+  border-radius: 1em;
+  text-decoration: none;
+  color: grey;
+  font-weight: 300;
+  font-size: 1.5em !important;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  width: 12em;
+  height: 5em;
+  text-align: center;
 }
 
 .buttonQuestionNumber:disabled {
@@ -115,7 +136,7 @@ body {
   background: white;
   font-size: 5rem;
   text-align: center;
-  padding: 3% 3%
+  padding: 3% 3%;
 }
 
 .arrowImage {
@@ -132,9 +153,9 @@ body {
   justify-content: space-around;
 }
 
-.startQuizButton{
+.startQuizButton {
   font-size: 2em !important;
-  background-color:  rgb(255, 255, 153);
+  background-color: rgb(255, 255, 153);
   color: black;
   border: 3px solid white;
   padding: 2% 2%;
@@ -146,7 +167,7 @@ body {
   background-color: rgb(255, 255, 153);
   padding: 1%;
   margin: 1%;
-  border: 0.1em solid #FFFFFF;
+  border: 0.1em solid #ffffff;
   border-radius: 2em;
   text-decoration: none;
   color: grey;
@@ -160,7 +181,7 @@ body {
 
 .navigationButton:hover {
   background-color: grey;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 @media (max-width: 480px) {
@@ -176,7 +197,7 @@ body {
     background-color: rgb(255, 255, 153);
     padding: 0.5%;
     margin: 0;
-    border: 0.1em solid #FFFFFF;
+    border: 0.1em solid #ffffff;
     font-size: 0.5em;
     border-radius: 1em;
     text-decoration: none;
@@ -189,5 +210,26 @@ body {
     width: 9.5em;
     height: 3em;
   }
+  .buttonQuizEnd {
+    margin: 1% 1%;
+  }
+  .possibleAnswer {
+    height: 12em;
+    margin: 14% 14%;
+  }
+  .possibleAnswer {
+    width: 17em;
+    padding: 2em 2em;
+  }
+  .button {
+    height: 7em;
+    width: 7em;
+  }
+}
 
+@media only screen and (min-width: 481px) and (max-width: 1120px) {
+  .possibleAnswer {
+    width: 80vw;
+    height: 7em;
+  }
 }
