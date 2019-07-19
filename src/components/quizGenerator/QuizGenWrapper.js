@@ -71,6 +71,22 @@ export default class QuizGenWrapper extends React.Component {
     })
   }
 
+  handleRemoveQuestion = (questionId) => {
+    const newQuestions = this.state.questions.filter(question =>
+      question.id !== questionId)
+
+      let questionIndex = 0
+
+      newQuestions.map(question => {
+        questionIndex = questionIndex + 1 
+        question.id = `${questionIndex}`
+      })
+      this.setState({
+        ...this.state,
+        questions: newQuestions
+      })
+  }
+
   render() {
 
     console.log(this.state)
@@ -84,13 +100,13 @@ export default class QuizGenWrapper extends React.Component {
       {
         questions.map((question, index) =>
           <div key={index} className={"quizGenInputs"}>
-            <RemoveQuestionButton />
+            <RemoveQuestionButton onClick={() => this.handleRemoveQuestion(question.id)} />
             <QuestionInput question={question} onChange={this.handleQuestionChange} />
             <AnswersList question={question} questionId={index} />
-            <AddQuestionButton onClick={this.handleAddQuestion} />
           </div>
         )
       }
+      <AddQuestionButton onClick={this.handleAddQuestion} />
       <Button onClick={this.handleSaveQuiz}>Zapisz Quiz</Button>
     </div>
   }
