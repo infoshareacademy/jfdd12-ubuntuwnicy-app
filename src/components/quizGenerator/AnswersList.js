@@ -6,7 +6,9 @@ export default class AnswersList extends React.Component {
     return (
       <div className="quizAnswerInputs">
         {this.props.question.answers.map(answer => {
-          return <AnswerInput
+          return <div>
+          <button onClick={this.props.onClickRemoveAnswer}>X</button> 
+          <AnswerInput
             name={'name'}
             autofocus
             key={answer.id}
@@ -16,6 +18,7 @@ export default class AnswersList extends React.Component {
             onCheckboxChange={() => { }}
             
           ></AnswerInput>
+          </div>
         })}
       </div>
     )
