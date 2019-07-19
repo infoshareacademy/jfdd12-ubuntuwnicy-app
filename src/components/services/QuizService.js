@@ -1,4 +1,3 @@
-import * as firebase from 'firebase'
 
 export function FetchQuiz() {
     return fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app.json`)
