@@ -5,6 +5,7 @@ import { QuestionsButtons } from "./QuestionsButtons";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AddAnswerButton from "../quizGenerator/AddAnswerButton";
 import * as QuizService from "../services/QuizService";
+import { QuizContext } from "../../contexts/QuizContext";
 
 const Answer = ({ answer, isClicked, onClick }) => (
   <li className={styles.possibleAnswer}>
@@ -44,11 +45,13 @@ export default class Quiz extends React.Component {
     answers: {},
     questions: {},
     areQuestionsLoading: true,
-    isQuizComplete: false
+    isQuizComplete: false,
+    selectedAnswers: [],
+    score: 0
   };
 
   getQuestions() {
-    const questions = this.context.quizes.quizes[0].questions;
+    const questions = this.context.quizes[0].questions;
 
     this.setState({
       ...this.state,
@@ -77,27 +80,45 @@ export default class Quiz extends React.Component {
     this.getQuestions();
   }
 
-  handleAnswerClick = answerId => {
-    const { answers: previousAnswers, currentQuestionId } = this.state;
+  handleAnswerClick = (answerId, questionId) => {
+    this.setState({
+      ...this.state,
+      selectedAnswers: this.state.selectedAnswers.push(answerId)
+    });
 
-    let answers;
+    // const { answers: previousAnswers, currentQuestionId } = this.state;
 
-    if (previousAnswers[currentQuestionId] === answerId) {
-      answers = Object.entries(previousAnswers)
-        .filter(([key]) => key !== `${currentQuestionId}`)
-        .reduce((answers, [key, value]) => ({ ...answers, [key]: value }), {});
-    } else {
-      answers = {
-        ...previousAnswers,
-        [currentQuestionId]: answerId
-      };
-    }
+    // let answers;
 
-    this.setState({ answers });
+    // if (previousAnswers[currentQuestionId] === answerId) {
+    //   answers = Object.entries(previousAnswers)
+    //     .filter(([key]) => key !== `${currentQuestionId}`)
+    //     .reduce((answers, [key, value]) => ({ ...answers, [key]: value }), {});
+    // } else {
+    //   answers = {
+    //     ...previousAnswers,
+    //     [currentQuestionId]: answerId
+    //   };
+    // }
+
+    // this.setState({ answers });
   };
 
   handleQuestionChangeClick = questionId => {
-    this.setState({ currentQuestionId: questionId });
+    // this.setState({ currentQuestionId: questionId });
+
+    const currentQuestionCorrectAnwers = this.context.quizes[0].questions[
+      questionId
+    ].correctAnswers;
+    const result = this.state.selectedAnswers === currentQuestionCorrectAnwers; //find proper method
+
+    if (result) addScore();
+    end;
+
+    this.setState({
+      ...this.state,
+      selectedAnswers: []
+    });
   };
 
   handleQuizCompleteClick = () => {
@@ -121,8 +142,8 @@ export default class Quiz extends React.Component {
 
   renderQuestion(question, questionId) {
     let context = this.context;
-    let questionsIndexZero = context.quizes.quizes[0].questions[questionId];
-    console.log(questionsIndexZero);
+    console.log(context, "CONTEXT");
+    let questionsIndexZero = context.quizes[0].questions[questionId];
     return (
       <div>
         <h1 className={styles.quizName}>{questionsIndexZero.question}</h1>
@@ -134,7 +155,7 @@ export default class Quiz extends React.Component {
                 answer={answer}
                 className={styles.answer}
                 isClicked={this.isSelectedAnswer(questionId, answer.id)}
-                onClick={() => this.handleAnswerClick(answer.id)}
+                onClick={() => this.handleAnswerClick(answer.id, questionId)}
               />
             ))}
           </ul>
