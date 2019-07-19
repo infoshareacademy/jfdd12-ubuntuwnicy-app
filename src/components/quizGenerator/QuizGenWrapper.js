@@ -64,3 +64,5 @@ export default class QuizGenWrapper extends React.Component {
     </div>
   }
 }
+
+
