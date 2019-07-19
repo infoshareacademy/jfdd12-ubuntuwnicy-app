@@ -5,8 +5,6 @@ import { QuestionsButtons } from "./QuestionsButtons";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AddAnswerButton from "../quizGenerator/AddAnswerButton";
 import * as QuizService from "../services/QuizService";
-import { QuizContext } from "../../contexts/QuizContext";
-import { ResultContext } from "../../contexts/ResultContext";
 
 const Answer = ({ answer, isClicked, onClick }) => (
   <li className={styles.possibleAnswer}>

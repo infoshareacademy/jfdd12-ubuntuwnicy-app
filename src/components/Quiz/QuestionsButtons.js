@@ -52,7 +52,7 @@ export class QuestionsButtons extends React.Component {
             disabled={!currentQuestionId}
             onClick={() => onQuestionChangeHandler(currentQuestionId - 1)}
           >
-            Poprzednie pytanie
+            {'<<'}
           </Button>
         }
         {lowerButtons}
@@ -63,7 +63,7 @@ export class QuestionsButtons extends React.Component {
             disabled={currentQuestionId === totalNumberOfQuestion - 1}
             onClick={() => onQuestionChangeHandler(currentQuestionId + 1)}
           >
-            Następne pytanie
+            {'>>'}
           </Button>
         }
       </div>

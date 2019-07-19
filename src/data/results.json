@@ -1,23 +1,27 @@
 {
     "results": [
         {
+            "id": "2",
             "quizId": "1",
-            "login": "1",
+            "userId": "1",
             "result": "20%"
         },
         {
-            "quizId": "2",
-            "login": "2",
-            "result": "50%"
-        },
-        {
-            "quizId": "2",
-            "login": "1",
+            "id": "2",
+            "quizId": "1",
+            "userId": "1",
             "result": "20%"
         },
         {
+            "id": "2",
             "quizId": "1",
-            "login": "5",
+            "userId": "1",
+            "result": "20%"
+        },
+        {
+            "id": "2",
+            "quizId": "1",
+            "userId": "1",
             "result": "20%"
         }
     ]
