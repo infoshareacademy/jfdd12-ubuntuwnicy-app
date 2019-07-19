@@ -127,7 +127,7 @@ export default class QuizGenWrapper extends React.Component {
           <div key={index} className={"quizGenInputs"}>
             <RemoveQuestionButton onClick={() => this.handleRemoveQuestion(question.id)} />
             <QuestionInput question={question} onChange={this.handleQuestionChange} />
-            <AnswersList question={question} questionId={index} />
+            <AnswersList question={question} questionId={index} onClickRemoveAnswer={() => this.handleRemoveAnswer(question.id, )} />
             <AddAnswerButton onClick={() => this.handleAddAnswer(question.id)} />
           </div>
         )

@@ -1,7 +1,6 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
-import { Button } from '@material-ui/core'
 
 export default function AnswerInput(props) {
 
@@ -32,13 +31,6 @@ export default function AnswerInput(props) {
                 checked={isCorrect}
 
             />
-
-            {/* <Button
-                answerId={answerId}
-                index={index}
-                className="deleteAnswerButton"
-                onClick={onAnswerClickDelete}
-            >x</Button> */}
 
         </div>
     )
