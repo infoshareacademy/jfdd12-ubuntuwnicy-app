@@ -4,7 +4,9 @@ import AnswersList from './AnswersList'
 import QuestionInput from './QuestionInput'
 import { QuizContext } from '../../contexts/QuizContext'
 import QuizTitleInput from './QuizTitleInput'
-import {Button} from '@material-ui/core'
+import { Button } from '@material-ui/core'
+import RemoveQuestionButton from '../RemoveQuestionButton';
+import AddQuestionButton from './AddQuestionButton'
 
 export default class QuizGenWrapper extends React.Component {
   state = {
@@ -42,11 +44,38 @@ export default class QuizGenWrapper extends React.Component {
     this.context.updateQuiz(this.state)
   }
 
+  handleAddQuestion = () => {
+    const newQuestionCard = {
+      id: `${this.state.questions.length + 1}`,
+      question: "wprowadź pytanie",
+      answers: [
+        {
+          id: "1",
+          answer: "",
+          correct: true
+        },
+        {
+          id: "2",
+          answer: "",
+          correct: true
+        }
+      ]
+    }
+    const newQuestions = [
+      ...this.state.questions,
+      newQuestionCard
+    ]
+    this.setState({
+      ...this.state,
+      questions: newQuestions
+    })
+  }
+
   render() {
 
     console.log(this.state)
     console.log(this.context)
-    
+
     const { title, questions } = this.state
 
     return <div className='quizGenWrapper'>
@@ -55,8 +84,10 @@ export default class QuizGenWrapper extends React.Component {
       {
         questions.map((question, index) =>
           <div key={index} className={"quizGenInputs"}>
+            <RemoveQuestionButton />
             <QuestionInput question={question} onChange={this.handleQuestionChange} />
             <AnswersList question={question} questionId={index} />
+            <AddQuestionButton onClick={this.handleAddQuestion} />
           </div>
         )
       }
