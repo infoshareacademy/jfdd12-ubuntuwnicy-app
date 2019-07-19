@@ -16,7 +16,7 @@
             {
               "id": "2",
               "answer": "answer",
-              "correct": true
+              "correct": false
             }
           ]
         },
@@ -32,7 +32,7 @@
             {
               "id": "2",
               "answer": "answer",
-              "correct": true
+              "correct": false
             },
             {
               "id": "3",

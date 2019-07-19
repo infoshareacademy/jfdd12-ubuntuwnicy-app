@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AddAnswerButton from "../quizGenerator/AddAnswerButton";
 import * as QuizService from "../services/QuizService";
 import { QuizContext } from "../../contexts/QuizContext";
+import { ResultContext } from "../../contexts/ResultContext";
 
 const Answer = ({ answer, isClicked, onClick }) => (
   <li className={styles.possibleAnswer}>
@@ -61,10 +62,10 @@ export default class Quiz extends React.Component {
   }
 
   getQuizResult() {
-    const { questions, answers } = this.state;
+    const { questions, answerss } = this.state;
     const score = questions.reduce(
       (currentScore, currentQuestion, currentQuestionId) => {
-        const isAnswerCorrect = currentQuestion.answers.answer[0] === true;
+        const isAnswerCorrect = currentQuestion.answers[1].correct === true;
         // currentQuestion.correctAnswer === answers[currentQuestionId];
         return isAnswerCorrect ? currentScore + 1 : currentScore;
       },
