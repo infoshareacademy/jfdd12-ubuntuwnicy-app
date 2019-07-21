@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AddAnswerButton from "../quizGenerator/AddAnswerButton";
 import * as QuizService from "../services/QuizService";
 import { QuizContext } from "../../contexts/QuizContext";
+import QuizList from "./QuizList";
 
 const Answer = ({ answer, isClicked, onClick }) => (
   <li className={styles.possibleAnswer}>
@@ -41,6 +42,7 @@ export default class Quiz extends React.Component {
   static contextType = QuizContext;
 
   state = {
+    currentQuizId: 0,
     currentQuestionId: 0,
     answers: {},
     questions: {},
@@ -80,11 +82,11 @@ export default class Quiz extends React.Component {
     this.getQuestions();
   }
 
-  // handleAnswerClick = (answerId, questionId) => {
-  //   this.setState({
-  //     ...this.state,
-  //     selectedAnswers: this.state.selectedAnswers.push(answerId)
-  //   });
+  handleAnswerClick = (answerId, questionId) => {
+    this.setState({
+      ...this.state,
+      selectedAnswers: this.state.selectedAnswers.push(answerId)
+    });}
 
     // const { answers: previousAnswers, currentQuestionId } = this.state;
 
@@ -121,31 +123,14 @@ export default class Quiz extends React.Component {
   //     selectedAnswers: []
   //   });
   // };
-
-  handleAnswerClick = answerId => {
-    const { answers: previousAnswers, currentQuestionId } = this.state;
     
-    let answers;
-    
-    if (previousAnswers[currentQuestionId] === answerId) {
-    answers = Object.entries(previousAnswers)
-    .filter(([key]) => key !== `${currentQuestionId}`)
-    .reduce((answers, [key, value]) => ({ ...answers, [key]: value }), {});
-    } else {
-    answers = {
-    ...previousAnswers,
-    [currentQuestionId]: answerId
+  handleQuestionChangeClick = questionId => {
+  this.setState({ currentQuestionId: questionId });
+  };
+  
+  handleQuizChangeClick = quizId => {
+    this.setState({ currentQuizId: quizId });
     };
-    }
-    
-    this.setState({ answers });
-    };
-    
-    handleQuestionChangeClick = questionId => {
-    this.setState({ currentQuestionId: questionId });
-    };
-    
-
 
   handleQuizCompleteClick = () => {
     if (window.confirm("Czy na pewno chcesz zakończyć quiz?")) {
@@ -169,7 +154,7 @@ export default class Quiz extends React.Component {
   renderQuestion(question, questionId) {
     let context = this.context;
     console.log(context, "CONTEXT");
-    let questionsIndexZero = context.quizes[0].questions[questionId];
+    let questionsIndexZero = context.quizes[this.state.currentQuizId].questions[questionId];
     return (
       <div>
         <h1 className={styles.quizName}>{questionsIndexZero.question}</h1>
@@ -189,6 +174,19 @@ export default class Quiz extends React.Component {
       </div>
     );
   }
+
+  renderQuiz(quiz, quizId){
+    const { currentQuizId } = this.state;
+    console.log(currentQuizId)
+    console.log(this.context.quizes[this.state.currentQuizId])
+      return (
+        
+        <div>
+            <h1 className>{this.context.quizes[this.state.currentQuizId].title}</h1>
+        </div>
+      )
+  }
+
 
   renderQuestionsButtons() {
     const { currentQuestionId, questions } = this.state;
@@ -245,6 +243,7 @@ export default class Quiz extends React.Component {
     const {
       areQuestionsLoading,
       currentQuestionId,
+      currentQuizId,
       questions,
       isQuizComplete
     } = this.state;
@@ -258,12 +257,14 @@ export default class Quiz extends React.Component {
     }
 
     const currentQuestion = questions[currentQuestionId];
+    const currentQuiz = this.context.quizes[currentQuizId]
 
     return (
       <div className={styles.quizTitles}>
+        <h1>{this.renderQuiz(currentQuiz, currentQuizId)}</h1>
         <div className={styles.questionCard}>
           {this.renderQuestion(currentQuestion, currentQuestionId)}
-          {this.renderQuestionsButtons()}
+          {this.renderQuestionsButtons(currentQuizId)}
           {this.renderFinishQuizButton()}
         </div>
       </div>

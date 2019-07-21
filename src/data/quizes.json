@@ -2,7 +2,7 @@
   "quizes": [
     {
       "id": "1",
-      "title": "title",
+      "title": "Pierwszy",
       "questions": [
         {
           "id": "1",
@@ -56,7 +56,7 @@
     },
     {
       "id": "2",
-      "title": "title2",
+      "title": "Drugi",
       "questions": [
         {
           "id": "1",
