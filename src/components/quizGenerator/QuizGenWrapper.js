@@ -34,6 +34,40 @@ export default class QuizGenWrapper extends React.Component {
         return questionObject
       }
     })
+    this.setState({
+      ...this.state,
+      questions: newQuestions
+    })
+  }
+
+  handleAnswerChange = (event, questionId) => {
+
+
+    const answerId = event.target.name
+    const answerInput = event.target.value
+
+    console.log(answerId, answerInput)
+
+    const newQuestions = this.state.questions.map(question => {
+      if (question.id === questionId) {
+        question.answers.map(answer => {
+          if (answer.id === answerId) {
+
+            answer.answer = answerInput
+            return answer
+          } else {
+            return answer
+          }
+
+        }
+        )
+        return question
+      } else {
+        return question
+      }
+
+    })
+
 
     this.setState({
       ...this.state,
@@ -89,16 +123,18 @@ export default class QuizGenWrapper extends React.Component {
   }
 
   handleAddAnswer = (questionId) => {
-    
+
     const newQuestions = this.state.questions.map(question => {
-      if (question.id === questionId) {
+      if (question.id === questionId && question.answers.length < 6) {
+
         const newAnswer = {
           id: `${question.answers.length + 1}`,
           answer: "",
-          correct: true
+          correct: false
         }
         question.answers.push(newAnswer)
         return question
+
       } else {
         return question
       }
@@ -110,7 +146,65 @@ export default class QuizGenWrapper extends React.Component {
       questions: newQuestions
     })
   }
-      
+
+  handleRemoveAnswer = (questionId, event) => {
+    const answerId = event.target.name
+
+    const newQuestions = this.state.questions.map(question => {
+      if (question.id === questionId && question.answers.length > 2) {
+
+        const newAnswers = question.answers.filter(answer => {
+          return answer.id !== answerId
+        })
+
+        let answerIndex = 0
+
+        newAnswers.map(answer => {
+          answerIndex = answerIndex + 1
+          answer.id = `${answerIndex}`
+
+          return answer
+        })
+        question.answers = newAnswers
+        return question
+      } else {
+        return question
+      }
+    })
+    console.log(newQuestions)
+    this.setState({
+      ...this.state,
+      questions: newQuestions
+    })
+  }
+
+  handleCheckboxChange = (questionId, event) => {
+    const answerId = event.target.name
+    debugger
+    const newQuestions = this.state.questions.map(question => {
+      if (question.id === questionId) {
+        question.answers.map(answer => {
+          if (answer.id === answerId) {
+
+            answer.correct = !(answer.correct)
+            return answer
+          } else {
+            return answer
+          }
+
+        }
+        )
+        return question
+      } else {
+        return question
+      }
+
+    })
+    this.setState({
+      ...this.state,
+      questions: newQuestions
+    })
+  }
 
   render() {
 
@@ -125,9 +219,11 @@ export default class QuizGenWrapper extends React.Component {
       {
         questions.map((question, index) =>
           <div key={index} className={"quizGenInputs"}>
-            <RemoveQuestionButton onClick={() => this.handleRemoveQuestion(question.id)} />
+            <RemoveQuestionButton onClick={(event) => this.handleRemoveQuestion(question.id, event)} />
             <QuestionInput question={question} onChange={this.handleQuestionChange} />
-            <AnswersList question={question} questionId={index} onClickRemoveAnswer={() => this.handleRemoveAnswer(question.id, )} />
+            <AnswersList question={question} questionId={index} onClickRemoveAnswer={(event) => this.handleRemoveAnswer(question.id, event)}
+              onClickCheckboxChange={(event) => this.handleCheckboxChange(question.id, event)}
+              onAnswerChange={(event) => this.handleAnswerChange(event, question.id)} />
             <AddAnswerButton onClick={() => this.handleAddAnswer(question.id)} />
           </div>
         )

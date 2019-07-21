@@ -7,16 +7,16 @@ export default class AnswersList extends React.Component {
       <div className="quizAnswerInputs">
         {this.props.question.answers.map(answer => {
           return <div>
-          <button onClick={this.props.onClickRemoveAnswer}>X</button> 
+          <button name={answer.id} onClick={this.props.onClickRemoveAnswer}>X</button> 
           <AnswerInput
-            name={'name'}
+            name={answer.id}
             autofocus
             key={answer.id}
-            answerId={answer.id}
+            answerid={answer.id}
             answer={answer.answer}
             isCorrect={answer.correct}
-            onCheckboxChange={() => { }}
-            
+            onCheckboxChange={this.props.onClickCheckboxChange}
+            onAnswerChange={this.props.onAnswerChange}
           ></AnswerInput>
           </div>
         })}
