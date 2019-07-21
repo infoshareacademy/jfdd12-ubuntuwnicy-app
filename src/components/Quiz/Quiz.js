@@ -80,11 +80,11 @@ export default class Quiz extends React.Component {
     this.getQuestions();
   }
 
-  handleAnswerClick = (answerId, questionId) => {
-    this.setState({
-      ...this.state,
-      selectedAnswers: this.state.selectedAnswers.push(answerId)
-    });
+  // handleAnswerClick = (answerId, questionId) => {
+  //   this.setState({
+  //     ...this.state,
+  //     selectedAnswers: this.state.selectedAnswers.push(answerId)
+  //   });
 
     // const { answers: previousAnswers, currentQuestionId } = this.state;
 
@@ -102,25 +102,50 @@ export default class Quiz extends React.Component {
     // }
 
     // this.setState({ answers });
-  };
+  // };
 
-  handleQuestionChangeClick = questionId => {
+  // handleQuestionChangeClick = questionId => {
     // this.setState({ currentQuestionId: questionId });
 
-    const currentQuestionCorrectAnwers = this.context.quizes[0].questions[
-      questionId
-    ].correctAnswers;
-    const result = this.state.selectedAnswers === currentQuestionCorrectAnwers; //find proper method
+    // const currentQuestionCorrectAnwers = this.context.quizes[0].questions[
+    //   questionId
+    // ].correctAnswers;
+    // const result = this.state.selectedAnswers === currentQuestionCorrectAnwers; //find proper method
 
     // if (result) addScore();
     // end;
 
-    this.setState({
-      currentQuestionId: questionId,
-      ...this.state,
-      selectedAnswers: []
-    });
-  };
+  //   this.setState({
+  //     currentQuestionId: questionId,
+  //     ...this.state,
+  //     selectedAnswers: []
+  //   });
+  // };
+
+  handleAnswerClick = answerId => {
+    const { answers: previousAnswers, currentQuestionId } = this.state;
+    
+    let answers;
+    
+    if (previousAnswers[currentQuestionId] === answerId) {
+    answers = Object.entries(previousAnswers)
+    .filter(([key]) => key !== `${currentQuestionId}`)
+    .reduce((answers, [key, value]) => ({ ...answers, [key]: value }), {});
+    } else {
+    answers = {
+    ...previousAnswers,
+    [currentQuestionId]: answerId
+    };
+    }
+    
+    this.setState({ answers });
+    };
+    
+    handleQuestionChangeClick = questionId => {
+    this.setState({ currentQuestionId: questionId });
+    };
+    
+
 
   handleQuizCompleteClick = () => {
     if (window.confirm("Czy na pewno chcesz zakończyć quiz?")) {
