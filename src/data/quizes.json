@@ -26,12 +26,12 @@
           "answers": [
             {
               "id": "1",
-              "answer": "answdwa21er",
+              "answer": "zalando",
               "correct": true
             },
             {
               "id": "2",
-              "answer": "answe22r",
+              "answer": "burak",
               "correct": true
             }
           ]
@@ -42,7 +42,7 @@
           "answers": [
             {
               "id": "1",
-              "answer": "answert31rzy",
+              "answer": "kasak",
               "correct": true
             },
             {
@@ -60,15 +60,15 @@
       "questions": [
         {
           "id": "1",
-          "question": "questsdsaddasion",
+          "question": "Pytanie z drugiego quizuy",
           "answers": [
             {
               "id": "1",
-              "answer": "ans11wer"
+              "answer": "zab"
             },
             {
               "id": "2",
-              "answer": "ansssssdew12er"
+              "answer": "ka"
             }
           ],
           "correctAnswers": [1, 2]
@@ -79,12 +79,12 @@
           "answers": [
             {
               "id": "1",
-              "answer": "answdwa21er",
+              "answer": "jojo",
               "correct": true
             },
             {
               "id": "2",
-              "answer": "answe22r",
+              "answer": "mamamia",
               "correct": true
             }
           ]

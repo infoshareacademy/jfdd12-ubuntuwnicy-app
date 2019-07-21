@@ -39,10 +39,11 @@ const Spinner = () => (
 );
 
 export default class Quiz extends React.Component {
+  
   static contextType = QuizContext;
 
   state = {
-    currentQuizId: 0,
+    currentQuizId: this.props.match.params.id - 1,
     currentQuestionId: 0,
     answers: {},
     questions: {},
@@ -83,25 +84,25 @@ export default class Quiz extends React.Component {
   }
 
   handleAnswerClick = (answerId, questionId) => {
-    this.setState({
-      ...this.state,
-      selectedAnswers: this.state.selectedAnswers.push(answerId)
-    });}
+    // this.setState({
+    //   ...this.state,
+    //   selectedAnswers: this.state.selectedAnswers.push(answerId)
+    // });}
 
-    // const { answers: previousAnswers, currentQuestionId } = this.state;
+    const { answers: previousAnswers, currentQuestionId } = this.state;
 
-    // let answers;
+    let answers;
 
-    // if (previousAnswers[currentQuestionId] === answerId) {
-    //   answers = Object.entries(previousAnswers)
-    //     .filter(([key]) => key !== `${currentQuestionId}`)
-    //     .reduce((answers, [key, value]) => ({ ...answers, [key]: value }), {});
-    // } else {
-    //   answers = {
-    //     ...previousAnswers,
-    //     [currentQuestionId]: answerId
-    //   };
-    // }
+    if (previousAnswers[currentQuestionId] === answerId) {
+      answers = Object.entries(previousAnswers)
+        .filter(([key]) => key !== `${currentQuestionId}`)
+        .reduce((answers, [key, value]) => ({ ...answers, [key]: value }), {});
+    } else {
+      answers = {
+        ...previousAnswers,
+        [currentQuestionId]: answerId
+      };
+    }}
 
     // this.setState({ answers });
   // };
@@ -240,6 +241,7 @@ export default class Quiz extends React.Component {
   }
 
   render() {
+    const { match } = this.props;
     const {
       areQuestionsLoading,
       currentQuestionId,

@@ -26,7 +26,7 @@ class App extends Component {
               <Route exact path="/" component={Home} />
               <Route path="/quiz-gen-wrapper" component={QuizGenWrapper} />
               <Route path="/quizlist" component={QuizList} />
-              <Route path="/quiz" component={Quiz} />
+              <Route path="/quiz/:id" component={Quiz} />
               <Redirect from="/home" to="/" />
               <Route component={NoMatch} />
             </Switch>
