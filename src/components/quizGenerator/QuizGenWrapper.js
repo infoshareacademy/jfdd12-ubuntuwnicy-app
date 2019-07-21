@@ -34,6 +34,40 @@ export default class QuizGenWrapper extends React.Component {
         return questionObject
       }
     })
+    this.setState({
+      ...this.state,
+      questions: newQuestions
+    })
+  }
+
+  handleAnswerChange = (event, questionId) => {
+
+
+    const answerId = event.target.name
+    const answerInput = event.target.value
+
+    console.log(answerId, answerInput)
+
+    const newQuestions = this.state.questions.map(question => {
+      if (question.id === questionId) {
+        question.answers.map(answer => {
+          if (answer.id === answerId) {
+
+            answer.answer = answerInput
+            return answer
+          } else {
+            return answer
+          }
+
+        }
+        )
+        return question
+      } else {
+        return question
+      }
+
+    })
+
 
     this.setState({
       ...this.state,
@@ -115,7 +149,7 @@ export default class QuizGenWrapper extends React.Component {
 
   handleRemoveAnswer = (questionId, event) => {
     const answerId = event.target.name
-    
+
     const newQuestions = this.state.questions.map(question => {
       if (question.id === questionId && question.answers.length > 2) {
 
@@ -172,10 +206,6 @@ export default class QuizGenWrapper extends React.Component {
     })
   }
 
-
-
-
-
   render() {
 
     console.log(this.state)
@@ -192,7 +222,8 @@ export default class QuizGenWrapper extends React.Component {
             <RemoveQuestionButton onClick={(event) => this.handleRemoveQuestion(question.id, event)} />
             <QuestionInput question={question} onChange={this.handleQuestionChange} />
             <AnswersList question={question} questionId={index} onClickRemoveAnswer={(event) => this.handleRemoveAnswer(question.id, event)}
-              onClickCheckboxChange={(event) => this.handleCheckboxChange(question.id, event)} />
+              onClickCheckboxChange={(event) => this.handleCheckboxChange(question.id, event)}
+              onAnswerChange={(event) => this.handleAnswerChange(event, question.id)} />
             <AddAnswerButton onClick={() => this.handleAddAnswer(question.id)} />
           </div>
         )

@@ -4,7 +4,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 export default function AnswerInput(props) {
 
-    const { answer, isCorrect, answerId, onCheckboxChange, name } = props
+    const { answer, isCorrect, answerId, onCheckboxChange, name, onAnswerChange } = props
 
     return (
         <div className="answerInputsStyles">
@@ -12,19 +12,20 @@ export default function AnswerInput(props) {
                 className="answerInput"
                 value={answer}
                 placeholder='Wprowadź odpowiedź'
-
+                onChange={onAnswerChange}
                 label="Odpowiedź"
                 multiline
                 variant="outlined"
-                answerId={answerId}
+                answerid={answerId}
+                name={answerId}
             ></TextField>
 
             <Checkbox
                 className="isAnswerCorrect"
                 color="default"
-                isCorrect={isCorrect}
+                iscorrect={'isCorrect'}
                 onClick={onCheckboxChange}
-                answerId={answerId}
+                answerid={answerId}
                 inputProps={{
                     'aria-label': 'checkbox with default color',
                 }}

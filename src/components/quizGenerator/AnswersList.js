@@ -12,11 +12,11 @@ export default class AnswersList extends React.Component {
             name={answer.id}
             autofocus
             key={answer.id}
-            answerId={answer.id}
+            answerid={answer.id}
             answer={answer.answer}
             isCorrect={answer.correct}
             onCheckboxChange={this.props.onClickCheckboxChange}
-            
+            onAnswerChange={this.props.onAnswerChange}
           ></AnswerInput>
           </div>
         })}
