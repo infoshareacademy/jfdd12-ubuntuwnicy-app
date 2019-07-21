@@ -112,10 +112,11 @@ export default class Quiz extends React.Component {
     ].correctAnswers;
     const result = this.state.selectedAnswers === currentQuestionCorrectAnwers; //find proper method
 
-    if (result) addScore();
-    end;
+    // if (result) addScore();
+    // end;
 
     this.setState({
+      currentQuestionId: questionId,
       ...this.state,
       selectedAnswers: []
     });
