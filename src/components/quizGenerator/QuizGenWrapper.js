@@ -89,17 +89,18 @@ export default class QuizGenWrapper extends React.Component {
   }
 
   handleAddAnswer = (questionId) => {
-   
+
     const newQuestions = this.state.questions.map(question => {
-      if (question.id === questionId) {
-        if(question.answers.length >= 6){return question}else{
+      if (question.id === questionId && question.answers.length < 6) {
+
         const newAnswer = {
           id: `${question.answers.length + 1}`,
           answer: "",
-          correct: true
+          correct: false
         }
         question.answers.push(newAnswer)
-        return question}
+        return question
+
       } else {
         return question
       }
@@ -114,26 +115,29 @@ export default class QuizGenWrapper extends React.Component {
 
   handleRemoveAnswer = (questionId, event) => {
     const answerId = event.target.name
-    debugger
+    
     const newQuestions = this.state.questions.map(question => {
-      if (question.id === questionId) {
-        question.answers.map(answer => {
-          if (answer.id === answerId) {
-            debugger
-            answer.correct = !(answer.correct)
-            return answer
-          } else {
-            return answer
-          } 
-          
-        }
-        )
+      if (question.id === questionId && question.answers.length > 2) {
+
+        const newAnswers = question.answers.filter(answer => {
+          return answer.id !== answerId
+        })
+
+        let answerIndex = 0
+
+        newAnswers.map(answer => {
+          answerIndex = answerIndex + 1
+          answer.id = `${answerIndex}`
+
+          return answer
+        })
+        question.answers = newAnswers
         return question
       } else {
         return question
       }
-
     })
+    console.log(newQuestions)
     this.setState({
       ...this.state,
       questions: newQuestions
@@ -147,13 +151,13 @@ export default class QuizGenWrapper extends React.Component {
       if (question.id === questionId) {
         question.answers.map(answer => {
           if (answer.id === answerId) {
-            debugger
+
             answer.correct = !(answer.correct)
             return answer
           } else {
             return answer
-          } 
-          
+          }
+
         }
         )
         return question
@@ -188,7 +192,7 @@ export default class QuizGenWrapper extends React.Component {
             <RemoveQuestionButton onClick={(event) => this.handleRemoveQuestion(question.id, event)} />
             <QuestionInput question={question} onChange={this.handleQuestionChange} />
             <AnswersList question={question} questionId={index} onClickRemoveAnswer={(event) => this.handleRemoveAnswer(question.id, event)}
-            onClickCheckboxChange={(event) => this.handleCheckboxChange(question.id, event)} />
+              onClickCheckboxChange={(event) => this.handleCheckboxChange(question.id, event)} />
             <AddAnswerButton onClick={() => this.handleAddAnswer(question.id)} />
           </div>
         )
