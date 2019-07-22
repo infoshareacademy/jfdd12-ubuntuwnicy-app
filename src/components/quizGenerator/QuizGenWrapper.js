@@ -180,7 +180,6 @@ export default class QuizGenWrapper extends React.Component {
 
   handleCheckboxChange = (questionId, event) => {
     const answerId = event.target.name
-    debugger
     const newQuestions = this.state.questions.map(question => {
       if (question.id === questionId) {
         question.answers.map(answer => {

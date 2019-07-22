@@ -4,7 +4,7 @@ import { getThemeProps } from '@material-ui/styles';
 const RemoveQuestionButton = (props) => 
 (
   <div>
-    <button className='removeButton' onClick={props.onClick}>X</button>
+    <button className='removeQuestionButton' onClick={props.onClick}>X</button>
   </div>
 )
 
