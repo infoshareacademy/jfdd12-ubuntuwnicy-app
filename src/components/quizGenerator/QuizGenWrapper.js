@@ -194,6 +194,7 @@ export default class QuizGenWrapper extends React.Component {
             if (checkMinCorrectAnswers <= 1 && answer.correct === true) { return answer } else {
 
               answer.correct = !(answer.correct)
+
             }
             return answer
           } else {
@@ -208,12 +209,18 @@ export default class QuizGenWrapper extends React.Component {
       }
 
     })
+
     this.setState({
       ...this.state,
       questions: newQuestions
     })
   }
 
+  handleFetchQuizes = () => {
+    this.context.fetchQuizToContext()
+    setTimeout(() => { this.setState(this.context.selectQuiz('1')) },
+      1500)
+  }
 
   render() {
 
@@ -239,6 +246,7 @@ export default class QuizGenWrapper extends React.Component {
       }
       <AddQuestionButton onClick={this.handleAddQuestion} />
       <Button onClick={this.handleSaveQuiz}>Zapisz Quiz</Button>
+      <Button onClick={this.handleFetchQuizes}>fetch quiz</Button>
     </div>
   }
 }

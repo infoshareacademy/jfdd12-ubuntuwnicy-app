@@ -1,3 +1,36 @@
+import firebase from 'firebase'
+
+export const fetchQuiz = () => {
+
+    return firebase.database().ref('quizes').once('value')
+        .then(snapshot => {
+            const value = snapshot.val()
+
+            return value
+        })
+
+}
+
+// export const saveQuiz = (quizId) => {
+
+//     firebase.database().ref('quizes').then(value.find(quiz => quiz.id === quizId))
+
+//TODO ^^^^^^^^^^^^^^^^^^^^
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export function FetchQuiz() {
     return fetch(`https://ubuntuwnicy-app.firebaseio.com/ubuntuwnicy-app.json`)
