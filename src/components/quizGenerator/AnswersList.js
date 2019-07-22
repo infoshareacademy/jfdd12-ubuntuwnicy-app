@@ -6,8 +6,7 @@ export default class AnswersList extends React.Component {
     return (
       <div className="quizAnswerInputs">
         {this.props.question.answers.map(answer => {
-          return <div>
-          <button className='removeAnswerButton' name={answer.id} onClick={this.props.onClickRemoveAnswer}>X</button> 
+          return <div> 
           <AnswerInput
             name={answer.id}
             autofocus
@@ -17,6 +16,7 @@ export default class AnswersList extends React.Component {
             isCorrect={answer.correct}
             onCheckboxChange={this.props.onClickCheckboxChange}
             onAnswerChange={this.props.onAnswerChange}
+            onClickRemoveAnswer={this.props.onClickRemoveAnswer}
           ></AnswerInput>
           </div>
         })}

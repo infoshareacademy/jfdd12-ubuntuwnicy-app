@@ -313,7 +313,7 @@ body {
 
   .answerInputsStyles {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     align-items: center;
     align-content: center;
     margin: 2%;
@@ -326,9 +326,6 @@ body {
   }
 }
 
-.removeQuestionButton {
-  
-}
 
 .removeAnswerButton {
   float: left;
