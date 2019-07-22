@@ -46,7 +46,7 @@ export default class QuizGenWrapper extends React.Component {
     const answerId = event.target.name
     const answerInput = event.target.value
 
-    console.log(answerId, answerInput)
+    console.log(answerId + " " + answerInput)
 
     const newQuestions = this.state.questions.map(question => {
       if (question.id === questionId) {
@@ -114,7 +114,7 @@ export default class QuizGenWrapper extends React.Component {
 
     newQuestions.map(question => {
       questionIndex = questionIndex + 1
-      question.id = `${questionIndex}`
+      return question.id = `${questionIndex}`
     })
     this.setState({
       ...this.state,
@@ -179,14 +179,22 @@ export default class QuizGenWrapper extends React.Component {
   }
 
   handleCheckboxChange = (questionId, event) => {
+
     const answerId = event.target.name
-    debugger
+
+    let checkMinCorrectAnswers = this.state.questions[questionId - 1].answers.filter(answer =>
+      answer.correct === true
+    ).length
+
     const newQuestions = this.state.questions.map(question => {
       if (question.id === questionId) {
         question.answers.map(answer => {
           if (answer.id === answerId) {
 
-            answer.correct = !(answer.correct)
+            if (checkMinCorrectAnswers <= 1 && answer.correct === true) { return answer } else {
+
+              answer.correct = !(answer.correct)
+            }
             return answer
           } else {
             return answer
@@ -205,6 +213,7 @@ export default class QuizGenWrapper extends React.Component {
       questions: newQuestions
     })
   }
+
 
   render() {
 
