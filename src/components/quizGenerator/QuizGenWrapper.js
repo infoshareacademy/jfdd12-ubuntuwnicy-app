@@ -107,19 +107,21 @@ export default class QuizGenWrapper extends React.Component {
   }
 
   handleRemoveQuestion = (questionId) => {
-    const newQuestions = this.state.questions.filter(question =>
-      question.id !== questionId)
+    if (this.state.questions.length > 1) {
+      const newQuestions = this.state.questions.filter(question =>
+        question.id !== questionId)
 
-    let questionIndex = 0
+      let questionIndex = 0
 
-    newQuestions.map(question => {
-      questionIndex = questionIndex + 1
-      return question.id = `${questionIndex}`
-    })
-    this.setState({
-      ...this.state,
-      questions: newQuestions
-    })
+      newQuestions.map(question => {
+        questionIndex = questionIndex + 1
+        return question.id = `${questionIndex}`
+      })
+      this.setState({
+        ...this.state,
+        questions: newQuestions
+      })
+    }
   }
 
   handleAddAnswer = (questionId) => {
@@ -150,10 +152,14 @@ export default class QuizGenWrapper extends React.Component {
   handleRemoveAnswer = (questionId, event) => {
     const answerId = event.target.name
 
+    let checkMinCorrectAnswers = this.checkCorrectAnswers(questionId)
+
     const newQuestions = this.state.questions.map(question => {
       if (question.id === questionId && question.answers.length > 2) {
 
         const newAnswers = question.answers.filter(answer => {
+          if(checkMinCorrectAnswers <= 1 && answer.correct === true)
+          {return answer}
           return answer.id !== answerId
         })
 
@@ -178,13 +184,13 @@ export default class QuizGenWrapper extends React.Component {
     })
   }
 
+  
+
   handleCheckboxChange = (questionId, event) => {
 
     const answerId = event.target.name
 
-    let checkMinCorrectAnswers = this.state.questions[questionId - 1].answers.filter(answer =>
-      answer.correct === true
-    ).length
+    let checkMinCorrectAnswers = this.checkCorrectAnswers(questionId)
 
     const newQuestions = this.state.questions.map(question => {
       if (question.id === questionId) {
@@ -214,6 +220,12 @@ export default class QuizGenWrapper extends React.Component {
       ...this.state,
       questions: newQuestions
     })
+  }
+
+  checkCorrectAnswers = (questionId) => {
+    return this.state.questions[questionId - 1].answers.filter(answer =>
+      answer.correct === true
+    ).length
   }
 
   handleFetchQuizes = () => {
