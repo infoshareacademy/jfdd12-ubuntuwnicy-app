@@ -1,112 +1,124 @@
 {
-    "quizes": [
+  "quizes": [
+    {
+      "id": "1",
+      "title": "Pierwszy",
+      "questions": [
         {
-            "id": "1",
-            "title": "Tytul pierwszego Quizu",
-            "questions": [
-                {
-                    "id": "1",
-                    "question": "questsdsaddasion",
-                    "answers": [
-                        {
-                            "id": "1",
-                            "answer": "ans11wer",
-                            "correct": true
-                        },
-                        {
-                            "id": "2",
-                            "answer": "ansssssdew12er",
-                            "correct": true
-                        }
-                    ]
-                },
-                {
-                    "id": "2",
-                    "question": "question",
-                    "answers": [
-                        {
-                            "id": "1",
-                            "answer": "answdwa21er",
-                            "correct": true
-                        },
-                        {
-                            "id": "2",
-                            "answer": "answe22r",
-                            "correct": true
-                        }
-                    ]
-                },
-                {
-                    "id": "3",
-                    "question": "question",
-                    "answers": [
-                        {
-                            "id": "1",
-                            "answer": "answert31rzy",
-                            "correct": true
-                        },
-                        {
-                            "id": "2",
-                            "answer": "answe32r",
-                            "correct": true
-                        }
-                    ]
-                }
-            ]
+          "id": "1",
+          "question": "questsdsaddasion",
+          "answers": [
+            {
+              "id": "1",
+              "answer": "ans11wer",
+              "correct": true
+            },
+            {
+              "id": "2",
+              "answer": "ansssssdew12er",
+              "correct": true
+            },
+            {
+              "id": "3",
+              "answer": "mariar",
+              "correct": true
+            },
+            {
+              "id": "4",
+              "answer": "blondie",
+              "correct": true
+            }
+          ],
+          "correctAnswers": [1, 2]
         },
         {
-            "id": "2",
-            "title": "title",
-            "questions": [
-                {
-                    "id": "1",
-                    "question": "questiondwajeden",
-                    "answers": [
-                        {
-                            "id": "1",
-                            "answer": "answer",
-                            "correct": true
-                        },
-                        {
-                            "id": "2",
-                            "answer": "answer",
-                            "correct": true
-                        }
-                    ]
-                },
-                {
-                    "id": "1",
-                    "question": "question",
-                    "answers": [
-                        {
-                            "id": "1",
-                            "answer": "answer",
-                            "correct": true
-                        },
-                        {
-                            "id": "2",
-                            "answer": "answer",
-                            "correct": true
-                        }
-                    ]
-                },
-                {
-                    "id": "2",
-                    "question": "question",
-                    "answers": [
-                        {
-                            "id": "1",
-                            "answer": "answer",
-                            "correct": true
-                        },
-                        {
-                            "id": "2",
-                            "answer": "answer",
-                            "correct": true
-                        }
-                    ]
-                }
-            ]
+          "id": "2",
+          "question": "questiontwo",
+          "answers": [
+            {
+              "id": "1",
+              "answer": "zalando",
+              "correct": true
+            },
+            {
+              "id": "2",
+              "answer": "burak",
+              "correct": true
+            }
+          ],
+          "correctAnswers": [1]
+        },
+        {
+          "id": "3",
+          "question": "question",
+          "answers": [
+            {
+              "id": "1",
+              "answer": "kasak",
+              "correct": true
+            },
+            {
+              "id": "2",
+              "answer": "answe32r",
+              "correct": true
+            }
+          ],
+          "correctAnswers": [1]
         }
-    ]
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Drugi",
+      "questions": [
+        {
+          "id": "1",
+          "question": "Pytanie z drugiego quizuy",
+          "answers": [
+            {
+              "id": "1",
+              "answer": "zab"
+            },
+            {
+              "id": "2",
+              "answer": "ka"
+            }
+          ],
+          "correctAnswers": [1, 2]
+        },
+        {
+          "id": "2",
+          "question": "question",
+          "answers": [
+            {
+              "id": "1",
+              "answer": "jojo",
+              "correct": true
+            },
+            {
+              "id": "2",
+              "answer": "mamamia",
+              "correct": true
+            }
+          ]
+        },
+        {
+          "id": "3",
+          "question": "question",
+          "answers": [
+            {
+              "id": "1",
+              "answer": "answert31rzy",
+              "correct": true
+            },
+            {
+              "id": "2",
+              "answer": "answe32r",
+              "correct": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

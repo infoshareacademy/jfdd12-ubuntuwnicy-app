@@ -31,6 +31,14 @@ export const Navbar = props => {
         >
           Dołącz do Quizu
         </NavLink>
+        <NavLink
+          exact
+          className={"default-link"}
+          activeClassName={"active-link"}
+          to="/quizlist"
+        >
+          Wyświetl dostępne Quizy
+        </NavLink>
       </div>
     </nav>
   );

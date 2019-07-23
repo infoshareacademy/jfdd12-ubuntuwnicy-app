@@ -6,12 +6,60 @@ export const fetchQuiz = (callback) => {
 
     quizRef.on("value", snapshot => {
         const value = snapshot.val()
-        callback(value)
-    })
 
+        const entries = Object.values(value);
+        debugger
+        callback(entries)
+    })
     return quizRef
+}
+
+
+
+
+
+export const addNewQuiz = (quizId) => {
+
+    const newQuestionCard =
+    {
+        "id": {quizId},
+        "title": "Pierwszy",
+        "questions": [
+            {
+                "id": "1",
+                "question": "questsdsaddasion",
+                "answers": [
+                    {
+                        "id": "1",
+                        "answer": "ans11wer",
+                        "correct": true
+                    },
+                    {
+                        "id": "2",
+                        "answer": "ansssssdew12er",
+                        "correct": true
+                    },
+                    {
+                        "id": "3",
+                        "answer": "mariar",
+                        "correct": true
+                    },
+                    {
+                        "id": "4",
+                        "answer": "blondie",
+                        "correct": true
+                    }
+                ],
+                "correctAnswers": [1, 2]
+
+            }]
+    }
+
+    firebase.database().ref('quizes').push(newQuestionCard)
 
 }
+
+
 
 // export const saveQuiz = (quizId) => {
 
