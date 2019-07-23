@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
 import initialQuizes from '../data/quizes.json'
+import { fetchQuiz } from '../services/QuizService'
 
 export const QuizContext = React.createContext()
 
 export const QuizProvider = function (props) {
     const [quizes, setQuizes] = useState(initialQuizes.quizes)
+
+    const fetchQuizToContext = () => {
+        fetchQuiz().then(quiz => setQuizes(quiz))
+    }
 
     const addQuiz = newQuiz => {
         setQuizes([...quizes, newQuiz])
@@ -30,7 +35,8 @@ export const QuizProvider = function (props) {
         quizes,
         selectQuiz,
         addQuiz,
-        updateQuiz
+        updateQuiz,
+        fetchQuizToContext
     }} {...props} />
 }
 
