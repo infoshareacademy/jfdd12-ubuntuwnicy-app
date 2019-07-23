@@ -1,13 +1,15 @@
 import firebase from 'firebase'
 
-export const fetchQuiz = () => {
+export const fetchQuiz = (callback) => {
 
-    return firebase.database().ref('quizes').once('value')
-        .then(snapshot => {
-            const value = snapshot.val()
+    const quizRef = firebase.database().ref("quizes")
 
-            return value
-        })
+    quizRef.on("value", snapshot => {
+        const value = snapshot.val()
+        callback(value)
+    })
+
+    return quizRef
 
 }
 

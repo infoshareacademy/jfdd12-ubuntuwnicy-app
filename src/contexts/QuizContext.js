@@ -9,6 +9,16 @@ export const QuizProvider = function (props) {
 
     const fetchQuizToContext = () => {
         fetchQuiz().then(quiz => setQuizes(quiz))
+
+        // const quizRef = fetchQuiz(quizes => {
+        //     const quizes = groupMessagesWithAuthors(users, messages);
+        //     setMessages(messagesWithAuthors);
+        //   });
+
+        //   return () => {
+        //     messagesRef.off("value");
+        //   };
+
     }
 
     const addQuiz = newQuiz => {
