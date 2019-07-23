@@ -16,9 +16,10 @@ export default class QuizGenWrapper extends React.Component {
 
   static contextType = QuizContext;
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.questions.length -1 === prevState.questions.length ) {
     this.scrollToBottom()
-  }
+  }}
 
   scrollToBottom = () => {
     this.element && this.element.scrollIntoView({ behavior: 'smooth' })
