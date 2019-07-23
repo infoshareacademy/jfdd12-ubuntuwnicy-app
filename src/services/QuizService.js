@@ -8,54 +8,55 @@ export const fetchQuiz = (callback) => {
         const value = snapshot.val()
 
         const entries = Object.values(value);
-        debugger
+
         callback(entries)
     })
     return quizRef
 }
 
-
-
-
-
 export const addNewQuiz = (quizId) => {
 
     const newQuestionCard =
     {
-        "id": {quizId},
-        "title": "Pierwszy",
+        "id": `${quizId}`,
+        "title": "Nowy Quiz",
+        "uniqueId": '',
         "questions": [
             {
                 "id": "1",
-                "question": "questsdsaddasion",
+                "question": "Pytanie",
                 "answers": [
                     {
                         "id": "1",
-                        "answer": "ans11wer",
+                        "answer": "",
                         "correct": true
                     },
                     {
                         "id": "2",
-                        "answer": "ansssssdew12er",
-                        "correct": true
+                        "answer": "",
+                        "correct": false
                     },
                     {
                         "id": "3",
-                        "answer": "mariar",
-                        "correct": true
+                        "answer": "",
+                        "correct": false
                     },
                     {
                         "id": "4",
-                        "answer": "blondie",
-                        "correct": true
+                        "answer": "",
+                        "correct": false
                     }
                 ],
-                "correctAnswers": [1, 2]
+                "correctAnswers": [1]
 
             }]
     }
 
-    firebase.database().ref('quizes').push(newQuestionCard)
+    const uniqueIdRef = firebase.database().ref('quizes').push(newQuestionCard)
+
+    const postId = uniqueIdRef.key
+
+    firebase.database().ref(`quizes/${postId}`).update({'uniqueId': `${postId}`})
 
 }
 

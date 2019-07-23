@@ -12,7 +12,7 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
-import { QuizesGenList } from './components/quizGenerator/QuizesList'
+import { QuizesGenList } from './components/quizGenerator/QuizesGenList'
 
 const NoMatch = () => <h1>404</h1>;
 
@@ -25,7 +25,8 @@ class App extends Component {
             <Navbar />
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/quiz-gen-wrapper" component={QuizesGenList} />
+              <Route exact path="/quizes-gen-list" component={QuizesGenList} />
+              <Route exact path="/quizes-gen-list/:id" component={QuizGenWrapper} />
               <Route path="/quizlist" component={QuizList} />
               <Route path="/quiz/:id" component={Quiz} />
               <Redirect from="/home" to="/" />

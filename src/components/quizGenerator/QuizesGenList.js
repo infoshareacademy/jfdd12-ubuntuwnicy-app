@@ -2,6 +2,7 @@ import React from 'react'
 import { QuizContext } from '../../contexts/QuizContext'
 import { Button } from '@material-ui/core'
 import { fetchQuiz, addNewQuiz } from '../../services/QuizService'
+import { BrowserRouter as Route, Link } from "react-router-dom";
 
 export class QuizesGenList extends React.Component {
 
@@ -32,10 +33,14 @@ export class QuizesGenList extends React.Component {
                 <div>
                     <ul>
                         {this.state.quizes.map(quiz => {
-                            return <li>Quiz nr. {quiz.id}, tytul Quizu: {quiz.title}, liczba pytan: {quiz.questions.length}<Button>Edytuj Quiz</Button></li>
+                            return <li>Tytuł Quizu: {quiz.title}, liczba pytan: {quiz.questions.length}
+                                <Link to={`/quizes-gen-list/${quiz.uniqueId}`}>
+                                    Edytuj Quiz
+                                </Link>
+                            </li>
                         })}
                     </ul>
-                    <Button onClick={() => addNewQuiz(this.state.quizes.length)}>Dodaj nowy quiz</Button>
+                    <Button onClick={(event) => addNewQuiz(this.state.quizes.length + 1)}>Dodaj nowy quiz</Button>
                 </div>
             } </div>
     }
