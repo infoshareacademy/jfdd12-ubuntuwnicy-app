@@ -337,14 +337,27 @@ body {
     flex-direction: row;
     align-items: center;
   }
+
+  .removeAnswerButton {
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 0.15em solid grey;
+    border-radius: 14%;
+    text-align: center;
+    color: grey;
+    font-weight: bold;
+  }
 }
 
 
 .removeAnswerButton {
   top: 0;
   left: 0;
-  width: 5.5vw;
-  height: 2.43vh;
+  width: 20px;
+  height: 20px;
   background-color: white;
   border: 0.15em solid grey;
   border-radius: 14%;
