@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import { Navbar } from "./components/Navbar/Navbar";
 import QuizGenWrapper from "./components/quizGenerator/QuizGenWrapper";
+import QuizList from "./components/Quiz/QuizList.js";
 import Quiz from "./components/Quiz/Quiz";
-import Home from './Home';
-import { QuizProvider } from "./contexts/QuizContext"
+import Home from "./Home";
+import { QuizProvider } from "./contexts/QuizContext";
+import { ResultProvider } from "./contexts/ResultContext";
 import {
   BrowserRouter as Router,
   Route,
@@ -23,15 +25,16 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/quiz-gen-wrapper" component={QuizGenWrapper} />
-              <Route path="/quiz" component={Quiz} />
+              <Route path="/quizlist" component={QuizList} />
+              <Route path="/quiz/:id" component={Quiz} />
               <Redirect from="/home" to="/" />
               <Route component={NoMatch} />
             </Switch>
           </div>
         </Router>
-      </QuizProvider >
-    )
+      </QuizProvider>
+    );
   }
 }
 
-export default App
+export default App;
