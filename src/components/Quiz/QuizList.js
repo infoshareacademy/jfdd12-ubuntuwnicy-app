@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./QuizTitle.module.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import * as QuizService from "../services/QuizService";
+import * as QuizService from "../../services/QuizService";
 import { QuizContext } from "../../contexts/QuizContext";
 
 const Button = ({ children, disabled = false, onClick, isQuestionNumber }) => (
@@ -16,8 +16,6 @@ const Button = ({ children, disabled = false, onClick, isQuestionNumber }) => (
 
 export default class QuizList extends React.Component {
   static contextType = QuizContext;
-
-
 
   render() {
     const { onQuizChangeHandler, currentQuizId } = this.props;
@@ -39,13 +37,10 @@ export default class QuizList extends React.Component {
 
 function QuizButton(props) {
   const { key, onClick, link, currentQuizId } = props;
-  
 
   return (
     <Link to={`/quiz/${link}`}>
-      <button className={styles.buttonQuestion}>
-        asd
-      </button>
+      <button className={styles.buttonQuestion}>asd</button>
     </Link>
   );
-};
+}

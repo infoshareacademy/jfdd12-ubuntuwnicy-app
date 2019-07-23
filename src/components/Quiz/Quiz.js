@@ -4,7 +4,7 @@ import { stringLiteral } from "@babel/types";
 import { QuestionsButtons } from "./QuestionsButtons";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AddAnswerButton from "../quizGenerator/AddAnswerButton";
-import * as QuizService from "../services/QuizService";
+
 import { QuizContext } from "../../contexts/QuizContext";
 import QuizList from "./QuizList";
 
@@ -39,7 +39,6 @@ const Spinner = () => (
 );
 
 export default class Quiz extends React.Component {
-  
   static contextType = QuizContext;
 
   //  idPytania this.state.currentQuestionId
@@ -132,10 +131,10 @@ export default class Quiz extends React.Component {
       questionId
     ].correctAnswers;
   };
-  
+
   handleQuizChangeClick = quizId => {
     this.setState({ currentQuizId: quizId });
-    };
+  };
 
   handleQuizCompleteClick = () => {
     if (window.confirm("Czy na pewno chcesz zakończyć quiz?")) {
@@ -179,18 +178,16 @@ export default class Quiz extends React.Component {
     );
   }
 
-  renderQuiz(quiz, quizId){
+  renderQuiz(quiz, quizId) {
     const { currentQuizId } = this.state;
-    console.log(currentQuizId)
-    console.log(this.context.quizes[this.state.currentQuizId])
-      return (
-        
-        <div>
-            <h1 className>{this.context.quizes[this.state.currentQuizId].title}</h1>
-        </div>
-      )
+    console.log(currentQuizId);
+    console.log(this.context.quizes[this.state.currentQuizId]);
+    return (
+      <div>
+        <h1 className>{this.context.quizes[this.state.currentQuizId].title}</h1>
+      </div>
+    );
   }
-
 
   renderQuestionsButtons() {
     const { currentQuestionId, questions } = this.state;
@@ -262,7 +259,7 @@ export default class Quiz extends React.Component {
     }
 
     const currentQuestion = questions[currentQuestionId];
-    const currentQuiz = this.context.quizes[currentQuizId]
+    const currentQuiz = this.context.quizes[currentQuizId];
 
     return (
       <div className={styles.quizTitles}>
