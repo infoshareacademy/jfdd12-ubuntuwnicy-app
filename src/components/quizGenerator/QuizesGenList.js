@@ -17,6 +17,8 @@ export class QuizesGenList extends React.Component {
         this.setState({ listIsLoading: true })
         const quizesRef = fetchQuiz(quizes => {
 
+            this.context.setQuizes(quizes)
+
             this.setState({ quizes, listIsLoading: false })
         })
 
@@ -25,6 +27,7 @@ export class QuizesGenList extends React.Component {
 
     render() {
         console.log(this.state)
+        console.log(this.context)
 
         const { listIsLoading } = this.state
 

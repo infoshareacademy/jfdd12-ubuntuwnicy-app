@@ -8,13 +8,28 @@ import { Button } from "@material-ui/core";
 import RemoveQuestionButton from "../RemoveQuestionButton";
 import AddQuestionButton from "./AddQuestionButton";
 import AddAnswerButton from "./AddAnswerButton";
+import {fetchQuiz} from '../../services/QuizService'
 
 export default class QuizGenWrapper extends React.Component {
   state = {
-    ...this.context.selectQuiz("1")
+    ...this.context.selectQuizByUniqueId(this.props.match.params.id)
   };
 
+  // componentDidMount() {
+  //   this.setState({ listIsLoading: true })
+  //   const quizesRef = fetchQuiz(quizes => {
+
+  //     this.context.setQuizes(quizes)
+
+  //     this.setState({ quizes, listIsLoading: false })
+  // })
+
+  // return () => { quizesRef.off('value') }
+  // }
+
   static contextType = QuizContext;
+
+
 
   handleTitleChange = newTitle => {
     this.setState({
@@ -216,46 +231,49 @@ export default class QuizGenWrapper extends React.Component {
   };
 
   render() {
+    console.log(this.props.match.params.id)
     console.log(this.state);
     console.log(this.context);
 
     const { title, questions } = this.state;
 
-    return (
-      <div className="quizGenWrapper">
-        <h1 className="quizGenHeader">STWÓRZ QUIZ</h1>
-        <QuizTitleInput quizTitle={title} onChange={this.handleTitleChange} />
-        {questions.map((question, index) => (
-          <div key={index} className={"quizGenInputs"}>
-            <RemoveQuestionButton
-              onClick={event => this.handleRemoveQuestion(question.id, event)}
-            />
-            <QuestionInput
-              question={question}
-              onChange={this.handleQuestionChange}
-            />
-            <AnswersList
-              question={question}
-              questionId={index}
-              onClickRemoveAnswer={event =>
-                this.handleRemoveAnswer(question.id, event)
-              }
-              onClickCheckboxChange={event =>
-                this.handleCheckboxChange(question.id, event)
-              }
-              onAnswerChange={event =>
-                this.handleAnswerChange(event, question.id)
-              }
-            />
-            <AddAnswerButton
-              onClick={() => this.handleAddAnswer(question.id)}
-            />
-          </div>
-        ))}
-        <AddQuestionButton onClick={this.handleAddQuestion} />
-        <Button onClick={this.handleSaveQuiz}>Zapisz Quiz</Button>
-        <Button onClick={this.handleFetchQuizes}>fetch quiz</Button>
+    return (  <div>
+      {this.state.listIsLoading === true ? <p>loader</p> :
+        <div className="quizGenWrapper">
+          <h1 className="quizGenHeader">STWÓRZ QUIZ</h1>
+          <QuizTitleInput quizTitle={title} onChange={this.handleTitleChange} />
+          {questions.map((question, index) => (
+            <div key={index} className={"quizGenInputs"}>
+              <RemoveQuestionButton
+                onClick={event => this.handleRemoveQuestion(question.id, event)}
+              />
+              <QuestionInput
+                question={question}
+                onChange={this.handleQuestionChange}
+              />
+              <AnswersList
+                question={question}
+                questionId={index}
+                onClickRemoveAnswer={event =>
+                  this.handleRemoveAnswer(question.id, event)
+                }
+                onClickCheckboxChange={event =>
+                  this.handleCheckboxChange(question.id, event)
+                }
+                onAnswerChange={event =>
+                  this.handleAnswerChange(event, question.id)
+                }
+              />
+              <AddAnswerButton
+                onClick={() => this.handleAddAnswer(question.id)}
+              />
+            </div>
+          ))}
+          <AddQuestionButton onClick={this.handleAddQuestion} />
+          <Button onClick={this.handleSaveQuiz}>Zapisz Quiz</Button>
+          <Button onClick={this.handleFetchQuizes}>fetch quiz</Button>
+        </div>}
       </div>
-    );
+            );
   }
 }

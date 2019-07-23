@@ -8,17 +8,8 @@ export const QuizProvider = function (props) {
     const [quizes, setQuizes] = useState(initialQuizes.quizes)
 
     const fetchQuizToContext = () => {
-        fetchQuiz().then(quiz => setQuizes(quiz))
-
-        // const quizRef = fetchQuiz(quizes => {
-        //     const quizes = groupMessagesWithAuthors(users, messages);
-        //     setMessages(messagesWithAuthors);
-        //   });
-
-        //   return () => {
-        //     messagesRef.off("value");
-        //   };
-
+        const quizesRef = fetchQuiz(quiz => setQuizes(quiz))
+        quizesRef.off('value')
     }
 
     const addQuiz = newQuiz => {
@@ -27,6 +18,10 @@ export const QuizProvider = function (props) {
 
     const selectQuiz = (quizId) => {
         return quizes.find(quiz => quiz.id === quizId)
+    }
+
+    const selectQuizByUniqueId = (uniqueId) => {
+        return quizes.find(quiz => quiz.uniqueId === uniqueId)
     }
 
     const updateQuiz = (updatedQuiz) => {
@@ -43,10 +38,12 @@ export const QuizProvider = function (props) {
 
     return <QuizContext.Provider value={{
         quizes,
+        setQuizes,
         selectQuiz,
         addQuiz,
         updateQuiz,
-        fetchQuizToContext
+        fetchQuizToContext,
+        selectQuizByUniqueId
     }} {...props} />
 }
 
