@@ -271,7 +271,6 @@ export default class QuizGenWrapper extends React.Component {
           ))}
           <AddQuestionButton onClick={this.handleAddQuestion} />
           <Button onClick={this.handleSaveQuiz}>Zapisz Quiz</Button>
-          <Button onClick={this.handleFetchQuizes}>fetch quiz</Button>
         </div>}
       </div>
             );
