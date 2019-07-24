@@ -103,6 +103,8 @@ body {
 }
 
 .saveQuizButton {
+  float: right;
+  position: sticky;
   background-color: rgb(255, 255, 153);
   padding: 1%;
   margin: 1%;
@@ -116,7 +118,7 @@ body {
   cursor: pointer;
   width: 10em;
   height: 3em;
-  float: left;
+
 }
 
 .saveQuizButton:hover {
@@ -338,6 +340,7 @@ body {
     align-items: center;
   }
 
+
   .removeAnswerButton {
     top: 0;
     left: 0;
@@ -365,4 +368,5 @@ body {
   color: grey;
   font-weight: bold;
 }
+
 

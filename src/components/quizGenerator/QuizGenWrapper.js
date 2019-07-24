@@ -4,7 +4,6 @@ import AnswersList from "./AnswersList";
 import QuestionInput from "./QuestionInput";
 import { QuizContext } from "../../contexts/QuizContext";
 import QuizTitleInput from "./QuizTitleInput";
-import { Button } from "@material-ui/core";
 import RemoveQuestionButton from "../RemoveQuestionButton";
 import AddQuestionButton from "./AddQuestionButton";
 import AddAnswerButton from "./AddAnswerButton";
@@ -29,7 +28,14 @@ export default class QuizGenWrapper extends React.Component {
 
   static contextType = QuizContext;
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.questions.length -1 === prevState.questions.length ) {
+    this.scrollToBottom()
+  }}
 
+  scrollToBottom = () => {
+    this.element && this.element.scrollIntoView({ behavior: 'smooth' })
+  }
 
   handleTitleChange = newTitle => {
     this.setState({
@@ -230,49 +236,61 @@ export default class QuizGenWrapper extends React.Component {
     }, 1500);
   };
 
+  setRefForLastElement = (el, index, questionsCount) => {
+    if (questionsCount === index) {
+      this.element = el
+    }
+  }
+
+  renderQuestions = () => {
+    const {questions} = this.state
+    const questionsCount = questions.length - 1
+    return questions.map((question, index) => (
+      <div key={index} className={"quizGenInputs"} ref={el => this.setRefForLastElement(el, index, questionsCount)}>
+        <RemoveQuestionButton
+          onClick={event => this.handleRemoveQuestion(question.id, event)}
+        />
+        <QuestionInput
+          question={question}
+          onChange={this.handleQuestionChange}
+        />
+        <AnswersList
+          question={question}
+          questionId={index}
+          onClickRemoveAnswer={event =>
+            this.handleRemoveAnswer(question.id, event)
+          }
+          onClickCheckboxChange={event =>
+            this.handleCheckboxChange(question.id, event)
+          }
+          onAnswerChange={event =>
+            this.handleAnswerChange(event, question.id)
+          }
+        />
+        <AddAnswerButton
+          onClick={() => this.handleAddAnswer(question.id)}
+        />
+      </div>
+    ))
+  }
+
   render() {
     console.log(this.props.match.params.id)
     console.log(this.state);
     console.log(this.context);
 
-    const { title, questions } = this.state;
+    const { title } = this.state;
 
-    return (  <div>
-      {this.state.listIsLoading === true ? <p>loader</p> :
-        <div className="quizGenWrapper">
-          <h1 className="quizGenHeader">STWÓRZ QUIZ</h1>
-          <QuizTitleInput quizTitle={title} onChange={this.handleTitleChange} />
-          {questions.map((question, index) => (
-            <div key={index} className={"quizGenInputs"}>
-              <RemoveQuestionButton
-                onClick={event => this.handleRemoveQuestion(question.id, event)}
-              />
-              <QuestionInput
-                question={question}
-                onChange={this.handleQuestionChange}
-              />
-              <AnswersList
-                question={question}
-                questionId={index}
-                onClickRemoveAnswer={event =>
-                  this.handleRemoveAnswer(question.id, event)
-                }
-                onClickCheckboxChange={event =>
-                  this.handleCheckboxChange(question.id, event)
-                }
-                onAnswerChange={event =>
-                  this.handleAnswerChange(event, question.id)
-                }
-              />
-              <AddAnswerButton
-                onClick={() => this.handleAddAnswer(question.id)}
-              />
-            </div>
-          ))}
-          <AddQuestionButton onClick={this.handleAddQuestion} />
-          <Button onClick={this.handleSaveQuiz}>Zapisz Quiz</Button>
-        </div>}
+    return (
+      <>
+      <button onClick={this.handleSaveQuiz} className="saveQuizButton">Zapisz Quiz</button>
+      <div className="quizGenWrapper">
+        <h1 className="quizGenHeader">STWÓRZ QUIZ</h1>
+        <QuizTitleInput quizTitle={title} onChange={this.handleTitleChange} />
+        {this.renderQuestions()}
+        <AddQuestionButton onClick={this.handleAddQuestion} />
       </div>
-            );
+      </>
+    );
   }
 }
