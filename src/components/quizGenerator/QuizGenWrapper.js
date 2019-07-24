@@ -7,31 +7,36 @@ import QuizTitleInput from "./QuizTitleInput";
 import RemoveQuestionButton from "../RemoveQuestionButton";
 import AddQuestionButton from "./AddQuestionButton";
 import AddAnswerButton from "./AddAnswerButton";
-import {fetchQuiz} from '../../services/QuizService'
+import { fetchQuiz } from '../../services/QuizService'
 
 export default class QuizGenWrapper extends React.Component {
-  state = {
-    ...this.context.selectQuizByUniqueId(this.props.match.params.id)
-  };
-
-  // componentDidMount() {
-  //   this.setState({ listIsLoading: true })
-  //   const quizesRef = fetchQuiz(quizes => {
-
-  //     this.context.setQuizes(quizes)
-
-  //     this.setState({ quizes, listIsLoading: false })
-  // })
-
-  // return () => { quizesRef.off('value') }
-  // }
 
   static contextType = QuizContext;
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.questions.length -1 === prevState.questions.length ) {
-    this.scrollToBottom()
-  }}
+  state = {
+    quiz: [],
+    isLoading: true
+  };
+
+  componentDidMount() {
+    this.setState({ isLoading: true })
+    const quizesRef = fetchQuiz(quizes => {
+
+      this.context.setQuizes(quizes)
+
+
+
+      this.setState({ quiz: this.context.selectQuizByUniqueId(this.props.match.params.id), isLoading: false })
+    })
+
+    return () => { quizesRef.off('value') }
+  }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (this.state.quiz.questions.length - 1 === prevState.questions.length) {
+  //     this.scrollToBottom()
+  //   }
+  // }
 
   scrollToBottom = () => {
     this.element && this.element.scrollIntoView({ behavior: 'smooth' })
@@ -39,13 +44,13 @@ export default class QuizGenWrapper extends React.Component {
 
   handleTitleChange = newTitle => {
     this.setState({
-      ...this.state,
+      ...this.state.quiz,
       title: newTitle
     });
   };
 
   handleQuestionChange = (questionId, newQuestion) => {
-    const newQuestions = this.state.questions.map(questionObject => {
+    const newQuestions = this.state.quiz.questions.map(questionObject => {
       if (questionObject.id === questionId) {
         return {
           ...questionObject,
@@ -56,7 +61,7 @@ export default class QuizGenWrapper extends React.Component {
       }
     });
     this.setState({
-      ...this.state,
+      ...this.state.quiz,
       questions: newQuestions
     });
   };
@@ -67,7 +72,7 @@ export default class QuizGenWrapper extends React.Component {
 
     console.log(answerId + " " + answerInput);
 
-    const newQuestions = this.state.questions.map(question => {
+    const newQuestions = this.state.quiz.questions.map(question => {
       if (question.id === questionId) {
         question.answers.map(answer => {
           if (answer.id === answerId) {
@@ -84,18 +89,18 @@ export default class QuizGenWrapper extends React.Component {
     });
 
     this.setState({
-      ...this.state,
+      ...this.state.quiz,
       questions: newQuestions
     });
   };
 
   handleSaveQuiz = () => {
-    this.context.updateQuiz(this.state);
+    this.context.updateQuiz(this.state.quiz);
   };
 
   handleAddQuestion = () => {
     const newQuestionCard = {
-      id: `${this.state.questions.length + 1}`,
+      id: `${this.state.quiz.questions.length + 1}`,
       question: "wprowadź pytanie",
       answers: [
         {
@@ -110,16 +115,16 @@ export default class QuizGenWrapper extends React.Component {
         }
       ]
     };
-    const newQuestions = [...this.state.questions, newQuestionCard];
+    const newQuestions = [...this.state.quiz.questions, newQuestionCard];
     this.setState({
-      ...this.state,
+      ...this.state.quiz,
       questions: newQuestions
     });
   };
 
   handleRemoveQuestion = questionId => {
-    if (this.state.questions.length > 1) {
-      const newQuestions = this.state.questions.filter(
+    if (this.state.quiz.questions.length > 1) {
+      const newQuestions = this.state.quiz.questions.filter(
         question => question.id !== questionId
       );
 
@@ -130,14 +135,14 @@ export default class QuizGenWrapper extends React.Component {
         return (question.id = `${questionIndex}`);
       });
       this.setState({
-        ...this.state,
+        ...this.state.quiz,
         questions: newQuestions
       });
     }
   };
 
   handleAddAnswer = questionId => {
-    const newQuestions = this.state.questions.map(question => {
+    const newQuestions = this.state.quiz.questions.map(question => {
       if (question.id === questionId && question.answers.length < 6) {
         const newAnswer = {
           id: `${question.answers.length + 1}`,
@@ -152,7 +157,7 @@ export default class QuizGenWrapper extends React.Component {
     });
 
     this.setState({
-      ...this.state,
+      ...this.state.quiz,
       questions: newQuestions
     });
   };
@@ -162,7 +167,7 @@ export default class QuizGenWrapper extends React.Component {
 
     let checkMinCorrectAnswers = this.checkCorrectAnswers(questionId);
 
-    const newQuestions = this.state.questions.map(question => {
+    const newQuestions = this.state.quiz.questions.map(question => {
       if (question.id === questionId && question.answers.length > 2) {
         const newAnswers = question.answers.filter(answer => {
           if (checkMinCorrectAnswers <= 1 && answer.correct === true) {
@@ -187,7 +192,7 @@ export default class QuizGenWrapper extends React.Component {
     });
     console.log(newQuestions);
     this.setState({
-      ...this.state,
+      ...this.state.quiz,
       questions: newQuestions
     });
   };
@@ -197,7 +202,7 @@ export default class QuizGenWrapper extends React.Component {
 
     let checkMinCorrectAnswers = this.checkCorrectAnswers(questionId);
 
-    const newQuestions = this.state.questions.map(question => {
+    const newQuestions = this.state.quiz.questions.map(question => {
       if (question.id === questionId) {
         question.answers.map(answer => {
           if (answer.id === answerId) {
@@ -218,13 +223,13 @@ export default class QuizGenWrapper extends React.Component {
     });
 
     this.setState({
-      ...this.state,
+      ...this.state.quiz,
       questions: newQuestions
     });
   };
 
   checkCorrectAnswers = questionId => {
-    return this.state.questions[questionId - 1].answers.filter(
+    return this.state.quiz.questions[questionId - 1].answers.filter(
       answer => answer.correct === true
     ).length;
   };
@@ -243,7 +248,7 @@ export default class QuizGenWrapper extends React.Component {
   }
 
   renderQuestions = () => {
-    const {questions} = this.state
+    const { questions } = this.state.quiz
     const questionsCount = questions.length - 1
     return questions.map((question, index) => (
       <div key={index} className={"quizGenInputs"} ref={el => this.setRefForLastElement(el, index, questionsCount)}>
@@ -279,18 +284,19 @@ export default class QuizGenWrapper extends React.Component {
     console.log(this.state);
     console.log(this.context);
 
-    const { title } = this.state;
 
-    return (
-      <>
-      <button onClick={this.handleSaveQuiz} className="saveQuizButton">Zapisz Quiz</button>
-      <div className="quizGenWrapper">
-        <h1 className="quizGenHeader">STWÓRZ QUIZ</h1>
-        <QuizTitleInput quizTitle={title} onChange={this.handleTitleChange} />
-        {this.renderQuestions()}
-        <AddQuestionButton onClick={this.handleAddQuestion} />
-      </div>
-      </>
+
+    return (<>
+      {this.state.isLoading ? <p>loader</p> :
+        <>
+          <button onClick={this.handleSaveQuiz} className="saveQuizButton">Zapisz Quiz</button>
+          <div className="quizGenWrapper">
+            <h1 className="quizGenHeader">STWÓRZ QUIZ</h1>
+            <QuizTitleInput quizTitle={this.state.quiz.title} onChange={this.handleTitleChange} />
+            {this.renderQuestions()}
+            <AddQuestionButton onClick={this.handleAddQuestion} />
+          </div></>}
+    </>
     );
   }
 }
