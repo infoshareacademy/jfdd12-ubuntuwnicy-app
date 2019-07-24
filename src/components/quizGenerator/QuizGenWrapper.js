@@ -11,7 +11,7 @@ import {fetchQuiz} from '../../services/QuizService'
 
 export default class QuizGenWrapper extends React.Component {
   state = {
-    ...this.context.selectQuizByUniqueId(this.props.match.params.id)
+    ...this.context.selectQuiz("1")
   };
 
   // componentDidMount() {
