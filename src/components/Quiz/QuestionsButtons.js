@@ -84,7 +84,7 @@ export class QuestionsButtons extends React.Component {
           onClick={() => onQuestionChangeHandler(0)}
           className={styles.doubleArrowButtonQuestion}
         >
-          {"Pierwsze pytanie"}
+          {"<<"}
         </DoubleArrowButtonQuestion>
         <Arrowbutton
           disabled={!currentQuestionId}
@@ -110,7 +110,7 @@ export class QuestionsButtons extends React.Component {
           onClick={() => onQuestionChangeHandler(totalNumberOfQuestion - 1)}
           className={styles.doubleArrowButtonQuestion}
         >
-          {"Ostatnie pytanie"}
+          {">>"}
         </DoubleArrowButtonQuestion>
       </div>
     );
