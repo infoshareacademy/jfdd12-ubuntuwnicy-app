@@ -26,7 +26,7 @@ body {
 }
 
 .answerWrapper {
-  height: 50vh;
+  height: 100%;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
@@ -184,6 +184,10 @@ body {
   color: #ffffff;
 }
 
+.questionCard {
+  
+}
+
 @media (max-width: 480px) {
   .score {
     margin: 2em 2em;
@@ -208,7 +212,7 @@ body {
     text-align: center;
     transition: all 0.2s;
     cursor: pointer;
-    width: 9.5em;
+    width: 3em;
     height: 3em;
   }
   .buttonQuizEnd {

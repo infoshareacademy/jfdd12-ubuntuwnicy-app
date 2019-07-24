@@ -159,7 +159,7 @@ export default class Quiz extends React.Component {
     // console.log(context, "CONTEXT");
     let questionsIndexZero = context.quizes[0].questions[questionId];
     return (
-      <div>
+      <div className={styles.questionCard}>
         <h1 className={styles.quizName}>{questionsIndexZero.question}</h1>
         <div className={styles.answerWrapper}>
           <ul className={styles.answerList}>

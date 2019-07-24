@@ -104,7 +104,6 @@ body {
 
 .saveQuizButton {
   float: right;
-  position: sticky;
   background-color: rgb(255, 255, 153);
   padding: 1%;
   margin: 1%;
