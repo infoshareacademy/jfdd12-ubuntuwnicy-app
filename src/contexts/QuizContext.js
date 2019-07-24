@@ -32,10 +32,12 @@ export const QuizProvider = function (props) {
                 return quiz
             }
         })
-        
-        saveQuiz(updatedQuiz)
+        console.log({newQuizes})
+        console.log({quizes})
 
         setQuizes(newQuizes)
+        saveQuiz(updatedQuiz)
+
     }
 
     return <QuizContext.Provider value={{
