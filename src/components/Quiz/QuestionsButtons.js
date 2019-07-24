@@ -1,8 +1,6 @@
 import React from "react";
 import styles from "./QuizTitle.module.css";
 
-const LIMIT = 3;
-
 const Button = ({ children, disabled = false, onClick, isQuestionNumber }) => (
   <button
     onClick={onClick}
@@ -21,51 +19,61 @@ export class QuestionsButtons extends React.Component {
       totalNumberOfQuestion
     } = this.props;
 
-    const lowerLimit = Math.max(0, currentQuestionId - LIMIT);
-    const upperLimit = Math.min(
-      currentQuestionId + LIMIT,
-      totalNumberOfQuestion - 1
-    );
-
-    const lowerButtons = [...Array(currentQuestionId - lowerLimit)].map(
-      (_, index) => {
-        const id = currentQuestionId - (currentQuestionId - lowerLimit) + index;
-        return (
-          <Button onClick={() => onQuestionChangeHandler(id)}>{id + 1}</Button>
+    const renderButtons = () => {
+      console.log(currentQuestionId);
+      let questions = Array(totalNumberOfQuestion)
+        .fill(1)
+        .map((x, index) => index + 1);
+      if (currentQuestionId < 3) {
+        questions = questions.slice(0, 5);
+      } else if (currentQuestionId > 7) {
+        questions = questions.slice(-5);
+      } else {
+        questions = questions.slice(
+          currentQuestionId - 2,
+          currentQuestionId + 3
         );
       }
-    );
-
-    const upperButtons = [...Array(upperLimit - currentQuestionId)].map(
-      (_, index) => {
-        const id = currentQuestionId + index + 1;
-        return (
-          <Button onClick={() => onQuestionChangeHandler(id)}>{id + 1}</Button>
-        );
-      }
-    );
+      return questions.map((question, index) => (
+        <Button
+          onClick={() => {
+            onQuestionChangeHandler(question - 1);
+          }}
+          disabled={currentQuestionId + 1 === question}
+          key={index}
+        >
+          {question}
+        </Button>
+      ));
+    };
 
     return (
       <div>
-        {
-          <Button
-            disabled={!currentQuestionId}
-            onClick={() => onQuestionChangeHandler(currentQuestionId - 1)}
-          >
-            {'<<'}
-          </Button>
-        }
-        {lowerButtons}
-        <Button disabled>{currentQuestionId + 1}</Button>
-        {upperButtons}
-        {
-          <Button
-            disabled={currentQuestionId === totalNumberOfQuestion - 1}
-            onClick={() => onQuestionChangeHandler(currentQuestionId + 1)}
-          >
-            {'>>'}
-          </Button>
-        }
+        <Button
+          disabled={!currentQuestionId}
+          onClick={() => onQuestionChangeHandler(0)}
+        >
+          {"<<"}
+        </Button>
+        <Button
+          disabled={!currentQuestionId}
+          onClick={() => onQuestionChangeHandler(currentQuestionId - 1)}
+        >
+          {"<"}
+        </Button>
+        {renderButtons()}
+        <Button
+          disabled={currentQuestionId === totalNumberOfQuestion - 1}
+          onClick={() => onQuestionChangeHandler(currentQuestionId + 1)}
+        >
+          {">"}
+        </Button>
+        <Button
+          disabled={currentQuestionId === totalNumberOfQuestion - 1}
+          onClick={() => onQuestionChangeHandler(totalNumberOfQuestion - 1)}
+        >
+          {">>"}
+        </Button>
       </div>
     );
   }
