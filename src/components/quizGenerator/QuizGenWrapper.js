@@ -103,7 +103,8 @@ export default class QuizGenWrapper extends React.Component {
   };
 
   handleSaveQuiz = () => {
-    this.context.updateQuiz(this.state.quiz);
+    this.context.updateQuizToContext(this.state.quiz);
+    
   };
 
   handleAddQuestion = () => {
