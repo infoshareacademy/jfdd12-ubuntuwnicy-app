@@ -7,11 +7,24 @@ import QuizTitleInput from "./QuizTitleInput";
 import RemoveQuestionButton from "../RemoveQuestionButton";
 import AddQuestionButton from "./AddQuestionButton";
 import AddAnswerButton from "./AddAnswerButton";
+import {fetchQuiz} from '../../services/QuizService'
 
 export default class QuizGenWrapper extends React.Component {
   state = {
-    ...this.context.selectQuiz("1")
+    ...this.context.selectQuizByUniqueId(this.props.match.params.id)
   };
+
+  // componentDidMount() {
+  //   this.setState({ listIsLoading: true })
+  //   const quizesRef = fetchQuiz(quizes => {
+
+  //     this.context.setQuizes(quizes)
+
+  //     this.setState({ quizes, listIsLoading: false })
+  // })
+
+  // return () => { quizesRef.off('value') }
+  // }
 
   static contextType = QuizContext;
 
@@ -262,6 +275,7 @@ export default class QuizGenWrapper extends React.Component {
   }
 
   render() {
+    console.log(this.props.match.params.id)
     console.log(this.state);
     console.log(this.context);
 
