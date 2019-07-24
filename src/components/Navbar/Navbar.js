@@ -19,7 +19,7 @@ export const Navbar = props => {
           exact
           className={"default-link"}
           activeClassName={"active-link"}
-          to="/quiz-gen-wrapper"
+          to="/quizes-gen-list"
         >
           Stwórz Quiz
         </NavLink>

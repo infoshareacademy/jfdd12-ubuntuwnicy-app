@@ -19,7 +19,7 @@ export default function AddQuestionButton(props) {
     const { onClick } = props;
  
     return (
-        <Button variant="contained" color="primary" className={classes.button} onClick={onClick}> Dodaj Pytanie </Button>
+        <Button variant="contained" component="span" className={classes.button} onClick={onClick}> Dodaj Pytanie </Button>
     )
  }
 
