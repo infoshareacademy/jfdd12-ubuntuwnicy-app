@@ -6,7 +6,7 @@ export default class AnswersList extends React.Component {
       <div className="quizAnswerInputs">
         {this.props.question.answers.map(answer => {
           return (
-            <div>
+            <div key={answer.id}>
               <AnswerInput
                 name={answer.id}
                 autofocus
