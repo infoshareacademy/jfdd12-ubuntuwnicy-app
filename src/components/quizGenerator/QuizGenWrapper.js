@@ -4,7 +4,7 @@ import AnswersList from "./AnswersList";
 import QuestionInput from "./QuestionInput";
 import { QuizContext } from "../../contexts/QuizContext";
 import QuizTitleInput from "./QuizTitleInput";
-import RemoveQuestionButton from "../RemoveQuestionButton";
+import RemoveQuestionButton from "./RemoveQuestionButton";
 import AddQuestionButton from "./AddQuestionButton";
 import AddAnswerButton from "./AddAnswerButton";
 import { fetchQuiz, saveQuiz } from '../../services/QuizService'
