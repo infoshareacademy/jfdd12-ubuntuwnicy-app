@@ -16,9 +16,7 @@ export default class QuizGenWrapper extends React.Component {
     ...this.context.selectQuiz("1")
   };
 
-  // componentDidMount() {
-  //   this.setState({ listIsLoading: true })
-  //   const quizesRef = fetchQuiz(quizes => {
+  fetchAndUpdate() {
 
   //     this.context.setQuizes(quizes)
 
@@ -30,6 +28,12 @@ export default class QuizGenWrapper extends React.Component {
 
   static contextType = QuizContext;
 
+  componentDidMount() {
+    console.log('elo')
+    return this.fetchAndUpdate()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.questions.length -1 === prevState.questions.length ) {
@@ -93,7 +97,11 @@ export default class QuizGenWrapper extends React.Component {
   };
 
   handleSaveQuiz = () => {
-    this.context.updateQuiz(this.state);
+    console.log(this.state)
+    console.log(this.context.quizes)
+    this.context.updateQuizToContext(this.state.quiz);
+    this.setState(this.state)
+
   };
 
   handleAddQuestion = () => {

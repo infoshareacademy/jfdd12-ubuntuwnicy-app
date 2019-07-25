@@ -83,9 +83,11 @@ export default class Quiz extends React.Component {
     // return score / questions.length;
 
     const score = questions.reduce((accu, question) => {
-      return question.correctAnswers.every(answer =>
-        answers[question.id - 1].includes(`${answer}`)
-      )
+      return question.correctAnswers.length ===
+        answers[question.id - 1].length &&
+        question.correctAnswers.every(answer =>
+          answers[question.id - 1].includes(`${answer}`)
+        )
         ? accu + 1
         : accu;
     }, 0);

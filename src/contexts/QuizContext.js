@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import initialQuizes from '../data/quizes.json'
-import { fetchQuiz } from '../services/QuizService'
+import { fetchQuiz, saveQuiz } from '../services/QuizService'
 
 export const QuizContext = React.createContext()
 
@@ -24,16 +24,20 @@ export const QuizProvider = function (props) {
         return quizes.find(quiz => quiz.uniqueId === uniqueId)
     }
 
-    const updateQuiz = (updatedQuiz) => {
+    const updateQuizToContext = (updatedQuiz) => {
         const newQuizes = quizes.map(quiz => {
-            if (quiz.id === updatedQuiz.id) {
+            if (quiz.uniqueId === updatedQuiz.uniqueId) {
                 return updatedQuiz
             } else {
                 return quiz
             }
         })
+        console.log({newQuizes})
+        console.log({quizes})
 
         setQuizes(newQuizes)
+        saveQuiz(updatedQuiz)
+
     }
 
     return <QuizContext.Provider value={{
@@ -41,7 +45,7 @@ export const QuizProvider = function (props) {
         setQuizes,
         selectQuiz,
         addQuiz,
-        updateQuiz,
+        updateQuizToContext,
         fetchQuizToContext,
         selectQuizByUniqueId
     }} {...props} />
