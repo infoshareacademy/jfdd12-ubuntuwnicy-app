@@ -58,6 +58,7 @@ export const addNewQuiz = (quizId) => {
 
     firebase.database().ref(`quizes/${postId}`).update({ 'uniqueId': `${postId}` })
 
+    return postId
 }
 
 

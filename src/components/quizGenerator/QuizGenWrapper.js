@@ -10,13 +10,13 @@ import AddAnswerButton from "./AddAnswerButton";
 import { fetchQuiz, saveQuiz } from '../../services/QuizService'
 
 
-const selectQuizByUniqueId = (quizes,uniqueId) => {
+const selectQuizByUniqueId = (quizes, uniqueId) => {
   return quizes.find(quiz => quiz.uniqueId === uniqueId)
 }
 
 export default class QuizGenWrapper extends React.Component {
 
-  static contextType = QuizContext;
+  // static contextType = QuizContext;
 
   state = {
     quiz: [],
@@ -29,10 +29,10 @@ export default class QuizGenWrapper extends React.Component {
     this.setState({ isLoading: true })
     fetchQuiz(quizes => {
       // this.context.setQuizes(quizes)
-      this.setState({ 
+      this.setState({
         quiz: selectQuizByUniqueId(quizes, uniqueId),
         quizes: quizes,
-        isLoading: false 
+        isLoading: false
       })
     })
 
@@ -118,17 +118,17 @@ export default class QuizGenWrapper extends React.Component {
   handleSaveQuiz = () => {
     // this.context.updateQuizToContext(this.state.quiz);
 
-   const newQuizes =  this.state.quizes.map(quiz => {
+    const newQuizes = this.state.quizes.map(quiz => {
       if (quiz.uniqueId === this.state.quiz.uniqueId) {
-          return this.state.quiz
+        return this.state.quiz
       } else {
-          return quiz
+        return quiz
       }
-  })
-  this.setState({
-    quizes: newQuizes
-  },
-  () => saveQuiz(this.state.quiz) )
+    })
+    this.setState({
+      quizes: newQuizes
+    },
+      () => saveQuiz(this.state.quiz))
   };
 
   handleAddQuestion = () => {
