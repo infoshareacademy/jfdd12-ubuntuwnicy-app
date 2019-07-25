@@ -56,17 +56,15 @@ export const addNewQuiz = (quizId) => {
 
     const postId = uniqueIdRef.key
 
-    firebase.database().ref(`quizes/${postId}`).update({'uniqueId': `${postId}`})
+    firebase.database().ref(`quizes/${postId}`).update({ 'uniqueId': `${postId}` })
 
 }
 
 
 
-// export const saveQuiz = (quizId) => {
+export const saveQuiz = (quiz) => {
 
-//     firebase.database().ref('quizes').then(value.find(quiz => quiz.id === quizId))
+    firebase.database().ref(`quizes/${quiz.uniqueId}`).set(quiz)
 
-//TODO ^^^^^^^^^^^^^^^^^^^^
-
-// }
+}
 
