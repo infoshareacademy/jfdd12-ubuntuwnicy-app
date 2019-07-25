@@ -46,11 +46,13 @@ export class QuestionsButtons extends React.Component {
     const {
       onQuestionChangeHandler,
       currentQuestionId,
-      totalNumberOfQuestion
+      totalNumberOfQuestion,
+      questions
     } = this.props;
 
     const renderButtons = () => {
       console.log(currentQuestionId);
+      console.log(this.props.questions);
       let questions = Array(totalNumberOfQuestion) // [].length == 10
         .fill(1) // [1,1,1,1,1,1,1,1,1,1,1]
         .map((_, index) => index + 1); // [1,2,3,4,5,6,7,8,9,10]

@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./QuizTitle.module.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import * as QuizService from "../../services/QuizService";
 import { QuizContext } from "../../contexts/QuizContext";
+import { fetchQuiz } from "../../services/QuizService";
 
 const Button = ({ children, disabled = false, onClick, isQuestionNumber }) => (
   <button
@@ -14,22 +14,53 @@ const Button = ({ children, disabled = false, onClick, isQuestionNumber }) => (
   </button>
 );
 
+const Spinner = () => (
+  <div
+    style={{
+      textAlign: "center",
+      textSize: "3em",
+      marginTop: "12em",
+      fontSize: "2em"
+    }}
+  >
+    Proszę poczekać trwa wczytywanie listy quizów...
+  </div>
+);
 export default class QuizList extends React.Component {
   static contextType = QuizContext;
 
+  state = {
+    listIsLoading: true
+  };
+
+  componentDidMount() {
+    this.setState({ listIsLoading: true });
+    fetchQuiz(quizes => {
+      this.setState({ quizes, listIsLoading: false });
+      console.log(this.state);
+    });
+  }
+
   render() {
     const { onQuizChangeHandler, currentQuizId } = this.props;
+    const { listIsLoading } = this.state;
 
     return (
       <div>
-        {this.context.quizes.map(quiz => (
-          <QuizButton
-            currentQuizId={currentQuizId}
-            key={quiz.id}
-            onClick={() => onQuizChangeHandler(currentQuizId)}
-            link={quiz.id}
-          />
-        ))}
+        {listIsLoading ? (
+          <Spinner />
+        ) : (
+          <div>
+            {this.state.quizes.map(quiz => (
+              <QuizButton
+                currentQuizId={currentQuizId}
+                key={quiz.id}
+                onClick={() => onQuizChangeHandler(currentQuizId)}
+                link={quiz.id}
+              />
+            ))}
+          </div>
+        )}{" "}
       </div>
     );
   }
