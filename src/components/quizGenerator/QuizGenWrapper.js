@@ -9,7 +9,9 @@ import AddQuestionButton from "./AddQuestionButton";
 import AddAnswerButton from "./AddAnswerButton";
 import {fetchQuiz} from '../../services/QuizService'
 
+
 export default class QuizGenWrapper extends React.Component {
+  
   state = {
     ...this.context.selectQuiz("1")
   };
@@ -27,6 +29,7 @@ export default class QuizGenWrapper extends React.Component {
   // }
 
   static contextType = QuizContext;
+
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.questions.length -1 === prevState.questions.length ) {
@@ -274,6 +277,7 @@ export default class QuizGenWrapper extends React.Component {
     ))
   }
 
+
   render() {
     console.log(this.props.match.params.id)
     console.log(this.state);
@@ -283,7 +287,7 @@ export default class QuizGenWrapper extends React.Component {
 
     return (
       <>
-      <button onClick={this.handleSaveQuiz} className="saveQuizButton">Zapisz Quiz</button>
+      <button onClick={this.handleSaveQuiz} className="saveQuizButton">ZAPISZ QUIZ</button>
       <div className="quizGenWrapper">
         <h1 className="quizGenHeader">STWÓRZ QUIZ</h1>
         <QuizTitleInput quizTitle={title} onChange={this.handleTitleChange} />
