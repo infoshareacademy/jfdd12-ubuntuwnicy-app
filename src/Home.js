@@ -1,6 +1,7 @@
 import React from 'react';
 import './Home.css';
 import AnswersList from './components/quizGenerator/AnswersList'
+import {} from '@material-ui/core/'
 
 
 function Home() {
@@ -14,5 +15,7 @@ function Home() {
       </div>
     </div>
 };
+
+
 
 export default Home;
