@@ -12,7 +12,7 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
-import { QuizesGenList } from './components/quizGenerator/QuizesGenList'
+import QuizesGenList from './components/quizGenerator/QuizesGenList'
 
 const NoMatch = () => <h1>404</h1>;
 
