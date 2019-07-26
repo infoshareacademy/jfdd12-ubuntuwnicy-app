@@ -4,7 +4,6 @@ import { stringLiteral } from "@babel/types";
 import { QuestionsButtons } from "./QuestionsButtons";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AddAnswerButton from "../quizGenerator/AddAnswerButton";
-import { QuizContext } from "../../contexts/QuizContext";
 import { fetchQuiz } from "../../services/QuizService";
 
 const Answer = ({ answer, isClicked, onClick }) => (
@@ -38,8 +37,6 @@ const Spinner = () => (
 );
 
 export default class Quiz extends React.Component {
-  static contextType = QuizContext;
-
   state = {
     currentQuestionId: 0,
     answers: {},
@@ -128,12 +125,13 @@ export default class Quiz extends React.Component {
     return answers[questionId] === currentAnswerId;
   }
 
-  renderQuestion(question, questionId) {
-    let questionsIndexZero = this.state.quiz.questions[0];
+  renderQuestion(question, questionId, quizId) {
+    console.log(this.state);
+    let questionsIndexZero = this.state.questions[questionId];
     console.log(questionsIndexZero);
     return (
       <div>
-        <h1 className={styles.quizName}>{this.state.quizes[10].title}</h1>
+        <h1 className={styles.quizName}>{this.state.quizes[9].title}</h1>
         <div className={styles.answerWrapper}>
           <ul className={styles.answerList}>
             {questionsIndexZero.answers.map(answer => (
@@ -170,7 +168,7 @@ export default class Quiz extends React.Component {
         onQuestionChangeHandler={this.handleQuestionChangeClick}
         currentQuestionId={currentQuestionId}
         totalNumberOfQuestion={questions.length}
-        questions={quizes[10].questions}
+        questions={questions}
       />
     );
   }
@@ -218,25 +216,28 @@ export default class Quiz extends React.Component {
     const {
       areQuestionsLoading,
       currentQuestionId,
+      quizId,
       questions,
       isQuizComplete
     } = this.state;
-    console.log(questions);
 
     if (isQuizComplete) {
       return this.renderQuizComplete();
     }
 
     if (!questions || areQuestionsLoading) {
+      debugger;
       return <Spinner />;
     }
+
+    console.log(questions);
     const currentQuestion = questions[currentQuestionId];
 
     return (
       <div className={styles.quizTitles}>
         <div className={styles.questionCard}>
-          {this.renderQuestion(currentQuestion, currentQuestionId)}
-          {this.renderQuestionsButtons()}
+          {this.renderQuestion(currentQuestion, currentQuestionId, quizId)}
+          {this.renderQuestionsButtons(questions)}
           {this.renderFinishQuizButton()}
         </div>
       </div>
