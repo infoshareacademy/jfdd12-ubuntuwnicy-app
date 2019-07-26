@@ -40,7 +40,7 @@ export default class QuizGenWrapper extends React.Component {
   }
 
   componentDidMount() {
-    console.log('elo')
+
     return this.fetchAndUpdate()
   }
 
