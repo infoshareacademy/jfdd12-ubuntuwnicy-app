@@ -23,14 +23,14 @@ export const Navbar = props => {
         >
           Stwórz Quiz
         </NavLink>
-        <NavLink
+        {/* <NavLink
           exact
           className={"default-link"}
           activeClassName={"active-link"}
           to="/quiz"
         >
           Dołącz do Quizu
-        </NavLink>
+        </NavLink> */}
         <NavLink
           exact
           className={"default-link"}

@@ -83,9 +83,11 @@ export default class Quiz extends React.Component {
     // return score / questions.length;
 
     const score = questions.reduce((accu, question) => {
-      return question.correctAnswers.every(answer =>
-        answers[question.id - 1].includes(`${answer}`)
-      )
+      return question.correctAnswers.length ===
+        answers[question.id - 1].length &&
+        question.correctAnswers.every(answer =>
+          answers[question.id - 1].includes(`${answer}`)
+        )
         ? accu + 1
         : accu;
     }, 0);
@@ -159,7 +161,7 @@ export default class Quiz extends React.Component {
     // console.log(context, "CONTEXT");
     let questionsIndexZero = context.quizes[0].questions[questionId];
     return (
-      <div>
+      <div className={styles.questionCard}>
         <h1 className={styles.quizName}>{questionsIndexZero.question}</h1>
         <div className={styles.answerWrapper}>
           <ul className={styles.answerList}>

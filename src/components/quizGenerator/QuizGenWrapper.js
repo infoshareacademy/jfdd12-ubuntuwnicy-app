@@ -326,12 +326,15 @@ export default class QuizGenWrapper extends React.Component {
     return (<>
       {this.state.isLoading ? <p>loader</p> :
         <>
-          <button onClick={this.handleSaveQuiz} className="saveQuizButton">Zapisz Quiz</button>
+          
           <div className="quizGenWrapper">
             <h1 className="quizGenHeader">STWÓRZ QUIZ</h1>
             <QuizTitleInput quizTitle={this.state.quiz.title} onChange={this.handleTitleChange} />
             {this.renderQuestions()}
+            <div className='saveAndAddButtons'>
             <AddQuestionButton onClick={this.handleAddQuestion} />
+            <button onClick={this.handleSaveQuiz} className="saveQuizButton">ZAPISZ QUIZ</button>
+            </div>
           </div></>}
     </>
     );
