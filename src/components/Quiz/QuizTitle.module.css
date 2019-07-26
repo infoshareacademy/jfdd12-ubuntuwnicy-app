@@ -97,6 +97,16 @@ body {
   height: 3em;
 }
 
+.pagination {
+  bottom: 3%;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: 100vw;
+}
+
 .arrowButtonQuestion {
   width: 8em;
   border-radius: 50%;
