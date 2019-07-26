@@ -14,10 +14,11 @@
   }
 
 .titlePage {
-    display: flex;
-    flex-direction: column;
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr; 
     text-align: center;
-    padding: 8% 0 8% 0;
+    padding: 8%;
     color: grey;
 }
 
