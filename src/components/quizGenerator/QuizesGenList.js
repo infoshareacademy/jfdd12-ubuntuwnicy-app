@@ -1,8 +1,8 @@
 import React from 'react'
 import { QuizContext } from '../../contexts/QuizContext'
 import { Button } from '@material-ui/core'
-import { fetchQuiz, addNewQuiz } from '../../services/QuizService'
-import { BrowserRouter as Route, Link } from "react-router-dom";
+import { fetchQuiz, addNewQuiz, deleteQuiz } from '../../services/QuizService'
+import { BrowserRouter as Route, Link, Redirect, withRouter } from "react-router-dom";
 
 export class QuizesGenList extends React.Component {
 
@@ -25,6 +25,15 @@ export class QuizesGenList extends React.Component {
         return () => { quizesRef.off('value') }
     }
 
+    addNewQuizAndFollow(quizId) {
+        const newUniqueId = addNewQuiz(quizId)
+        this.props.history.push(`/quizes-gen-list/${newUniqueId}`)
+    }
+
+    handleRemoveQuiz(uniqueId) {
+        deleteQuiz(uniqueId)
+    }
+
     render() {
         console.log(this.state)
         console.log(this.context)
@@ -36,15 +45,17 @@ export class QuizesGenList extends React.Component {
                 <div>
                     <ul>
                         {this.state.quizes.map(quiz => {
-                            return <li>Tytuł Quizu: {quiz.title}, liczba pytan: {quiz.questions.length}
+                            return <li key={quiz.uniqueId}>Tytuł Quizu: {quiz.title}, liczba pytan: {quiz.questions.length}
                                 <Link to={`/quizes-gen-list/${quiz.uniqueId}`}>
                                     Edytuj Quiz
-                                </Link>
+                                </Link><Button onClick={() => this.handleRemoveQuiz(quiz.uniqueId)}>Usuń Quiz</Button>
                             </li>
                         })}
                     </ul>
-                    <Button onClick={(event) => addNewQuiz(this.state.quizes.length + 1)}>Dodaj nowy quiz</Button>
+                    <Button onClick={() => this.addNewQuizAndFollow(this.state.quizes.length + 1)}>Dodaj nowy quiz</Button>
                 </div>
             } </div>
     }
 }
+
+export default withRouter(QuizesGenList)
