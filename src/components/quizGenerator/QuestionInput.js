@@ -11,7 +11,8 @@ function QuestionInput(props) {
             {/* <p className='questionID'>{questions.lenght}</p> */}
             <TextField
                 id="outlined-multiline-static"
-                label="PYTANIE"
+                label="Pytanie"
+                placeholder="Wprowadź pytanie"
                 name={props.question.id}
                 multiline
                 rows="4"
