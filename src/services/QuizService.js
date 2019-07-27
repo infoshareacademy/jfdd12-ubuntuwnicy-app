@@ -58,13 +58,16 @@ export const addNewQuiz = (quizId) => {
 
     firebase.database().ref(`quizes/${postId}`).update({ 'uniqueId': `${postId}` })
 
+    return postId
 }
-
-
 
 export const saveQuiz = (quiz) => {
 
     firebase.database().ref(`quizes/${quiz.uniqueId}`).set(quiz)
 
+}
+
+export const deleteQuiz = (uniqueQuizId) => {
+    firebase.database().ref(`quizes/${uniqueQuizId}`).remove()
 }
 

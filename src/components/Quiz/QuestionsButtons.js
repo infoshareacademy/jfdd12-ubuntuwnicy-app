@@ -80,7 +80,7 @@ export class QuestionsButtons extends React.Component {
     };
 
     return (
-      <div>
+      <div className={styles.pagination}>
         <DoubleArrowButtonQuestion
           disabled={!currentQuestionId}
           onClick={() => onQuestionChangeHandler(0)}

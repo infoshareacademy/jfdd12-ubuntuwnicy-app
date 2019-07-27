@@ -4,38 +4,44 @@ import AnswersList from "./AnswersList";
 import QuestionInput from "./QuestionInput";
 import { QuizContext } from "../../contexts/QuizContext";
 import QuizTitleInput from "./QuizTitleInput";
-import RemoveQuestionButton from "../RemoveQuestionButton";
+import RemoveQuestionButton from "./RemoveQuestionButton";
 import AddQuestionButton from "./AddQuestionButton";
 import AddAnswerButton from "./AddAnswerButton";
-import { fetchQuiz } from "../../services/QuizService";
+import { fetchQuiz, saveQuiz } from '../../services/QuizService'
+
+
+const selectQuizByUniqueId = (quizes, uniqueId) => {
+  return quizes.find(quiz => quiz.uniqueId === uniqueId)
+}
 
 export default class QuizGenWrapper extends React.Component {
-  static contextType = QuizContext;
+
+  // static contextType = QuizContext;
 
   state = {
     quiz: [],
+    quizes: [],
     isLoading: true
   };
 
   fetchAndUpdate() {
-    this.setState({ isLoading: true });
-    const quizesRef = fetchQuiz(quizes => {
-      this.context.setQuizes(quizes);
-
+    const uniqueId = this.props.match.params.id
+    this.setState({ isLoading: true })
+    fetchQuiz(quizes => {
+      // this.context.setQuizes(quizes)
       this.setState({
-        quiz: this.context.selectQuizByUniqueId(this.props.match.params.id),
+        quiz: selectQuizByUniqueId(quizes, uniqueId),
+        quizes: quizes,
         isLoading: false
-      });
-    });
+      })
+    })
 
-    return () => {
-      quizesRef.off("value");
-    };
+    // return () => { quizesRef.off('value') }
   }
 
   componentDidMount() {
-    console.log("elo");
-    return this.fetchAndUpdate();
+
+    return this.fetchAndUpdate()
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -113,10 +119,19 @@ export default class QuizGenWrapper extends React.Component {
   };
 
   handleSaveQuiz = () => {
-    console.log(this.state);
-    console.log(this.context.quizes);
-    this.context.updateQuizToContext(this.state.quiz);
-    this.setState(this.state);
+    // this.context.updateQuizToContext(this.state.quiz);
+
+    const newQuizes = this.state.quizes.map(quiz => {
+      if (quiz.uniqueId === this.state.quiz.uniqueId) {
+        return this.state.quiz
+      } else {
+        return quiz
+      }
+    })
+    this.setState({
+      quizes: newQuizes
+    },
+      () => saveQuiz(this.state.quiz))
   };
 
   handleAddQuestion = () => {
@@ -308,27 +323,22 @@ export default class QuizGenWrapper extends React.Component {
     console.log(this.state);
     console.log(this.context);
 
-    return (
-      <>
-        {this.state.isLoading ? (
-          <p>loader</p>
-        ) : (
-          <>
-            <button onClick={this.handleSaveQuiz} className="saveQuizButton">
-              Zapisz Quiz
-            </button>
-            <div className="quizGenWrapper">
-              <h1 className="quizGenHeader">STWÓRZ QUIZ</h1>
-              <QuizTitleInput
-                quizTitle={this.state.quiz.title}
-                onChange={this.handleTitleChange}
-              />
-              {this.renderQuestions()}
-              <AddQuestionButton onClick={this.handleAddQuestion} />
+
+
+    return (<>
+      {this.state.isLoading ? <p>loader</p> :
+        <>
+          
+          <div className="quizGenWrapper">
+            <h1 className="quizGenHeader">STWÓRZ QUIZ</h1>
+            <QuizTitleInput quizTitle={this.state.quiz.title} onChange={this.handleTitleChange} />
+            {this.renderQuestions()}
+            <div className='saveAndAddButtons'>
+            <AddQuestionButton onClick={this.handleAddQuestion} />
+            <button onClick={this.handleSaveQuiz} className="saveQuizButton">ZAPISZ QUIZ</button>
             </div>
-          </>
-        )}
-      </>
+          </div></>}
+    </>
     );
   }
 }

@@ -49,7 +49,8 @@ export default class Quiz extends React.Component {
 
   getQuizResult() {
     const { questions, answers } = this.state;
-    const score = questions.reduce(
+    console.log(questions.questions);
+    const score = questions.questions.reduce(
       (currentScore, currentQuestion, currentQuestionId) => {
         const isAnswerCorrect =
           currentQuestion.correctAnswer === answers[currentQuestionId];
@@ -76,7 +77,7 @@ export default class Quiz extends React.Component {
             quizes,
             areQuestionsLoading: false,
             questions: quizes.find(
-              quiz => quiz.id == this.props.match.params.id
+              quiz => quizes.indexOf(quiz) == this.props.match.params.id
             )
           });
         })
@@ -131,8 +132,9 @@ export default class Quiz extends React.Component {
     console.log(questionsIndexZero);
     return (
       <div>
-        <h1 className={styles.quizName}>{this.state.quizes[9].title}</h1>
+        <h1 className={styles.quizName}>{`${this.state.quizes[quizId].title} ${Number(quizId)+1}`}</h1>
         <div className={styles.answerWrapper}>
+        <h1 className={styles.quizName}>{questionsIndexZero.question}</h1>
           <ul className={styles.answerList}>
             {questionsIndexZero.answers.map(answer => (
               <Answer
