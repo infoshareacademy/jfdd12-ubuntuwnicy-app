@@ -63,7 +63,22 @@ export const addNewQuiz = (quizId) => {
 
 export const saveQuiz = (quiz) => {
 
-    firebase.database().ref(`quizes/${quiz.uniqueId}`).set(quiz)
+    const newQuestions = quiz.questions.map(question => {
+
+        question.correctAnswers = []
+
+        question.answers.forEach(answer => {
+            if (answer.correct === true) {
+                question.correctAnswers.push(answer.id)
+            }
+        })
+        return question
+
+    })
+
+    const newQuiz = { ...quiz, questions: newQuestions }
+
+    firebase.database().ref(`quizes/${quiz.uniqueId}`).set(newQuiz)
 
 }
 
