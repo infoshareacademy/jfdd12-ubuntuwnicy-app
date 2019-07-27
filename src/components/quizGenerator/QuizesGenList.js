@@ -38,6 +38,8 @@ export class QuizesGenList extends React.Component {
         deleteQuiz(uniqueId)
     }
 
+
+
     render() {
         console.log(this.state)
         console.log(this.context)
@@ -54,16 +56,24 @@ export class QuizesGenList extends React.Component {
                 <div className='listWrapper'>
                     <ul>
                         {this.state.quizes.map(quiz => {
-                            return <li className='listQuiz' key={quiz.uniqueId}>Tytuł Quizu: {quiz.title}, liczba pytan: {quiz.questions.length}
-                            <div className='buttonsWrap'>
-                               <Button.Group> <Button positive to={`/quizes-gen-list/${quiz.uniqueId}`}>
-                                    EDYTUJ
-                                </Button> <Button.Or /><Button onClick={() => this.handleRemoveQuiz(quiz.uniqueId)}>USUŃ</Button></Button.Group>
+                            return <li className='listQuiz' key={quiz.uniqueId}>Tytuł Quizu: {quiz.title}, liczba pytań: {quiz.questions.length}
+                                <div className='buttonsWrap'>
+                                <Button.Group> 
+                                        <Link to={`/quizes-gen-list/${quiz.uniqueId}`}>
+                                        <Button positive>
+                                            EDYTUJ
+                                        </Button> 
+                                        </Link>
+                                        <Button.Or />
+                                        <Button onClick={() => this.handleRemoveQuiz(quiz.uniqueId)}>
+                                            USUŃ
+                                        </Button>
+                                    </Button.Group>
                                 </div>
                             </li>
                         })}
                     </ul>
-                    <Button onClick={() => this.addNewQuizAndFollow(this.state.quizes.length + 1)}>Dodaj nowy quiz</Button>
+                    <Button onClick={() => this.addNewQuizAndFollow(this.state.quizes.length + 1)}>DODAJ NOWY QUIZ</Button>
                 </div>
             } </div>
     }

@@ -2,7 +2,8 @@
 
 .listWrapper {
     display: flex;
-    flex-direction: row;        
+    flex-direction: column;
+    margin: 4%;        
     width: 70vw;
     height: 100%;
     margin-left: 15vw;
