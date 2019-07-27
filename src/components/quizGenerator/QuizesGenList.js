@@ -3,6 +3,8 @@ import { QuizContext } from '../../contexts/QuizContext'
 import { Button } from '@material-ui/core'
 import { fetchQuiz, addNewQuiz, deleteQuiz } from '../../services/QuizService'
 import { BrowserRouter as Route, Link, Redirect, withRouter } from "react-router-dom";
+import { Dimmer, Loader} from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css'
 
 export class QuizesGenList extends React.Component {
 
@@ -41,7 +43,12 @@ export class QuizesGenList extends React.Component {
         const { listIsLoading } = this.state
 
         return <div>
-            {listIsLoading ? <p>loader</p> :
+            {listIsLoading ?
+      <Dimmer active>
+        <Loader size='massive'>Loading</Loader>
+      </Dimmer>
+
+     :
                 <div>
                     <ul>
                         {this.state.quizes.map(quiz => {

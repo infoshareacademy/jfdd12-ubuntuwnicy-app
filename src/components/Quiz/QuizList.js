@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./QuizTitle.module.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { fetchQuiz } from "../../services/QuizService";
+import { Dimmer, Loader} from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css'
 
 const Button = ({ children, disabled = false, onClick, isQuestionNumber }) => (
   <button
@@ -14,16 +16,9 @@ const Button = ({ children, disabled = false, onClick, isQuestionNumber }) => (
 );
 
 const Spinner = () => (
-  <div
-    style={{
-      textAlign: "center",
-      textSize: "3em",
-      marginTop: "12em",
-      fontSize: "2em"
-    }}
-  >
-    Proszę poczekać trwa wczytywanie listy quizów...
-  </div>
+  <Dimmer active>
+  <Loader size='massive'>Loading</Loader>
+</Dimmer>
 );
 export default class QuizList extends React.Component {
 
