@@ -75,7 +75,7 @@ export class QuizesGenList extends React.Component {
                             </li>
                         })}
                     </ul>
-                    <button className='addQuestionButton' onClick={() => this.addNewQuizAndFollow(this.state.quizes.length + 1)}>NOWY QUIZ</button>
+                    <button className='addQuizButton' onClick={() => this.addNewQuizAndFollow(this.state.quizes.length + 1)}>NOWY QUIZ</button>
                 </div>
             } </div>
     }

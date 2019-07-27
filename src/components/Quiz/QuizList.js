@@ -62,9 +62,9 @@ function QuizButton(props) {
   return (
     <div className='listWrapper'>
       <ul>
-        <li className='listQuiz'>
+        <li className='startQuizList'>
           <Link className='linkStyles' to={`/quiz/${link-1}`}>
-            <button>Dołącz do quizu nr {link}</button>
+            <button className='startQuizButton'>Dołącz do Quizu:  {link}</button>
           </Link>
         </li>
       </ul>

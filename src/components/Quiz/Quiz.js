@@ -5,35 +5,30 @@ import { QuestionsButtons } from "./QuestionsButtons";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AddAnswerButton from "../quizGenerator/AddAnswerButton";
 import { fetchQuiz } from "../../services/QuizService";
+import { Dimmer, Loader} from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css'
 
 const Answer = ({ answer, isClicked, onClick }) => (
   <li className={styles.possibleAnswer}>
     <button
       className={`${styles.button} ${isClicked ? styles.button : ""}`}
       style={{
-        backgroundColor: `${isClicked ? "rgb(255, 255, 153)" : "white"}`
+        backgroundColor: `${isClicked ? "#9ad16b" : "white"}`
       }}
       onClick={() => {
         onClick(answer.id);
       }}
     >
-      {answer.id}
+      {/* {answer.id} */}
+      {answer.answer}
     </button>
-    {answer.answer}
   </li>
 );
 
 const Spinner = () => (
-  <div
-    style={{
-      textAlign: "center",
-      textSize: "3em",
-      marginTop: "12em",
-      fontSize: "2em"
-    }}
-  >
-    Proszę poczekać na wczytanie quizu...
-  </div>
+  <Dimmer active>
+    <Loader size='massive'>Loading</Loader>
+  </Dimmer>
 );
 
 export default class Quiz extends React.Component {
@@ -132,7 +127,7 @@ export default class Quiz extends React.Component {
     console.log(questionsIndexZero);
     return (
       <div>
-        <h1 className={styles.quizName}>{`${this.state.quizes[quizId].title} ${Number(quizId)+1}`}</h1>
+        <h1 className={styles.quizTitleName}>{`${this.state.quizes[quizId].title} ${Number(quizId)+1}`}</h1>
         <div className={styles.answerWrapper}>
         <h1 className={styles.quizName}>{questionsIndexZero.question}</h1>
           <ul className={styles.answerList}>
@@ -166,13 +161,12 @@ export default class Quiz extends React.Component {
 
   renderFinishQuizButton() {
     return (
-      <div>
+      <div className={styles.finishQuizWrap}>
         <button
-          className="addAnswerButton"
-          style={{ marginTop: "1em", fontSize: "1em" }}
+          className={styles.finishQuiz}
           onClick={this.handleQuizCompleteClick}
         >
-          Zakończ Quiz
+          ZAKOŃCZ QUIZ
         </button>
       </div>
     );
@@ -182,8 +176,7 @@ export default class Quiz extends React.Component {
     return (
       <div>
         <button
-          className="addAnswerButton"
-          style={{ fontSize: "2em", textAlign: "center" }}
+          className={styles.startNewQuiz}
           onClick={this.handleQuizStartClick}
         >
           Rozpocznij nowy Quiz

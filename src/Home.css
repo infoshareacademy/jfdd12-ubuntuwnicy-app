@@ -18,7 +18,9 @@
     grid-template-columns: 1fr 1fr; 
     grid-template-rows: 1fr; 
     text-align: center;
-    padding: 8%;
+    padding-top: 2%;
+    padding-right: 5%;
+    padding-left: 5%;
     color: grey;
 }
 

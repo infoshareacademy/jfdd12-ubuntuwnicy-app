@@ -13,10 +13,37 @@
     padding: 0;
   }
 
+ .addQuizButton {
+    bottom: 2%;
+    right: 15%;
+    position: fixed;
+    background-color: #e0e0e0;
+    padding: 0;
+    border: 0;
+    border-radius: 4px;
+    letter-spacing: 0.02857em;
+    text-decoration: none;
+    font-size: 0.875rem;
+    color: black;
+    font-weight: 500;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+    z-index: 3;
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12);
+    width: 10em;
+    height: 3em;
+ } 
+
+ .addQuizButton:hover {
+    background-color: grey;
+    color: #FFFFFF;
+ }
+
 .listWrapper {
     display: flex;
-    flex-direction: column;
-    margin: 4%;        
+    flex-direction: column;       
     width: 70vw;
     height: 100%;
     margin-left: 15vw;
@@ -26,14 +53,21 @@
 }
 
 .listQuiz {
+    font-size: 0.875rem;
     color: grey;
     font-size: 1.5em;
+    margin-top: 1%;
     padding: 1%;
     list-style-type: none;
+    box-shadow: 0px 0px 38px -21px rgba(0, 0, 0, 0.6);
+    border-left: 10px solid green;
+    border-top-left-radius: 1em;
 }
 
 .listQuiz:hover {
-    box-shadow: 0px 0px 38px -21px rgba(0, 0, 0, 0.6);
+    
+    transform: scale(1.1);
+
 }
 
 .buttonsWrap {
@@ -43,4 +77,47 @@
 
 .linkStyles {
     color: grey;
+}
+
+.startQuizButton {
+    color: grey;
+    width: 70vw;
+    background-color: white;
+    border: 0;
+    height: 4.5em;
+    box-shadow: 0px 0px 38px -21px rgba(0, 0, 0, 0.6);
+    border-left: 10px solid green;
+    border-top-left-radius: 1em;
+}
+
+.startQuizList {
+    color: grey;
+    z-index: 1;
+    
+    font-size: 1.5em;
+    padding: 1%;
+    height: 5em;
+    text-align: center;
+    list-style-type: none;
+}
+
+.startQuizList:hover {
+    
+    transform: scale(1.1);
+}
+
+@media (max-width: 960px) {
+    
+   .addQuizButton {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        min-width: 100%;
+        box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.14);
+        border: 0;
+   }
+
+   .listQuiz {
+       margin: 7%;
+   }
 }
