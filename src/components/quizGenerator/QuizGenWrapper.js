@@ -137,7 +137,7 @@ export default class QuizGenWrapper extends React.Component {
   handleAddQuestion = () => {
     const newQuestionCard = {
       id: `${this.state.quiz.questions.length + 1}`,
-      question: "wprowadź pytanie",
+      question: "",
       answers: [
         {
           id: "1",
@@ -147,7 +147,7 @@ export default class QuizGenWrapper extends React.Component {
         {
           id: "2",
           answer: "",
-          correct: true
+          correct: false
         }
       ]
     };
@@ -204,7 +204,7 @@ export default class QuizGenWrapper extends React.Component {
     });
   };
 
-  handleRemoveAnswer = (questionId, event) => {
+  handleRemoveAnswer = (event, questionId) => {
     const answerId = event.target.name;
 
     let checkMinCorrectAnswers = this.checkCorrectAnswers(questionId);
@@ -306,7 +306,7 @@ export default class QuizGenWrapper extends React.Component {
           question={question}
           questionId={index}
           onClickRemoveAnswer={event =>
-            this.handleRemoveAnswer(question.id, event)
+            this.handleRemoveAnswer(event, question.id)
           }
           onClickCheckboxChange={event =>
             this.handleCheckboxChange(question.id, event)
@@ -328,14 +328,14 @@ export default class QuizGenWrapper extends React.Component {
     return (<>
       {this.state.isLoading ? <p>loader</p> :
         <>
-          
+
           <div className="quizGenWrapper">
             <h1 className="quizGenHeader">STWÓRZ QUIZ</h1>
             <QuizTitleInput quizTitle={this.state.quiz.title} onChange={this.handleTitleChange} />
             {this.renderQuestions()}
             <div className='saveAndAddButtons'>
-            <AddQuestionButton onClick={this.handleAddQuestion} />
-            <button onClick={this.handleSaveQuiz} className="saveQuizButton">ZAPISZ QUIZ</button>
+              <AddQuestionButton onClick={this.handleAddQuestion} />
+              <button onClick={this.handleSaveQuiz} className="saveQuizButton">ZAPISZ QUIZ</button>
             </div>
           </div></>}
     </>
