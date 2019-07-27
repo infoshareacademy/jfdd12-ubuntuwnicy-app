@@ -1,12 +1,14 @@
 import React from 'react'
 import { QuizContext } from '../../contexts/QuizContext'
-import { Button } from '@material-ui/core'
 import { fetchQuiz, addNewQuiz, deleteQuiz } from '../../services/QuizService'
 import { BrowserRouter as Route, Link, Redirect, withRouter } from "react-router-dom";
-import { Dimmer, Loader} from 'semantic-ui-react'
+import { Dimmer, Loader, Button } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
+import './QuizGenList.css'
+
 
 export class QuizesGenList extends React.Component {
+
 
     static contextType = QuizContext
 
@@ -49,13 +51,15 @@ export class QuizesGenList extends React.Component {
       </Dimmer>
 
      :
-                <div>
+                <div className='listWrapper'>
                     <ul>
                         {this.state.quizes.map(quiz => {
-                            return <li key={quiz.uniqueId}>Tytuł Quizu: {quiz.title}, liczba pytan: {quiz.questions.length}
-                                <Link to={`/quizes-gen-list/${quiz.uniqueId}`}>
-                                    Edytuj Quiz
-                                </Link><Button onClick={() => this.handleRemoveQuiz(quiz.uniqueId)}>Usuń Quiz</Button>
+                            return <li className='listQuiz' key={quiz.uniqueId}>Tytuł Quizu: {quiz.title}, liczba pytan: {quiz.questions.length}
+                            <div className='buttonsWrap'>
+                               <Button.Group> <Button positive to={`/quizes-gen-list/${quiz.uniqueId}`}>
+                                    EDYTUJ
+                                </Button> <Button.Or /><Button onClick={() => this.handleRemoveQuiz(quiz.uniqueId)}>USUŃ</Button></Button.Group>
+                                </div>
                             </li>
                         })}
                     </ul>
