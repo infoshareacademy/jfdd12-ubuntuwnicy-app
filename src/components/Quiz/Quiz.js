@@ -4,9 +4,7 @@ import { stringLiteral } from "@babel/types";
 import { QuestionsButtons } from "./QuestionsButtons";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AddAnswerButton from "../quizGenerator/AddAnswerButton";
-
-import { QuizContext } from "../../contexts/QuizContext";
-import QuizList from "./QuizList";
+import { fetchQuiz } from "../../services/QuizService";
 
 const Answer = ({ answer, isClicked, onClick }) => (
   <li className={styles.possibleAnswer}>
@@ -39,103 +37,74 @@ const Spinner = () => (
 );
 
 export default class Quiz extends React.Component {
-  static contextType = QuizContext;
-
-  //  idPytania this.state.currentQuestionId
-  //  this.state.answers.idPytania.map(id => )
-
   state = {
-    currentQuizId: this.props.match.params.id - 1,
     currentQuestionId: 0,
     answers: {},
     questions: {},
     areQuestionsLoading: true,
     isQuizComplete: false,
-    selectedAnswers: [],
-    score: 0
+    quizes: [],
+    quizId: this.props.match.params.id
   };
-
-  getQuestions() {
-    const questions = this.context.quizes[0].questions;
-
-    this.setState({
-      ...this.state,
-      questions,
-      areQuestionsLoading: false
-    });
-
-    return questions;
-  }
 
   getQuizResult() {
     const { questions, answers } = this.state;
-    // const score = questions.reduce()
-    // (currentScore, currentQuestion, currentQuestionId) => {
-    //   const isAnswerCorrect = currentQuestion.answers[1].correct === true;
-    //   // currentQuestion.correctAnswer === answers[currentQuestionId];
-    //   return isAnswerCorrect ? currentScore + 1 : currentScore;
-    // },
-    // 0
-    // );
+    console.log(questions.questions);
+    const score = questions.questions.reduce(
+      (currentScore, currentQuestion, currentQuestionId) => {
+        const isAnswerCorrect =
+          currentQuestion.correctAnswer === answers[currentQuestionId];
+        return isAnswerCorrect ? currentScore + 1 : currentScore;
+      },
+      0
+    );
 
-    // Kiedy rozpoczynam quiz to ustawiam na jakim pytaniu startujesz, muszę do tego celu używać QuestionId a nie indexu pytania
-
-    // return score / questions.length;
-
-    const score = questions.reduce((accu, question) => {
-      return question.correctAnswers.length ===
-        answers[question.id - 1].length &&
-        question.correctAnswers.every(answer =>
-          answers[question.id - 1].includes(`${answer}`)
-        )
-        ? accu + 1
-        : accu;
-    }, 0);
     return score / questions.length;
   }
 
   componentDidMount() {
-    this.getQuestions();
+    this.setState(
+      {
+        areQuestionsLoading: true
+      },
+      () =>
+        fetchQuiz(quizes => {
+          // console.log(quizes);
+          // console.log(
+          //   quizes.find(quiz => quiz.id == this.props.match.params.id)
+          // );
+          this.setState({
+            quizes,
+            areQuestionsLoading: false,
+            questions: quizes.find(
+              quiz => quizes.indexOf(quiz) == this.props.match.params.id
+            )
+          });
+        })
+    );
   }
 
-  handleAnswerClick = (answerId, questionId) => {
-    const { answers, currentQuestionId } = this.state;
+  handleAnswerClick = answerId => {
+    const { answers: previousAnswers, currentQuestionId } = this.state;
 
-    const previousAnswers = this.state.answers[questionId]
-      ? [...this.state.answers[questionId]]
-      : [];
+    let answers;
 
-    this.setState({
-      answers: {
-        ...answers,
-        [currentQuestionId]: [...new Set([...previousAnswers, answerId])]
-      }
-    });
+    if (previousAnswers[currentQuestionId] === answerId) {
+      answers = Object.entries(previousAnswers)
+        .filter(([key]) => key !== `${currentQuestionId}`)
+        .reduce((answers, [key, value]) => ({ ...answers, [key]: value }), {});
+    } else {
+      answers = {
+        ...previousAnswers,
+        [currentQuestionId]: answerId
+      };
+    }
 
-    // this.state.answers.questionId.map(id =>
-    //   this.setState({ selectedAnswers: id })
+    this.setState({ answers });
   };
-
-  // if (previousAnswers[currentQuestionId] === answerId) {
-  //   answers = Object.entries(previousAnswers)
-  //     .filter(([key]) => key !== `${currentQuestionId}`)
-  //     .reduce((answers, [key, value]) => ({ ...answers, [key]: value }), {});
-  // } else {
-  //   answers = {
-  //     ...previousAnswers,
-  //     [currentQuestionId]: answerId
 
   handleQuestionChangeClick = questionId => {
-    const { answers: previousAnswers, currentQuestionId } = this.state;
     this.setState({ currentQuestionId: questionId });
-
-    const currentQuestionCorrectAnwers = this.context.quizes[0].questions[
-      questionId
-    ].correctAnswers;
-  };
-
-  handleQuizChangeClick = quizId => {
-    this.setState({ currentQuizId: quizId });
   };
 
   handleQuizCompleteClick = () => {
@@ -152,18 +121,20 @@ export default class Quiz extends React.Component {
     });
   };
 
-  isSelectedAnswer = (questionId, currentAnswerId) =>
-    this.state.answers[questionId] &&
-    this.state.answers[questionId].includes(currentAnswerId);
+  isSelectedAnswer(questionId, currentAnswerId) {
+    const { answers } = this.state;
+    return answers[questionId] === currentAnswerId;
+  }
 
-  renderQuestion(question, questionId) {
-    let context = this.context;
-    // console.log(context, "CONTEXT");
-    let questionsIndexZero = context.quizes[0].questions[questionId];
+  renderQuestion(question, questionId, quizId) {
+    console.log(this.state);
+    let questionsIndexZero = this.state.questions.questions[questionId];
+    console.log(questionsIndexZero);
     return (
-      <div className={styles.questionCard}>
-        <h1 className={styles.quizName}>{questionsIndexZero.question}</h1>
+      <div>
+        <h1 className={styles.quizName}>{`${this.state.quizes[quizId].title} ${Number(quizId)+1}`}</h1>
         <div className={styles.answerWrapper}>
+        <h1 className={styles.quizName}>{questionsIndexZero.question}</h1>
           <ul className={styles.answerList}>
             {questionsIndexZero.answers.map(answer => (
               <Answer
@@ -171,7 +142,7 @@ export default class Quiz extends React.Component {
                 answer={answer}
                 className={styles.answer}
                 isClicked={this.isSelectedAnswer(questionId, answer.id)}
-                onClick={() => this.handleAnswerClick(answer.id, questionId)}
+                onClick={() => this.handleAnswerClick(answer.id)}
               />
             ))}
           </ul>
@@ -179,26 +150,16 @@ export default class Quiz extends React.Component {
       </div>
     );
   }
-
-  renderQuiz(quiz, quizId) {
-    const { currentQuizId } = this.state;
-    console.log(currentQuizId);
-    console.log(this.context.quizes[this.state.currentQuizId]);
-    return (
-      <div>
-        <h1 className>{this.context.quizes[this.state.currentQuizId].title}</h1>
-      </div>
-    );
-  }
-
+  
   renderQuestionsButtons() {
-    const { currentQuestionId, questions } = this.state;
+    const { currentQuestionId, questions, quizes } = this.state;
 
     return (
       <QuestionsButtons
         onQuestionChangeHandler={this.handleQuestionChangeClick}
         currentQuestionId={currentQuestionId}
-        totalNumberOfQuestion={questions.length}
+        totalNumberOfQuestion={questions.questions.length}
+        questions={questions}
       />
     );
   }
@@ -243,11 +204,10 @@ export default class Quiz extends React.Component {
   }
 
   render() {
-    const { match } = this.props;
     const {
       areQuestionsLoading,
       currentQuestionId,
-      currentQuizId,
+      quizId,
       questions,
       isQuizComplete
     } = this.state;
@@ -256,19 +216,19 @@ export default class Quiz extends React.Component {
       return this.renderQuizComplete();
     }
 
-    if (areQuestionsLoading) {
+    if (!questions || areQuestionsLoading) {
+      // debugger;
       return <Spinner />;
     }
 
+    console.log(questions);
     const currentQuestion = questions[currentQuestionId];
-    const currentQuiz = this.context.quizes[currentQuizId];
 
     return (
       <div className={styles.quizTitles}>
-        <h1>{this.renderQuiz(currentQuiz, currentQuizId)}</h1>
         <div className={styles.questionCard}>
-          {this.renderQuestion(currentQuestion, currentQuestionId)}
-          {this.renderQuestionsButtons(currentQuizId)}
+          {this.renderQuestion(currentQuestion, currentQuestionId, quizId)}
+          {this.renderQuestionsButtons(questions)}
           {this.renderFinishQuizButton()}
         </div>
       </div>
