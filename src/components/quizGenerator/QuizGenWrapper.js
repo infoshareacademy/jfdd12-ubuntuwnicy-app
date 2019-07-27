@@ -45,17 +45,22 @@ export default class QuizGenWrapper extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-
-    if (this.state.isLoading === false && prevState.quiz.questions !== undefined) {
-      if (this.state.quiz.questions.length - 1 === prevState.quiz.questions.length) {
-        this.scrollToBottom()
+    if (
+      this.state.isLoading === false &&
+      prevState.quiz.questions !== undefined
+    ) {
+      if (
+        this.state.quiz.questions.length - 1 ===
+        prevState.quiz.questions.length
+      ) {
+        this.scrollToBottom();
       }
     }
   }
 
   scrollToBottom = () => {
-    this.element && this.element.scrollIntoView({ behavior: 'smooth' })
-  }
+    this.element && this.element.scrollIntoView({ behavior: "smooth" });
+  };
 
   handleTitleChange = newTitle => {
     this.setState({
@@ -88,8 +93,6 @@ export default class QuizGenWrapper extends React.Component {
   handleAnswerChange = (event, questionId) => {
     const answerId = event.target.name;
     const answerInput = event.target.value;
-
-
 
     const newQuestions = this.state.quiz.questions.map(question => {
       if (question.id === questionId) {
@@ -132,7 +135,6 @@ export default class QuizGenWrapper extends React.Component {
   };
 
   handleAddQuestion = () => {
-
     const newQuestionCard = {
       id: `${this.state.quiz.questions.length + 1}`,
       question: "wprowadź pytanie",
@@ -280,15 +282,19 @@ export default class QuizGenWrapper extends React.Component {
 
   setRefForLastElement = (el, index, questionsCount) => {
     if (questionsCount === index) {
-      this.element = el
+      this.element = el;
     }
-  }
+  };
 
   renderQuestions = () => {
-    const { questions } = this.state.quiz
-    const questionsCount = questions.length - 1
+    const { questions } = this.state.quiz;
+    const questionsCount = questions.length - 1;
     return questions.map((question, index) => (
-      <div key={index} className={"quizGenInputs"} ref={el => this.setRefForLastElement(el, index, questionsCount)}>
+      <div
+        key={index}
+        className={"quizGenInputs"}
+        ref={el => this.setRefForLastElement(el, index, questionsCount)}
+      >
         <RemoveQuestionButton
           onClick={event => this.handleRemoveQuestion(question.id, event)}
         />
@@ -305,19 +311,15 @@ export default class QuizGenWrapper extends React.Component {
           onClickCheckboxChange={event =>
             this.handleCheckboxChange(question.id, event)
           }
-          onAnswerChange={event =>
-            this.handleAnswerChange(event, question.id)
-          }
+          onAnswerChange={event => this.handleAnswerChange(event, question.id)}
         />
-        <AddAnswerButton
-          onClick={() => this.handleAddAnswer(question.id)}
-        />
+        <AddAnswerButton onClick={() => this.handleAddAnswer(question.id)} />
       </div>
-    ))
-  }
+    ));
+  };
 
   render() {
-    console.log(this.props.match.params.id)
+    console.log(this.props.match.params.id);
     console.log(this.state);
     console.log(this.context);
 

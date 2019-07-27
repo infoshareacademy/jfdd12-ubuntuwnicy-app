@@ -102,6 +102,11 @@ body {
   height: 3em;
 }
 
+.buttonChooseQuiz {
+  width: 10em;
+  height: 5em;
+}
+
 .pagination {
   bottom: 3%;
   position: fixed;
@@ -213,10 +218,6 @@ body {
 .navigationButton:hover {
   background-color: grey;
   color: #ffffff;
-}
-
-.questionCard {
-  
 }
 
 @media (max-width: 480px) {
