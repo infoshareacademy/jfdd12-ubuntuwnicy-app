@@ -63,17 +63,23 @@ export const addNewQuiz = (quizId) => {
 
 export const saveQuiz = (quiz) => {
 
-    // const questionsWithCorrectAnswers = quiz.questions.map(question => {
-    //     const correctAnswers = question.answers.filter(answer => {
-    //         return answer.isCorrect === true
-    //     })
+    const newQuestions = quiz.questions.map(question => {
 
-    //     return question = ({ ...question, correctAnswers: correctAnswers }
+        question.correctAnswers = []
 
-    // })
-    // console.log(quizWithCorrectAnswers)
-    // firebase.database().ref(`quizes/${quiz.uniqueId}`).set(quizWithCorrectAnswers)
-    return null
+        question.answers.forEach(answer => {
+            if (answer.correct === true) {
+                question.correctAnswers.push(answer.id)
+            }
+        })
+        return question
+
+    })
+
+    const newQuiz = { ...quiz, questions: newQuestions }
+
+    firebase.database().ref(`quizes/${quiz.uniqueId}`).set(newQuiz)
+
 }
 
 export const deleteQuiz = (uniqueQuizId) => {
