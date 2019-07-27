@@ -45,6 +45,7 @@ export default function AnswerInput(props) {
                checked={isCorrect}
                name={name}
            />
+           
            <IconButton className={classes.button} aria-label="delete" name={answerId} onClick={onClickRemoveAnswer} >
                <DeleteIcon />
            </IconButton>

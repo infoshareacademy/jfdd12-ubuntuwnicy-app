@@ -5,6 +5,7 @@ import { BrowserRouter as Route, Link, Redirect, withRouter } from "react-router
 import { Dimmer, Loader, Button } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import './QuizGenList.css'
+import './QuizGenWrapperStyles.css'
 
 
 export class QuizesGenList extends React.Component {
@@ -53,10 +54,11 @@ export class QuizesGenList extends React.Component {
       </Dimmer>
 
      :
+                
                 <div className='listWrapper'>
                     <ul>
                         {this.state.quizes.map(quiz => {
-                            return <li className='listQuiz' key={quiz.uniqueId}>Tytuł Quizu: {quiz.title}, liczba pytań: {quiz.questions.length}
+                            return <li className='listQuiz' key={quiz.uniqueId}>{quiz.title}, liczba pytań: {quiz.questions.length}
                                 <div className='buttonsWrap'>
                                 <Button.Group> 
                                         <Link to={`/quizes-gen-list/${quiz.uniqueId}`}>
@@ -73,7 +75,7 @@ export class QuizesGenList extends React.Component {
                             </li>
                         })}
                     </ul>
-                    <Button onClick={() => this.addNewQuizAndFollow(this.state.quizes.length + 1)}>DODAJ NOWY QUIZ</Button>
+                    <button className='addQuestionButton' onClick={() => this.addNewQuizAndFollow(this.state.quizes.length + 1)}>NOWY QUIZ</button>
                 </div>
             } </div>
     }
