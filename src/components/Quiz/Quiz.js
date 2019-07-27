@@ -174,7 +174,7 @@ export default class Quiz extends React.Component {
 
   renderStartQuizButton() {
     return (
-      <div>
+      <div className={styles.startNewQuizWrap}>
         <button
           className={styles.startNewQuiz}
           onClick={this.handleQuizStartClick}

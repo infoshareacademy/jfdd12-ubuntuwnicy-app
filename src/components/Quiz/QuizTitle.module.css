@@ -21,6 +21,7 @@ body {
 .quizTitleName {
   border-bottom: 1px solid grey;
   margin-bottom: 1%;
+  word-wrap: break-word;
 }
 
 .quizName {
@@ -29,6 +30,7 @@ body {
   text-align: center;
   color: grey;
   padding: 3% 0 2% 0;
+  word-wrap: break-word;
 }
 
 .currentQuestion {
@@ -58,7 +60,7 @@ body {
 
 .questionCard {
   padding-top: 0;
-  height: 70vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,25 +69,26 @@ body {
 .possibleAnswer {
   display: block;
   margin: 0;
-  padding: 0;
+  padding: 0.5%;
   color: black;
   width: 60vw;
-  height: 5em;
-  font-size: 1.2em;
+  height: 100%;
+  font-size: 1em;
 }
 
 .button {
   margin: 0;
-  padding: 1%;
+  padding: 2%;
   border: 0;
   border-left: 10px solid green;
   border-top-left-radius: 1em;
   color: black;
   width: 60vw;
-  height: 4em;
-  font-size: 1.2em;
+  height: 100%;
+  font-size: 1em;
   box-shadow: 0px 0px 38px -21px rgba(0, 0, 0, 0.6);
   cursor: pointer;
+  word-wrap: break-word;
 }
 
 .button:hover {
@@ -126,7 +129,7 @@ body {
 }
 
 .pagination {
-  bottom: 3%;
+  bottom: 1%;
   position: fixed;
   display: flex;
   flex-direction: row;
@@ -186,6 +189,9 @@ body {
 }
 
 .score {
+  color: grey;
+  font-weight: bolder;
+  margin-top: 5%;
   font-size: 5rem;
   text-align: center;
 }
@@ -237,7 +243,7 @@ body {
 
 .finishQuiz {
   bottom: 2%;
-  right: 15%;
+  right: 12%;
   position: fixed;
   background-color: #e0e0e0;
   padding: 0;
@@ -258,6 +264,33 @@ body {
   height: 3em;
 } 
 
+.startNewQuiz {
+  margin-top: 12%;
+  margin-left: 42vw;
+  margin-right: 42vw;
+  background-color: #e0e0e0;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  letter-spacing: 0.02857em;
+  text-decoration: none;
+  font-size: 1rem;
+  color: black;
+  font-weight: 500;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12);
+  width: 16em;
+  height: 5em;
+}
+
+.startNewQuiz:hover {
+background-color: grey;
+color: #FFFFFF;
+}
+
 .finishQuiz:hover {
   background-color: grey;
   color: #FFFFFF;
@@ -266,7 +299,9 @@ body {
 @media (max-width: 480px) {
   .score {
     top: 25%;
-    margin: 10%;
+    margin: 0;
+    margin-right: 15vw;
+    margin-left: 15vw;
     color: grey;
     font-weight: bolder;
     font-size: 2em;
@@ -281,6 +316,7 @@ body {
     font-size: 1.75em;
     text-align: center;
     border-bottom: 1px solid grey;
+    word-wrap: break-word;
   }
 
   .quizName {
@@ -288,6 +324,7 @@ body {
     padding: 3%;
     font-size: 1.5em;
     text-align: center;
+    word-wrap: break-word;
   }
 
   .buttonQuestion {
@@ -312,19 +349,30 @@ body {
     margin: 1% 1%;
   }
 
-  .possibleAnswer {
-    width: 17em;
-    padding: 0;
+  .questionCard {
+    height: 100%;
   }
+
+  .possibleAnswer {
+    width: 100vw;
+    padding: 2%;
+    height: 100%;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
   .button {
     margin-left: 0;
     margin-right: 0;
-    border-top: 1px solid #e0e0e0;
-    border-bottom: 1px solid #e0e0e0;
+    font-size: 0.75em;
+    text-align: center;
+    box-shadow: none;
+    border-radius: 0;
     border-left: 0;
     border-right: 0;
-    height: 7em;
-    width: 100vw;
+    word-wrap: break-word;
+    padding: 2%;
+    height: 100%;
+    width: 100%;
   }
 
   .arrowButtonQuestion {
@@ -376,11 +424,14 @@ body {
     justify-content: center;
     flex-wrap: nowrap;
     width: 100vw;
+    height: 2.9em;
+    opacity: 0.9;
   }
 
   .finishQuiz {
     position: fixed;
-    bottom: 5vh;
+    bottom: 3.5em;
+    opacity: 0.9;
     right: 0;
     left: 0;
     min-width: 100%;
@@ -394,16 +445,102 @@ body {
     position: relative;
   }
 
+  .startNewQuizWrap {
+    width: 70vw;
+    margin-right: 15vw;
+    margin-left: 15vw;
+    padding: 3%;
+    text-align: center;
+  }
+
   .startNewQuiz {
-    margin: 10%;
+      margin-right: 15vw;
+      margin-left: 7vw;
+    text-align: center;
 
   }
+
+  .answerWrapper {
+    margin: 0;
+  }
+
+  .answerWrapper ul {
+    width: 100vw;
+  }
+
 }
 
 @media only screen and (min-width: 481px) and (max-width: 1120px) {
-  .possibleAnswer {
-    width: 80vw;
-    height: 7em;
+
+  .score {
+    top: 25%;
+    margin: 0;
+    margin-right: 15vw;
+    margin-left: 15vw;
+    color: grey;
+    font-weight: bolder;
+    font-size: 2em;
+    text-align: center;
+    padding: 3%;
+    width: 70vw;
   }
 
+  .questionCard {
+    height: 100%;
+    margin-bottom: 4em;
+  }
+
+  .possibleAnswer {
+    width: 100vw;
+    padding: 2%;
+    height: 100%;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .button {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 0.75em;
+    text-align: center;
+    box-shadow: none;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    word-wrap: break-word;
+    padding: 2%;
+    height: 100%;
+    width: 100%;
+  }
+
+  .pagination {
+    bottom: 0;
+    margin: 2% 0 0 0;
+    right: 0;
+    left: 0;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+    width: 100vw;
+    height: 3em;
+    opacity: 0.9;
+  }
+  
+  .finishQuiz {
+    position: fixed;
+    bottom: 3.5em;
+    opacity: 0.9;
+    right: 0;
+    left: 0;
+    min-width: 100%;
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.14);
+    border: 0;
+  }
+
+
+  .finishQuizWrap {
+    height: 15vh;
+    position: relative;
+  }
 }

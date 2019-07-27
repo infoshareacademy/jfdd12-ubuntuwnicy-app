@@ -55,15 +55,21 @@
     }
 
     .titlePage h2 {
-        font-size: 4em;
-        text-align: center;
-        padding: 5%;
+        display: none;
     }
 
     .infoOnMainPage {
-        padding: 15%;
-        font-size: 1.25em;
+        display: none;
+    }
+
+    .titlePage {
+        display: flex; 
+        flex-direction: column;
         text-align: center;
+        padding-top: 2%;
+        padding-right: 5%;
+        padding-left: 5%;
+        color: grey;
     }
 }
 
@@ -80,14 +86,20 @@
     }
 
     .titlePage h2 {
-        font-size: 3em;
-        text-align: center;
-        padding: 5%;
+        display: none;
     }
 
     .infoOnMainPage {
-        padding: 15%;
-        font-size: 1.25em;
+        display: none;
+    }
+
+    .titlePage {
+        display: flex; 
+        flex-direction: column;
         text-align: center;
+        padding-top: 2%;
+        padding-right: 5%;
+        padding-left: 5%;
+        color: grey;
     }
 }

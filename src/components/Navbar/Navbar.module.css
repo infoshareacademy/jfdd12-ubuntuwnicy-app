@@ -30,7 +30,8 @@ body {
   color: grey;
   list-style-type: none;
   font-size: 2em;
-  padding: 0 20px;
+  padding: 0 30px;
+  padding-bottom: 10px;
   text-align: center;
   flex-basis: 25%;
   display: flex;
@@ -41,8 +42,15 @@ body {
 }
 
 .navbar a:hover {
-  background-color: rgb(255, 255, 153);
+  padding-bottom: 0;
   cursor: pointer;
+  border-bottom: 10px solid green;
+ 
+}
+
+.navbar a:disabled {
+  padding-bottom: 0;
+  border-bottom: 10px solid green;
 }
 
 .navbar img {

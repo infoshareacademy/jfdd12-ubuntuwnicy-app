@@ -117,7 +117,25 @@
         border: 0;
    }
 
-   .listQuiz {
-       margin: 7%;
+   .listWrapper {
+      margin: 0;
    }
+
+   .listQuiz {
+       margin-top: 2%;
+       width: 100vw;
+       height: 4.5em;
+       text-align: center;
+   }
+
+   .startQuizButton {
+       margin: 0;
+       width: 100vw;
+   }
+
+   .quizName {
+       margin-bottom: 25em;
+   }
+
+   
 }
