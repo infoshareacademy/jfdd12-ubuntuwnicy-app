@@ -27,14 +27,6 @@ export const Navbar = props => {
           exact
           className={"default-link"}
           activeClassName={"active-link"}
-          to="/quiz"
-        >
-          Dołącz do Quizu
-        </NavLink>
-        <NavLink
-          exact
-          className={"default-link"}
-          activeClassName={"active-link"}
           to="/quizlist"
         >
           Wyświetl dostępne Quizy

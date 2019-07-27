@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./QuizTitle.module.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { QuizContext } from "../../contexts/QuizContext";
 import { fetchQuiz } from "../../services/QuizService";
 
 const Button = ({ children, disabled = false, onClick, isQuestionNumber }) => (
@@ -27,7 +26,6 @@ const Spinner = () => (
   </div>
 );
 export default class QuizList extends React.Component {
-  static contextType = QuizContext;
 
   state = {
     listIsLoading: true
@@ -42,7 +40,6 @@ export default class QuizList extends React.Component {
   }
 
   render() {
-    const { onQuizChangeHandler, currentQuizId } = this.props;
     const { listIsLoading } = this.state;
 
     return (
@@ -53,9 +50,6 @@ export default class QuizList extends React.Component {
           <div>
             {this.state.quizes.map(quiz => (
               <QuizButton
-                currentQuizId={currentQuizId}
-                key={quiz.id}
-                onClick={() => onQuizChangeHandler(currentQuizId)}
                 link={quiz.id}
               />
             ))}

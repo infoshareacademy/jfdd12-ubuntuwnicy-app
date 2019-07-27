@@ -68,10 +68,10 @@ export default class Quiz extends React.Component {
       },
       () =>
         fetchQuiz(quizes => {
-          console.log(quizes);
-          console.log(
-            quizes.find(quiz => quiz.id == this.props.match.params.id)
-          );
+          // console.log(quizes);
+          // console.log(
+          //   quizes.find(quiz => quiz.id == this.props.match.params.id)
+          // );
           this.setState({
             quizes,
             areQuestionsLoading: false,
@@ -127,7 +127,7 @@ export default class Quiz extends React.Component {
 
   renderQuestion(question, questionId, quizId) {
     console.log(this.state);
-    let questionsIndexZero = this.state.questions[questionId];
+    let questionsIndexZero = this.state.questions.questions[questionId];
     console.log(questionsIndexZero);
     return (
       <div>
@@ -148,18 +148,7 @@ export default class Quiz extends React.Component {
       </div>
     );
   }
-
-  // <h1 className={styles.quizName}>{question.question}</h1>
-  // <div className={styles.answerWrapper}>
-  //   <ul className={styles.answerList}>
-  //     {question.answers.map(answer => (
-  //       <Answer
-  //         key={answer.id}
-  //         answer={answer}
-  //         className={styles.answer}
-  //         isClicked={this.isSelectedAnswer(questionId, answer.id)}
-  //         onClick={() => this.handleAnswerClick(answer.id)}
-
+  
   renderQuestionsButtons() {
     const { currentQuestionId, questions, quizes } = this.state;
 
@@ -167,7 +156,7 @@ export default class Quiz extends React.Component {
       <QuestionsButtons
         onQuestionChangeHandler={this.handleQuestionChangeClick}
         currentQuestionId={currentQuestionId}
-        totalNumberOfQuestion={questions.length}
+        totalNumberOfQuestion={questions.questions.length}
         questions={questions}
       />
     );
@@ -226,7 +215,7 @@ export default class Quiz extends React.Component {
     }
 
     if (!questions || areQuestionsLoading) {
-      debugger;
+      // debugger;
       return <Spinner />;
     }
 
