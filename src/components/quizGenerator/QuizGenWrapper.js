@@ -11,7 +11,7 @@ import { Dimmer, Loader, Button } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import { fetchQuiz, saveQuiz } from '../../services/QuizService'
 import { BrowserRouter as Route, withRouter, Prompt } from "react-router-dom";
-
+import ScrollUpButton from "react-scroll-up-button";
 
 const selectQuizByUniqueId = (quizes, uniqueId) => {
   return quizes.find(quiz => quiz.uniqueId === uniqueId)
@@ -348,6 +348,7 @@ class QuizGenWrapper extends React.Component {
             <div className='saveAndAddButtons'>
               <AddQuestionButton onClick={this.handleAddQuestion} />
               <button onClick={this.handleSaveQuiz} className="saveQuizButton">ZAPISZ QUIZ</button>
+              <ScrollUpButton />
             </div>
           </div></>}
     </>

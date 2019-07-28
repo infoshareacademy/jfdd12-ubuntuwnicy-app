@@ -12,7 +12,7 @@ export const Navbar = props => {
         <NavLink
           exact
           className={"default-link"}
-          activeClassName={"active-link"}
+          activeClassName={styles.activeLink}
           to="/"
         >
           <img src={logo} />
@@ -21,7 +21,7 @@ export const Navbar = props => {
         <NavLink
           exact
           className={"default-link"}
-          activeClassName={"active-link"}
+          activeClassName={styles.activeLink}
           to="/quizes-gen-list"
         >
           Stwórz Quiz
@@ -29,7 +29,7 @@ export const Navbar = props => {
         <NavLink
           exact
           className={"default-link"}
-          activeClassName={"active-link"}
+          activeClassName={styles.activeLink}
           to="/quizlist"
         >
           Wyświetl dostępne Quizy

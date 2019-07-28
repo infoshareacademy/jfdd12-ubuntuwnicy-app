@@ -5,6 +5,7 @@ import { fetchQuiz } from "../../services/QuizService";
 import { Dimmer, Loader} from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import '../quizGenerator/QuizGenList.css'
+import ScrollUpButton from "react-scroll-up-button";
 
 const Button = ({ children, disabled = false, onClick, isQuestionNumber }) => (
   <button
@@ -67,6 +68,7 @@ function QuizButton(props) {
         <li className='startQuizList'>
           <Link className='linkStyles' to={`/quiz/${link-1}`}>
             <button className='startQuizButton'>{title}</button>
+            <ScrollUpButton />
           </Link>
         </li>
       </ul>
