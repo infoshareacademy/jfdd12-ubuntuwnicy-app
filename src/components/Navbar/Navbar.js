@@ -18,29 +18,23 @@ export const Navbar = props => {
           <img src={logo} />
         </NavLink>
 
-            <NavLink
-              exact
-              className={"default-link"}
-              activeClassName={"active-link"}
-              to="/quizes-gen-list"
-            >
-              Stwórz Quiz
-        </NavLink>
-            <NavLink
-              exact
-              className={"default-link"}
-              activeClassName={"active-link"}
-              to="/quizlist"
-            >
-              Wyświetl dostępne Quizy
-        </NavLink>
-        { props.isLoggedIn ?
         <NavLink
-        onClick={props.onClickLogout}
+          exact
+          className={"default-link"}
+          activeClassName={"active-link"}
+          to="/quizes-gen-list"
         >
-          <p>Wyloguj się</p>
+          Stwórz Quiz
         </NavLink>
-        : null}
+        <NavLink
+          exact
+          className={"default-link"}
+          activeClassName={"active-link"}
+          to="/quizlist"
+        >
+          Wyświetl dostępne Quizy
+        </NavLink>
+        
       </div>
     </nav>
   );
