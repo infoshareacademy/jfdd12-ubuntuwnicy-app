@@ -1,35 +1,20 @@
 import firebase from 'firebase'
 
+
+export const signUp = signUpForm => {
+
+  const uniqueIdRef = firebase.database().ref('users').push(signUpForm)
+
+  const postId = uniqueIdRef.key
+
+  firebase.database().ref(`users/${postId}`).update({ 'uniqueId': `${postId}` })
+
+};
+
+export const signOut = () => {
+  firebase.auth().signOut();
+};
+
 export const signIn = (email, password) => {
-    firebase.auth().signInWithEmailAndPassword(email, password);
-  };
-  
-  export const signUp = formData => {
-    if (
-      formData.email === "" ||
-      formData.password === "" ||
-      formData.firstName === "" ||
-      formData.lastName === ""
-    ) {
-      return;
-    }
-  
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(formData.email, formData.password)
-      .then(value => {
-        firebase
-          .database()
-          .ref("users")
-          .child(value.user.uid)
-          .set({
-            firstName: formData.firstName,
-            lastName: formData.lastName
-          });
-      });
-  };
-  
-  export const signOut = () => {
-    firebase.auth().signOut();
-  };
-  
+  firebase.auth().signInWithEmailAndPassword(email, password);
+};

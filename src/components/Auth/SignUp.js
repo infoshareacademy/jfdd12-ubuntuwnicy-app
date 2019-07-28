@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import {signUp} from '../../services/AuthService'
 
 const useStyles = makeStyles(theme => ({
     '@global': {
@@ -41,7 +42,11 @@ export default function SignUp() {
         password: ''
     })
 
-
+    function handleSignUp(event) {
+        event.preventDefault()
+        if(state.email.includes('@') && state.name !== '' && state.password !== ''){
+        signUp(state)}
+    }
 
     const classes = useStyles();
 
@@ -99,7 +104,7 @@ export default function SignUp() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={(event) => { event.preventDefault() }}
+                        onClick={handleSignUp}
                     >
                         Zarejestruj się
           </Button>
