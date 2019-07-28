@@ -69,7 +69,7 @@ export default function SignIn(props) {
     }
 
     return (<>
-        {props.isLoggedIn ? null :
+
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <div className={classes.paper}>
@@ -121,6 +121,6 @@ export default function SignIn(props) {
                         </Grid>
                     </form>
                 </div>
-            </Container>}
+            </Container>
     </>);
 }
