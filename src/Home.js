@@ -7,11 +7,12 @@ import SignIn from '../src/components/Auth/SignIn'
 
 
 export default function Home(props) {
-// const {onLogin} = props
-//   function onLoginFromHome() {
-//     console.log('on login from home')
-//     onLogin()
-//   }
+const {onLogin} = props
+
+  function onLoginFromHome(uniqueId) {
+    console.log('on login from home')
+    onLogin(uniqueId)
+  }
 
   return <div className={'titlePage'}>
     <div className='welcomeTitle'>
@@ -24,8 +25,8 @@ export default function Home(props) {
       </div>
     </div>
     <div>
-      <SignIn onLogin={props.onLogin}></SignIn>
-      <SignUp></SignUp>
+      <SignIn onLogin={onLoginFromHome} isLoggedIn={props.isLoggedIn}></SignIn>
+      <SignUp onLogin={props.onLogin} isLoggedIn={props.isLoggedIn}></SignUp>
     </div>
   </div>
 };

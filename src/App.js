@@ -19,20 +19,21 @@ const NoMatch = () => <h1>404</h1>;
 class App extends Component {
 
   state = {
-    isLoggedIn: false
+    isLoggedIn: false,
+    uniqueId: ''
   }
 
 
-  onLoginFromApp() {
+  onLoginFromApp(uniqueId) {
 
-    debugger
-    console.log(this)
-    this.setState({ isLoggedIn: true })
+    this.setState({ isLoggedIn: true, uniqueId: uniqueId })
+    alert("Użytkownik poprawnie zalogowany.")
   }
 
   render() {
     return (
       <QuizProvider>
+        {console.log(this.state)}
         <Router>
           <div>
             <Navbar isLoggedIn={this.state.isLoggedIn} />

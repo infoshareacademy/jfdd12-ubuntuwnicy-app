@@ -50,7 +50,7 @@ export default function SignIn(props) {
                 if (user.email === email && user.password === password) {
 
                     console.log('zalogowany')
-                    props.onLogin()
+                    props.onLogin(user.uniqueId)
                 }else{
                     alert('Nieprawidłowe dane użytkownika.')
                 }
@@ -60,7 +60,8 @@ export default function SignIn(props) {
 
     }
 
-    return (
+    return (<>
+        { props.isLoggedIn ? null :
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
@@ -112,6 +113,6 @@ export default function SignIn(props) {
                     </Grid>
                 </form>
             </div>
-        </Container>
-    );
+        </Container>}
+    </>);
 }
