@@ -19,7 +19,7 @@ const Button = ({ children, disabled = false, onClick, isQuestionNumber }) => (
 
 const Spinner = () => (
   <Dimmer active>
-    <Loader size='massive'>Loading</Loader>
+    <Loader size='massive'>Proszę czekać...</Loader>
   </Dimmer>
 );
 export default class QuizList extends React.Component {

@@ -9,6 +9,7 @@ import './QuizGenWrapperStyles.css'
 import ScrollUpButton from "react-scroll-up-button";
 
 
+
 class QuizesGenList extends React.Component {
 
 
@@ -51,7 +52,7 @@ class QuizesGenList extends React.Component {
         return <div>
             {listIsLoading ?
       <Dimmer active>
-        <Loader size='massive'>Loading</Loader>
+        <Loader size='massive'>Proszę czekać...</Loader>
       </Dimmer>
 
      :
@@ -79,6 +80,7 @@ class QuizesGenList extends React.Component {
                     <button className='addQuizButton' onClick={() => this.addNewQuizAndFollow(this.state.quizes.length + 1)}>NOWY QUIZ</button>
                     <ScrollUpButton />
                 </div>
+             
             } </div>
     }
 }

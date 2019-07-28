@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from "react-router-dom";
-import { Button } from '@material-ui/core'
+import { Button } from '@material-ui/core';
+import './LogoutButtonStyles.css'
 
 export default function LogoutButton(props) {
 
@@ -14,7 +15,7 @@ export default function LogoutButton(props) {
                     activeClassName={"active-link"}
 
                 >
-                    <Button>Wyloguj się</Button>
+                    <button className={'logoutButton'}>WYLOGUJ SIĘ</button>
                 </NavLink>
                 : null}
         </>
