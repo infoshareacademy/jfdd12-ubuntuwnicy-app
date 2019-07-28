@@ -2,9 +2,9 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import { makeStyles } from '@material-ui/core/styles';
-import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   }));
 
 
-export default function AnswerInput(props) {
+const AnswerInput = (props) => {
     const classes = useStyles();
 
    const { answer, isCorrect, answerId, onCheckboxChange, name, onAnswerChange, onClickRemoveAnswer } = props
@@ -45,12 +45,13 @@ export default function AnswerInput(props) {
                checked={isCorrect}
                name={name}
            />
-           
            <IconButton className={classes.button} aria-label="delete" name={answerId} onClick={onClickRemoveAnswer} >
-               <DeleteIcon />
+               <DeleteIcon  name={answerId} onClick={onClickRemoveAnswer}/>
            </IconButton>
        </div>
    )
 }
+
+export default AnswerInput
 
 
