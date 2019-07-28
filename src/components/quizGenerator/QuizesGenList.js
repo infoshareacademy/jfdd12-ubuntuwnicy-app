@@ -6,6 +6,7 @@ import { Dimmer, Loader, Button } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import './QuizGenList.css'
 import './QuizGenWrapperStyles.css'
+import ScrollUpButton from "react-scroll-up-button";
 
 
 class QuizesGenList extends React.Component {
@@ -76,6 +77,7 @@ class QuizesGenList extends React.Component {
                         })}
                     </ul>
                     <button className='addQuizButton' onClick={() => this.addNewQuizAndFollow(this.state.quizes.length + 1)}>NOWY QUIZ</button>
+                    <ScrollUpButton />
                 </div>
             } </div>
     }
