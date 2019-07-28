@@ -47,6 +47,7 @@ export default class QuizList extends React.Component {
             {this.state.quizes.map(quiz => (
               <QuizButton
                 link={quizes.indexOf(quiz)+1}
+                title={quiz.title}
               />
             ))}
           </div>
@@ -57,14 +58,15 @@ export default class QuizList extends React.Component {
 }
 
 function QuizButton(props) {
-  const { key, onClick, link, currentQuizId } = props;
+  const { key, onClick, link, title, currentQuizId } = props;
+  console.log(title)
 
   return (
-    <div className='listWrapper'>
+    <div className='genListWrapper'>
       <ul>
         <li className='startQuizList'>
           <Link className='linkStyles' to={`/quiz/${link-1}`}>
-            <button className='startQuizButton'>Dołącz do Quizu:  {link}</button>
+            <button className='startQuizButton'>{title}</button>
           </Link>
         </li>
       </ul>

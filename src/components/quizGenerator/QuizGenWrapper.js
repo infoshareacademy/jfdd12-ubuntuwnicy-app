@@ -7,6 +7,8 @@ import QuizTitleInput from "./QuizTitleInput";
 import RemoveQuestionButton from "./RemoveQuestionButton";
 import AddQuestionButton from "./AddQuestionButton";
 import AddAnswerButton from "./AddAnswerButton";
+import { Dimmer, Loader, Button } from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css'
 import { fetchQuiz, saveQuiz } from '../../services/QuizService'
 import { BrowserRouter as Route, withRouter, Prompt } from "react-router-dom";
 
@@ -138,6 +140,7 @@ class QuizGenWrapper extends React.Component {
       quizes: newQuizes,
     },
       () => saveQuiz(this.state.quiz))
+      alert("Twój Quiz został zapisany")
   };
 
   handleAddQuestion = () => {
@@ -330,7 +333,9 @@ class QuizGenWrapper extends React.Component {
     console.log(this.context);
 
     return (<>
-      {this.state.isLoading ? <p>loader</p> :
+      {this.state.isLoading ? <Dimmer active>
+        <Loader size='massive'>Loading</Loader>
+      </Dimmer> :
         <>
           <Prompt 
           when={!this.state.isSaved}
