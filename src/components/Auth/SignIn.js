@@ -43,15 +43,13 @@ export default function SignIn(props) {
 
     function onClickSignIn(event, email, password) {
         event.preventDefault()
-        debugger
 
         signIn(users => {
             users.filter(user => {
                 if (user.email === email && user.password === password) {
-
-                    console.log('zalogowany')
                     props.onLogin(user.uniqueId)
-                }else{
+                    alert("Użytkownik poprawnie zalogowany.")
+                }else if(user.email !== email && user.password !== password){
                     alert('Nieprawidłowe dane użytkownika.')
                 }
             })

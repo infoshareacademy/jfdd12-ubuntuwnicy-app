@@ -9,10 +9,7 @@ export const signUp = signUpForm => {
 
   firebase.database().ref(`users/${postId}`).update({ 'uniqueId': `${postId}` })
 
-};
-
-export const signOut = () => {
-  firebase.auth().signOut();
+  return postId
 };
 
 export const signIn = (callback) => {
@@ -28,3 +25,14 @@ export const signIn = (callback) => {
   })
 
 };
+
+export const getUserNameByUniqueId = (uniqueId, callback) => {
+
+  const user = firebase.database().ref(`users/${uniqueId}/name`).once('value').then( userSnapshot =>
+    {
+      const userValue = userSnapshot.val()
+
+      callback(userValue)
+    })
+    
+}
