@@ -216,11 +216,11 @@ export default class Quiz extends React.Component {
     const { uniqueId, results } = this.props
     const result = Math.floor(this.getQuizResult() * 100);
     const previousResults = results
-    firebase.database().ref(`users/${uniqueId}/`).set({
-      results: [...previousResults, result]
+    firebase.database().ref(`users/${uniqueId}/results`).set({
+      ...previousResults, 
+      result
     })
     
-
     return (
       <div>
         <p className={styles.score}>Wynik: {result}%</p>

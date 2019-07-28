@@ -27,7 +27,7 @@ class App extends Component {
   }
 
 
-  onLoginFromApp(uniqueId) {
+  onLoginFromApp(uniqueId, results) {
 
     getUserNameByUniqueId(uniqueId, (userName => {
 
@@ -35,7 +35,8 @@ class App extends Component {
       this.setState({
         isLoggedIn: true,
         uniqueId: uniqueId,
-        userName: userName
+        userName: userName,
+        results: results
       })
     }))
 
