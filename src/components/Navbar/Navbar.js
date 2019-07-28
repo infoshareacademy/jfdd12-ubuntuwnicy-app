@@ -17,8 +17,7 @@ export const Navbar = props => {
         >
           <img src={logo} />
         </NavLink>
-        {props.isLoggedIn ?
-          <>
+
             <NavLink
               exact
               className={"default-link"}
@@ -35,8 +34,7 @@ export const Navbar = props => {
             >
               Wyświetl dostępne Quizy
         </NavLink>
-          </>
-          : null}
+
       </div>
     </nav>
   );
