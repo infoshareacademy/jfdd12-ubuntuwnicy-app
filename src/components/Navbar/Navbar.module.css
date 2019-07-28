@@ -48,7 +48,7 @@ body {
  
 }
 
-.navbar a:disabled {
+.activeLink {
   padding-bottom: 0;
   border-bottom: 10px solid green;
 }
