@@ -207,8 +207,6 @@ body {
   width: 5px;
   height: 5px;
   background-color: white;
-  border: 0.15em solid grey;
-  border-radius: 14%;
   text-align: center;
   color: grey;
   font-weight: bold;
@@ -404,11 +402,9 @@ body {
   .removeAnswerButton {
     top: 0;
     left: 0;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     background-color: white;
-    border: 0.15em solid grey;
-    border-radius: 14%;
     text-align: center;
     color: grey;
     font-weight: bold;
@@ -450,12 +446,16 @@ body {
   left: 0;
   width: 20px;
   height: 20px;
+  border: 0;
   background-color: white;
-  border: 0.15em solid grey;
-  border-radius: 14%;
   text-align: center;
   color: grey;
   font-weight: bold;
+  font-size: 1.25em;
+}
+
+.removeAnswerButton:hover {
+  transform: scale(1.75);
 }
 
 

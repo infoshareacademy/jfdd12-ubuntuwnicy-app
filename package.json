@@ -37,7 +37,10 @@
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "@iconify/icons-mdi": "^1.0.8",
+    "@iconify/react": "^1.1.1"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/infoshareacademy/jfdd12-ubuntuwnicy-app/"
