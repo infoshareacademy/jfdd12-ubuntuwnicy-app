@@ -125,7 +125,12 @@ export default class Quiz extends React.Component {
   isSelectedAnswer(questionId, currentAnswerId) {
     const { answers, currentQuestionId } = this.state;
 
-    return answers[questionId] === currentAnswerId;
+    if(answers[questionId] !== {} && answers[questionId] !== undefined){
+    if(answers[questionId].includes(currentAnswerId)){
+      return true
+    } else {
+      return false
+    };}
   }
 
   renderQuestion(question, questionId, quizId) {
