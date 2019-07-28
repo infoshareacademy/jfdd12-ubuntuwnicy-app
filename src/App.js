@@ -5,7 +5,7 @@ import QuizList from "./components/Quiz/QuizList.js";
 import Quiz from "./components/Quiz/Quiz";
 import Home from "./Home";
 import { QuizProvider } from "./contexts/QuizContext";
-import { ResultProvider } from "./contexts/ResultContext";
+import { getUserNameByUniqueId } from './services/AuthService'
 import {
   BrowserRouter as Router,
   Route,
@@ -17,14 +17,39 @@ import QuizesGenList from './components/quizGenerator/QuizesGenList'
 const NoMatch = () => <h1>404</h1>;
 
 class App extends Component {
+
+  state = {
+    isLoggedIn: false,
+    uniqueId: '',
+    userName: ''
+  }
+
+
+  onLoginFromApp(uniqueId) {
+
+    getUserNameByUniqueId(uniqueId, (userName => {
+
+      console.log(userName)
+      this.setState({
+        isLoggedIn: true,
+        uniqueId: uniqueId,
+        userName: userName
+      })
+    }))
+
+  }
+
   render() {
     return (
       <QuizProvider>
+        {console.log(this.state)}
         <Router>
           <div>
-            <Navbar />
+            <Navbar isLoggedIn={this.state.isLoggedIn} />
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/" render={(props) =>
+                <Home {...props} isLoggedIn={this.state.isLoggedIn} onLogin={this.onLoginFromApp.bind(this)} userName={this.state.userName} />
+              } />
               <Route exact path="/quizes-gen-list" component={QuizesGenList} />
               <Route exact path="/quizes-gen-list/:id" component={QuizGenWrapper} />
               <Route path="/quizlist" component={QuizList} />

@@ -9,12 +9,30 @@ export const signUp = signUpForm => {
 
   firebase.database().ref(`users/${postId}`).update({ 'uniqueId': `${postId}` })
 
+  return postId
 };
 
-export const signOut = () => {
-  firebase.auth().signOut();
+export const signIn = (callback) => {
+
+  const usersRef = firebase.database().ref('users')
+
+  usersRef.once("value").then(snapshot => {
+    const snapshotVal = snapshot.val()
+    const entries = Object.values(snapshotVal);
+
+    callback(entries)
+
+  })
+
 };
 
-export const signIn = (email, password) => {
-  firebase.auth().signInWithEmailAndPassword(email, password);
-};
+export const getUserNameByUniqueId = (uniqueId, callback) => {
+
+  const user = firebase.database().ref(`users/${uniqueId}/name`).once('value').then( userSnapshot =>
+    {
+      const userValue = userSnapshot.val()
+
+      callback(userValue)
+    })
+    
+}
