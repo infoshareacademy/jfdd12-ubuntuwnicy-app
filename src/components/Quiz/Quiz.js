@@ -5,8 +5,9 @@ import { QuestionsButtons } from "./QuestionsButtons";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AddAnswerButton from "../quizGenerator/AddAnswerButton";
 import { fetchQuiz } from "../../services/QuizService";
-import { Dimmer, Loader} from 'semantic-ui-react'
-import 'semantic-ui-css/semantic.min.css'
+import { Dimmer, Loader} from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css';
+import firebase from 'firebase';
 
 const Answer = ({ answer, isClicked, onClick }) => (
   <li className={styles.possibleAnswer}>
@@ -32,6 +33,7 @@ const Spinner = () => (
 );
 
 export default class Quiz extends React.Component {
+
   state = {
     currentQuestionId: 0,
     answers: {},
@@ -211,7 +213,13 @@ export default class Quiz extends React.Component {
   }
 
   renderQuizComplete() {
+    const { uniqueId, results } = this.props
     const result = Math.floor(this.getQuizResult() * 100);
+    const previousResults = results
+    firebase.database().ref(`users/${uniqueId}/`).set({
+      results: [...previousResults, result]
+    })
+    
 
     return (
       <div>

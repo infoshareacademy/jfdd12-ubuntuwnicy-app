@@ -21,7 +21,8 @@ class App extends Component {
   state = {
     isLoggedIn: false,
     uniqueId: '',
-    userName: ''
+    userName: '',
+    results: ''
   }
 
 
@@ -53,7 +54,8 @@ class App extends Component {
               <Route exact path="/quizes-gen-list" component={QuizesGenList} />
               <Route exact path="/quizes-gen-list/:id" component={QuizGenWrapper} />
               <Route path="/quizlist" component={QuizList} />
-              <Route path="/quiz/:id" component={Quiz} />
+              <Route path="/quiz/:id" render={(props) =>
+               <Quiz {...props} uniqueId={this.state.uniqueId} results={this.state.results}/> }/>
               <Redirect from="/home" to="/" />
               <Route component={NoMatch} />
             </Switch>
