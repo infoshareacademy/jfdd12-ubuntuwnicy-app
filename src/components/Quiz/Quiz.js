@@ -112,9 +112,10 @@ export default class Quiz extends React.Component {
 
   handleQuizCompleteClick = () => {
     const { answers, questions } = this.state
-    console.log(Object.values(answers))
+    const checkForAnswers = Object.values(answers).find(answer => answer.length === 0)
+
     if(
-      Object.keys(answers).length === questions.questions.length
+      checkForAnswers === undefined && Object.keys(answers).length === questions.questions.length
     ){
     if (window.confirm("Czy na pewno chcesz zakończyć quiz?")) {
       this.setState({ isQuizComplete: true });
