@@ -48,7 +48,7 @@ export default function SignUp(props) {
             const uniqueId = signUp(state)
             alert('Użytkownik został zarejestrowany i zalogowany.')
             props.onLogin(uniqueId)
-        }else{
+        } else {
             alert('Niepoprawne dane logowania')
         }
 
@@ -57,68 +57,69 @@ export default function SignUp(props) {
     const classes = useStyles();
 
     return (<>
-        { props.isLoggedIn ? null :
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <div className={classes.paper}>
-                <form className={classes.form} noValidate>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                autoComplete="fname"
-                                name="firstName"
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="firstName"
-                                label="Nazwa Użytkownika"
-                                autoFocus
-                                value={state.name}
-                                onChange={event => setState({ ...state, name: event.target.value })}
-                            />
+
+        
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <div className={classes.paper}>
+                    <form className={classes.form} noValidate>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <TextField
+                                    autoComplete="fname"
+                                    name="firstName"
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="firstName"
+                                    label="Nazwa Użytkownika"
+                                    autoFocus
+                                    value={state.name}
+                                    onChange={event => setState({ ...state, name: event.target.value })}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="email"
+                                    label="Adres Email"
+                                    name="email"
+                                    autoComplete="email"
+                                    value={state.email}
+                                    onChange={event => setState({ ...state, email: event.target.value })}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    name="password"
+                                    label="Hasło"
+                                    type="password"
+                                    id="password"
+                                    autoComplete="current-password"
+                                    value={state.password}
+                                    onChange={event => setState({ ...state, password: event.target.value })}
+                                />
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="email"
-                                label="Adres Email"
-                                name="email"
-                                autoComplete="email"
-                                value={state.email}
-                                onChange={event => setState({ ...state, email: event.target.value })}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Hasło"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                                value={state.password}
-                                onChange={event => setState({ ...state, password: event.target.value })}
-                            />
-                        </Grid>
-                    </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                        onClick={handleSignUp}
-                    >
-                        Zarejestruj się
-          </Button>
-                </form>
-            </div>
-            <Box mt={5}>
-            </Box>
-        </Container>}
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                            onClick={handleSignUp}
+                        >
+                            Zarejestruj się
+                        </Button>
+                    </form>
+                </div>
+                <Box mt={5}>
+                </Box>
+            </Container>
     </>);
 }

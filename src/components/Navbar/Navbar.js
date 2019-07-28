@@ -34,7 +34,13 @@ export const Navbar = props => {
             >
               Wyświetl dostępne Quizy
         </NavLink>
-
+        { props.isLoggedIn ?
+        <NavLink
+        onClick={props.onClickLogout}
+        >
+          <p>Wyloguj się</p>
+        </NavLink>
+        : null}
       </div>
     </nav>
   );
