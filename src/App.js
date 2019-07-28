@@ -17,6 +17,11 @@ import QuizesGenList from './components/quizGenerator/QuizesGenList'
 const NoMatch = () => <h1>404</h1>;
 
 class App extends Component {
+
+  state = {
+    isLoggedIn: false
+  }
+
   render() {
     return (
       <QuizProvider>
@@ -25,7 +30,7 @@ class App extends Component {
             <Navbar />
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/quizes-gen-list" component={QuizesGenList} />
+              <Route exact path="/quizes-gen-list" component={QuizesGenList} isLoggedIn={this.state.isLoggedIn} />
               <Route exact path="/quizes-gen-list/:id" component={QuizGenWrapper} />
               <Route path="/quizlist" component={QuizList} />
               <Route path="/quiz/:id" component={Quiz} />
