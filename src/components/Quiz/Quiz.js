@@ -44,18 +44,17 @@ export default class Quiz extends React.Component {
 
   getQuizResult() {
     const { questions, answers } = this.state;
-    console.log(questions.questions);
-    const score = questions.questions.reduce(
-      (currentScore, currentQuestion, currentQuestionId) => {
-        const isAnswerCorrect =
-          currentQuestion.correctAnswer === answers[currentQuestionId];
-        return isAnswerCorrect ? currentScore + 1 : currentScore;
-      },
-      0
-    );
-
+    const score = questions.reduce((accu, question) => {
+      return question.correctAnswers.length ===
+        answers[question.id - 1].length &&
+        question.correctAnswers.every(answer =>
+          answers[question.id - 1].includes(`${answer}`)
+        )
+        ? accu + 1
+        : accu;
+    }, 0);
     return score / questions.length;
-  }
+  };
 
   componentDidMount() {
     this.setState(
@@ -79,24 +78,31 @@ export default class Quiz extends React.Component {
     );
   }
 
-  handleAnswerClick = answerId => {
-    const { answers: previousAnswers, currentQuestionId } = this.state;
+  handleAnswerClick = (answerId, questionId) => {
+    console.log('testtesttest')
+    const { answers, currentQuestionId } = this.state;
 
-    let answers;
+    const previousAnswers = this.state.answers[questionId]
+      ? [...this.state.answers[questionId]]
+      : [];
 
-    if (previousAnswers[currentQuestionId] === answerId) {
-      answers = Object.entries(previousAnswers)
-        .filter(([key]) => key !== `${currentQuestionId}`)
-        .reduce((answers, [key, value]) => ({ ...answers, [key]: value }), {});
-    } else {
-      answers = {
-        ...previousAnswers,
-        [currentQuestionId]: answerId
-      };
-    }
+    this.setState({
+      answers: {
+        ...answers,
+        [currentQuestionId]: [...new Set([...previousAnswers, answerId])]
+      }
+    });
 
-    this.setState({ answers });
-  };
+    console.log(answers[questionId]);
+    if(answers[questionId] !== {} && answers[questionId] !== undefined){
+    if(answers[questionId].includes(answerId)) {
+      const newCorrectAnswers = answers[questionId].filter(answer => answer !== answerId);
+       this.setState( {answers: {
+            ...answers,
+            [currentQuestionId]: [...newCorrectAnswers]}
+      });
+      console.log(newCorrectAnswers)
+  };}}
 
   handleQuestionChangeClick = questionId => {
     this.setState({ currentQuestionId: questionId });
@@ -117,7 +123,8 @@ export default class Quiz extends React.Component {
   };
 
   isSelectedAnswer(questionId, currentAnswerId) {
-    const { answers } = this.state;
+    const { answers, currentQuestionId } = this.state;
+
     return answers[questionId] === currentAnswerId;
   }
 
@@ -137,7 +144,7 @@ export default class Quiz extends React.Component {
                 answer={answer}
                 className={styles.answer}
                 isClicked={this.isSelectedAnswer(questionId, answer.id)}
-                onClick={() => this.handleAnswerClick(answer.id)}
+                onClick={() => this.handleAnswerClick(answer.id, questionId)}
               />
             ))}
           </ul>
