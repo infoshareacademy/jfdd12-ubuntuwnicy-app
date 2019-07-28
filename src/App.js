@@ -39,13 +39,21 @@ class App extends Component {
 
   }
 
+  onLogout(){
+    this.setState({
+      isLoggedIn: false,
+      uniqueId: '',
+      userName: ''
+    })
+  }
+
   render() {
     return (
       <QuizProvider>
         {console.log(this.state)}
         <Router>
           <div>
-            <Navbar isLoggedIn={this.state.isLoggedIn} />
+            <Navbar isLoggedIn={this.state.isLoggedIn} onClickLogout={this.onLogout.bind(this)}/>
             <Switch>
               <Route exact path="/" render={(props) =>
                 <Home {...props} isLoggedIn={this.state.isLoggedIn} onLogin={this.onLoginFromApp.bind(this)} userName={this.state.userName} />
