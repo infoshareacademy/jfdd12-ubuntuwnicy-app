@@ -86,3 +86,5 @@ export const deleteQuiz = (uniqueQuizId) => {
     firebase.database().ref(`quizes/${uniqueQuizId}`).remove()
 }
 
+
+

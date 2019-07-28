@@ -15,7 +15,7 @@ body {
 
 
 .quizGenWrapper {
-  padding-top: 8%;
+  padding-top: 2%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,14 +49,16 @@ body {
 }
 
 .quizGenInputs {
-  margin: 2%;
-  padding: 2%;
+  margin-top: 2%;
+  padding: 1%;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: 0px 0px 38px -21px rgba(0, 0, 0, 0.60);
   width: 50vw;
   height: 100%;
+  border-left: 10px solid green;
+  border-top-left-radius: 1em;
 }
 
 .addAnswerButton {
@@ -349,7 +351,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    border: 0;
+    border-radius: 0;
     width: 100vw;
     height: 100%;
   }
