@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { signUp } from '../../services/AuthService'
 
 const useStyles = makeStyles(theme => ({
     '@global': {
@@ -33,7 +34,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function SignUp() {
+export default function SignUp(props) {
 
     const [state, setState] = useState({
         name: '',
@@ -41,11 +42,22 @@ export default function SignUp() {
         password: ''
     })
 
+    function handleSignUp(event) {
+        event.preventDefault()
+        if (state.email.includes('@') && state.name !== '' && state.password !== '') {
+            const uniqueId = signUp(state)
+            alert('Użytkownik został zarejestrowany i zalogowany.')
+            props.onLogin(uniqueId)
+        }else{
+            alert('Niepoprawne dane logowania')
+        }
 
+    }
 
     const classes = useStyles();
 
-    return (
+    return (<>
+        { props.isLoggedIn ? null :
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
@@ -99,21 +111,14 @@ export default function SignUp() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={(event) => { event.preventDefault() }}
+                        onClick={handleSignUp}
                     >
                         Zarejestruj się
           </Button>
-                    <Grid container justify="flex-end">
-                        <Grid item>
-                            <Link href="#" variant="body2">
-                                Masz już konto? Zaloguj się tutaj.
-              </Link>
-                        </Grid>
-                    </Grid>
                 </form>
             </div>
             <Box mt={5}>
             </Box>
-        </Container>
-    );
+        </Container>}
+    </>);
 }

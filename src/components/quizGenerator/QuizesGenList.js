@@ -8,7 +8,7 @@ import './QuizGenList.css'
 import './QuizGenWrapperStyles.css'
 
 
-export class QuizesGenList extends React.Component {
+class QuizesGenList extends React.Component {
 
 
     static contextType = QuizContext

@@ -7,23 +7,26 @@ import QuizTitleInput from "./QuizTitleInput";
 import RemoveQuestionButton from "./RemoveQuestionButton";
 import AddQuestionButton from "./AddQuestionButton";
 import AddAnswerButton from "./AddAnswerButton";
-import { fetchQuiz, saveQuiz } from '../../services/QuizService';
 import { Dimmer, Loader, Button } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
+import { fetchQuiz, saveQuiz } from '../../services/QuizService'
+import { BrowserRouter as Route, withRouter, Prompt } from "react-router-dom";
 
 
 const selectQuizByUniqueId = (quizes, uniqueId) => {
   return quizes.find(quiz => quiz.uniqueId === uniqueId)
 }
 
-export default class QuizGenWrapper extends React.Component {
+class QuizGenWrapper extends React.Component {
 
   // static contextType = QuizContext;
+
 
   state = {
     quiz: [],
     quizes: [],
-    isLoading: true
+    isLoading: true,
+    isSaved: true
   };
 
   fetchAndUpdate() {
@@ -34,7 +37,8 @@ export default class QuizGenWrapper extends React.Component {
       this.setState({
         quiz: selectQuizByUniqueId(quizes, uniqueId),
         quizes: quizes,
-        isLoading: false
+        isLoading: false,
+        isSaved: true
       })
     })
 
@@ -69,8 +73,10 @@ export default class QuizGenWrapper extends React.Component {
       quiz: {
         ...this.state.quiz,
         title: newTitle
-      }
+        
+      }, isSaved: false
     });
+
   };
 
   handleQuestionChange = (questionId, newQuestion) => {
@@ -88,7 +94,7 @@ export default class QuizGenWrapper extends React.Component {
       quiz: {
         ...this.state.quiz,
         questions: newQuestions
-      }
+      }, isSaved: false
     });
   };
 
@@ -116,7 +122,7 @@ export default class QuizGenWrapper extends React.Component {
       quiz: {
         ...this.state.quiz,
         questions: newQuestions
-      }
+      }, isSaved: false
     });
   };
 
@@ -130,8 +136,8 @@ export default class QuizGenWrapper extends React.Component {
         return quiz
       }
     })
-      this.setState({
-      quizes: newQuizes
+    this.setState({
+      quizes: newQuizes,
     },
       () => saveQuiz(this.state.quiz))
       alert("Twój Quiz został zapisany")
@@ -159,7 +165,7 @@ export default class QuizGenWrapper extends React.Component {
       quiz: {
         ...this.state.quiz,
         questions: newQuestions
-      }
+      }, isSaved: false
     });
   };
 
@@ -179,7 +185,7 @@ export default class QuizGenWrapper extends React.Component {
         quiz: {
           ...this.state.quiz,
           questions: newQuestions
-        }
+        }, isSaved: false
       });
     }
   };
@@ -203,7 +209,7 @@ export default class QuizGenWrapper extends React.Component {
       quiz: {
         ...this.state.quiz,
         questions: newQuestions
-      }
+      }, isSaved: false
     });
   };
 
@@ -240,7 +246,7 @@ export default class QuizGenWrapper extends React.Component {
       quiz: {
         ...this.state.quiz,
         questions: newQuestions
-      }
+      }, isSaved: false
     });
   };
 
@@ -273,7 +279,7 @@ export default class QuizGenWrapper extends React.Component {
       quiz: {
         ...this.state.quiz,
         questions: newQuestions
-      }
+      }, isSaved: false
     });
   };
 
@@ -326,14 +332,15 @@ export default class QuizGenWrapper extends React.Component {
     console.log(this.state);
     console.log(this.context);
 
-
-
     return (<>
       {this.state.isLoading ? <Dimmer active>
         <Loader size='massive'>Loading</Loader>
       </Dimmer> :
         <>
-
+          <Prompt 
+          when={!this.state.isSaved}
+          message='Quiz nie został zapisany. Czy na pewno chcesz wyjść?'
+          />
           <div className="quizGenWrapper">
             <h1 className="quizGenHeader">STWÓRZ QUIZ</h1>
             <QuizTitleInput quizTitle={this.state.quiz.title} onChange={this.handleTitleChange} />
@@ -347,3 +354,5 @@ export default class QuizGenWrapper extends React.Component {
     );
   }
 }
+
+export default withRouter(QuizGenWrapper)
