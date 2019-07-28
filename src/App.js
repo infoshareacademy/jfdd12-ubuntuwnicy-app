@@ -22,19 +22,29 @@ class App extends Component {
     isLoggedIn: false
   }
 
+
+  onLoginFromApp() {
+
+    debugger
+    console.log(this)
+    this.setState({ isLoggedIn: true })
+  }
+
   render() {
     return (
       <QuizProvider>
         <Router>
           <div>
-            <Navbar />
+            <Navbar isLoggedIn={this.state.isLoggedIn} />
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/quizes-gen-list" component={QuizesGenList} isLoggedIn={this.state.isLoggedIn} />
-              <Route exact path="/quizes-gen-list/:id" component={QuizGenWrapper} />
-              <Route path="/quizlist" component={QuizList} />
-              <Route path="/quiz/:id" component={Quiz} />
-              <Redirect from="/home" to="/" />
+              <Route exact path="/" render={(props) =>
+                <Home {...props} isLoggedIn={this.state.isLoggedIn} onLogin={this.onLoginFromApp.bind(this)} />
+              } />
+              {this.state.isLoggedIn ? <> <Route exact path="/quizes-gen-list" component={QuizesGenList} />
+                <Route exact path="/quizes-gen-list/:id" component={QuizGenWrapper} />
+                <Route path="/quizlist" component={QuizList} />
+                <Route path="/quiz/:id" component={Quiz} />
+                <Redirect from="/home" to="/" /> </> : null}
               <Route component={NoMatch} />
             </Switch>
           </div>

@@ -15,20 +15,16 @@ export const signOut = () => {
   firebase.auth().signOut();
 };
 
-export const signIn = (email, password) => {
+export const signIn = (callback) => {
 
   const usersRef = firebase.database().ref('users')
 
   usersRef.once("value").then(snapshot => {
-   const snapshotVal = snapshot.val()
-   const entries = Object.values(snapshotVal);
-   
-   entries.filter(user => {
-    if (user.email === email && user.password === password) { 
-      // setState({ isLoggedIn: true })
-      console.log('zalogowany')
-      return true}})
-    
+    const snapshotVal = snapshot.val()
+    const entries = Object.values(snapshotVal);
+
+    callback(entries)
+
   })
 
 };

@@ -4,6 +4,8 @@ import styles from "./Navbar.module.css";
 import logo from "./logo.png";
 
 export const Navbar = props => {
+
+
   return (
     <nav>
       <div className={styles.navbar}>
@@ -15,30 +17,26 @@ export const Navbar = props => {
         >
           <img src={logo} />
         </NavLink>
-        <NavLink
-          exact
-          className={"default-link"}
-          activeClassName={"active-link"}
-          to="/quizes-gen-list"
-        >
-          Stwórz Quiz
+        {props.isLoggedIn ?
+          <>
+            <NavLink
+              exact
+              className={"default-link"}
+              activeClassName={"active-link"}
+              to="/quizes-gen-list"
+            >
+              Stwórz Quiz
         </NavLink>
-        {/* <NavLink
-          exact
-          className={"default-link"}
-          activeClassName={"active-link"}
-          to="/quiz"
-        >
-          Dołącz do Quizu
-        </NavLink> */}
-        <NavLink
-          exact
-          className={"default-link"}
-          activeClassName={"active-link"}
-          to="/quizlist"
-        >
-          Wyświetl dostępne Quizy
+            <NavLink
+              exact
+              className={"default-link"}
+              activeClassName={"active-link"}
+              to="/quizlist"
+            >
+              Wyświetl dostępne Quizy
         </NavLink>
+          </>
+          : null}
       </div>
     </nav>
   );

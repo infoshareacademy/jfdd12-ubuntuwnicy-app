@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { signIn } from '../../services/AuthService';
 
+
 const useStyles = makeStyles(theme => ({
     '@global': {
         body: {
@@ -32,13 +33,32 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function SignIn() {
+export default function SignIn(props) {
     const classes = useStyles();
 
     const [state, setState] = useState({
         email: '',
         password: ''
     })
+
+    function onClickSignIn(event, email, password) {
+        event.preventDefault()
+        debugger
+
+        signIn(users => {
+            users.filter(user => {
+                if (user.email === email && user.password === password) {
+
+                    console.log('zalogowany')
+                    props.onLogin()
+                }else{
+                    alert('Nieprawidłowe dane użytkownika.')
+                }
+            })
+        })
+
+
+    }
 
     return (
         <Container component="main" maxWidth="xs">
@@ -82,9 +102,9 @@ export default function SignIn() {
                         fullWidth
                         variant="contained"
                         color="primary"
+
                         className={classes.submit}
-                        onClick={(event) => {event.preventDefault()
-                        signIn(state.email, state.password) }}
+                        onClick={event => onClickSignIn(event, state.email, state.password)}
                     >
                         Zaloguj Się
           </Button>

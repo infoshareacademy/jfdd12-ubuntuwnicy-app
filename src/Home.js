@@ -6,7 +6,13 @@ import SignUp from '../src/components/Auth/SignUp'
 import SignIn from '../src/components/Auth/SignIn'
 
 
-function Home() {
+export default function Home(props) {
+// const {onLogin} = props
+//   function onLoginFromHome() {
+//     console.log('on login from home')
+//     onLogin()
+//   }
+
   return <div className={'titlePage'}>
     <div className='welcomeTitle'>
       <h1>sQuizYou</h1>
@@ -18,12 +24,8 @@ function Home() {
       </div>
     </div>
     <div>
-      <SignIn></SignIn>
+      <SignIn onLogin={props.onLogin}></SignIn>
       <SignUp></SignUp>
     </div>
   </div>
 };
-
-
-
-export default Home;

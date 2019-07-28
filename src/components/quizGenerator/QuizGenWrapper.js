@@ -329,8 +329,6 @@ class QuizGenWrapper extends React.Component {
     console.log(this.state);
     console.log(this.context);
 
-
-
     return (<>
       {this.state.isLoading ? <p>loader</p> :
         <>
