@@ -44,17 +44,19 @@ export default class Quiz extends React.Component {
 
   getQuizResult() {
     const { questions, answers } = this.state;
-    const score = questions.reduce((accu, question) => {
-      return question.correctAnswers.length ===
-        answers[question.id - 1].length &&
-        question.correctAnswers.every(answer =>
+    console.log(questions.questions)
+    const score = questions.questions.reduce((accu, question) => {
+      return   question.correctAnswers.every(answer =>
           answers[question.id - 1].includes(`${answer}`)
         )
         ? accu + 1
         : accu;
     }, 0);
-    return score / questions.length;
+    return score / questions.questions.length;
   };
+
+  // question.correctAnswers.length ===
+  // answers[question.id - 1].length &&
 
   componentDidMount() {
     this.setState(
@@ -109,8 +111,16 @@ export default class Quiz extends React.Component {
   };
 
   handleQuizCompleteClick = () => {
+    const { answers, questions } = this.state
+    console.log(Object.values(answers))
+    if(
+      Object.keys(answers).length === questions.questions.length
+    ){
     if (window.confirm("Czy na pewno chcesz zakończyć quiz?")) {
       this.setState({ isQuizComplete: true });
+    }}
+    else {
+      alert("Odpowiedz najpierw na wszystkie pytania!")
     }
   };
 
