@@ -7,7 +7,7 @@ import SignIn from '../src/components/Auth/SignIn'
 
 
 export default function Home(props) {
-  const { onLogin, userName } = props
+  const { onLogin, userName, isLoggedIn } = props
 
 
 
@@ -20,16 +20,21 @@ export default function Home(props) {
   return <div className={'titlePage'}>
     <div className='welcomeTitle'>
       <h1>sQuizYou</h1>
-     { userName !== '' ? <h2>Witaj {userName}!</h2> : <h2>Witamy!</h2>}
+      {userName !== '' ? <h2>Witaj {userName}!</h2> : <h2>Witamy!</h2>}
       <div className="infoOnMainPage">
         <p>Przejdź do zakładki <b>STWÓRZ QUIZ</b>, aby dodać nowy quiz</p>
         <p>lub</p>
         <p>Przejdź do zakładki <b>DOŁĄCZ DO QUIZU</b>, aby rozwiązać już istniejący quiz</p>
       </div>
     </div>
-    <div>
-      <SignIn onLogin={onLoginFromHome} isLoggedIn={props.isLoggedIn}></SignIn>
-      <SignUp onLogin={onLoginFromHome} isLoggedIn={props.isLoggedIn}></SignUp>
-    </div>
+    {
+      isLoggedIn ?
+      null: 
+        <div>
+          <SignIn onLogin={onLoginFromHome} isLoggedIn={props.isLoggedIn}></SignIn>
+          <h3>lub</h3>
+          <SignUp onLogin={onLoginFromHome} isLoggedIn={props.isLoggedIn}></SignUp>
+        </div> 
+    }
   </div>
 };

@@ -43,74 +43,84 @@ export default function SignIn(props) {
 
     function onClickSignIn(event, email, password) {
         event.preventDefault()
+        console.log(event)
+
+        let userFound = false
 
         signIn(users => {
-            users.filter(user => {
+            users.forEach(user => {
                 if (user.email === email && user.password === password) {
                     props.onLogin(user.uniqueId)
-                    alert("Użytkownik poprawnie zalogowany.")
-                }else if(user.email !== email && user.password !== password){
-                    alert('Nieprawidłowe dane użytkownika.')
+                    userFound = true
+                    return alert("Użytkownik poprawnie zalogowany.")
+
+                } else {
+                    return
                 }
             })
+            if(userFound === true) {
+                return
+            }else{
+                alert("Użytkownik nie istnieje")
+            }
         })
 
 
     }
 
     return (<>
-        { props.isLoggedIn ? null :
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <div className={classes.paper}>
-                <form className={classes.form} noValidate>
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Adres Email"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                        value={state.email}
-                        onChange={event => setState({
-                            ...state,
-                            email: event.target.value
-                        })}
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Hasło"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                        value={state.password}
-                        onChange={event => setState({
-                            ...state,
-                            password: event.target.value
-                        })}
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
 
-                        className={classes.submit}
-                        onClick={event => onClickSignIn(event, state.email, state.password)}
-                    >
-                        Zaloguj Się
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <div className={classes.paper}>
+                    <form className={classes.form} noValidate>
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="email"
+                            label="Adres Email"
+                            name="email"
+                            autoComplete="email"
+                            autoFocus
+                            value={state.email}
+                            onChange={event => setState({
+                                ...state,
+                                email: event.target.value
+                            })}
+                        />
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="password"
+                            label="Hasło"
+                            type="password"
+                            id="password"
+                            autoComplete="current-password"
+                            value={state.password}
+                            onChange={event => setState({
+                                ...state,
+                                password: event.target.value
+                            })}
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+
+                            className={classes.submit}
+                            onClick={event => onClickSignIn(event, state.email, state.password)}
+                        >
+                            Zaloguj Się
           </Button>
-                    <Grid container>
-                    </Grid>
-                </form>
-            </div>
-        </Container>}
+                        <Grid container>
+                        </Grid>
+                    </form>
+                </div>
+            </Container>
     </>);
 }
