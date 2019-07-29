@@ -21,14 +21,15 @@ export default function Home(props) {
 
 
   return <Container>
-    <div className={'titlePage'}>
+    <div className={isLoggedIn ? 'titlePageLoggedIn' : 'titlePage'}>
 
 
       {isLoggedIn ?
         <div className='welcomeTitle'>
           <>
-            <h2>Witaj {userName}!</h2>
             <div className="infoOnMainPageLoggedIn">
+            <img src={logo} />
+            <h2>Witaj {userName}!</h2>
               <p>Przejdź do zakładki <NavLink to='/quizes-gen-list'><b>NOWY QUIZ</b></NavLink>, aby dodać nowy quiz</p>
               <p>lub</p>
               <p>Przejdź do zakładki <NavLink to='/quizlist'><b>TWOJE QUIZY</b></NavLink>, aby rozwiązać już istniejący quiz</p>
