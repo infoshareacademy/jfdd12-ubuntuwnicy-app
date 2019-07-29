@@ -45,20 +45,20 @@
     display: flex;
     flex-direction: column; 
     margin-bottom: 7%;      
-    width: 70vw;
+    width: 60vw;
     height: 100%;
-    margin-left: 15vw;
-    margin-right: 15vw;
+    margin-left: 20vw;
+    margin-right: 20vw;
     text-align: center;
 }
 
 .genListWrapper {
     display: flex;
     flex-direction: column;       
-    width: 70vw;
+    width: 60vw;
     height: 100%;
-    margin-left: 15vw;
-    margin-right: 15vw;
+    margin-left: 20vw;
+    margin-right: 20vw;
     text-align: center;
 }
 
@@ -85,7 +85,7 @@
 }
 
 .buttonsWrap {
-    margin: 2%;
+    margin-top: 2%;
     left: 0;
 }
 
@@ -95,7 +95,7 @@
 
 .startQuizButton {
     color: grey;
-    width: 70vw;
+    width: 60vw;
     background-color: white;
     border: 0;
     height: 4.5em;
@@ -144,7 +144,7 @@
    .listQuiz {
        margin-top: 2%;
        width: 100vw;
-       height: 4.5em;
+       height: 4em;
        text-align: center;
    }
 

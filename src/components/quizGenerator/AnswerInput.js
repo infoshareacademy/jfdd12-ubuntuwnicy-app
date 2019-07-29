@@ -2,18 +2,17 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
+import './QuizGenWrapperStyles.css'
 
 
 const useStyles = makeStyles(theme => ({
     button: {
-      margin: theme.spacing(1),
+        margin: theme.spacing(1),
     },
     input: {
-      display: 'none',
+        display: 'none',
     },
-  }));
+}));
 
 
 const AnswerInput = (props) => {
@@ -45,9 +44,9 @@ const AnswerInput = (props) => {
                checked={isCorrect}
                name={name}
            />
-           <IconButton className={classes.button} aria-label="delete" name={answerId} onClick={onClickRemoveAnswer} >
-               <DeleteIcon  name={answerId} onClick={onClickRemoveAnswer}/>
-           </IconButton>
+           <button className='removeAnswerButton' name={answerId} onClick={onClickRemoveAnswer} >
+               X
+           </button>
        </div>
    )
 }

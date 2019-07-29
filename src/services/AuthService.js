@@ -28,7 +28,7 @@ export const signIn = (callback) => {
 
 export const getUserNameByUniqueId = (uniqueId, callback) => {
 
-  const user = firebase.database().ref(`users/${uniqueId}/name`).once('value').then( userSnapshot =>
+  firebase.database().ref(`users/${uniqueId}/name`).once('value').then( userSnapshot =>
     {
       const userValue = userSnapshot.val()
 

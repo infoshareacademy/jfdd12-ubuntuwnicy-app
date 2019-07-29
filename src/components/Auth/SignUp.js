@@ -44,20 +44,27 @@ export default function SignUp(props) {
 
     function handleSignUp(event) {
         event.preventDefault()
-        if (state.email.includes('@') && state.name !== '' && state.password !== '') {
+        if (state.email.includes('@') && state.email.includes('.') && state.name !== '' && state.password.length > 3) {
             const uniqueId = signUp(state)
             alert('Użytkownik został zarejestrowany i zalogowany.')
             props.onLogin(uniqueId)
-        }else{
-            alert('Niepoprawne dane logowania')
+        } else if (!state.email.includes('@') || !state.email.includes('.')) {
+            alert('Proszę podaj poprawny email.')
+        } else if (state.name === '') {
+            alert('Proszę podaj nazwę użytkownika.')
+        } else if (state.password.length <= 3) {
+            alert('Hasło musi mieć co najmniej 4 znaki.')
         }
 
     }
 
+
+
     const classes = useStyles();
 
     return (<>
-        { props.isLoggedIn ? null :
+
+
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
@@ -114,11 +121,11 @@ export default function SignUp(props) {
                         onClick={handleSignUp}
                     >
                         Zarejestruj się
-          </Button>
+                        </Button>
                 </form>
             </div>
             <Box mt={5}>
             </Box>
-        </Container>}
+        </Container>
     </>);
 }
