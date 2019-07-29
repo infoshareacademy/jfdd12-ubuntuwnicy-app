@@ -19,7 +19,6 @@ const Answer = ({ answer, isClicked, onClick }) => (
         onClick(answer.id);
       }}
     >
-      {/* {answer.id} */}
       {answer.answer}
     </button>
   </li>
@@ -44,7 +43,6 @@ export default class Quiz extends React.Component {
 
   getQuizResult() {
     const { questions, answers } = this.state;
-    console.log(questions.questions);
     const score = questions.questions.reduce((accu, question) => {
       return question.correctAnswers.every(
         answer =>
@@ -64,10 +62,6 @@ export default class Quiz extends React.Component {
       },
       () =>
         fetchQuiz(quizes => {
-          // console.log(quizes);
-          // console.log(
-          //   quizes.find(quiz => quiz.id == this.props.match.params.id)
-          // );
           this.setState({
             quizes,
             areQuestionsLoading: false,
@@ -80,7 +74,6 @@ export default class Quiz extends React.Component {
   }
 
   handleAnswerClick = (answerId, questionId) => {
-    console.log("testtesttest");
     const { answers, currentQuestionId } = this.state;
 
     const previousAnswers = this.state.answers[questionId]
@@ -94,7 +87,6 @@ export default class Quiz extends React.Component {
       }
     });
 
-    console.log(answers[questionId]);
     if (answers[questionId] !== {} && answers[questionId] !== undefined) {
       if (answers[questionId].includes(answerId)) {
         const newCorrectAnswers = answers[questionId].filter(
@@ -106,7 +98,6 @@ export default class Quiz extends React.Component {
             [currentQuestionId]: [...newCorrectAnswers]
           }
         });
-        console.log(newCorrectAnswers);
       }
     }
   };
@@ -154,9 +145,7 @@ export default class Quiz extends React.Component {
   }
 
   renderQuestion(question, questionId, quizId) {
-    console.log(this.state);
     let questionsIndexZero = this.state.questions.questions[questionId];
-    console.log(questionsIndexZero);
     return (
       <div>
         <h1 className={styles.quizTitleName}>
@@ -246,11 +235,9 @@ export default class Quiz extends React.Component {
     }
 
     if (!questions || areQuestionsLoading) {
-      // debugger;
       return <Spinner />;
     }
 
-    console.log(questions);
     const currentQuestion = questions[currentQuestionId];
 
     return (
