@@ -13,6 +13,7 @@ import {
   Redirect
 } from "react-router-dom";
 import QuizesGenList from './components/quizGenerator/QuizesGenList'
+// import LandingPage from "./components/LandingPage/LandingPage";
 // import LogoutButton from './components/Navbar/LogoutButton'
 
 const NoMatch = () => <h1>404</h1>;
@@ -51,6 +52,7 @@ class App extends Component {
   render() {
     return (
       <QuizProvider>
+
         {console.log(this.state)}
         <Router>
           <div>
@@ -60,10 +62,13 @@ class App extends Component {
               <Route exact path="/" render={(props) =>
                 <Home {...props} isLoggedIn={this.state.isLoggedIn} onLogin={this.onLoginFromApp.bind(this)} userName={this.state.userName} />
               } />
+              {this.state.isLoggedIn ? 
+              <>
               <Route exact path="/quizes-gen-list" component={QuizesGenList} />
               <Route exact path="/quizes-gen-list/:id" component={QuizGenWrapper} />
               <Route path="/quizlist" component={QuizList} />
               <Route path="/quiz/:id" component={Quiz} />
+              </>:null}
               <Redirect from="/home" to="/" />
               <Route component={NoMatch} />
             </Switch>
