@@ -27,7 +27,7 @@ const Answer = ({ answer, isClicked, onClick }) => (
 
 const Spinner = () => (
   <Dimmer active>
-    <Loader size='massive'>Loading</Loader>
+    <Loader size='massive'>Proszę czekać...</Loader>
   </Dimmer>
 );
 

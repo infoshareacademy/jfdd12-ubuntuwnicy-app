@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Navbar } from "./components/Navbar/Navbar";
+import NewNavbar from "./components/Navbar/NewNavbar";
 import QuizGenWrapper from "./components/quizGenerator/QuizGenWrapper";
 import QuizList from "./components/Quiz/QuizList.js";
 import Quiz from "./components/Quiz/Quiz";
@@ -13,7 +13,7 @@ import {
   Redirect
 } from "react-router-dom";
 import QuizesGenList from './components/quizGenerator/QuizesGenList'
-import LogoutButton from './components/Navbar/LogoutButton'
+// import LogoutButton from './components/Navbar/LogoutButton'
 
 const NoMatch = () => <h1>404</h1>;
 
@@ -54,8 +54,8 @@ class App extends Component {
         {console.log(this.state)}
         <Router>
           <div>
-            <Navbar isLoggedIn={this.state.isLoggedIn} />
-            <LogoutButton isLoggedIn={this.state.isLoggedIn} onClickLogout={this.onLogout.bind(this)}></LogoutButton>
+            <NewNavbar isLoggedIn={this.state.isLoggedIn} onClickLogout={this.onLogout.bind(this)}/>
+            {/* <LogoutButton isLoggedIn={this.state.isLoggedIn} onClickLogout={this.onLogout.bind(this)}></LogoutButton> */}
             <Switch>
               <Route exact path="/" render={(props) =>
                 <Home {...props} isLoggedIn={this.state.isLoggedIn} onLogin={this.onLoginFromApp.bind(this)} userName={this.state.userName} />

@@ -11,7 +11,8 @@ import { Dimmer, Loader, Button } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import { fetchQuiz, saveQuiz } from '../../services/QuizService'
 import { BrowserRouter as Route, withRouter, Prompt } from "react-router-dom";
-
+import ScrollUpButton from "react-scroll-up-button";
+import { Container } from "semantic-ui-react";
 
 const selectQuizByUniqueId = (quizes, uniqueId) => {
   return quizes.find(quiz => quiz.uniqueId === uniqueId)
@@ -332,13 +333,14 @@ class QuizGenWrapper extends React.Component {
 
     return (<>
       {this.state.isLoading ? <Dimmer active>
-        <Loader size='massive'>Loading</Loader>
+        <Loader size='massive'>Proszę czekać...</Loader>
       </Dimmer> :
         <>
           <Prompt 
           when={!this.state.isSaved}
           message='Quiz nie został zapisany. Czy na pewno chcesz wyjść?'
           />
+          <Container>
           <div className="quizGenWrapper">
             <h1 className="quizGenHeader">STWÓRZ QUIZ</h1>
             <QuizTitleInput quizTitle={this.state.quiz.title} onChange={this.handleTitleChange} />
@@ -346,8 +348,11 @@ class QuizGenWrapper extends React.Component {
             <div className='saveAndAddButtons'>
               <AddQuestionButton onClick={this.handleAddQuestion} />
               <button onClick={this.handleSaveQuiz} className="saveQuizButton">ZAPISZ QUIZ</button>
+              <ScrollUpButton />
             </div>
-          </div></>}
+          </div>
+          </Container>
+          </>}
     </>
     );
   }
