@@ -20,16 +20,17 @@ body {
   background-color: rgba(255, 255, 255, 0.6);
   z-index: 3;
   width: 100%;
-  height: 11vh;
-  box-shadow: 0px 0px 38px -21px rgba(0, 0, 0, 0.6);
+  height: 9vh;
+  /* box-shadow: 0px 0px 38px -21px rgba(0, 0, 0, 0.6); */
   padding: 0;
   margin-bottom: 2%;
 }
 
-.navbar a {
+.navbarA {
   color: grey;
+  font-family: "Roboto", sans-serif;
   list-style-type: none;
-  font-size: 2em;
+  font-size: 1.45em;
   padding-left: 15px;
   padding-right: 15px;
   padding-top: 0;
@@ -43,7 +44,7 @@ body {
   text-decoration: none;
 }
 
-.navbar a:hover {
+.navbarA:hover {
   padding-bottom: 0;
   cursor: pointer;
   border-bottom: 10px solid green;
@@ -51,11 +52,13 @@ body {
 }
 
 .activeLink {
+  padding: 0;
+  margin: 0;
   padding-bottom: 0;
   border-bottom: 10px solid green;
 }
 
-.navbar img {
+.navbarImg {
   width: 4vw;
   height: auto;
   flex-basis: 25%;
@@ -70,14 +73,13 @@ body {
     z-index: 3;
     width: 100%;
     height: 11vh;
-    box-shadow: 0px 0px 38px -21px rgba(0, 0, 0, 0.6);
     padding: 0;
   }
-  .navbar a {
+  .navbarA {
     color: grey;
     list-style-type: none;
     font-size: 1.25em;
-    padding: 0 10%;
+    padding: 0 5%;
     text-align: center;
     flex-basis: 25%;
     display: flex;
@@ -86,7 +88,7 @@ body {
     align-items: center;
     text-decoration: none;
   }
-  .navbar img {
+  .navbarImg {
     width: 10vw;
     height: auto;
     flex-basis: 25%;
@@ -102,14 +104,13 @@ body {
     z-index: 3;
     width: 100vw;
     height: 10vh;
-    box-shadow: 0px 0px 38px -21px rgba(0, 0, 0, 0.6);
     padding: 0;
   }
-  .navbar a {
+  .navbarA {
     color: grey;
     list-style-type: none;
     font-size: 1.10em;
-    padding: 0 10%;
+    padding: 0 2%;
     text-align: center;
     flex-basis: 25%;
     display: flex;
@@ -118,7 +119,7 @@ body {
     align-items: center;
     text-decoration: none;
   }
-  .navbar img {
+  .navbarImg {
     width: 15vw;
     height: auto;
     flex-basis: 25%;
