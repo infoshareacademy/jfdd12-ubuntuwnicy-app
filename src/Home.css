@@ -13,6 +13,12 @@
     padding: 0;
   }
 
+  .welcomeTitle {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+  }
+
 .titlePage {
     display: grid; 
     grid-template-columns: 1fr 1fr; 
@@ -106,7 +112,7 @@
     }
 
     .infoOnMainPageLoggedIn {
-        width: 70vh;
+        margin: 0;
     }
 }
 
