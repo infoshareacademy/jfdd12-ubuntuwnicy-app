@@ -6,6 +6,7 @@ import SignUp from '../src/components/Auth/SignUp'
 import SignIn from '../src/components/Auth/SignIn'
 import logo from './components/Navbar/logo.png'
 import { Container } from "semantic-ui-react";
+import { NavLink } from "react-router-dom";
 
 
 export default function Home(props) {
@@ -29,9 +30,9 @@ export default function Home(props) {
             <div className="infoOnMainPageLoggedIn">
             <img src={logo} />
             <h2>Witaj {userName}!</h2>
-              <p>Przejdź do zakładki <b>NOWY QUIZ</b>, aby dodać nowy quiz</p>
+              <p>Przejdź do zakładki <NavLink to='/quizes-gen-list'><b>NOWY QUIZ</b></NavLink>, aby dodać nowy quiz</p>
               <p>lub</p>
-              <p>Przejdź do zakładki <b>TWOJE QUIZY</b>, aby rozwiązać już istniejący quiz</p>
+              <p>Przejdź do zakładki <NavLink to='/quizlist'><b>TWOJE QUIZY</b></NavLink>, aby rozwiązać już istniejący quiz</p>
             </div>
           </>
         </div>
