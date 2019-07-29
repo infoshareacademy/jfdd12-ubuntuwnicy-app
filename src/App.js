@@ -13,6 +13,7 @@ import {
   Redirect
 } from "react-router-dom";
 import QuizesGenList from './components/quizGenerator/QuizesGenList'
+// import LandingPage from "./components/LandingPage/LandingPage";
 // import LogoutButton from './components/Navbar/LogoutButton'
 
 const NoMatch = () => <h1>404</h1>;
@@ -51,6 +52,7 @@ class App extends Component {
   render() {
     return (
       <QuizProvider>
+
         {console.log(this.state)}
         <Router>
           <div>

@@ -44,82 +44,88 @@ export default function SignUp(props) {
 
     function handleSignUp(event) {
         event.preventDefault()
-        if (state.email.includes('@') && state.name !== '' && state.password !== '') {
+        if (state.email.includes('@') && state.email.includes('.') && state.name !== '' && state.password.length > 3) {
             const uniqueId = signUp(state)
             alert('Użytkownik został zarejestrowany i zalogowany.')
             props.onLogin(uniqueId)
-        } else {
-            alert('Niepoprawne dane logowania')
+        } else if (!state.email.includes('@') || !state.email.includes('.')) {
+            alert('Proszę podaj poprawny email.')
+        } else if (state.name === '') {
+            alert('Proszę podaj nazwę użytkownika.')
+        } else if (state.password.length <= 3) {
+            alert('Hasło musi mieć co najmniej 4 znaki.')
         }
 
     }
+
+
 
     const classes = useStyles();
 
     return (<>
 
-        
-            <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <div className={classes.paper}>
-                    <form className={classes.form} noValidate>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <TextField
-                                    autoComplete="fname"
-                                    name="firstName"
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    id="firstName"
-                                    label="Nazwa Użytkownika"
-                                    autoFocus
-                                    value={state.name}
-                                    onChange={event => setState({ ...state, name: event.target.value })}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    id="email"
-                                    label="Adres Email"
-                                    name="email"
-                                    autoComplete="email"
-                                    value={state.email}
-                                    onChange={event => setState({ ...state, email: event.target.value })}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    name="password"
-                                    label="Hasło"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="current-password"
-                                    value={state.password}
-                                    onChange={event => setState({ ...state, password: event.target.value })}
-                                />
-                            </Grid>
+
+        <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <div className={classes.paper}>
+                <form className={classes.form} noValidate>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <TextField
+                                autoComplete="fname"
+                                name="firstName"
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="firstName"
+                                label="Nazwa Użytkownika"
+                                autoFocus
+                                value={state.name}
+                                onChange={event => setState({ ...state, name: event.target.value })}
+                            />
                         </Grid>
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            color="primary"
-                            className={classes.submit}
-                            onClick={handleSignUp}
-                        >
-                            Zarejestruj się
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="email"
+                                label="Adres Email"
+                                name="email"
+                                autoComplete="email"
+                                value={state.email}
+                                onChange={event => setState({ ...state, email: event.target.value })}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="password"
+                                label="Hasło"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                                value={state.password}
+                                onChange={event => setState({ ...state, password: event.target.value })}
+                            />
+                        </Grid>
+                    </Grid>
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        onClick={handleSignUp}
+                    >
+                        Zarejestruj się
                         </Button>
-                    </form>
-                </div>
-                <Box mt={5}>
-                </Box>
-            </Container>
+                </form>
+            </div>
+            <Box mt={5}>
+            </Box>
+        </Container>
     </>);
 }
