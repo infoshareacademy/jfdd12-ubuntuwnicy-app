@@ -43,7 +43,7 @@ export default function SignIn(props) {
 
     function onClickSignIn(event, email, password) {
         event.preventDefault()
-        console.log(event)
+
 
         let userFound = false
 

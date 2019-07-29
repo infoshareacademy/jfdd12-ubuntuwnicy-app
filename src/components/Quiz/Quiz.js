@@ -235,6 +235,10 @@ export default class Quiz extends React.Component {
     }
 
     if (!questions || areQuestionsLoading) {
+<<<<<<< HEAD
+  
+=======
+>>>>>>> develop
       return <Spinner />;
     }
 
