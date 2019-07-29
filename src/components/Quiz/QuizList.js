@@ -32,7 +32,7 @@ export default class QuizList extends React.Component {
     this.setState({ listIsLoading: true });
     fetchQuiz(quizes => {
       this.setState({ quizes, listIsLoading: false });
-      console.log(this.state);
+
     });
   }
 
@@ -60,7 +60,7 @@ export default class QuizList extends React.Component {
 
 function QuizButton(props) {
   const { key, onClick, link, title, currentQuizId } = props;
-  console.log(title)
+
 
   return (
     <div className='genListWrapper'>

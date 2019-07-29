@@ -32,8 +32,6 @@ export const QuizProvider = function (props) {
                 return quiz
             }
         })
-        console.log({newQuizes})
-        console.log({quizes})
 
         setQuizes(newQuizes)
         saveQuiz(updatedQuiz)

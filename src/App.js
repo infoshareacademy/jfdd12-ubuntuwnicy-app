@@ -31,7 +31,7 @@ class App extends Component {
 
     getUserNameByUniqueId(uniqueId, (userName => {
 
-      console.log(userName)
+    
       this.setState({
         isLoggedIn: true,
         uniqueId: uniqueId,
@@ -53,7 +53,7 @@ class App extends Component {
     return (
       <QuizProvider>
 
-        {console.log(this.state)}
+ 
         <Router>
           <div>
             <NewNavbar isLoggedIn={this.state.isLoggedIn} onClickLogout={this.onLogout.bind(this)}/>

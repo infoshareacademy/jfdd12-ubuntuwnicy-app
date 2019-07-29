@@ -44,8 +44,6 @@ class QuizesGenList extends React.Component {
 
 
     render() {
-        console.log(this.state)
-        console.log(this.context)
 
         const { listIsLoading } = this.state
 
