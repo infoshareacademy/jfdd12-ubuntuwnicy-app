@@ -20,14 +20,15 @@ export default function Home(props) {
 
 
   return <Container>
-    <div className={'titlePage'}>
+    <div className={isLoggedIn ? 'titlePageLoggedIn' : 'titlePage'}>
 
 
       {isLoggedIn ?
         <div className='welcomeTitle'>
           <>
-            <h2>Witaj {userName}!</h2>
             <div className="infoOnMainPageLoggedIn">
+            <img src={logo} />
+            <h2>Witaj {userName}!</h2>
               <p>Przejdź do zakładki <b>NOWY QUIZ</b>, aby dodać nowy quiz</p>
               <p>lub</p>
               <p>Przejdź do zakładki <b>TWOJE QUIZY</b>, aby rozwiązać już istniejący quiz</p>

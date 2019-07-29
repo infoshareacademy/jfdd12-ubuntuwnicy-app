@@ -44,8 +44,31 @@
 
 .infoOnMainPageLoggedIn {
     padding: 1%;
-    font-size: 2em;
+    font-size: 1.25em;
     text-align: center;
+    width: 70vh;
+}
+
+.titlePageLoggedIn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 2%;
+    padding-right: 5%;
+    padding-left: 5%;
+    color: grey;
+}
+
+.titlePageLoggedIn h1 {
+    font-size: 10em;
+    text-align: center;
+    padding: 0;
+}
+
+.titlePageLoggedIn h2 {
+    font-size: 7em;
+    text-align: center;
+    padding: 3%;
 }
 
 @media (max-width: 960px) {
@@ -64,10 +87,6 @@
         display: none;
     }
 
-    .infoOnMainPage {
-        display: none;
-    }
-
     .titlePage {
         display: flex; 
         flex-direction: column;
@@ -76,6 +95,18 @@
         padding-right: 5%;
         padding-left: 5%;
         color: grey;
+    }
+
+    .titlePageLoggedIn h1 {
+        display: none;
+    }
+    
+    .titlePageLoggedIn h2 {
+        display: none;
+    }
+
+    .infoOnMainPageLoggedIn {
+        width: 70vh;
     }
 }
 
@@ -107,5 +138,19 @@
         padding-right: 5%;
         padding-left: 5%;
         color: grey;
+    }
+
+
+    .titlePageLoggedIn h1 {
+        display: none;
+    }
+    
+    .titlePageLoggedIn h2 {
+        display: none;
+    }
+
+    .infoOnMainPageLoggedIn {
+        padding: 0;
+        width: 50vh;
     }
 }
