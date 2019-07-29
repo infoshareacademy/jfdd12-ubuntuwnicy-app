@@ -203,7 +203,7 @@ export default class Quiz extends React.Component {
             className={styles.startNewQuiz}
             onClick={this.handleQuizStartClick}
           >
-            Rozpocznij nowy Quiz
+            Przejdź do listy dostępnych quizów
           </button>
         </Link>
       </div>
@@ -211,11 +211,20 @@ export default class Quiz extends React.Component {
   }
 
   renderQuizComplete() {
+    const { quizes, quizId } = this.state;
+    const lastResult = localStorage.getItem(
+      `Wyniki z Quizu: ${quizes[quizId].title}`
+    );
     const result = Math.floor(this.getQuizResult() * 100);
+    localStorage.setItem(
+      `Wyniki z Quizu: ${quizes[quizId].title}`,
+      JSON.stringify(result)
+    );
 
     return (
       <div>
-        <p className={styles.score}>Wynik: {result}%</p>
+        <p className={styles.score}>Twój wynik: {result}%</p>
+        <p className={styles.score}>Twój ostatni wynik: {lastResult}%</p>
         {this.renderStartQuizButton()}
       </div>
     );
