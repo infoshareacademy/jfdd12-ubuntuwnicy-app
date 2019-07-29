@@ -5,8 +5,8 @@ import { QuestionsButtons } from "./QuestionsButtons";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AddAnswerButton from "../quizGenerator/AddAnswerButton";
 import { fetchQuiz } from "../../services/QuizService";
-import { Dimmer, Loader} from 'semantic-ui-react'
-import 'semantic-ui-css/semantic.min.css'
+import { Dimmer, Loader } from "semantic-ui-react";
+import "semantic-ui-css/semantic.min.css";
 
 const Answer = ({ answer, isClicked, onClick }) => (
   <li className={styles.possibleAnswer}>
@@ -19,7 +19,6 @@ const Answer = ({ answer, isClicked, onClick }) => (
         onClick(answer.id);
       }}
     >
-      {/* {answer.id} */}
       {answer.answer}
     </button>
   </li>
@@ -27,7 +26,7 @@ const Answer = ({ answer, isClicked, onClick }) => (
 
 const Spinner = () => (
   <Dimmer active>
-    <Loader size='massive'>Proszę czekać...</Loader>
+    <Loader size="massive">Proszę czekać...</Loader>
   </Dimmer>
 );
 
@@ -44,17 +43,16 @@ export default class Quiz extends React.Component {
 
   getQuizResult() {
     const { questions, answers } = this.state;
-
-    const score = questions.questions.reduce(
-      (currentScore, currentQuestion, currentQuestionId) => {
-        const isAnswerCorrect =
-          currentQuestion.correctAnswer === answers[currentQuestionId];
-        return isAnswerCorrect ? currentScore + 1 : currentScore;
-      },
-      0
-    );
-
-    return score / questions.length;
+    const score = questions.questions.reduce((accu, question) => {
+      return question.correctAnswers.every(
+        answer =>
+          answers[question.id - 1].includes(`${answer}`) &&
+          question.correctAnswers.length === answers[question.id - 1].length
+      )
+        ? accu + 1
+        : accu;
+    }, 0);
+    return score / questions.questions.length;
   }
 
   componentDidMount() {
@@ -64,7 +62,6 @@ export default class Quiz extends React.Component {
       },
       () =>
         fetchQuiz(quizes => {
-
           this.setState({
             quizes,
             areQuestionsLoading: false,
@@ -76,23 +73,33 @@ export default class Quiz extends React.Component {
     );
   }
 
-  handleAnswerClick = answerId => {
-    const { answers: previousAnswers, currentQuestionId } = this.state;
+  handleAnswerClick = (answerId, questionId) => {
+    const { answers, currentQuestionId } = this.state;
 
-    let answers;
+    const previousAnswers = this.state.answers[questionId]
+      ? [...this.state.answers[questionId]]
+      : [];
 
-    if (previousAnswers[currentQuestionId] === answerId) {
-      answers = Object.entries(previousAnswers)
-        .filter(([key]) => key !== `${currentQuestionId}`)
-        .reduce((answers, [key, value]) => ({ ...answers, [key]: value }), {});
-    } else {
-      answers = {
-        ...previousAnswers,
-        [currentQuestionId]: answerId
-      };
+    this.setState({
+      answers: {
+        ...answers,
+        [currentQuestionId]: [...new Set([...previousAnswers, answerId])]
+      }
+    });
+
+    if (answers[questionId] !== {} && answers[questionId] !== undefined) {
+      if (answers[questionId].includes(answerId)) {
+        const newCorrectAnswers = answers[questionId].filter(
+          answer => answer !== answerId
+        );
+        this.setState({
+          answers: {
+            ...answers,
+            [currentQuestionId]: [...newCorrectAnswers]
+          }
+        });
+      }
     }
-
-    this.setState({ answers });
   };
 
   handleQuestionChangeClick = questionId => {
@@ -100,8 +107,20 @@ export default class Quiz extends React.Component {
   };
 
   handleQuizCompleteClick = () => {
-    if (window.confirm("Czy na pewno chcesz zakończyć quiz?")) {
-      this.setState({ isQuizComplete: true });
+    const { answers, questions } = this.state;
+    const checkForAnswers = Object.values(answers).find(
+      answer => answer.length === 0
+    );
+
+    if (
+      checkForAnswers === undefined &&
+      Object.keys(answers).length === questions.questions.length
+    ) {
+      if (window.confirm("Czy na pewno chcesz zakończyć quiz?")) {
+        this.setState({ isQuizComplete: true });
+      }
+    } else {
+      alert("Odpowiedz najpierw na wszystkie pytania!");
     }
   };
 
@@ -114,19 +133,26 @@ export default class Quiz extends React.Component {
   };
 
   isSelectedAnswer(questionId, currentAnswerId) {
-    const { answers } = this.state;
-    return answers[questionId] === currentAnswerId;
+    const { answers, currentQuestionId } = this.state;
+
+    if (answers[questionId] !== {} && answers[questionId] !== undefined) {
+      if (answers[questionId].includes(currentAnswerId)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 
   renderQuestion(question, questionId, quizId) {
-
     let questionsIndexZero = this.state.questions.questions[questionId];
-
     return (
       <div>
-        <h1 className={styles.quizTitleName}>{`${this.state.quizes[quizId].title}`}</h1>
+        <h1 className={styles.quizTitleName}>
+          {this.state.quizes[quizId].title}
+        </h1>
         <div className={styles.answerWrapper}>
-        <h1 className={styles.quizName}>{questionsIndexZero.question}</h1>
+          <h1 className={styles.quizName}>{questionsIndexZero.question}</h1>
           <ul className={styles.answerList}>
             {questionsIndexZero.answers.map(answer => (
               <Answer
@@ -134,7 +160,7 @@ export default class Quiz extends React.Component {
                 answer={answer}
                 className={styles.answer}
                 isClicked={this.isSelectedAnswer(questionId, answer.id)}
-                onClick={() => this.handleAnswerClick(answer.id)}
+                onClick={() => this.handleAnswerClick(answer.id, questionId)}
               />
             ))}
           </ul>
@@ -142,7 +168,7 @@ export default class Quiz extends React.Component {
       </div>
     );
   }
-  
+
   renderQuestionsButtons() {
     const { currentQuestionId, questions, quizes } = this.state;
 
@@ -172,13 +198,13 @@ export default class Quiz extends React.Component {
   renderStartQuizButton() {
     return (
       <div className={styles.startNewQuizWrap}>
-      <Link to={'/quizlist'}>
-        <button
-          className={styles.startNewQuiz}
-          onClick={this.handleQuizStartClick}
-        >
-          Rozpocznij nowy Quiz
-        </button>
+        <Link to={"/quizlist"}>
+          <button
+            className={styles.startNewQuiz}
+            onClick={this.handleQuizStartClick}
+          >
+            Rozpocznij nowy Quiz
+          </button>
         </Link>
       </div>
     );
@@ -209,7 +235,10 @@ export default class Quiz extends React.Component {
     }
 
     if (!questions || areQuestionsLoading) {
+<<<<<<< HEAD
   
+=======
+>>>>>>> develop
       return <Spinner />;
     }
 

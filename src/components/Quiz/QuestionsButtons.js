@@ -51,7 +51,6 @@ export class QuestionsButtons extends React.Component {
     } = this.props;
 
     const renderButtons = () => {
-
       let questions = Array(this.props.questions.questions.length) // [].length == 10
         .fill(1) // [1,1,1,1,1,1,1,1,1,1,1]
         .map((_, index) => index + 1); // [1,2,3,4,5,6,7,8,9,10]
