@@ -127,7 +127,7 @@ export default class Quiz extends React.Component {
     console.log(questionsIndexZero);
     return (
       <div>
-        <h1 className={styles.quizTitleName}>{`${this.state.quizes[quizId].title} ${Number(quizId)+1}`}</h1>
+        <h1 className={styles.quizTitleName}>{`${this.state.quizes[quizId].title}`}</h1>
         <div className={styles.answerWrapper}>
         <h1 className={styles.quizName}>{questionsIndexZero.question}</h1>
           <ul className={styles.answerList}>
