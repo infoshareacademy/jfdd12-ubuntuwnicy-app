@@ -5,8 +5,8 @@ import { QuestionsButtons } from "./QuestionsButtons";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AddAnswerButton from "../quizGenerator/AddAnswerButton";
 import { fetchQuiz } from "../../services/QuizService";
-import { Dimmer, Loader} from 'semantic-ui-react'
-import 'semantic-ui-css/semantic.min.css'
+import { Dimmer, Loader } from "semantic-ui-react";
+import "semantic-ui-css/semantic.min.css";
 
 const Answer = ({ answer, isClicked, onClick }) => (
   <li className={styles.possibleAnswer}>
@@ -27,7 +27,7 @@ const Answer = ({ answer, isClicked, onClick }) => (
 
 const Spinner = () => (
   <Dimmer active>
-    <Loader size='massive'>Loading</Loader>
+    <Loader size="massive">Loading</Loader>
   </Dimmer>
 );
 
@@ -44,19 +44,18 @@ export default class Quiz extends React.Component {
 
   getQuizResult() {
     const { questions, answers } = this.state;
-    console.log(questions.questions)
+    console.log(questions.questions);
     const score = questions.questions.reduce((accu, question) => {
-      return   question.correctAnswers.every(answer =>
-          answers[question.id - 1].includes(`${answer}`)
-        )
+      return question.correctAnswers.every(
+        answer =>
+          answers[question.id - 1].includes(`${answer}`) &&
+          question.correctAnswers.length === answers[question.id - 1].length
+      )
         ? accu + 1
         : accu;
     }, 0);
     return score / questions.questions.length;
-  };
-
-  // question.correctAnswers.length ===
-  // answers[question.id - 1].length &&
+  }
 
   componentDidMount() {
     this.setState(
@@ -81,7 +80,7 @@ export default class Quiz extends React.Component {
   }
 
   handleAnswerClick = (answerId, questionId) => {
-    console.log('testtesttest')
+    console.log("testtesttest");
     const { answers, currentQuestionId } = this.state;
 
     const previousAnswers = this.state.answers[questionId]
@@ -96,32 +95,41 @@ export default class Quiz extends React.Component {
     });
 
     console.log(answers[questionId]);
-    if(answers[questionId] !== {} && answers[questionId] !== undefined){
-    if(answers[questionId].includes(answerId)) {
-      const newCorrectAnswers = answers[questionId].filter(answer => answer !== answerId);
-       this.setState( {answers: {
+    if (answers[questionId] !== {} && answers[questionId] !== undefined) {
+      if (answers[questionId].includes(answerId)) {
+        const newCorrectAnswers = answers[questionId].filter(
+          answer => answer !== answerId
+        );
+        this.setState({
+          answers: {
             ...answers,
-            [currentQuestionId]: [...newCorrectAnswers]}
-      });
-      console.log(newCorrectAnswers)
-  };}}
+            [currentQuestionId]: [...newCorrectAnswers]
+          }
+        });
+        console.log(newCorrectAnswers);
+      }
+    }
+  };
 
   handleQuestionChangeClick = questionId => {
     this.setState({ currentQuestionId: questionId });
   };
 
   handleQuizCompleteClick = () => {
-    const { answers, questions } = this.state
-    const checkForAnswers = Object.values(answers).find(answer => answer.length === 0)
+    const { answers, questions } = this.state;
+    const checkForAnswers = Object.values(answers).find(
+      answer => answer.length === 0
+    );
 
-    if(
-      checkForAnswers === undefined && Object.keys(answers).length === questions.questions.length
-    ){
-    if (window.confirm("Czy na pewno chcesz zakończyć quiz?")) {
-      this.setState({ isQuizComplete: true });
-    }}
-    else {
-      alert("Odpowiedz najpierw na wszystkie pytania!")
+    if (
+      checkForAnswers === undefined &&
+      Object.keys(answers).length === questions.questions.length
+    ) {
+      if (window.confirm("Czy na pewno chcesz zakończyć quiz?")) {
+        this.setState({ isQuizComplete: true });
+      }
+    } else {
+      alert("Odpowiedz najpierw na wszystkie pytania!");
     }
   };
 
@@ -136,12 +144,13 @@ export default class Quiz extends React.Component {
   isSelectedAnswer(questionId, currentAnswerId) {
     const { answers, currentQuestionId } = this.state;
 
-    if(answers[questionId] !== {} && answers[questionId] !== undefined){
-    if(answers[questionId].includes(currentAnswerId)){
-      return true
-    } else {
-      return false
-    };}
+    if (answers[questionId] !== {} && answers[questionId] !== undefined) {
+      if (answers[questionId].includes(currentAnswerId)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 
   renderQuestion(question, questionId, quizId) {
@@ -150,9 +159,11 @@ export default class Quiz extends React.Component {
     console.log(questionsIndexZero);
     return (
       <div>
-        <h1 className={styles.quizTitleName}>{`${this.state.quizes[quizId].title} ${Number(quizId)+1}`}</h1>
+        <h1 className={styles.quizTitleName}>
+          {this.state.quizes[quizId].title}
+        </h1>
         <div className={styles.answerWrapper}>
-        <h1 className={styles.quizName}>{questionsIndexZero.question}</h1>
+          <h1 className={styles.quizName}>{questionsIndexZero.question}</h1>
           <ul className={styles.answerList}>
             {questionsIndexZero.answers.map(answer => (
               <Answer
@@ -168,7 +179,7 @@ export default class Quiz extends React.Component {
       </div>
     );
   }
-  
+
   renderQuestionsButtons() {
     const { currentQuestionId, questions, quizes } = this.state;
 
@@ -198,13 +209,13 @@ export default class Quiz extends React.Component {
   renderStartQuizButton() {
     return (
       <div className={styles.startNewQuizWrap}>
-      <Link to={'/quizlist'}>
-        <button
-          className={styles.startNewQuiz}
-          onClick={this.handleQuizStartClick}
-        >
-          Rozpocznij nowy Quiz
-        </button>
+        <Link to={"/quizlist"}>
+          <button
+            className={styles.startNewQuiz}
+            onClick={this.handleQuizStartClick}
+          >
+            Rozpocznij nowy Quiz
+          </button>
         </Link>
       </div>
     );
