@@ -22,11 +22,9 @@ const NewNavbar = (props) => {
           <Menu.Item  name="Twoje Quizy" />
         </NavLink>
         {props.isLoggedIn ?
-        <Menu.Menu position="right">
           <NavLink onClick={props.onClickLogout} className={styles.navbarA} to="/">
             <Menu.Item name="Wyloguj" />
           </NavLink>
-        </Menu.Menu>
         : null}
       </Container>
     </Menu>
