@@ -60,10 +60,13 @@ class App extends Component {
               <Route exact path="/" render={(props) =>
                 <Home {...props} isLoggedIn={this.state.isLoggedIn} onLogin={this.onLoginFromApp.bind(this)} userName={this.state.userName} />
               } />
+              {this.state.isLoggedIn ? 
+              <>
               <Route exact path="/quizes-gen-list" component={QuizesGenList} />
               <Route exact path="/quizes-gen-list/:id" component={QuizGenWrapper} />
               <Route path="/quizlist" component={QuizList} />
               <Route path="/quiz/:id" component={Quiz} />
+              </>:null}
               <Redirect from="/home" to="/" />
               <Route component={NoMatch} />
             </Switch>
