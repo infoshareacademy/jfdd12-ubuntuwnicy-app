@@ -7,12 +7,12 @@ import './QuizGenWrapperStyles.css'
 
 const useStyles = makeStyles(theme => ({
     button: {
-      margin: theme.spacing(1),
+        margin: theme.spacing(1),
     },
     input: {
-      display: 'none',
+        display: 'none',
     },
-  }));
+}));
 
 
 const AnswerInput = (props) => {

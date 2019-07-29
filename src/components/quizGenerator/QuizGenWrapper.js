@@ -329,9 +329,7 @@ class QuizGenWrapper extends React.Component {
   };
 
   render() {
-    console.log(this.props.match.params.id);
-    console.log(this.state);
-    console.log(this.context);
+
 
     return (<>
       {this.state.isLoading ? <Dimmer active>
