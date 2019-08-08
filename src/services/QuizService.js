@@ -10,6 +10,7 @@ export const fetchQuiz = (callback) => {
         const entries = Object.values(value);
 
         callback(entries)
+        return quizRef.off('value')
     })
     return quizRef
 }

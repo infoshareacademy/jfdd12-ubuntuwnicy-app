@@ -15,7 +15,7 @@ function QuizTitleInput(props) {
                     shrink: true,
                 }}
                 onChange={event => {
-                    props.onChange(event.target.value)
+                    props.onChange(event)
                 }}
                 value={props.quizTitle}
             />

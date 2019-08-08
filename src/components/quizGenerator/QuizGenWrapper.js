@@ -18,12 +18,10 @@ const selectQuizByUniqueId = (quizes, uniqueId) => {
   return quizes.find(quiz => quiz.uniqueId === uniqueId)
 }
 
-class QuizGenWrapper extends React.Component {
-
-  // static contextType = QuizContext;
-
+class QuizGenWrapper extends React.PureComponent {
 
   state = {
+    title: '',
     quiz: [],
     quizes: [],
     isLoading: true,
@@ -31,20 +29,27 @@ class QuizGenWrapper extends React.Component {
   };
 
   fetchAndUpdate() {
+
     const uniqueId = this.props.match.params.id
     this.setState({ isLoading: true })
-    fetchQuiz(quizes => {
-      // this.context.setQuizes(quizes)
+    fetchQuiz((quizes) => {
+
       this.setState({
         quiz: selectQuizByUniqueId(quizes, uniqueId),
-        quizes: quizes,
+        // quizes: quizes,
         isLoading: false,
-        isSaved: true
+        isSaved: true,
       })
-    })
 
-    // return () => { quizesRef.off('value') }
+      this.setState({
+        title: this.state.quiz.title
+      })
+
+    }
+    )
   }
+
+
 
   componentDidMount() {
 
@@ -70,13 +75,16 @@ class QuizGenWrapper extends React.Component {
   };
 
   handleTitleChange = newTitle => {
-    this.setState({
-      quiz: {
-        ...this.state.quiz,
-        title: newTitle
-        
-      }, isSaved: false
-    });
+
+    newTitle.preventDefault()
+
+    
+    const newState = {
+      title: newTitle.target.value,
+      isSaved: false
+    }
+
+    this.setState(newState);
 
   };
 
@@ -128,7 +136,7 @@ class QuizGenWrapper extends React.Component {
   };
 
   handleSaveQuiz = () => {
-    // this.context.updateQuizToContext(this.state.quiz);
+
 
     const newQuizes = this.state.quizes.map(quiz => {
       if (quiz.uniqueId === this.state.quiz.uniqueId) {
@@ -141,7 +149,7 @@ class QuizGenWrapper extends React.Component {
       quizes: newQuizes,
     },
       () => saveQuiz(this.state.quiz))
-      alert("Twój Quiz został zapisany")
+    alert("Twój Quiz został zapisany")
   };
 
   handleAddQuestion = () => {
@@ -297,11 +305,13 @@ class QuizGenWrapper extends React.Component {
   };
 
   renderQuestions = () => {
+
     const { questions } = this.state.quiz;
     const questionsCount = questions.length - 1;
+
     return questions.map((question, index) => (
       <div
-        key={index}
+        key={question.id}
         className={"quizGenInputs"}
         ref={el => this.setRefForLastElement(el, index, questionsCount)}
       >
@@ -332,27 +342,28 @@ class QuizGenWrapper extends React.Component {
 
 
     return (<>
+
       {this.state.isLoading ? <Dimmer active>
         <Loader size='massive'>Proszę czekać...</Loader>
       </Dimmer> :
         <>
-          <Prompt 
-          when={!this.state.isSaved}
-          message='Quiz nie został zapisany. Czy na pewno chcesz wyjść?'
+          <Prompt
+            when={!this.state.isSaved}
+            message='Quiz nie został zapisany. Czy na pewno chcesz wyjść?'
           />
           <Container>
-          <div className="quizGenWrapper">
-            <h1 className="quizGenHeader">STWÓRZ QUIZ</h1>
-            <QuizTitleInput quizTitle={this.state.quiz.title} onChange={this.handleTitleChange} />
-            {this.renderQuestions()}
-            <div className='saveAndAddButtons'>
-              <AddQuestionButton onClick={this.handleAddQuestion} />
-              <button onClick={this.handleSaveQuiz} className="saveQuizButton">ZAPISZ QUIZ</button>
-              <ScrollUpButton />
+            <div className="quizGenWrapper">
+              <h1 className="quizGenHeader">STWÓRZ QUIZ</h1>
+              <QuizTitleInput quizTitle={this.state.title} onChange={this.handleTitleChange} />
+              {this.renderQuestions()}
+              <div className='saveAndAddButtons'>
+                <AddQuestionButton onClick={this.handleAddQuestion} />
+                <button onClick={this.handleSaveQuiz} className="saveQuizButton">ZAPISZ QUIZ</button>
+                <ScrollUpButton />
+              </div>
             </div>
-          </div>
           </Container>
-          </>}
+        </>}
     </>
     );
   }
