@@ -1,10 +1,20 @@
 import React from "react";
 import AnswerInput from "./AnswerInput";
-export default class AnswersList extends React.Component {
-  render() {
-    return (
-      <div className="quizAnswerInputs">
-        {this.props.question.answers.map(answer => {
+
+
+
+export default function AnswersList(props) {
+
+
+
+
+  return (
+
+    < div className = "quizAnswerInputs" >
+         
+
+      {
+        props.question.answers.map(answer => {
           return (
             <div key={answer.id}>
               <AnswerInput
@@ -14,14 +24,15 @@ export default class AnswersList extends React.Component {
                 answerId={answer.id}
                 answer={answer.answer}
                 isCorrect={answer.correct}
-                onCheckboxChange={this.props.onClickCheckboxChange}
-                onAnswerChange={this.props.onAnswerChange}
-                onClickRemoveAnswer={this.props.onClickRemoveAnswer}
+                onCheckboxChange={props.onClickCheckboxChange}
+                onAnswerChange={props.onAnswerChange}
+                onClickRemoveAnswer={props.onClickRemoveAnswer}
               />
             </div>
           );
-        })}
-      </div>
+        })
+      }
+      </div >
     );
-  }
+
 }

@@ -78,7 +78,7 @@ class QuizGenWrapper extends React.PureComponent {
 
     newTitle.preventDefault()
 
-    
+
     const newState = {
       title: newTitle.target.value,
       isSaved: false
@@ -309,6 +309,8 @@ class QuizGenWrapper extends React.PureComponent {
     const { questions } = this.state.quiz;
     const questionsCount = questions.length - 1;
 
+    const memoAnswersList = React.memo(function() {})
+
     return questions.map((question, index) => (
       <div
         key={question.id}
@@ -337,6 +339,10 @@ class QuizGenWrapper extends React.PureComponent {
       </div>
     ));
   };
+
+
+
+
 
   render() {
 
